@@ -53,8 +53,11 @@
 				</a>
 			</div>
 			<nav>
-				<div class="title">Longer text</div>
+				<div class="title">Unleash the functional beast~</div>
 				<ul>
+					<li>
+						<a href="/basics" class={$page.url.pathname === '/basics' ? 'active' : ''}>Basics</a>
+					</li>
 					<li>
 						<a href="/two" class={$page.url.pathname === '/two' ? 'active' : ''}>two</a>
 					</li>
@@ -131,6 +134,7 @@
 	nav .title {
 		color: rgb(206, 206, 206);
 		display: block;
+		font-size: small;
 		padding-block: 16px;
 		padding-left: 0.2rem;
 	}
