@@ -1,7 +1,6 @@
 <script>
 	import Iconie from "$lib/components/Iconie.svelte"
 
-	export let data;
 </script>
 
 # Functional programming video resources:
