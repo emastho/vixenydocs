@@ -31,7 +31,25 @@
 <main>
 	{#if sidebar}
 		<div transition:fly={{ x: -300, duration: 150, opacity: 1 }} class="menu">
-			oh no I didnt expect you here
+			<nav>
+				<ul>
+					<li>
+						<a href="/" on:click={() => (sidebar = false)}>Home</a>
+					</li>
+					<li>
+						<a href="/basics" on:click={() => (sidebar = false)}>Basics</a>
+					</li>
+					<li>
+						<a href="/two" on:click={() => (sidebar = false)}>two</a>
+					</li>
+					<li>
+						<a href="/other" on:click={() => (sidebar = false)}>other</a>
+					</li>
+					<li>
+						<a href="/more" on:click={() => (sidebar = false)}>more</a>
+					</li>
+				</ul>
+			</nav>
 		</div>
 	{/if}
 	<header>
@@ -55,6 +73,9 @@
 			<nav>
 				<div class="title">Unleash the functional beast~</div>
 				<ul>
+					<li>
+						<a href="/" class={$page.url.pathname === '/' ? 'active' : ''}>Home</a>
+					</li>
 					<li>
 						<a href="/basics" class={$page.url.pathname === '/basics' ? 'active' : ''}>Basics</a>
 					</li>
@@ -99,9 +120,10 @@
 		flex-grow: 1;
 	}
 
-	ul {
+	nav ul {
 		width: 100%;
 		margin: 0;
+		user-select: none;
 	}
 
 	ul > * {
@@ -194,7 +216,7 @@
 		position: fixed;
 		width: 270px;
 		height: 100%;
-		padding: 3rem;
+		padding: 2rem;
 	}
 
 	@media (width < 1100px) {
