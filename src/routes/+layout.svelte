@@ -2,7 +2,7 @@
 	import '../app.css';
 	import '../theme.css';
 	import { fly } from 'svelte/transition';
-	import Logo from '$lib/assets/vixenylogo.png';
+	import Logo from '$lib/assets/vixenylogo-min.png';
 	import ProgressBar from 'svelte-progress-bar';
 	import { page } from '$app/stores';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
@@ -101,11 +101,13 @@
 	aside {
 		flex-shrink: 0;
 		width: 270px;
-		height: 100vh;
+		/* height: 100vh; */
 		background-color: #252525;
 		padding: 3rem 1.6rem;
 		display: flex;
 		flex-direction: column;
+		position: fixed;
+		height: 100%;
 	}
 
 	.logoArea {
@@ -161,17 +163,19 @@
 		padding-left: 0.2rem;
 	}
 
-	.container {
-		display: flex;
-		flex-wrap: wrap;
-	}
+	/* .container { */
+	/* display: flex; */
+	/* flex-wrap: wrap; */
+	/* } */
 
 	section {
 		flex: 1;
 		padding: 3rem 4rem;
 		color: white;
-		height: 100vh;
-		overflow-y: scroll;
+		/* height: 100vh; */
+		padding-left: calc(270px + 4rem);
+		/* overflow-y: scroll; */
+		max-width: 120ch;
 	}
 
 	a {
@@ -230,6 +234,7 @@
 
 		section {
 			height: auto;
+			padding-left: 4rem;
 		}
 	}
 </style>
