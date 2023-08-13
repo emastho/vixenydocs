@@ -4,6 +4,7 @@
 	import { fly } from 'svelte/transition';
 	import Logo from '$lib/assets/vixenylogo-min.png';
 	import ProgressBar from 'svelte-progress-bar';
+	import Iconie from '$lib/components/Iconie.svelte';
 	import { page } from '$app/stores';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	let progress;
@@ -60,7 +61,9 @@
 			</a>
 		</div>
 		<div>
-			<button on:click={showSidebar}>X</button>
+			<button on:click={showSidebar}>
+				<Iconie which="menu" />
+			</button>
 		</div>
 	</header>
 	<div class="container">
@@ -211,7 +214,8 @@
 	header button {
 		background: #383838;
 		border: none;
-		padding: 1rem;
+		padding: 0.4rem;
+		aspect-ratio: 1/1;
 		border-radius: 4px;
 	}
 

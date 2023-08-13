@@ -15,6 +15,10 @@ p {
     margin: 0;
 }
 
+ul {
+    list-style-type: none;
+}
+
 section h1 {
     padding-bottom: 36px;
 }
@@ -39,4 +43,14 @@ section .link {
     display: flex;
     column-gap: 8px;
     color: #53535a;
+}
+
+section p,
+section ul {
+    color: #cacaca;
+    line-height: 1.5;
+}
+
+strong {
+    color: white;
 }

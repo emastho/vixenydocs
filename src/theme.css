@@ -144,3 +144,7 @@ pre[class*="language-"] {
 .line-numbers .line-numbers-rows>span {
     border-right: 3px #d9d336 solid;
 }
+
+pre[class*="language-"] {
+    border: 2px solid #2f2f2f;
+}
