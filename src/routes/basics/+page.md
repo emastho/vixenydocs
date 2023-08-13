@@ -43,7 +43,7 @@ A simple example of a "Hello World" **`petition`** on `"/"`:
 Vixeny can be used with Deno and Bun. Here's how you can set up a basic "hello world" server:
 
 
-- **In Bun:**
+**In Bun:**
 
 ```typescript
 import vixeny from "vixeny/fun";
@@ -67,7 +67,7 @@ export default {
 
 ```
 
-- **In Deno:**
+**In Deno:**
 
 ```ts
 import { serve } from "https://deno.land/std/http/server.ts";
