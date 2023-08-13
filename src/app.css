@@ -24,9 +24,10 @@ section h1 {
 }
 
 section h2,
-section h3 {
-    margin-top: 48px;
-    margin-bottom: 24px;
+section h3,
+section h4 {
+    margin-top: 80px;
+    margin-bottom: 16px;
 }
 
 section h1 {
