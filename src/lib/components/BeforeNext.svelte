@@ -1,13 +1,13 @@
 <script lang="ts">
-	export let previous: string;
-	export let next: string;
+	export let previous: string = "";
+	export let next: string = "";
 </script>
 
 <div>
-	{#if previous}
+	{#if previous != ""}
 		<a href={previous}>Before</a>
 	{/if}
-	{#if next}
+	{#if next != ""}
 		<a href={next}>Next</a>
 	{/if}
 </div>
