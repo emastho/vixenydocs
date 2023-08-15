@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import '../theme.css';
 	import { fly } from 'svelte/transition';
@@ -6,11 +6,15 @@
 	import Iconie from '$lib/components/Iconie.svelte';
 	import { page } from '$app/stores';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
+	import ProgressBar from 'svelte-progress-bar';
+    let progress: HTMLElement;
 
 	beforeNavigate(() => {
+		progress.start();
 	});
 
 	afterNavigate(() => {
+		progress.complete();
 	});
 
 	let sidebar = false;
@@ -22,6 +26,7 @@
 <svelte:head>
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
+<ProgressBar bind:this={progress} color="#6F5C9B" minimum="0.40" intervalTime="600" />
 <main>
 	{#if sidebar}
 		<div transition:fly={{ x: -300, duration: 150, opacity: 1 }} class="menu">
