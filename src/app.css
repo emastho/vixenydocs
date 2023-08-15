@@ -47,9 +47,16 @@ section .link {
 }
 
 section p,
-section ul {
+section ul, section code {
     color: #cacaca;
     line-height: 1.5;
+    font-size: 14px;
+}
+
+section code {
+    padding: 2px 4px;
+    background-color: #323232;
+    border-radius: 4px;
 }
 
 strong {
