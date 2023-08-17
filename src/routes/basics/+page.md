@@ -241,7 +241,7 @@ The name field is crucial, as it uniquely identifies what Vixeny is utilizing at
 Unlike other frameworks, Vixeny introduces a set of unique and powerful concepts that cater to a wide range of development preferences. Here's an overview of what's next:
 
  
- - **Resolve: Resolving**: functions before another context requires them, setting up an state.
+ - **Resolve**:Resolves one or multiple functions before another context requires them, setting up an state.
 
 - **Branch**: Enable conditional execution to provide granular control and flexibility.
 
