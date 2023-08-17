@@ -41,6 +41,9 @@
 						<a href="/basics" on:click={() => (sidebar = false)}>Basics</a>
 					</li>
 					<li>
+						<a href="/composing" on:click={() => (sidebar = false)}>composing</a>
+					</li>
+					<li>
 						<a href="/two" on:click={() => (sidebar = false)}>two</a>
 					</li>
 					<li>
@@ -81,6 +84,9 @@
 					</li>
 					<li>
 						<a href="/basics" class={$page.url.pathname === '/basics' ? 'active' : ''}>Basics</a>
+					</li>
+					<li>
+						<a href="/composing" class={$page.url.pathname === '/composing' ? 'active' : ''}>Composing</a>
 					</li>
 					<li>
 						<a href="/two" class={$page.url.pathname === '/two' ? 'active' : ''}>two</a>

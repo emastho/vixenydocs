@@ -250,4 +250,4 @@ Unlike other frameworks, Vixeny introduces a set of unique and powerful concepts
 
 
 
-<BeforeNext next="/two" />
+<BeforeNext next="/composing" />
