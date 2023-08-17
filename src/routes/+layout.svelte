@@ -7,7 +7,7 @@
 	import { page } from '$app/stores';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	import ProgressBar from 'svelte-progress-bar';
-    let progress: HTMLElement;
+	let progress: HTMLElement;
 
 	beforeNavigate(() => {
 		progress.start();
@@ -23,6 +23,7 @@
 		sidebar = !sidebar;
 	};
 </script>
+
 <svelte:head>
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
@@ -194,6 +195,7 @@
 		display: none;
 		background: #252525;
 		padding: 1.5rem;
+		align-items: center;
 	}
 
 	header div:nth-child(2) {
