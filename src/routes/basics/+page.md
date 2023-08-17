@@ -2,6 +2,11 @@
   import BeforeNext from "$lib/components/BeforeNext.svelte"
 </script>
 
+<svelte:head>
+    <title>Basics - Vixeny</title>
+    <meta name="description" content="about this page" />
+</svelte:head>
+
 # Introduction
 
 Welcome to Vixeny, a web framework that offers both the strengths of functional programming and extensive support for other paradigms. Whether you're a seasoned functional programmer, new to the concept, or even if you choose to take a different path altogether, Vixeny has something to offer you.

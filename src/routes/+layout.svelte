@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import '../theme.css';
 	import { fly } from 'svelte/transition';
 	import Logo from '$lib/assets/vixenylogo-min.png';
-	import ProgressBar from 'svelte-progress-bar';
 	import Iconie from '$lib/components/Iconie.svelte';
 	import { page } from '$app/stores';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
-	let progress;
+	import ProgressBar from 'svelte-progress-bar';
+	let progress: HTMLElement;
 
 	beforeNavigate(() => {
 		progress.start();
@@ -24,11 +24,10 @@
 	};
 </script>
 
-<ProgressBar bind:this={progress} color="#6F5C9B" minimum="0.40" intervalTime="600" />
-
 <svelte:head>
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
+<ProgressBar bind:this={progress} color="#6F5C9B" minimum="0.40" intervalTime="600" />
 <main>
 	{#if sidebar}
 		<div transition:fly={{ x: -300, duration: 150, opacity: 1 }} class="menu">
@@ -202,6 +201,7 @@
 		display: none;
 		background: #252525;
 		padding: 1.5rem;
+		align-items: center;
 	}
 
 	header div:nth-child(2) {
