@@ -248,5 +248,14 @@
 			height: auto;
 			padding-inline: 2rem;
 		}
+
+		:global(section ul) {
+			list-style-type: decimal;
+			padding-left: 26px;
+		}
+
+		:global(section ul li::marker) {
+			font-family: 'monospace';
+		}
 	}
 </style>
