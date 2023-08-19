@@ -57,7 +57,7 @@ section ul, section code {
     font-size: 16px;
 }
 
-section code:not("language-typescript") {
+section code:not(.language-ts) {
     padding: 2px 4px;
     background-color: #323232;
     border-radius: 4px;
