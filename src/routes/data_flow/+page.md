@@ -4,32 +4,34 @@
 </script>
 
 <svelte:head>
-    <title>Composing - Vixeny</title>
-    <meta name="description" content="about this page" />
+    <title>Data Control - Vixeny</title>
+    <meta name="description" content="About this page" />
 </svelte:head>
 
-# Composing
+# Data Control
 
-Vixeny was created to be a functional framework, yet, until here we haven't unraveled the real potential of her powerful composition which `wraps` and `folds` (reduce) different  `branches` to `resolve` the `petition` with the help of other combinator using pure lambda calculus, so let's dive into this nonsense with an oversimplification.
+Vixeny was created to be a functional framework, yet, until now, we haven't unraveled the real potential of its powerful composition which `wraps` and `folds` (reduce) different `branches` to `resolve` the `petition` with the help of other combinators using pure lambda calculus. So let's dive into this subject with an oversimplification.
 <br>
 
-For the seek of keeping it simple, we will say that she only `folds` and `wraps` your petition to `resolve` the `request` and give a `response`, so let's define:
+For the sake of keeping it simple, we will say that it only `folds` and `wraps` your petition to `resolve` the `request` and provide a `response`. Let's define:
 <br>
 
-1. **Wrapping**: Putting a value or function inside another function. Like wrapping a gift inside a box.
+- **Wrapping**: Putting a value or function inside another function, like wrapping a gift inside a box.
 
-2. **Folding**: Taking a list of values and combining them into one value by repeatedly using the same action (like adding numbers together).
-
-- **Wrapping Example in Vixeny**: If you have more than one function in a petition, you can create a function that, when called, resolves the others making a `chain`.
-
-- **Folding Example**: If `param` and `query` is requested, you can "fold" them together into your arguments `context` to have access to them.
+- **Folding**: Taking a list of values and combining them into one value by repeatedly using the same action (like adding numbers together).
 
 <br>
 
-Is it necessary to understand this to use Vixeny? not at all, but gives some insides into her behavour.
+- **Wrapping Example in Vixeny**: If you have more than one function in a petition, you can create a function that, when called, resolves the others by creating a `chain`.
+
+- **Folding Example in Vixeny**: If `param` and `query` are requested, you can "fold" them together into your `context` to have access to them.
+
+<br>
+
+Is it necessary to understand this to use Vixeny? Not at all, but it does provide some insights into its behavior.
 ## Resolve
-If a `resolve` , `f` or `branch` has a `resolve`, this function will be resolved first, this also applies to `promises`.
-### sync
+If a `resolve`, `f`, or `branch` has a `resolve`, this function will be resolved first. This also applies to `promises`.
+### Sync
 ```ts
 {
     path: "/sync",
@@ -38,42 +40,42 @@ If a `resolve` , `f` or `branch` has a `resolve`, this function will be resolved
         f: context => context.query?.hello ?? "not found"
     },
     //"nested" is accessible to "context"
-    f:  context => context.resolve.nested as string
+    f: context => context.resolve.nested as string
 }
 ```
-### async
+### Async
 ```ts
 {
     path: "/async",
     resolve: {
         name: "nested",
         //the blob is created before reaching the next step of the chain
-        f:  async f => await f.req.blob()
+        f: async f => await f.req.blob()
     },
-    //this function is sync because of the way of vixeny unwrapped and resolving
-    f:  f => f.resolve.hello as string
+    //this function is sync because of the way Vixeny unwraps and resolves
+    f: f => f.resolve.hello as string
 }
 ```
-Also, you can `resolve` many elements at the same time,there will be a better explanation of the order in which this unwrapping occurs later on.
+Also, you can resolve many elements at the same time; there will be a better explanation of the order in which this unwrapping occurs later on.
 ```ts
 {
-	path: "/multiple",
-	resolve: [
-		{
-			name: "blob",
-			f:  async f => await f.req.blob()
-		},
-		{
-			name: "query",
-			f: context => context.query?.hello ?? "no query"
-		},
-	],
-	f:  f => f.resolve.blob
+    path: "/multiple",
+    resolve: [
+        {
+            name: "blob",
+            f: async f => await f.req.blob()
+        },
+        {
+            name: "query",
+            f: context => context.query?.hello ?? "no query"
+        },
+    ],
+    f: f => f.resolve.blob
             ? "your query is: " + f.resolve.query as string
             : "no body"
 }
 ```
-Or you can `chain` them as a pseudo pipe
+Or you can `chain` them as a pseudo-pipe.
 ```ts
 {
     path: "/nested/:id",
@@ -165,7 +167,37 @@ or
     f: f => c.resolve.hello as string,
 }
 ```
+So why do we need them? Laziness is an important concept in functional programming and sometimes we only want to invoke a function if a condition is fullfil, for example:
+```ts
+//assuming that the user name will be passed by query
+{
+    path: "/user/:runtime",
+    f: c => 
+        c.param.runtime === "bun"
+            ? c.branch.deno() as string
+            : c.param.runtime == "deno"
+                ? c.branch.bun() as string
+                : "Sorry, we are only working on bun or deno"
+    branch: [
+        {
+            name: "bun",
+            f: c => 
+                "Hello Bun user: " +
+                c.query?.user ?? "no user found"  
+        },
+        {
+            name: "deno",
+            f: c => 
+                "Hello Deno user: " +
+                c.query?.user ?? "no user found"  
+        }
+    ]
+}
+```
+In this way, we can control the data flow using only what is needed.
+
+## Mutable
 
 
-## Order Execution
+
 <BeforeNext previous="/basics" next="/other" />

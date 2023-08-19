@@ -34,9 +34,6 @@
 			<nav>
 				<ul>
 					<li>
-						<a href="/" on:click={() => (sidebar = false)}>Home</a>
-					</li>
-					<li>
 						<a href="/basics" on:click={() => (sidebar = false)}>Basics</a>
 					</li>
 					<li>
@@ -79,14 +76,11 @@
 				<div class="title">Unleash the functional beast~</div>
 				<ul>
 					<li>
-						<a href="/" class={$page.url.pathname === '/' ? 'active' : ''}>Home</a>
-					</li>
-					<li>
 						<a href="/basics" class={$page.url.pathname === '/basics' ? 'active' : ''}>Basics</a>
 					</li>
 					<li>
-						<a href="/composing" class={$page.url.pathname === '/composing' ? 'active' : ''}
-							>Composing</a
+						<a href="/data_flow" class={$page.url.pathname === '/data_flow' ? 'active' : ''}
+							>Data Flow</a
 						>
 					</li>
 					<li>
