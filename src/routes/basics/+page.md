@@ -231,25 +231,19 @@ The name field is crucial, as it uniquely identifies what Vixeny is utilizing at
 
 - **debug**: `Outputs` information of the `context`
 
+### Vixeny's Distinctive Features
 
+Vixeny stands out as a web framework with a variety of unique and powerful features that cater to various development preferences and paradigms. Here's an overview of some key elements that make Vixeny distinct asn we will cover in the next chapters:
 
-## Vixeny's Distinctive Features
+- **Resolve**: Enables the resolution of one or multiple functions before another context requires them, allowing for state setup.
 
-Unlike other frameworks, Vixeny introduces a set of unique and powerful concepts that cater to a wide range of development preferences. Here's an overview of what's next:
+- **Branch**: Provides conditional execution, giving developers granular control and flexibility over code flow.
 
- 
- - **Resolve**:Resolves one or multiple functions before another context requires them, setting up an state.
+- **Composing in Context**: Encourages the construction of complex functionalities by chaining simpler components within a shared or unique context. This approach promotes cohesive and maintainable code.
 
-- **Branch**: Enable conditional execution to provide granular control and flexibility.
+- **Mutable (non-functional support)**: While embracing functional programming, Vixeny also offers support for modifying data structures, contrasting with the immutable approach typically found in functional paradigms. This feature provides additional flexibility for developers who prefer or require mutable data handling.
 
-- **Composing in Context**: Build complex functionalities by **`chaining`** simpler components within a shared or unique context for cohesive and maintainable code.
-
-- **All together at the same time**: Controlling the flow of data with predictable and modular control.
-
-- **Order Execution**: Control the sequence in which `f`, `resolve`, or `branch` will execute.
-
-- **Mutable (non-functional support)**: Offer support for modifying data structures, in contrast to the immutable approach typical of functional programming. This provides additional flexibility for those who prefer or require it.
-
+These distinctive features contribute to Vixeny's versatility and appeal, enabling developers to leverage functional programming benefits while also accommodating various other paradigms and preferences.
 
 
 <BeforeNext next="/data_flow" />
