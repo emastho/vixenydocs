@@ -85,7 +85,9 @@
 						<a href="/basics" class={$page.url.pathname === '/basics' ? 'active' : ''}>Basics</a>
 					</li>
 					<li>
-						<a href="/composing" class={$page.url.pathname === '/composing' ? 'active' : ''}>Composing</a>
+						<a href="/composing" class={$page.url.pathname === '/composing' ? 'active' : ''}
+							>Composing</a
+						>
 					</li>
 					<li>
 						<a href="/two" class={$page.url.pathname === '/two' ? 'active' : ''}>two</a>
@@ -244,7 +246,7 @@
 
 		section {
 			height: auto;
-			padding-left: 4rem;
+			padding-inline: 2rem;
 		}
 	}
 </style>

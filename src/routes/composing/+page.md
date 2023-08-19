@@ -3,9 +3,12 @@
 	import BeforeNext from "$lib/components/BeforeNext.svelte"
 </script>
 
+<svelte:head>
+    <title>Composing - Vixeny</title>
+    <meta name="description" content="about this page" />
+</svelte:head>
+
 # Composing
-## Introduction
-### Some theory
 
 Vixeny was created to be a functional framework, yet, until here we haven't unraveled the real potential of her powerful composition which `wraps` and `folds` (reduce) different  `branches` to `resolve` the `petition` with the help of other combinator using pure lambda calculus, so let's dive into this nonsense with an oversimplification.
 <br>
