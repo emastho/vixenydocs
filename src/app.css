@@ -54,7 +54,7 @@ section p,
 section ul, section code {
     color: #cacaca;
     line-height: 1.65;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 section code:not("language-typescript") {

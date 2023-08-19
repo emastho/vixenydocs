@@ -146,7 +146,7 @@
 		margin-bottom: 0;
 	}
 
-	ul li {
+	nav ul li {
 		font-size: 14px;
 		padding: unset;
 	}
