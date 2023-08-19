@@ -37,7 +37,10 @@
 						<a href="/basics" on:click={() => (sidebar = false)}>Basics</a>
 					</li>
 					<li>
-						<a href="/composing" on:click={() => (sidebar = false)}>composing</a>
+						<a href="/data_flow" on:click={() => (sidebar = false)}>Data Flow</a>
+					</li>
+					<li>
+						<a href="/data_control" on:click={() => (sidebar = false)}>Data Control</a>
 					</li>
 					<li>
 						<a href="/two" on:click={() => (sidebar = false)}>two</a>
@@ -81,6 +84,11 @@
 					<li>
 						<a href="/data_flow" class={$page.url.pathname === '/data_flow' ? 'active' : ''}
 							>Data Flow</a
+						>
+					</li>
+					<li>
+						<a href="/data_control" class={$page.url.pathname === '/data_control' ? 'active' : ''}
+							>Data Control</a
 						>
 					</li>
 					<li>

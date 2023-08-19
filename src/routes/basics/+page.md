@@ -36,7 +36,7 @@ Where options allow you to configure the server, and petitions are an **`Array`*
 
 A simple example of a "Hello World" **`petition`** on `"/"`:
 
-```typescript
+```ts
 {
   path: "/",
   f: () => "hello world",
@@ -49,7 +49,7 @@ Vixeny can be used with Deno and Bun. Here's how you can set up a basic "hello w
 
 **In Bun:**
 
-```typescript
+```ts
 import vixeny from "vixeny/fun";
 
 export default {
@@ -58,15 +58,14 @@ export default {
   fetch: vixeny(
     //Options
     { hasName: "http://127.0.0.1:8080/" }
-    )(
-    /Petitions
-    [
+    )
+    // Petitions
+    ([
     //Petition on "/"
     {
       path: "/",
       f: () => "hello world",
-    },
-  ]) 
+    }]) 
 }
 
 ```
@@ -80,18 +79,16 @@ import vixeny from "https://deno.land/x/endofunctor/fun.ts";
 
 await serve(
   vixeny(
-    //Options
-    { hasName: "http://127.0.0.1:8080/" }
-    )(
+     //Options
+    { hasName: "http://127.0.0.1:8080/" })
     //Petitions
-    [
+    ([
     //Petition on "/"
     {
       path: "/",
       f: () => "hello world",
     },
-  ]
-  ),
+  ]),
   { port: 8080, hostname: "127.0.0.1" },
 );
 ```
@@ -107,7 +104,7 @@ Untyped petitions are the standard way of defining routes in Vixeny. They don't 
 
 Examples of untyped petitions are found throughout the documentation, such as basic route definition:
 
-```typescript
+```ts
 {
   path: "/",
   f: () => "hello world",
@@ -120,7 +117,7 @@ Type request petitions change the return type from `BodyInit` to `Response`. Thi
 
 Here's an example:
 
-```typescript
+```ts
 {
     path: "/response/who/:name",
     type: "request",
@@ -136,7 +133,7 @@ When the petition type is set to "response," the optimizer is bypassed. A Reques
 
 Here's an example:
 
-```typescript
+```ts
 {
   path: "/response/hello",
   type: "response",
@@ -165,7 +162,7 @@ In Vixeny, `add` is used to include additional fields in the arguments for a spe
 
 Here's an example from your code:
 
-```typescript
+```ts
 {
   path:"/example/:id",
   add: ["req","param"],
@@ -181,7 +178,7 @@ Conversely, the `delete` option allows you to remove specific fields from the ar
 
 Here's an example from the code you provided:
 
-```typescript
+```ts
 {
   path: '/example/:id',
   delete: ['param'],
@@ -197,7 +194,7 @@ In the context of Vixeny, the `only` keyword is specifically related to bypass e
 
 Here's the example from your code:
 
-```typescript
+```ts
 {
   path: '/query/onlyName',
   only: ["query"],
@@ -212,12 +209,12 @@ These features (`add`, `delete`, and `only`) allow for fine-grained control over
 Understanding and monitoring how Vixeny operates within a given context is made easier with the DebugOptions type. This allows for console logging of the current state. Defined as:
 
 ```ts
-  {
-      path: "/",
-      debug: {name: "main", type:"list"},
-      f: async context => await context.req.blob()
-  }
-  // Vixeny in path "/" with the name "main" that is a "function" uses: ["req"]
+{
+    path: "/",
+    debug: {name: "main", type:"list"},
+    f: async context => await context.req.blob()
+}
+// Vixeny in path "/" with the name "main" that is a "function" uses: ["req"]
 ```
 The name field is crucial, as it uniquely identifies what Vixeny is utilizing at that particular context. This provides developers with clear insights into the process and facilitates effective debugging.
 

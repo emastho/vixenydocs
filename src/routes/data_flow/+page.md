@@ -10,25 +10,7 @@
 
 # Data Control
 
-Vixeny was created to be a functional framework, yet, until now, we haven't unraveled the real potential of its powerful composition which `wraps` and `folds` (reduce) different `branches` to `resolve` the `petition` with the help of other combinators using pure lambda calculus. So let's dive into this subject with an oversimplification.
-<br>
 
-For the sake of keeping it simple, we will say that it only `folds` and `wraps` your petition to `resolve` the `request` and provide a `response`. Let's define:
-<br>
-
-- **Wrapping**: Putting a value or function inside another function, like wrapping a gift inside a box.
-
-- **Folding**: Taking a list of values and combining them into one value by repeatedly using the same action (like adding numbers together).
-
-<br>
-
-- **Wrapping Example in Vixeny**: If you have more than one function in a petition, you can create a function that, when called, resolves the others by creating a `chain`.
-
-- **Folding Example in Vixeny**: If `param` and `query` are requested, you can "fold" them together into your `context` to have access to them.
-
-<br>
-
-Is it necessary to understand this to use Vixeny? Not at all, but it does provide some insights into its behavior.
 ## Resolve
 If a `resolve`, `f`, or `branch` has a `resolve`, this function will be resolved first. This also applies to `promises`.
 ### Sync
@@ -200,4 +182,4 @@ In this way, we can control the data flow using only what is needed.
 
 
 
-<BeforeNext previous="/basics" next="/other" />
+<BeforeNext previous="/basics" next="/data_control" />
