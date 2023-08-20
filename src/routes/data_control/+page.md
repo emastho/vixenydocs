@@ -4,6 +4,8 @@
 </svelte:head>
 
 
+# Data Control
+
 ## Object Manipulation in Vixeny
 
 In Vixeny, you often work with objects representing petitions, and it might be necessary to manipulate these objects to achieve the desired behavior. Let's explore some common techniques you can use.
@@ -26,6 +28,52 @@ vixeny(
 )
 ```
 
+### Changing and Adding `resolve` and `branch`
+
+Vixeny's pure functionality allows you to change or add `resolve` and `branch` to your petitions. This enables you to modify the behavior of a petition or compose new ones, maintaining the integrity of the original object.
+
+Here's an example that demonstrates how to change a `resolve`:
+
+```ts
+// Importing an authentication resolve
+import r_auth from "./somewhere"
+
+{
+  // Defining the path for the petition
+  path: "/user/:name",
+  
+  // Using the spread operator to incorporate authentication into the resolve
+  resolve: {...r_auth},
+  
+  // A function that returns the authenticated body or a default value if not valid
+  f: c => c.resolve.auth as BodyInt ?? "not_valid"
+}
+
+```
+
+Similarly, you can add or modify a `branch` using the same technique:
+
+```ts
+// Importing an authentication branch
+import b_auth from "./somewhere"
+
+{
+  // Defining the path for the petition
+  path: "/user/:name",
+  
+  // A function that returns the authenticated body or a default value if the name is not "bun"
+  f: c => c.param.name === "bun" 
+    ? c.branch.auth(c.param.name) as BodyInt 
+    : "not_valid",
+  
+  // Using the spread operator to incorporate authentication into the branch
+  branch: {...b_auth}
+}
+
+```
+
+These comments break down the code and explain each part of the petition's construction, making it easier to understand how `resolve` and `branch` are being manipulated.
+
 ### Importing and Spreading Petitions
 
 Vixeny's flexibility allows you to import an array of Petitions from other files and add them to your application using the spread operator (`...`). This is useful when you want to organize your code across multiple files or reuse Petitions in different parts of your application.
@@ -34,7 +82,7 @@ Here's an example that demonstrates how to import and spread Petitions:
 
 ```ts
 // Importing an array of Petitions from another file
-import { petitionsArray } from "./path/to/petitions";
+import  petitionsArray  from "./path/to/petitions";
 
 vixeny(
   /* Options */
@@ -45,80 +93,60 @@ vixeny(
 ```
 By using the spread operator, you can easily combine, override, and manage Petitions, enabling more modular and maintainable code.
 
-### Changing and Adding `resolve` and `branch`
-
-Vixeny's pure functionality allows you to change or add `resolve` and `branch` to your petitions. This enables you to modify the behavior of a petition or compose new ones, maintaining the integrity of the original object.
-
-Here's an example that demonstrates how to change a `resolve`:
-
-```ts
-const existingPetition = {
-  name: "/oldRoute",
-  resolve: { /* existing resolve properties */ },
-  // other properties
-};
-const newResolve = { /* new resolve properties */ };
-const newPetition = { ...existingPetition, resolve: newResolve };
-
-```
-
-Similarly, you can add or modify a `branch` using the same technique:
-
-```ts
-const newBranch = { /* new branch properties */ };
-const newPetitionWithBranch = { ...existingPetition, branch: newBranch };
-```
 
 ### Testing with Pure Functionality
 
-The pure nature of Vixeny's petitions provides a highly advantageous testing environment, allowing developers to rigorously examine their code in isolation from external dependencies. This brings about several benefits that enhance the development experience:
 
-#### 1. Isolation of Components
+The pure nature of Vixeny's petitions provides an advantageous testing environment, allowing developers to rigorously examine their code in isolation from external dependencies. This includes mocking async functions to test them in a pure state. Let's explore these concepts further:
 
-In a functional program, you can isolate different parts of your application and test them independently. Since Vixeny's `resolve` and `branch` are pure functions, you can test them without worrying about the overall state of your application or the environment in which they run.
+#### 1. **Mocking Async Functions**
 
-#### 2. Ease of Mocking
+In testing, you often encounter situations where you want to test a function that relies on an asynchronous operation. By mocking the async function, you can substitute it with a synchronous version that returns a known value, allowing you to control the behavior and test it in isolation.
 
-With the immutability of pure functions, you can easily replace the original `resolve` and `branch` with mocked versions for testing purposes:
+Here's an example of how you can mock an async function and use `assertEqual` to test it assuming that:
 
-```js
-const mockResolve = { /* mock implementation for testing */ };
-const mockBranch = { /* another mock implementation */ };
-const purePetition = { ...existingPetition, resolve: mockResolve, branch: mockBranch };
 
-// You can now test purePetition in isolation
+- If the `resolve` returns `true`, then `yourAsyncFunction` will return "valid."
+- If the `resolve` returns `false`, then `yourAsyncFunction` will return "invalid."
+- If the `resolve` returns `null`, then `yourAsyncFunction` will return "error."
+
+
+```ts
+import { assertEqual } from "your-testing-library";
+import petitionComposer from "vixeny/components/optimizer/petitionComposer"
+import  yourAsyncFunction  from "./path/to/asyncFunction";
+
+//Deno
+Bun.test("test", async () => {
+  assertEqual(
+    await petitionComposer()(
+      {...yourAsyncFunction, resolve: () => true}
+    ), 
+    "valid"
+  )
+  assertEqual(
+    await petitionComposer()(
+      {...yourAsyncFunction, resolve: () => false}
+    ), 
+    "invalid"
+  )
+  assertEqual(
+    await petitionComposer()(
+      {...yourAsyncFunction, resolve: () => null}
+    ), 
+    "error"
+)
+})
 ```
 
-This allows you to create controlled test scenarios, where you have complete mastery over the inputs and expected outputs.
+By substituting the async function with the mocked one, you can test the behavior in a pure state, giving you confidence that your code is working as intended.
 
-#### 3. Reproducibility
+#### 2. **Benefits of Mocking in Functional Programming**
 
-Tests with pure functions can be run repeatedly and in any order, always producing the same result for the same input. There's no hidden state or external data that can affect the outcome. This predictability makes the tests more robust and the code more maintainable.
-
-#### 4. Composability for Complex Testing
-
-By treating `petitions`, `resolve`, and `branch` as values, you can compose them in various ways to create complex testing scenarios:
-
-```js
-const combinedPetition = {
-  ...basePetition,
-  resolve: combineResolves(baseResolve, additionalResolve),
-  branch: combineBranches(baseBranch, additionalBranch),
-};
-
-// combinedPetition can now be tested as a whole or in parts
-```
-
-You can reuse, modify, and merge them at will, providing a flexible way to approach complex testing requirements.
-
-#### 5. Alignment with Functional Principles
-
-Embracing pure functionality for testing aligns with the broader philosophy of functional programming, enhancing code readability, maintainability, and correctness. The deliberate avoidance of side effects means that each part of your application can be understood in isolation.
-
+- **Isolation**: By replacing dependencies with mock implementations, you can isolate the function you are testing from the rest of the system, ensuring that the test only depends on the input.
+- **Reproducibility**: Mocking allows you to create deterministic tests where the same input always produces the same output, regardless of external factors.
+- **Ease of Testing**: Mocking simplifies testing by eliminating the need to set up and tear down external dependencies, making your tests faster and more robust.
 
 ### Conclusion
 
-Testing with pure functionality is more than a feature in Vixeny—it's a foundational concept that permeates the entire framework. By fully embracing this approach, developers can create more resilient, clear, and flexible code, enhancing not only the application's quality but also the development experience itself.
-
-The principles of isolation, ease of mocking, reproducibility, and composability come together to make testing in Vixeny an integral and rewarding aspect of building modern web applications.
-
+Testing with pure functionality in Vixeny empowers developers to create more reliable, maintainable, and understandable code. By taking advantage of mocking techniques, including the substitution of async functions, you can ensure that your applications are tested thoroughly and perform as expected. This comprehensive approach to testing is a cornerstone of modern web development in Vixeny, reinforcing the benefits of functional programming and enhancing the overall development experience.
