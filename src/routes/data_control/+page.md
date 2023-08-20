@@ -120,19 +120,28 @@ import  yourAsyncFunction  from "./path/to/asyncFunction";
 Bun.test("test", async () => {
   assertEqual(
     await petitionComposer()(
-      {...yourAsyncFunction, resolve: () => true}
+      {...yourAsyncFunction, resolve: {
+        ... yourAsyncFunction.resolve ,
+        f: () => true
+      }}
     ), 
     "valid"
   )
   assertEqual(
     await petitionComposer()(
-      {...yourAsyncFunction, resolve: () => false}
+      {...yourAsyncFunction, resolve: {
+        ...yourAsyncFunction.resolve, 
+        f: () => false
+      }}
     ), 
     "invalid"
   )
   assertEqual(
     await petitionComposer()(
-      {...yourAsyncFunction, resolve: () => null}
+      {...yourAsyncFunction, resolve: {
+        ... yourAsyncFunction.resolve ,
+        f: () => null
+      }}
     ), 
     "error"
 )
