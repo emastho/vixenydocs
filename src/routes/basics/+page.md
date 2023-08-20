@@ -32,7 +32,7 @@ In Vixeny, defining routes or **`Petitions`** is straightforward. You'll make us
 ```ts
 vixeny(options)([...petitions])
 ``` 
-Where options allow you to configure the server, and petitions are an **`Array`** of routes.
+Where options allow you to configure the server, and petitions are an **`Array`** of **`petition`**.
 
 A simple example of a "Hello World" **`petition`** on `"/"`:
 
@@ -47,7 +47,7 @@ A simple example of a "Hello World" **`petition`** on `"/"`:
 
 Vixeny can be used with Deno and Bun. Here's how you can set up a basic "hello world" server:
 
-**In Bun:**
+### In Bun:
 
 ```ts
 import vixeny from "vixeny/fun";
@@ -70,7 +70,7 @@ export default {
 
 ```
 
-**In Deno:**
+### In Deno:
 
 ```ts
 import { serve } from "https://deno.land/std/http/server.ts";
@@ -100,7 +100,7 @@ There are 3 basic types that we should care at the beginning:
 
 ### Untyped
 
-Untyped petitions are the standard way of defining routes in Vixeny. They don't explicitly define the response type and provide flexibility in handling the request. You can easily set up routes, parameters, queries, and headers without any specific type information. This gives you a lot of freedom but can potentially lead to issues if you're expecting specific types and don't receive them.
+Untyped petitions are the standard way of defining routes in Vixeny. They do not have a `type` and you can easily set up `status` and `header` but you can not dynamically change it, the expecting return type is `BodyInit` .
 
 Examples of untyped petitions are found throughout the documentation, such as basic route definition:
 
@@ -152,7 +152,8 @@ Here's an example:
 Vixeny's approach begins with taking the given function (f) and stringifying it. This process of converting the function into a string representation allows Vixeny to analyze its tokens and predict what will be required for its execution. This ensures that only the necessary elements are processed, leading to:
 
  - **Increased Speed**: Faster execution by minimizing unnecessary overhead.
- - **Tailored Execution**: Providing exactly what's needed for the function without extraneous elements.
+ - **Safe**: Providing exactly what's needed minimizes potential risks, ensuring that the code is both secure and efficient in execution. By focusing on the essentials, Vixeny maintains a streamlined process that aligns with the best practices in modern web development.
+
 
  There are 3 ways to adjust this behavior: 
 

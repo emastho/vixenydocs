@@ -10,18 +10,19 @@
 
 # Data Flow
 
-Programming is about controlling the flow of data independently of the paradigm that you use, Vixeny has 3 main tools to take advantage of this
+Programming is about controlling the flow of data, independently of the paradigm that you use, Vixeny has 3 main tools to take advantage of this.
 
 - **`Resolve:`** It chains a function to another, making the linked function resolve first passing those values to the next link, it has its own `context` and `return`.
 - **`Branch:`** A Lazy function to branch out, that has its own `context`, `arguments`, `return`.
 - **`Mutable:`** A mutable object that persist between context.
 
-It's important to understand that all the functions, methods, and values in **`f`** are unique, and each context is pure (unless you use `Mutable`, where it will become a common link). This means that while Vixeny maintains her purely functional nature, the `Mutable` object offers a carefully controlled way to introduce mutable state where needed.
+It's important to understand that all the functions, methods, and values in **`f`** are unique, and each context is pure (unless you use `Mutable`, where it will become a common link).This means that even though Vixeny creates new functions or values in each `context`, the `Mutable` object offers a carefully controlled way to introduce mutable state where necessary.
+
 <br>
 
-Also it is important to understand that `Data Flow` is the foundation for plug-ins , helpers and more.
+
 ## Resolve
-If a `resolve`, the main `f`, or `branch` has a `resolve`, this function will be resolved first and passed to `resolve.NAME`. This also applies to `promises`.
+If a `resolve`, the `petition`, or `branch` has a `resolve`, this function will be resolved first and passed to `resolve.NAME`. This also applies to `promises`.
 ### Sync
 ```ts
 {
@@ -41,10 +42,10 @@ If a `resolve`, the main `f`, or `branch` has a `resolve`, this function will be
     resolve: {
         name: "nested",
         //the blob is created before reaching the next step of the chain
-        f: async f => await f.req.blob()
+        f: async context => await context.req.blob()
     },
     //this function is sync because of the way Vixeny unwraps and resolves
-    f: f => f.resolve.hello as string
+    f: context => context.resolve.hello as string
 }
 ```
 Also, you can resolve many elements at the same time.
@@ -55,7 +56,7 @@ Also, you can resolve many elements at the same time.
     resolve: [
         {
             name: "blob",
-            f: async f => await f.req.blob()
+            f: async context => await context.req.blob()
         },
         {
             name: "query",
@@ -77,25 +78,28 @@ Or you can `chain` them as a pseudo-pipe.
         //nested resolve that response (param)
         resolve: {
             name: "param",
-            f: f =>  " id : " + f.param.id
+            f: context =>  " id : " + context.param.id
         },
-        f : f => " query :" + (f.query?.hello ?? " no query ")
-            + f.resolve.response as string
+        f : context => " query :" + (context.query?.hello ?? " no query ")
+            + context.resolve.response as string
     },
-    f:  f => f.resolve.response as string
+    f:  context => context.resolve.response as string
 }
 ```
 
-There's a lot to take in but you might be asking, why do I have to do this if I could use a procedure (which is a valid way to do it)?	
-Well, there are 3 reasons:
+So why do we need them? These functionalities are not merely a way to organize code; they represent a robust approach to crafting scalable and maintainable applications. By isolating code and creating powerful and customizable plugins, you're not only enhancing the current development process but also building a foundation that can easily adapt and grow with future needs.
 
- - **`Almost cero cost abstraction`**: this kind of compositions doesn't really hurt performance and in some cases it's faster.
- - **`Testable`**: Later on, we will see how we can test your `petitions` in a `pure` form where there is not need of databases or any factor outside of Vixeny.
- - **`Composable`**: Treating `petitions` as values allow us to reuse, modify and merge them at our will.
+- **`Almost Zero Cost Abstraction`**: These compositions don't really hurt performance, and in some cases, they're even faster. This efficiency means that you can structure your code in a way that makes sense to you without worrying about the overhead.
+- **`Testable`**: As we will explore later, you can test your `petitions` in a pure form, where there's no need for databases or any external factors outside of Vixeny. This isolation makes testing more reliable and straightforward.
+- **`Composable`**: Treating `petitions` as values allows you to reuse, modify, and merge them at your will. This composability fosters a more modular and adaptable codebase, enabling you to easily tweak or expand functionality.
 
 ## Branch
 
-As its name implies, **`branch`** gives us a way to create function in the context which would be `composed` by Vixeny, the `context` will get the arguments in `arguments` , this functions can be **`asynchronous`**
+As its name implies, **`branch`** gives us a way to create functions within the `context`, which will be `composed` by Vixeny. These functions are designed to handle different branches of logic.
+
+The `context` will receive the arguments in `arguments`, and these functions can be **`asynchronous`**. This means you can use asynchronous operations like fetching data or performing calculations without blocking the main thread.
+
+Here's a simple example of using a `branch`:
 
 ```ts
 {
@@ -107,7 +111,7 @@ As its name implies, **`branch`** gives us a way to create function in the conte
     }
 }
 ```
-or
+Or even multiple branches:
 ```ts
 {
     path: "/branches",
@@ -126,21 +130,22 @@ or
     ]
 }
 ```
-Thanks to Vixeny's functional behavior, a `resolve` can `branch` out and `branch` can use `resolve` in any pattern or deepness that we need or until we call to the stack.
+### Interplay with Resolve
+Thanks to Vixeny's functional behavior, branches can interact with the resolve property, allowing complex compositions:
 
 ```ts
 {
     path: "/branch",
-    f: f => f.branch.hello("world!") as string,
+    f: c => c.branch.hello("world!") as string,
     branch: {
         resolve: {
             name: "prefix",
             f: () => "hello"
         },
         name: "hello",
-        f: f => 
-            f.resolve.prefix as string +  
-            f.arguments as string
+        f: c => 
+            c.resolve.prefix as string +  
+            c.arguments as string
     }
 }
 ```
@@ -150,16 +155,17 @@ or
     path: "/branch",
     resolve: {
         name: "hello",
-        f: c =>  c.branch.return("hello"),
+        f: c =>  c.branch.fun("hello"),
         branch: {
-            name: "return",
+            name: "fun",
             f: c => c.arguments
         }
     },
-    f: f => c.resolve.hello as string,
+    f: c => c.resolve.hello as string,
 }
 ```
-So why do we need them? Laziness is an important concept in functional programming and sometimes we only want to invoke a function if a condition is fullfil, for example:
+### Conditional Branching
+Laziness, an essential concept in functional programming, allows invoking a function only if a condition is fulfilled. Here's an example using branch:
 ```ts
 //assuming that the user name will be passed by query
 {
@@ -186,21 +192,23 @@ So why do we need them? Laziness is an important concept in functional programmi
     ]
 }
 ```
-In this way, we can control the data flow using only what is needed.
+### Why Branch?
+Branching in Vixeny brings several key benefits:
+
+- **Flexibility**: You can define a variety of logical paths and handle them seamlessly.
+- **Laziness**: Invoke functions only when needed, improving efficiency.
+- **Modularity**: Isolate specific logic into branches, making your code easier to understand, test, and maintain.
+Composability: Interact with other functionalities like resolve to create complex yet elegant solutions.
+By embracing the branch feature, developers can achieve greater control and expressiveness in their Vixeny applications, managing the flow of data with precision and elegance.
 
 
 ## Mutable
 
-In the world of functional programming, immutability is often prized, and Vixeny adheres strictly to this principle. However, that doesn't mean there's no room for mutability in certain contexts. 
-<br>
+In Vixeny, immutability is a core principle. However, there may be situations where mutable state is required. For those cases, Vixeny provides the `mutable` feature.
 
-Vixeny is purely functional, and by design, she can't alter anything. For those who come from a non-functional programming background, this may seem restrictive or unfamiliar. But there's a deliberate reason for this design choice. In functional programming, we avoid mutations because they can lead to unpredictable behavior and make the code harder to understand and maintain. 
-<br>
+The `mutable` property is a powerful tool that can be used when mutable state is necessary. It is neither discouraged nor promoted but offered as a flexible solution to accommodate various needs.
 
-The use of `mutable` is neither discouraged nor promoted; it's a tool provided for those specific scenarios where mutable state is necessary. While it might not be a requirement for using Vixeny, especially for those deeply rooted in functional programming principles, it offers flexibility for various use cases and allows a broader range of developers to adapt Vixeny to their needs and preferences.
-<br>
-
-To use `mutable` you have to declare it at the beginning in the petition, also, we going to cover naming conventions in the next chapter
+To use `mutable`, you must declare it at the beginning of the petition, as shown below:
 
 ```ts
 {
@@ -208,10 +216,11 @@ To use `mutable` you have to declare it at the beginning in the petition, also, 
     mutable: true,
     //  the function is "example", resolves with name "hello", which mutates "result"
     resolve: {...example_r_$hello_m_$result_string},
-    f: f => f.mutable.result as string,
+    f: c => c.mutable.result as string,
 }
 ```
-Mutable is global and it works at any deepness
+
+The `mutable` object is global and works at any depth within your code:
 
 ```ts
 {
@@ -219,11 +228,19 @@ Mutable is global and it works at any deepness
     mutable: true,
     //  the function is "example", resolves with name "hello", which mutates "result"
     resolve: {...example_r_$hello_m_$result_string},
-    f: f => f.branch.function("Hello") as string,
+    f: c => c.branch.function("Hello") as string,
     branch: {
         name: "function",
         f: c => c.arguments + c.mutable.result as string
     }
 }
 ```
+
+This feature is designed for those specific scenarios where mutable state is required. While not a necessity for all Vixeny users, it provides flexibility for a broader range of developers, allowing them to adapt Vixeny to their specific needs and preferences.
+
+
+## Conclusion
+
+In Vixeny, the interplay between `Resolve`, `Branch`, and `Mutable` - exemplify the elegance of controlling data flow within the programming paradigm. These elements, while distinct, work in harmony to allow developers to craft scalable, efficient, and flexible applications. From the virtually zero-cost abstraction to the balance between immutability and mutable states, Vixeny encourages a robust approach tailored to individual needs and preferences. As developers familiarize themselves with these core concepts, they unlock the potential to write more composable, testable, and modular code in Vixeny, positioning them for success in both current and future projects.
+
 <BeforeNext previous="/basics" next="/data_control" />
