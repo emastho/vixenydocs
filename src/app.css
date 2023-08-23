@@ -65,7 +65,8 @@ section h1 {
 
 section a {
     display: block;
-    color: #323232;
+   /*  color: #323232; */
+    color: rgb(299, 299, 299);
     margin-bottom: 16px;
 }
 
