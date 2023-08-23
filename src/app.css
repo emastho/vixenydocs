@@ -25,6 +25,25 @@ ul {
     padding-left: 0;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #222222; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2b2b2b; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a; 
+}
+
 ol li::marker {
 	font-family: Helvetica;
 }
@@ -46,7 +65,7 @@ section h1 {
 
 section a {
     display: block;
-    color: rgb(229, 229, 229);
+    color: #323232;
     margin-bottom: 16px;
 }
 
