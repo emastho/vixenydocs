@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import { routes } from '$lib/routes';
+	import { routes, categories } from '$lib/routes';
 	import { page } from '$app/stores';
 	import { onMount, onDestroy } from 'svelte';
 
@@ -32,12 +32,15 @@
 <div transition:fly={{ x: -300, duration: 150, opacity: 1 }} class="menu" bind:this={menuZone}>
 	<nav>
 		<ul>
-			{#each routes as { href, name }}
-				<li>
-					<a {href} on:click={closeSidebar} class:active={$page.url.pathname.includes(href)}
-						>{name}</a
-					>
-				</li>
+			{#each categories as category}
+				<div class="title">{category.name}</div>
+				{#each routes.filter((item) => item.categoryId == category.id) as { href, name }}
+					<li>
+						<a {href} on:click={closeSidebar} class:active={$page.url.pathname.includes(href)}
+							>{name}</a
+						>
+					</li>
+				{/each}
 			{/each}
 			<div class="other-links">
 				<li>
@@ -76,6 +79,12 @@
 		text-decoration: underline;
 	}
 
+	.title {
+		font-size: 20px;
+		color: #464646;
+		padding-block: 16px;
+	}
+
 	.menu {
 		background: #222;
 		position: fixed;
@@ -83,6 +92,7 @@
 		height: 100%;
 		padding: 2rem;
 		z-index: 100;
+		border-right: 2px solid #252525;
 	}
 
 	.other {
