@@ -1,13 +1,14 @@
 <script lang="ts">
 	import '../app.css';
 	import '../theme.css';
-	import { fly } from 'svelte/transition';
 	import Logo from '$lib/assets/vixenylogo-min.png';
 	import Iconie from '$lib/components/Iconie.svelte';
-	import { page } from '$app/stores';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	import ProgressBar from 'svelte-progress-bar';
+	import Navigation from '$lib/components/Navigation.svelte';
+	import MobileMenu from '$lib/components/MobileMenu.svelte';
 	let progress: HTMLElement;
+	let sidebarButton: HTMLElement;
 
 	beforeNavigate(() => {
 		progress.start();
@@ -22,6 +23,10 @@
 	const showSidebar = () => {
 		sidebar = !sidebar;
 	};
+
+	const closeSidebar = () => {
+		sidebar = false;
+	};
 </script>
 
 <svelte:head>
@@ -30,30 +35,7 @@
 <ProgressBar bind:this={progress} color="#6F5C9B" minimum="0.40" intervalTime="600" />
 <main>
 	{#if sidebar}
-		<div transition:fly={{ x: -300, duration: 150, opacity: 1 }} class="menu">
-			<nav>
-				<ul>
-					<li>
-						<a href="/basics" on:click={() => (sidebar = false)}>Basics</a>
-					</li>
-					<li>
-						<a href="/data_flow" on:click={() => (sidebar = false)}>Data Flow</a>
-					</li>
-					<li>
-						<a href="/data_control" on:click={() => (sidebar = false)}>Data Control</a>
-					</li>
-					<li>
-						<a href="/two" on:click={() => (sidebar = false)}>two</a>
-					</li>
-					<li>
-						<a href="/other" on:click={() => (sidebar = false)}>other</a>
-					</li>
-					<li>
-						<a href="/more" on:click={() => (sidebar = false)}>more</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
+		<MobileMenu {closeSidebar} buttonElement={sidebarButton} />
 	{/if}
 	<header>
 		<div />
@@ -63,7 +45,7 @@
 			</a>
 		</div>
 		<div>
-			<button on:click={showSidebar}>
+			<button on:click={showSidebar} bind:this={sidebarButton}>
 				<Iconie which="menu" />
 			</button>
 		</div>
@@ -75,33 +57,25 @@
 					<img src={Logo} alt="Logo" height="45" />
 				</a>
 			</div>
-			<nav>
-				<div class="title">Unleash the functional beast~</div>
-				<ul>
-					<li>
-						<a href="/basics" class={$page.url.pathname === '/basics' ? 'active' : ''}>Basics</a>
-					</li>
-					<li>
-						<a href="/data_flow" class={$page.url.pathname === '/data_flow' ? 'active' : ''}
-							>Data Flow</a
-						>
-					</li>
-					<li>
-						<a href="/data_control" class={$page.url.pathname === '/data_control' ? 'active' : ''}
-							>Data Control</a
-						>
-					</li>
-					<li>
-						<a href="/two" class={$page.url.pathname === '/two' ? 'active' : ''}>two</a>
-					</li>
-					<li>
-						<a href="/other" class={$page.url.pathname === '/other' ? 'active' : ''}>other</a>
-					</li>
-					<li>
-						<a href="/more" class={$page.url.pathname === '/more' ? 'active' : ''}>more</a>
-					</li>
-				</ul>
-			</nav>
+			<Navigation />
+			<footer>
+				<a href="https://github.com/mimiMonads/vixeny" target="_blank">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+						><path
+							fill="currentColor"
+							d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"
+						/></svg
+					>
+				</a>
+				<a href="https://github.com/emastho/vixenydocs" target="_blank">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+						><path
+							fill="currentColor"
+							d="m4.929 21.482l5.846-5.846a1.999 1.999 0 0 0 1.932-3.346a2 2 0 0 0-3.346 1.932l-5.846 5.846l-1.06-1.06c2.828-3.3 3.888-6.954 5.302-13.082l6.364-.707l5.657 5.657l-.707 6.363c-6.128 1.415-9.782 2.475-13.081 5.304l-1.061-1.06ZM16.596 2.037l6.347 6.346a.5.5 0 0 1-.277.848l-1.474.23l-5.656-5.657l.212-1.485a.5.5 0 0 1 .848-.282Z"
+						/></svg
+					>
+				</a>
+			</footer>
 		</aside>
 		<section>
 			<slot />
@@ -115,7 +89,7 @@
 		width: 270px;
 		/* height: 100vh; */
 		background-color: #252525;
-		padding: 3rem 1.6rem;
+		padding: 3rem 1.6rem 2rem 1.6rem;
 		display: flex;
 		flex-direction: column;
 		position: fixed;
@@ -128,57 +102,14 @@
 		flex-shrink: 0;
 	}
 
-	nav {
-		margin-top: 3rem;
-		align-items: start;
-		flex-grow: 1;
+	footer {
+		text-align: center;
+		color: #464646;
 	}
 
-	nav ul {
-		width: 100%;
-		margin: 0;
-		user-select: none;
+	footer a {
+		color: inherit;
 	}
-
-	ul > * {
-		margin-bottom: 0.4rem;
-	}
-
-	ul > *:last-child {
-		margin-bottom: 0;
-	}
-
-	nav ul li {
-		font-size: 14px;
-		padding: unset;
-	}
-
-	ul li a {
-		display: block;
-		/* background: #2f2f2f; */
-		padding: 0.7rem 1.2rem;
-		border-radius: 8px;
-		border: 2px solid #2f2f2f;
-		transition: 150ms all;
-	}
-
-	ul li .active {
-		border-color: #6f5c9b;
-		background: #6f5c9b;
-	}
-
-	nav .title {
-		color: rgb(206, 206, 206);
-		display: block;
-		font-size: small;
-		padding-block: 16px;
-		padding-left: 0.2rem;
-	}
-
-	/* .container { */
-	/* display: flex; */
-	/* flex-wrap: wrap; */
-	/* } */
 
 	section {
 		flex: 1;
@@ -188,16 +119,6 @@
 		padding-left: calc(270px + 4rem);
 		/* overflow-y: scroll; */
 		max-width: 120ch;
-	}
-
-	a {
-		text-decoration: none;
-		color: white;
-	}
-
-	ul {
-		list-style: none;
-		padding: 0;
 	}
 
 	header {
@@ -227,14 +148,6 @@
 		padding: 0.4rem;
 		aspect-ratio: 1/1;
 		border-radius: 4px;
-	}
-
-	.menu {
-		background: #222;
-		position: fixed;
-		width: 270px;
-		height: 100%;
-		padding: 2rem;
 	}
 
 	@media (width < 1100px) {
