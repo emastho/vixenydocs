@@ -55,7 +55,7 @@ section h1 {
 section h2,
 section h3,
 section h4 {
-    margin-top: 80px;
+    margin-top: 96px;
     margin-bottom: 16px;
 }
 
@@ -67,7 +67,7 @@ section a {
     display: block;
    /*  color: #323232; */
     color: rgb(299, 299, 299);
-    margin-bottom: 16px;
+    margin-bottom: 32px;
 }
 
 section .link {
@@ -79,8 +79,12 @@ section .link {
 section p,
 section ul, section code {
     color: #cacaca;
-    line-height: 1.65;
+    line-height: 32px;
     font-size: 16px;
+}
+
+section p {
+    padding-block: 16px;
 }
 
 section code:not(.language-ts):not(.language-typescript) {
