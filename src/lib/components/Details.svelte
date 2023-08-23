@@ -2,7 +2,7 @@
 	import NavItem from './NavItem.svelte';
 	import { routes, categories } from '$lib/routes';
 
-	let current: number | null = null;
+	let current: number | null = 1;
 
 	const toggleDetails = (
 		e: MouseEvent | KeyboardEvent,

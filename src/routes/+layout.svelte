@@ -150,6 +150,19 @@
 		border-radius: 4px;
 	}
 
+	header button:focus-visible {
+		outline: 2px solid #6f5c9b;
+	}
+
+	:global(section ul) {
+		list-style-type: decimal;
+		padding-left: 26px;
+	}
+
+	:global(section ul li::marker) {
+		font-family: 'monospace';
+	}
+
 	@media (width < 1100px) {
 		aside {
 			display: none;
@@ -162,15 +175,6 @@
 		section {
 			height: auto;
 			padding-inline: 2rem;
-		}
-
-		:global(section ul) {
-			list-style-type: decimal;
-			padding-left: 26px;
-		}
-
-		:global(section ul li::marker) {
-			font-family: 'monospace';
 		}
 	}
 </style>

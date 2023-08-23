@@ -11,7 +11,7 @@
 
 Welcome to Vixeny, a web framework that offers both the strengths of functional programming and extensive support for other paradigms. Whether you're a seasoned functional programmer, new to the concept, or even if you choose to take a different path altogether, Vixeny has something to offer you.
 
-### Embracing Different Styles
+## Embracing Different Styles
 
 Vixeny is about flexibility, expressiveness, and the joy of coding. Our philosophy embraces various programming approaches, all supported by key features:
 
@@ -26,13 +26,16 @@ Vixeny is about flexibility, expressiveness, and the joy of coding. Our philosop
 In Vixeny, your way of coding is embraced, and your unique approach is celebrated. Dive into our Getting Started guide and discover how Vixeny can meet you where you are and help you build extraordinary web applications.
 
 
-### The Basics of Vixeny
+## The Basics of Vixeny
 
 In Vixeny, defining routes or **`Petitions`** is straightforward. You'll make use of: 
 ```ts
 vixeny(options)([...petitions])
 ``` 
 Where options allow you to configure the server, and petitions are an **`Array`** of **`petition`**.
+
+<br />
+<br />
 
 A simple example of a "Hello World" **`petition`** on `"/"`:
 
@@ -43,7 +46,7 @@ A simple example of a "Hello World" **`petition`** on `"/"`:
 }
 ```
 
-#### Hello World in Different Environments
+## Hello World in Different Environments
 
 Vixeny can be used with Deno and Bun. Here's how you can set up a basic "hello world" server:
 
@@ -205,7 +208,7 @@ Here's the example from your code:
 
 These features (`add`, `delete`, and `only`) allow for fine-grained control over what information is made available to route handling functions, enabling better performance and safety.
 
-### Debugging (work in progress)
+## Debugging (work in progress)
 
 Understanding and monitoring how Vixeny operates within a given context is made easier with the DebugOptions type. This allows for console logging of the current state. Defined as:
 
@@ -223,25 +226,18 @@ The name field is crucial, as it uniquely identifies what Vixeny is utilizing at
 ### Summary
 
 - **Stringification**: Vixeny's optimizer starts by converting the given function into a string to analyze its tokens, predicting the necessary elements for execution.
-
 - **add**: Used to include additional fields in the arguments, enabling specific parsing aspects.
-
 - **delete**: Allows the removal of specific fields from the arguments, optimizing performance and security.
-
 - **only**: Ignoring anything else forcing to add only what is required.
-
 - **debug**: `Outputs` information of the `context`
 
-### Vixeny's Distinctive Features
+## Vixeny's Distinctive Features
 
 Vixeny stands out as a web framework with a variety of unique and powerful features that cater to various development preferences and paradigms. Here's an overview of some key elements that make Vixeny distinct asn we will cover in the next chapters:
 
 - **Resolve**: Enables the resolution of one or multiple functions before another context requires them, allowing for state setup.
-
 - **Branch**: Provides conditional execution, giving developers granular control and flexibility over code flow.
-
 - **Composing in Context**: Encourages the construction of complex functionalities by chaining simpler components within a shared or unique context. This approach promotes cohesive and maintainable code.
-
 - **Mutable (non-functional support)**: While embracing functional programming, Vixeny also offers support for modifying data structures, contrasting with the immutable approach typically found in functional paradigms. This feature provides additional flexibility for developers who prefer or require mutable data handling.
 
 These distinctive features contribute to Vixeny's versatility and appeal, enabling developers to leverage functional programming benefits while also accommodating various other paradigms and preferences.

@@ -1,3 +1,7 @@
+<script>
+    import BeforeNext from "$lib/components/BeforeNext.svelte"
+</script>
+
 <svelte:head>
     <title>Data Control - Vixeny</title>
     <meta name="description" content="sup" />
@@ -5,6 +9,8 @@
 
 
 # Data Control
+
+data control introduction text meow
 
 ## Object Manipulation in Vixeny
 
@@ -94,12 +100,12 @@ vixeny(
 By using the spread operator, you can easily combine, override, and manage Petitions, enabling more modular and maintainable code.
 
 
-### Testing with Pure Functionality
+## Testing with Pure Functionality
 
 
 The pure nature of Vixeny's petitions provides an advantageous testing environment, allowing developers to rigorously examine their code in isolation from external dependencies. This includes mocking async functions to test them in a pure state. Let's explore these concepts further:
 
-#### 1. **Mocking Async Functions**
+### **Mocking Async Functions**
 
 In testing, you often encounter situations where you want to test a function that relies on an asynchronous operation. By mocking the async function, you can substitute it with a synchronous version that returns a known value, allowing you to control the behavior and test it in isolation.
 
@@ -150,7 +156,7 @@ Bun.test("test", async () => {
 
 By substituting the async function with the mocked one, you can test the behavior in a pure state, giving you confidence that your code is working as intended.
 
-#### 2. **Benefits of Mocking in Functional Programming**
+### **Benefits of Mocking in Functional Programming**
 
 - **Isolation**: By replacing dependencies with mock implementations, you can isolate the function you are testing from the rest of the system, ensuring that the test only depends on the input.
 - **Reproducibility**: Mocking allows you to create deterministic tests where the same input always produces the same output, regardless of external factors.
@@ -159,3 +165,5 @@ By substituting the async function with the mocked one, you can test the behavio
 ### Conclusion
 
 Testing with pure functionality in Vixeny empowers developers to create more reliable, maintainable, and understandable code. By taking advantage of mocking techniques, including the substitution of async functions, you can ensure that your applications are tested thoroughly and perform as expected. This comprehensive approach to testing is a cornerstone of modern web development in Vixeny, reinforcing the benefits of functional programming and enhancing the overall development experience.
+
+<BeforeNext previous="/data_flow" />
