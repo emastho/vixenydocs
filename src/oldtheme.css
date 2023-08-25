@@ -140,7 +140,7 @@ pre[class*="language-"] {
 }
 
 /* for line numbers */
-/* span instead of span:before for a two-toned border */
+/* span instead of span:before for a -toned border */
 .line-numbers .line-numbers-rows>span {
     border-right: 3px #d9d336 solid;
 }

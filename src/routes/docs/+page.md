@@ -84,4 +84,4 @@ Don't be scared, the more you learn, the easier it will be to connect how it all
 <br />
 <br />
 
-<BeforeNext previous="/basics" next="/other" />
+

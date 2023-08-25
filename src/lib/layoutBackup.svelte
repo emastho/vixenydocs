@@ -57,7 +57,7 @@
 				<ul>
 					<li>
 						<div class="title">Longer text</div>
-						<ul>
+						<!-- <ul>
 							<li>
 								<a href="/two" class={$page.url.pathname === '/two' ? 'active' : ''}>two</a>
 							</li>
@@ -68,7 +68,7 @@
 								<a href="/more" class={$page.url.pathname === '/more' ? 'active' : ''}>more</a>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 				</ul>
 			</nav>
 		</aside>
