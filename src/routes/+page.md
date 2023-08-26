@@ -26,4 +26,4 @@ Comprehensive documentation is essential for understanding and effectively using
 ## Testing
 Testing is a crucial part of software development. With Vixeny, you can rigorously examine your code in isolation from external dependencies, creating robust and maintainable applications. Proceed to `Testing` to learn more about testing in Vixeny.
 
-<BeforeNext next="/testing" nameNext="Testing >>" />
+<!-- <BeforeNext next="/testing" nameNext="Testing >>" /> -->
