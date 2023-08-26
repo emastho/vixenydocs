@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let previous: string = "";
 	export let next: string = "";
+	export let nameNext: string = "";
 </script>
 
 <div>
@@ -8,7 +9,7 @@
 		<a href={previous}>Before</a>
 	{/if}
 	{#if next != ""}
-		<a href={next}>Next</a>
+		<a href={next}> {nameNext === "" ? "Next" : nameNext }</a>
 	{/if}
 </div>
 

@@ -9,36 +9,13 @@
 
 # Introduction
 
-Welcome to Vixeny, a web framework that offers both the strengths of functional programming and extensive support for other paradigms. Whether you're a seasoned functional programmer, new to the concept, or even if you choose to take a different path altogether, Vixeny has something to offer you.
+Welcome to Vixeny, a flexible web framework that supports functional programming and other paradigms, providing avenues to success, easy testing, predictable structures, opt-in side effects, performance, safety, readability, and community support. Get started to build extraordinary web applications.
 
-## Embracing Different Styles
+## Basics
 
-Vixeny is about flexibility, expressiveness, and the joy of coding. Our philosophy embraces various programming approaches, all supported by key features:
+Defining routes or `Petitions` in Vixeny involves `vixeny(options)([...petitions])`, where options configure the server and petitions are an array of `Petition`.
 
-- **Functional, but Not Exclusive:** Functional programming is a tool, not a mandate, within Vixeny. If you prefer other paradigms, you'll find support and features to suit your needs. It's about providing different avenues to success, not making things difficult.
-
-- **Modular and Predictable:** Thanks to its functional nature, Vixeny ensures easy testing with predictable and immutable structures. This design fosters a robust and reliable development environment.
-
-- **Opt-in Side Effects:** In Vixeny, side effects are an option, not a given. You have the control to explicitly create them when needed. Vixeny can't be mutated without your direct intention.
-
-- **High-Performance, Elegance, and More:** Whether functional principles or other paradigms guide you, Vixeny's commitment to performance, safety, readability, and community remains strong.
-
-In Vixeny, your way of coding is embraced, and your unique approach is celebrated. Dive into our Getting Started guide and discover how Vixeny can meet you where you are and help you build extraordinary web applications.
-
-
-## The Basics of Vixeny
-
-In Vixeny, defining routes or **`Petitions`** is straightforward. You'll make use of: 
-```ts
-vixeny(options)([...petitions])
-``` 
-Where options allow you to configure the server, and petitions are an **`Array`** of **`petition`**.
-
-<br />
-<br />
-
-A simple example of a "Hello World" **`petition`** on `"/"`:
-
+A "Hello World" `Petition` on `"/"`:
 ```ts
 {
   path: "/",
@@ -46,12 +23,11 @@ A simple example of a "Hello World" **`petition`** on `"/"`:
 }
 ```
 
-## Hello World in Different Environments
+## Usage in Different Environments
 
-Vixeny can be used with Deno and Bun. Here's how you can set up a basic "hello world" server:
+Setup a basic "hello world" server in Bun and Deno as follows:
 
 ### In Bun:
-
 ```ts
 import vixeny from "vixeny/fun";
 
@@ -59,188 +35,84 @@ export default {
   port: 8080,
   hostname: "127.0.0.1",
   fetch: vixeny(
-    //Options
     { hasName: "http://127.0.0.1:8080/" }
     )
-    // Petitions
-    ([
-    //Petition on "/"
-    {
-      path: "/",
-      f: () => "hello world",
-    }]) 
+    ([{ path: "/", f: () => "hello world" }]) 
 }
 
 ```
 
 ### In Deno:
-
 ```ts
 import { serve } from "https://deno.land/std/http/server.ts";
 import vixeny from "https://deno.land/x/endofunctor/fun.ts";
-//import vixeny from "npm:vixeny/fun";
 
 await serve(
-  vixeny(
-     //Options
-    { hasName: "http://127.0.0.1:8080/" })
-    //Petitions
-    ([
-    //Petition on "/"
-    {
-      path: "/",
-      f: () => "hello world",
-    },
-  ]),
+  vixeny({ hasName: "http://127.0.0.1:8080/" })
+    ([{ path: "/", f: () => "hello world" }]),
   { port: 8080, hostname: "127.0.0.1" },
 );
 ```
 
-
 ## Types
 
-There are 3 basic types that we should care at the beginning:
+Vixeny has three basic types:
 
-### Untyped
+1. **Untyped**: Standard petitions without a `type`. The expecting return type is `BodyInit`.
+   Example:
+   ```ts
+   {
+     path: "/",
+     f: () => "hello world",
+   }
+   ```
 
-Untyped petitions are the standard way of defining routes in Vixeny. They do not have a `type` and you can easily set up `status` and `header` but you can not dynamically change it, the expecting return type is `BodyInit` .
+2. **Type Request**: Changes the return type to `Response`, allowing custom status codes and properties.
+   Example:
+   ```ts
+   {
+     path: "/response/who/:name",
+     type: "request",
+     f: (context) => (context.param.name === "Bun" || context.param.name === "Deno")
+         ? new Response("Welcome", {status:200})
+         : new Response("Only devs here", {status: 400})
+   }
+   ```
 
-Examples of untyped petitions are found throughout the documentation, such as basic route definition:
+3. **Type Response**: Bypasses the optimizer, directly receiving and returning Request and Response objects, respectively.
+   Example:
+   ```ts
+   {
+     path: "/response/hello",
+     type: "response",
+     r: r => new Response("Hello world!")    
+   }
+   ```
+
+## Optimizer
+
+Vixeny's optimizer stringifies the given function `f`, analyzes its tokens, and processes only the necessary elements, ensuring speed, safety, and alignment with modern web development best practices.
+
+Adjust this behavior using `add`, `delete`, or `only` in `options`:
+
+- `add` includes additional fields in the arguments.
+- `delete` removes specific fields from the arguments.
+- `only` forces to include only what is required.
+
+Example:
 
 ```ts
 {
   path: "/",
-  f: () => "hello world",
+  options:{
+    only: ["req"]
+  },
+  f:  context =>  externalFunctionThatNeedsReq(context)
 }
 ```
 
-### Type Request
+## Distinctive Features
 
-Type request petitions change the return type from `BodyInit` to `Response`. This means that the route must return a Response object. It gives you more control over the HTTP response, allowing you to set specific status codes, headers, and other properties.
-
-Here's an example:
-
-```ts
-{
-    path: "/response/who/:name",
-    type: "request",
-    f: (context) => (context.param.name === "Bun" || context.param.name === "Deno")
-        ? new Response("Welcome", {status:200})
-        : new Response("Only devs here", {status: 400})
-}
-```
-
-### Type Response
-
-When the petition type is set to "response," the optimizer is bypassed. A Request object is directly received, and a Response object is returned. This gives full control over the request and response cycle, allowing for direct manipulation of the HTTP objects. It can be beneficial when you need complete control over the HTTP processing.
-
-Here's an example:
-
-```ts
-{
-  path: "/response/hello",
-  type: "response",
-  r: r => new Response("Hello world!")    
-}
-```
-
-### Summary
-
-- **Untyped**: General-purpose petitions that don't require explicit typing. Flexible but can be less precise.
-- **Type Request**: Changes the return type to `Response`, allowing more control over the response, such as custom status codes.
-- **Type Response**: Bypasses the optimizer, receiving a Request object and returning a Response object directly, offering full control over the HTTP request-response cycle.
-
-## Optimizer
-
-Vixeny's approach begins with taking the given function (f) and stringifying it. This process of converting the function into a string representation allows Vixeny to analyze its tokens and predict what will be required for its execution. This ensures that only the necessary elements are processed, leading to:
-
- - **Increased Speed**: Faster execution by minimizing unnecessary overhead.
- - **Safe**: Providing exactly what's needed minimizes potential risks, ensuring that the code is both secure and efficient in execution. By focusing on the essentials, Vixeny maintains a streamlined process that aligns with the best practices in modern web development.
-
-
- There are 3 ways to adjust this behavior: 
-
-### add
-
-In Vixeny, `add` is used to include additional fields in the arguments for a specific route. By using `add`, you can enable parsing for specific aspects of the request that are otherwise out of scope.
-
-Here's an example from your code:
-
-```ts
-{
-  path:"/example/:id",
-  add: ["req","param"],
-  f: context => functionOutOFContext(context)
-}
-```
-
-In this example, the fields `"req"` and `"param"` are added to the arguments, and they can now be accessed within the function handling this route.
-
-### delete
-
-Conversely, the `delete` option allows you to remove specific fields from the arguments. This is useful if you want to exclude certain aspects of the request that are not needed, potentially optimizing performance and enhancing security.
-
-Here's an example from the code you provided:
-
-```ts
-{
-  path: '/example/:id',
-  delete: ['param'],
-  f: () =>  "Hello world"
-}
-```
-
-In this case, the `delete` option is used to remove the `param` field from the arguments, so it cannot be accessed within the route's handling function.
-
-### only
-
-In the context of Vixeny, the `only` keyword is specifically related to bypass everything and `only` include what is required
-
-Here's the example from your code:
-
-```ts
-{
-  path: '/query/onlyName',
-  only: ["query"],
-  f: context => `Hello ${context.query?.name || 'default'}`
-}
-```
-
-These features (`add`, `delete`, and `only`) allow for fine-grained control over what information is made available to route handling functions, enabling better performance and safety.
-
-## Debugging (work in progress)
-
-Understanding and monitoring how Vixeny operates within a given context is made easier with the DebugOptions type. This allows for console logging of the current state. Defined as:
-
-```ts
-{
-    path: "/",
-    debug: {name: "main", type:"list"},
-    f: async context => await context.req.blob()
-}
-// Vixeny in path "/" with the name "main" that is a "function" uses: ["req"]
-```
-The name field is crucial, as it uniquely identifies what Vixeny is utilizing at that particular context. This provides developers with clear insights into the process and facilitates effective debugging.
-
-
-### Summary
-
-- **Stringification**: Vixeny's optimizer starts by converting the given function into a string to analyze its tokens, predicting the necessary elements for execution.
-- **add**: Used to include additional fields in the arguments, enabling specific parsing aspects.
-- **delete**: Allows the removal of specific fields from the arguments, optimizing performance and security.
-- **only**: Ignoring anything else forcing to add only what is required.
-- **debug**: `Outputs` information of the `context`
-
-## Vixeny's Distinctive Features
-
-Vixeny stands out as a web framework with a variety of unique and powerful features that cater to various development preferences and paradigms. Here's an overview of some key elements that make Vixeny distinct asn we will cover in the next chapters:
-
-- **Resolve**: Enables the resolution of one or multiple functions before another context requires them, allowing for state setup.
-- **Branch**: Provides conditional execution, giving developers granular control and flexibility over code flow.
-- **Composing in Context**: Encourages the construction of complex functionalities by chaining simpler components within a shared or unique context. This approach promotes cohesive and maintainable code.
-- **Mutable (non-functional support)**: While embracing functional programming, Vixeny also offers support for modifying data structures, contrasting with the immutable approach typically found in functional paradigms. This feature provides additional flexibility for developers who prefer or require mutable data handling.
-
-These distinctive features contribute to Vixeny's versatility and appeal, enabling developers to leverage functional programming benefits while also accommodating various other paradigms and preferences.
-
+Vixeny offers unique features like `Resolve` for state setup, `Branch` for conditional execution, `Composing in Context` for cohesive and maintainable code, and `Mutable` for mutable data handling, providing versatility and accommodating various paradigms and preferences.
 
 <BeforeNext next="/data_flow" />
