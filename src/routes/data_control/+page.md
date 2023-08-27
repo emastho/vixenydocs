@@ -1,3 +1,7 @@
+<script>
+import BeforeNext from "$lib/components/BeforeNext.svelte"
+</script>
+
 <svelte:head>
     <title>Data Control - Vixeny</title>
     <meta name="description" content="Learn how to manipulate and test data in Vixeny, a functional approach to modern web development." />
@@ -47,3 +51,5 @@ This guide covers Data Control in Vixeny, a modern web development tool. It high
 
 ### Conclusion:
 Understanding data manipulation and testing in Vixeny, by embracing functional programming principles and thorough testing, helps in creating robust, maintainable, and efficient applications. For more advanced topics or a deep dive into other features of Vixeny, refer to the complete guide.
+
+<BeforeNext previous="data_flow" next="docs"/>
