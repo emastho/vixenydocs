@@ -6,7 +6,7 @@
 </script>
 
 <li>
-	<a {href} class:active={$page.url.pathname.includes(href)}>{name}</a>
+	<a {href} class:active={$page.url.pathname == href}>{name}</a>
 </li>
 
 <style>

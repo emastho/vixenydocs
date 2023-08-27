@@ -36,9 +36,7 @@
 				<div class="title">{category.name}</div>
 				{#each routes.filter((item) => item.categoryId == category.id) as { href, name }}
 					<li>
-						<a {href} on:click={closeSidebar} class:active={$page.url.pathname.includes(href)}
-							>{name}</a
-						>
+						<a {href} on:click={closeSidebar} class:active={$page.url.pathname == href}>{name}</a>
 					</li>
 				{/each}
 			{/each}

@@ -11,3 +11,6 @@
 # hello
 
 hello
+
+
+<BeforeNext previous="/docs/test" next="/resource/gallery" />

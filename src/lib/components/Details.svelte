@@ -1,8 +1,9 @@
 <script lang="ts">
 	import NavItem from './NavItem.svelte';
 	import { routes, categories } from '$lib/routes';
-
-	let current: number | null = 1;
+	import { accordion } from '$lib/stores/main';
+	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	const toggleDetails = (
 		e: MouseEvent | KeyboardEvent,
@@ -12,16 +13,26 @@
 		if (isKeyEvent && (e as KeyboardEvent).key !== 'Tab') {
 			return;
 		}
-		if (current == id) {
-			current = null;
+		if ($accordion == id) {
+			//current = null;
+			accordion.set(null);
 			return;
 		}
-		current = id;
+		//current = id;
+		accordion.set(id);
 	};
+
+	onMount(() => {
+		const currentRoute = routes.filter((route) => route.href == $page.url.pathname);
+
+		if (currentRoute.length > 0) {
+			accordion.set(currentRoute[0].categoryId);
+		}
+	});
 </script>
 
 {#each categories as category}
-	<div class="details" class:open={current == category.id}>
+	<div class="details" class:open={$accordion == category.id}>
 		<div
 			class="summary"
 			on:click={(e) => toggleDetails(e, category.id)}
@@ -31,7 +42,7 @@
 		>
 			{category.name}
 			<span>
-				{#if current !== category.id}
+				{#if $accordion !== category.id}
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48"
 						><path
 							fill="none"
@@ -61,7 +72,7 @@
 				{/if}
 			</span>
 		</div>
-		{#if current === category.id}
+		{#if $accordion === category.id}
 			<ul class="navItems">
 				{#each routes.filter((item) => item.categoryId == category.id) as route}
 					<NavItem name={route.name} href={route.href} />

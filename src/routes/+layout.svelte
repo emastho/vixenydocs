@@ -7,6 +7,7 @@
 	import ProgressBar from 'svelte-progress-bar';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import MobileMenu from '$lib/components/MobileMenu.svelte';
+	import { accordion } from '$lib/stores/main';
 	let progress: HTMLElement;
 	let sidebarButton: HTMLElement;
 
@@ -32,7 +33,7 @@
 <svelte:head>
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
-<ProgressBar bind:this={progress} color="#6F5C9B" minimum="0.40" intervalTime="600" />
+<ProgressBar bind:this={progress} color="#6F5C9B" minimum="0.40" intervalTime="600" width="0" />
 <main>
 	{#if sidebar}
 		<MobileMenu {closeSidebar} buttonElement={sidebarButton} />
@@ -53,7 +54,7 @@
 	<div class="container">
 		<aside>
 			<div class="logoArea">
-				<a href="/">
+				<a href="/" on:click={() => accordion.set(1)}>
 					<img src={Logo} alt="Logo" height="45" />
 				</a>
 			</div>
