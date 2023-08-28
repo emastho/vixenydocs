@@ -1,6 +1,5 @@
 <script>
 	import Iconie from "$lib/components/Iconie.svelte"
-	import BeforeNext from "$lib/components/BeforeNext.svelte"
 </script>
 
 <svelte:head>
