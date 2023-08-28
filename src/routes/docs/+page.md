@@ -10,7 +10,7 @@
 # Index 
 
 - [ 📋 Parameters](/docs/modules/parameters)
-- [ 🔍 Query](#query)
+- [ 🔍 Query](/docs/modules/query)
 - [ 🍪 Cookies](#cookies)
 - [ 📑 Headings](#headings)
 - [ ⚙️ Options](#options)
