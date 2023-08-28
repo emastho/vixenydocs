@@ -5,9 +5,12 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 const config = {
 	preprocess: [vitePreprocess(), mdsvex({ extensions: [".md"] })],
 	extensions: [".svelte", ".md"],
-
+    
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+        prerender: {
+        handleMissingId: "warn"
+    },
 	}
 };
 

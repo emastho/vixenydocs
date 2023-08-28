@@ -32,3 +32,25 @@ export async function handle({ event, resolve }) {
         }
     });
 }
+
+
+export const actions = {
+    default: async (event) => {
+        const { values } = await validate(event)
+        const { username, password } = values
+        const user = await userRepo.findOne({ where: { username: username! } })
+        if (!user) {
+            return { error: 'User not found', ...values }
+        }
+
+        if (
+            !(await verify(user.password, password!, { secret: Buffer.from(SECRET) }))
+        ) {
+
+            return { error: 'Incorrect password', ...values }
+        }
+        // Successful login
+        throw redirect(302, '/')
+
+    }
+}
