@@ -87,7 +87,3 @@ If you want to force the query object in `ctx` to be null, you can use the `remo
 ```
 
 In this example, `ctx.query` will always be `null`.
-
----
-
-This section provides a detailed guide on handling queries in Vixeny, from accessing single and multiple query parameters, using the `only` field, to forcing the `query` object to be `null`. Adjust the examples and explanations according to your specific use case and requirements.

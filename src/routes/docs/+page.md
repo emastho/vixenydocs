@@ -7,20 +7,23 @@
     <meta name="description" content="about this page" />
 </svelte:head>
 
-# Index 
-
+# Methods
 - [ 📋 Parameters](/docs/modules/parameters)
 - [ 🔍 Query](/docs/modules/query)
-- [ 🍪 Cookies](#cookies)
+- [ 🍪 Cookies](/docs/modules/cookies)
 - [ 📑 Headings](#headings)
 - [ ⚙️ Options](#options)
+- [ 📝 Stringtify](#stringtify)
 - [ ✒️ Sign](#sign)
 - [ ✅ Verify](#verify)
-- [ 🔄 Resolve](#resolve)
-- [ 📝 Stringtify](#stringtify)
-- [ 🔀 Branch](#branch)
-- [ 📊 Types](#types)
+
+
+## Data Control
 - [ 🛠️ Object Manipulation](#object-manipulation)
 - [ 📲 Set States](#set-states)
 
 
+### Data flow
+- [ 🔄 Resolve](/docs/modules/resolve)
+- [ 🔀 Branch](/docs/modules/branch)
+- [ 🔂 Mutable](/docs/modules/mutable)
