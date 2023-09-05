@@ -2,7 +2,6 @@ import { minify } from "html-minifier-terser"
 import { sequence } from "@sveltejs/kit/hooks";
 import { building, dev } from "$app/environment"
 import type { Handle } from "@sveltejs/kit";
-import { page } from "$app/stores";
 
 const options = {
     collapseBooleanAttributes: true,
@@ -24,7 +23,7 @@ const options = {
 }
 
 const first: Handle = async ({ event, resolve }) => {
-    const home = `${event.url.origin}/`
+    const home = dev ? `http://localhost:5173/` : `https://vixeny.dev/`
     const result = await resolve(event, {
         transformPageChunk: ({ html }) => html.replace(/%home%/g, home)
     });
