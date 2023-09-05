@@ -1,22 +1,29 @@
 <script lang="ts">
 	import '../app.css';
 	import '../theme.css';
+	import '../nprogress.css';
 	import Logo from '$lib/assets/vixenylogo-min.png';
 	import Iconie from '$lib/components/Iconie.svelte';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
-	import ProgressBar from 'svelte-progress-bar';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import MobileMenu from '$lib/components/MobileMenu.svelte';
-	import { accordion } from '$lib/stores/main';
-	let progress: HTMLElement;
+	import SearchModal from '$lib/components/SearchModal.svelte';
+	import { accordion, searchModal } from '$lib/stores/main';
+	import nprogress from 'nprogress';
 	let sidebarButton: HTMLElement;
 
 	beforeNavigate(() => {
-		progress.start();
+		nprogress.start();
 	});
 
 	afterNavigate(() => {
-		progress.complete();
+		nprogress.done();
+		// if ($page.url.pathname != '/') {
+		// 	const currentCategory = routes.filter((route) => route.href == $page.url.pathname);
+		// 	if (currentCategory.length > 0) {
+		// 		accordion.set(currentCategory[0].categoryId);
+		// 	}
+		// }
 	});
 
 	let sidebar = false;
@@ -28,15 +35,33 @@
 	const closeSidebar = () => {
 		sidebar = false;
 	};
+
+	const maybeOpenSearch = (e) => {
+		if (e.key == '/') {
+			e.preventDefault();
+			searchModal.update((prev) => !prev);
+		} else if (e.key == 'Escape' && $searchModal == true) {
+			searchModal.set(false);
+		}
+	};
+
+	const openSearch = (e) => {
+		e.preventDefault();
+		searchModal.set(true);
+	};
 </script>
 
 <svelte:head>
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
-<ProgressBar bind:this={progress} color="#6F5C9B" minimum="0.40" intervalTime="600" width="0" />
+<svelte:body on:keydown={maybeOpenSearch} />
+
 <main>
 	{#if sidebar}
 		<MobileMenu {closeSidebar} buttonElement={sidebarButton} />
+	{/if}
+	{#if $searchModal}
+		<SearchModal />
 	{/if}
 	<header>
 		<div />
@@ -58,6 +83,16 @@
 					<img src={Logo} alt="Logo" height="45" />
 				</a>
 			</div>
+			<button class="search" on:click={openSearch}>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+					><path
+						fill="currentColor"
+						d="m18.031 16.617l4.283 4.282l-1.415 1.415l-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9s9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617Zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.867-3.133-7-7-7s-7 3.133-7 7s3.133 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15Z"
+					/></svg
+				>
+				Search
+				<span>/</span>
+			</button>
 			<Navigation />
 			<footer>
 				<a href="https://github.com/mimiMonads/vixeny" target="_blank">
@@ -95,6 +130,30 @@
 		flex-direction: column;
 		position: fixed;
 		height: 100%;
+	}
+
+	.search {
+		padding-block: 32px;
+		font-size: 16px;
+		color: #464646;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		user-select: none;
+		display: flex;
+		column-gap: 16px;
+		background: none;
+		outline: none;
+		border: none;
+	}
+
+	.search span {
+		background: #2b2b2b;
+		border-radius: 3px;
+		padding-inline: 8px;
+		padding-block: 2px;
+		font-size: 12px;
 	}
 
 	.logoArea {
