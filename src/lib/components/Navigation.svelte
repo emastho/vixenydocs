@@ -23,7 +23,6 @@
 	}
 
 	nav {
-		margin-top: 3rem;
 		align-items: start;
 		flex-grow: 1;
 	}

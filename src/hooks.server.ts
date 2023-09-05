@@ -1,5 +1,8 @@
 import { minify } from "html-minifier-terser"
-import { building } from "$app/environment"
+import { sequence } from "@sveltejs/kit/hooks";
+import { building, dev } from "$app/environment"
+import type { Handle } from "@sveltejs/kit";
+import { page } from "$app/stores";
 
 const options = {
     collapseBooleanAttributes: true,
@@ -20,10 +23,18 @@ const options = {
     sortClassName: true
 }
 
-export async function handle({ event, resolve }) {
-    let page = '';
+const first: Handle = async ({ event, resolve }) => {
+    const home = `${event.url.origin}/`
+    const result = await resolve(event, {
+        transformPageChunk: ({ html }) => html.replace(/%home%/g, home)
+    });
 
-    return resolve(event, {
+    return result
+}
+
+const second: Handle = async ({ event, resolve }) => {
+    let page = '';
+    const result = await resolve(event, {
         transformPageChunk: ({ html, done }) => {
             page += html;
             if (done) {
@@ -31,6 +42,9 @@ export async function handle({ event, resolve }) {
             }
         }
     });
+
+    return result
 }
 
+export const handle = sequence(first, second);
 
