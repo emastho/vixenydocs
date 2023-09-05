@@ -13,7 +13,7 @@
 
 <svelte:body on:click={clickOutside} />
 <div class="modal" transition:fade={{ duration: 10 }}>
-	<div bind:this={target} class="modal-content">this was not supposed to be pushed to main</div>
+	<div bind:this={target} class="modal-content">meow</div>
 </div>
 
 <style>

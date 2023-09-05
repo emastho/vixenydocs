@@ -24,8 +24,7 @@ const options = {
 }
 
 const first: Handle = async ({ event, resolve }) => {
-    // not happy with this, but event.url doesnt work how I want it to
-    const home = dev ? `http://localhost:5173` : `https://vixeny.dev/`
+    const home = `${event.url.origin}/`
     const result = await resolve(event, {
         transformPageChunk: ({ html }) => html.replace(/%home%/g, home)
     });
