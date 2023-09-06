@@ -13,13 +13,28 @@
   <strong>Warning:</strong> Vixeny is currently in Alpha stage. The Beta version is dropping soon. Stay tuned!
 </div>
 
-## Road signs
+## Quick start
+
+```ts
+import vixeny from "vixeny/fun";
+
+export default {
+  port: 8080,
+  hostname: "127.0.0.1",
+  fetch: vixeny({ hasName: "http://127.0.0.1:8080/" })([
+    { 
+      path: "/",
+      f: () => "hello world"
+    }
+  ]) 
+}
+```
+
+## Continue
 
 <div>
 <FancyLink href="/basics">Introduction</FancyLink>
 <FancyLink href="/docs">Documentation</FancyLink>
-<FancyLink disable href="/docs/testing">Testing</FancyLink>
-<FancyLink disable href="/docs/testing">Gallery</FancyLink>
 </div>
 
 <style>
