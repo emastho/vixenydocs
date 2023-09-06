@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let href: string;
-	export let disable: boolean;
+	export let disable: boolean = false;
 </script>
 
 <a {href} class:hidden={disable}><slot /></a>

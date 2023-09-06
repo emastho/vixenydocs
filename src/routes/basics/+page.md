@@ -24,7 +24,7 @@ A "Hello World" `Petition` on `"/"`:
 }
 ```
 
-<Heading title="Usage in Different Environments" size="2" />
+<Heading title="Environments" size="2" />
 
 Setup a basic "hello world" server in Bun and Deno as follows:
 
