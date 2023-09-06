@@ -22,9 +22,6 @@ pre[class*="language-"] {
     border-radius: 8px;
 }
 
-pre[class*="language-"] {
-    border: 2px solid #2f2f2f;
-}
 
 
 
@@ -51,8 +48,9 @@ pre[class*="language-"] ::selection {
 pre[class*="language-"] {
 	overflow: auto;
 	position: relative;
-	margin: 0.5em 0;
 	padding: 1.25em 1em;
+    margin-block: 32px;
+    border: 2px solid #2f2f2f;
 }
 
 .language-css > code,

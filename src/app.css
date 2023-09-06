@@ -59,6 +59,7 @@ section h4 {
     margin-bottom: 16px;
 }
 
+
 section h1 {
     font-size: 26px;
 }
@@ -78,7 +79,7 @@ section .link {
 
 section p,
 section ul, section code {
-    color: #cacaca;
+    color: #d3d3d3;
     line-height: 32px;
     font-size: 16px;
 }
@@ -96,3 +97,5 @@ section code:not(.language-ts):not(.language-typescript) {
 strong {
     color: white;
 }
+
+

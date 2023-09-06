@@ -1,5 +1,6 @@
 <script>
-import BeforeNext from "$lib/components/BeforeNext.svelte"
+    import PreviousNext from "$lib/components/PreviousNext.svelte"
+    import Heading from "$lib/components/Heading.svelte"
 </script>
 
 <svelte:head>
@@ -14,22 +15,35 @@ Welcome to the guide on Data Control in Vixeny. Whether you are creating a compl
 
 This guide covers Data Control in Vixeny, a modern web development tool. It highlights object manipulation and testing using pure functionality in Vixeny. 
 
-### Object Manipulation:
-1. **Changing Properties**: Use the spread operator (`...`) to create a new object by copying existing properties and overriding the ones you want to change.
+<Heading title="Object Manipulation" size="2" />
+
+**Changing Properties**: Use the spread operator (`...`) to create a new object by copying existing properties and overriding the ones you want to change.
    ```ts
    const newPetition = { ...existingPetition, path: "/newRoute" };
    ```
-2. **Changing and Adding `resolve` and `branch`**: Modify the behavior of a petition or compose new ones by changing or adding `resolve` and `branch`.
+
+<br />
+<br />
+<br />
+
+**Changing and Adding `resolve` and `branch`**: Modify the behavior of a petition or compose new ones by changing or adding `resolve` and `branch`.
    ```ts
    resolve: {...r_auth},
    branch: {...b_auth}
    ```
-3. **Importing and Spreading Petitions**: Import an array of Petitions from other files and add them to your application using the spread operator.
+
+<br />
+<br />
+<br />
+
+**Importing and Spreading Petitions**: Import an array of Petitions from other files and add them to your application using the spread operator.
    ```ts
    ...petitionsArray
    ```
-### Testing with Pure Functionality:
-1. **Mocking Async Functions**: Substitute asynchronous functions with synchronous versions that return known values to control behavior and test in isolation.
+
+<Heading title="Testing with Pure Functionality" size="2" />
+
+**Mocking Async Functions**: Substitute asynchronous functions with synchronous versions that return known values to control behavior and test in isolation.
    ```ts
    assertEqual(
     await petitionComposer()(
@@ -44,12 +58,14 @@ This guide covers Data Control in Vixeny, a modern web development tool. It high
     "valid"
     )
    ```
-2. **Benefits of Mocking in Functional Programming**:
+
+### Benefits of Mocking in Functional Programming:
    - **Isolation**: Replace dependencies with mock implementations to isolate the function being tested.
    - **Reproducibility**: Create deterministic tests where the same input always produces the same output.
    - **Ease of Testing**: Eliminate the need to set up and tear down external dependencies.
 
-### Conclusion:
+<Heading title="Conclusion" size="2" />
+
 Understanding data manipulation and testing in Vixeny, by embracing functional programming principles and thorough testing, helps in creating robust, maintainable, and efficient applications. For more advanced topics or a deep dive into other features of Vixeny, refer to the complete guide.
 
-<BeforeNext previous="data_flow" next="docs"/>
+<PreviousNext previous="data_flow" next="docs"/>

@@ -1,6 +1,7 @@
 <script>
 	import Iconie from "$lib/components/Iconie.svelte";
-	import BeforeNext from "$lib/components/BeforeNext.svelte";
+    import PreviousNext from "$lib/components/PreviousNext.svelte"
+    import Heading from "$lib/components/Heading.svelte"
 </script>
 
 <svelte:head>
@@ -18,10 +19,12 @@ Vixeny provides 3 main tools for controlling data flow: `Resolve`, `Branch`, and
 
 In Vixeny, functions, methods, and values in **`f`** are unique, and each context is pure unless `Mutable` is used.
 
-## Resolve
+<Heading title="Resolve" size="2" />
+
 `resolve`, `petition`, or `branch` can have a `resolve`, which is resolved first and passed to `resolve.NAME`. It applies to `promises` too.
 
 ### Sync
+
 ```ts
 {
     path: "/sync",
@@ -50,7 +53,9 @@ Multiple elements can be resolved at the same time or chained as a pseudo-pipe.
 - `Testable`: Pure `petitions` allow reliable testing without external factors.
 - `Composable`: Reuse, modify, and merge `petitions` for a modular codebase.
 
-## Branch
+
+<Heading title="Branch" size="2" />
+
 `branch` creates functions within the `context`, composed by Vixeny, to handle different logic branches.
 
 ```ts
@@ -71,7 +76,8 @@ Branches can interact with the resolve property and be conditional.
 - `Modularity`: Isolate logic into branches for easier understanding, testing, and maintenance.
 - `Composability`: Interact with functionalities like resolve for elegant solutions.
 
-## Mutable
+<Heading title="Mutable" size="2" />
+
 Vixeny promotes immutability but provides `mutable` for necessary mutable states.
 
 ```ts
@@ -84,7 +90,8 @@ Vixeny promotes immutability but provides `mutable` for necessary mutable states
 ```
 `mutable` is global and works at any code depth.
 
-## Conclusion
+<Heading title="Conclusion" size="2" />
+
 Vixeny's `Resolve`, `Branch`, and `Mutable` allow crafting scalable, efficient, and flexible applications. They balance virtually zero-cost abstraction with the need for mutable states, promoting a robust approach tailored to individual needs. Understanding these core concepts enables writing more composable, testable, and modular Vixeny code, setting developers up for success in current and future projects.
 
-<BeforeNext previous="/basics" next="/data_control" />
+<PreviousNext previous="/basics" next="/data_control" />

@@ -1,5 +1,6 @@
 <script>
-  import BeforeNext from "$lib/components/BeforeNext.svelte"
+  import PreviousNext from "$lib/components/PreviousNext.svelte"
+  import Heading from "$lib/components/Heading.svelte"
 </script>
 
 <svelte:head>
@@ -11,7 +12,7 @@
 
 Welcome to Vixeny, a flexible web framework that supports functional programming and other paradigms, providing avenues to success, easy testing, predictable structures, opt-in side effects, performance, safety, readability, and community support. Get started to build extraordinary web applications.
 
-## Basics
+<Heading title="Basics" size="2" />
 
 Defining routes or `Petitions` in Vixeny involves `vixeny(options)([...petitions])`, where options configure the server and petitions are an array of `Petition`.
 
@@ -23,7 +24,7 @@ A "Hello World" `Petition` on `"/"`:
 }
 ```
 
-## Usage in Different Environments
+<Heading title="Usage in Different Environments" size="2" />
 
 Setup a basic "hello world" server in Bun and Deno as follows:
 
@@ -54,7 +55,7 @@ await serve(
 );
 ```
 
-## Types
+<Heading title="Types" size="2" />
 
 Vixeny has three basic types:
 
@@ -89,7 +90,8 @@ Vixeny has three basic types:
    }
    ```
 
-## Optimizer
+<Heading title="Optimizer" size="2" />
+
 
 Vixeny's optimizer stringifies the given function `f`, analyzes its tokens, and processes only the necessary elements, ensuring speed, safety, and alignment with modern web development best practices.
 
@@ -111,8 +113,8 @@ Example:
 }
 ```
 
-## Distinctive Features
+<Heading title="Distinctive Features" size="2" />
 
 Vixeny offers unique features like `Resolve` for state setup, `Branch` for conditional execution, `Composing in Context` for cohesive and maintainable code, and `Mutable` for mutable data handling, providing versatility and accommodating various paradigms and preferences.
 
-<BeforeNext next="/data_flow" />
+<PreviousNext next="/data_flow" />

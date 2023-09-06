@@ -1,6 +1,5 @@
 <script>
-	import Iconie from "$lib/components/Iconie.svelte"
-	import BeforeNext from "$lib/components/BeforeNext.svelte"
+	import PreviousNext from "$lib/components/PreviousNext.svelte"
 </script>
 
 <svelte:head>
@@ -13,4 +12,4 @@
 hello
 
 
-<BeforeNext previous="/docs/test" next="/resource/gallery" />
+<PreviousNext previous="/docs/testing" />

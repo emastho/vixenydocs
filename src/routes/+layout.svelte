@@ -221,7 +221,7 @@
 
 	:global(section ul) {
 		list-style-type: decimal;
-		padding-left: 26px;
+		padding-left: 30px;
 	}
 
 	:global(section ul li::marker) {
