@@ -86,7 +86,7 @@
 	.details .summary {
 		cursor: pointer;
 		user-select: none;
-		padding: 0.6rem 1.2rem;
+		padding: 0.5rem 1.2rem;
 		border-radius: 6px;
 		/* border: 2px solid #2f2f2f; */
 		background: #2b2b2b;

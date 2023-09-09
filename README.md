@@ -27,8 +27,11 @@ To be a globally recognized web framework that celebrates the joy of coding, sup
 
 @emastho TODO:
 
-- Format for the lists in `Documents`
-- Search Bar
+- border search sidebar
+- search scrollbar
+- search slash shouldnt work while open
+- id links
+- sidebar on search click change category
 
 @mimiMonads TODO:
 

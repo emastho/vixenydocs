@@ -9,8 +9,8 @@
 
 # Welcome to Vixeny!
 
-<div style="border: 1px solid #FFA500; padding: 10px; margin-block: 16px; background-color: #333; color: #FFA500;">
-  <strong>Warning:</strong> Vixeny is currently in Alpha stage. The Beta version is dropping soon. Stay tuned!
+<div class="warning">
+  <strong>Warning:</strong><div>Vixeny is currently in Alpha stage. The Beta version is dropping soon. Stay tuned!</div>
 </div>
 
 ## Quick start
