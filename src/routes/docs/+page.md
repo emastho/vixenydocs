@@ -14,7 +14,7 @@ Vixeny has many components for simplifying web development, here's a list of the
 - [ 📋 Parameters](/docs/modules/parameters)
 - [ 🔍 Query](/docs/modules/query)
 - [ 🍪 Cookies](/docs/modules/cookies)
-- [ 📑 Headings](#headings)
+- [ 📑 Headings](/docs/modules/headings)
 - [ ⚙️ Options](#options)
 - [ 📝 Stringtify](#stringtify)
 - [ ✒️ Sign](#sign)

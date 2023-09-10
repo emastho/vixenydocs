@@ -39,7 +39,7 @@ COMPONENTS:
  - ~~Parameters~~
  - Query 50%
  - Cookies 50%
- - Headings
+ - ~~Headings~~ 
  - Options
  - Sign
  - Verify

@@ -13,6 +13,10 @@
   <strong>Warning:</strong><div>Vixeny is currently in Alpha stage. The Beta version is dropping soon. Stay tuned!</div>
 </div>
 
+## Welcome to Vixeny
+
+Where modern web development meets elegant design, Vixeny effortlessly merges flexibility with function. Step into a realm where functional purity is at its core, and immutable structures champion robustness. With Vixeny, you hold the reins, deciding when and how to introduce controlled side effects. Prioritizing performance, code clarity, and safety, we ensure your development journey is fast and seamless. Plus, our inherent functional nature makes testing a breeze, consistently delivering reliable results. And the cherry on top? Vixeny's versatility shines bright, performing effortlessly across diverse JavaScript runtimes. Dive in and experience the Vixeny difference. 🌟
+
 ## Quick start
 
 ```ts
