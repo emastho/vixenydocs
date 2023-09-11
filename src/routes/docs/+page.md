@@ -15,15 +15,15 @@ Vixeny has many components for simplifying web development, here's a list of the
 - [ 🔍 Query](/docs/modules/query)
 - [ 🍪 Cookies](/docs/modules/cookies)
 - [ 📑 Headings](/docs/modules/headings)
-- [ ⚙️ Options](#options)
-- [ 📝 Stringtify](#stringtify)
-- [ ✒️ Sign](#sign)
-- [ ✅ Verify](#verify)
+- [ ⚙️ Options](/docs/modules/options)
+- [ 📝 Stringtify](/docs/modules/stringtify)
+- [ ✒️ Signer](/docs/modules/signer)
+- [ ✅ Verify](/docs/nodules/verify)
 
 
 ## Data Control
-- [ 🛠️ Object Manipulation](#object-manipulation)
-- [ 📲 Set States](#set-states)
+- [ 🛠️ Object Manipulation](/docs/nodules/object)
+- [ 📲 Set States](/docs/nodules/state)
 
 
 ### Data flow
