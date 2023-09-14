@@ -18,12 +18,12 @@ Vixeny has many components for simplifying web development, here's a list of the
 - [ ⚙️ Options](/docs/modules/options)
 - [ 📝 Stringtify](/docs/modules/stringtify)
 - [ ✒️ Signer](/docs/modules/signer)
-- [ ✅ Verify](/docs/nodules/verify)
+- [ ✅ Verify](/docs/modules/verify)
 
 
 ## Data Control
-- [ 🛠️ Object Manipulation](/docs/nodules/object)
-- [ 📲 Set States](/docs/nodules/state)
+- [ 🛠️ Object Manipulation](/docs/modules/object)
+- [ 📲 Set States](/docs/modules/state)
 
 
 ### Data flow
