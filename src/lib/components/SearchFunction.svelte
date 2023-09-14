@@ -3,6 +3,7 @@
 	import { create, insert, search } from '@orama/orama';
 	import { onMount } from 'svelte';
 	import { searchModal } from '$lib/stores/main';
+	import { fade } from 'svelte/transition';
 
 	let input;
 	let db;
@@ -39,6 +40,7 @@
 	placeholder="Search..."
 	bind:this={input}
 	on:input={(e) => performSearch(e.target.value)}
+	in:fade={{ duration: 200 }}
 />
 
 <ul>
