@@ -10,9 +10,15 @@
 
 # Introduction
 
-Welcome to Vixeny, a flexible web framework that supports functional programming and other paradigms, providing avenues to success, easy testing, predictable structures, opt-in side effects, performance, safety, readability, and community support. Get started to build extraordinary web applications.
+Welcome to Vixeny, a flexible web framework that is purely functional programming supporting other paradigms providing avenues to success, easy testing, predictable structures, opt-in side effects, performance, safety, readability, and community support. Get started to build extraordinary web applications.
+
+In this introduction, our focus is on showcasing the capabilities of Vixeny rather than the intricate 'how-tos'. Comprehensive documentation, complete with type specifications and TSDocs, is available on this site and the project. Additionally, while Vixeny excels in functional programming, we've tailored our content to cater to both functional and non-functional programmers alike.
+
+Our framework is founded on objects rather than classes, allowing for more intuitive data manipulation. With numerous abstractions designed to enhance the developer experience, we believe that Vixeny's approach is not necessarily challenging, but distinctively different. Although the project is open-source, for the benefit of beginners, we will not delve deeply into its internals in this introduction.
 
 <Heading title="Basics" size="2" />
+
+`Petitions` are the most basic component and allow us to declare a route.
 
 Defining routes or `Petitions` in Vixeny involves `vixeny(options)([...petitions])`, where options configure the server and petitions are an array of `Petition`.
 
@@ -112,9 +118,14 @@ Example:
   f:  context =>  externalFunctionThatNeedsReq(context)
 }
 ```
+It is important to understand that `externalFunctionThatNeedsReq` is outside of our `context`, thus, The optimizer can't reach it and infer what would be needed.
 
 <Heading title="Distinctive Features" size="2" />
 
-Vixeny offers unique features like `Resolve` for state setup, `Branch` for conditional execution, `Composing in Context` for cohesive and maintainable code, and `Mutable` for mutable data handling, providing versatility and accommodating various paradigms and preferences.
+We will see in the `data flow` that Vixeny offers unique features like:
+  - `Resolve` for state setup 
+  - `Branch` for conditional execution
+  - `Composing in Context` for cohesive and maintainable code
+  - `Mutable` for mutable data handling, providing versatility and accommodating various paradigms and preferences.
 
 <PreviousNext next="/data_flow" />

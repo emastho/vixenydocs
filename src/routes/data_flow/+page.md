@@ -13,9 +13,9 @@
 
 Vixeny provides 3 main tools for controlling data flow: `Resolve`, `Branch`, and `Mutable`.
 
-- `Resolve`: Chains functions, resolving the linked function first and passing its values to the next link.
+- `Resolve`: Chains functions, resolving the linked function first and passing its values to the next link, with its own `context`, `return`.
 - `Branch`: A lazy function to branch out, with its own `context`, `arguments`, `return`.
-- `Mutable`: A mutable object that persists between contexts.
+- `Mutable`: A mutable object that persists between `contexts`.
 
 In Vixeny, functions, methods, and values in **`f`** are unique, and each context is pure unless `Mutable` is used.
 
@@ -46,6 +46,9 @@ In Vixeny, functions, methods, and values in **`f`** are unique, and each contex
     f: context => context.resolve.hello as string
 }
 ```
+
+***important:*** Even if this `resolve` is async, it will be resolved and passed as value to the next element in the chain. 
+ 
 Multiple elements can be resolved at the same time or chained as a pseudo-pipe.
 
 ### Benefits
@@ -68,7 +71,7 @@ Multiple elements can be resolved at the same time or chained as a pseudo-pipe.
     }
 }
 ```
-Branches can interact with the resolve property and be conditional.
+Branches can interact with the resolve property and be conditional, where you can have one or many.
 
 ### Benefits
 - `Flexibility`: Handle various logical paths seamlessly.
@@ -84,7 +87,7 @@ Vixeny promotes immutability but provides `mutable` for necessary mutable states
 {
     path: "/mutable",
     mutable: true,
-    resolve: {...example_r_$hello_m_$result_string},
+    resolve: {...resolveCookies},
     f: c => c.mutable.result as string,
 }
 ```
@@ -93,5 +96,7 @@ Vixeny promotes immutability but provides `mutable` for necessary mutable states
 <Heading title="Conclusion" size="2" />
 
 Vixeny's `Resolve`, `Branch`, and `Mutable` allow crafting scalable, efficient, and flexible applications. They balance virtually zero-cost abstraction with the need for mutable states, promoting a robust approach tailored to individual needs. Understanding these core concepts enables writing more composable, testable, and modular Vixeny code, setting developers up for success in current and future projects.
+
+In `data control` , we will see how to manipulate and control `petition` , `branch` and `resolve`
 
 <PreviousNext previous="/basics" next="/data_control" />
