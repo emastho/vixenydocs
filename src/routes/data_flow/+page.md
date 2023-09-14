@@ -49,7 +49,7 @@ In Vixeny, functions, methods, and values in **`f`** are unique, and each contex
 
 ***important:*** Even if this `resolve` is async, it will be resolved and passed as value to the next element in the chain. 
  
-Multiple elements can be resolved at the same time or chained as a pseudo-pipe.
+Multiple elements can be resolved at the same time or chained as a pseudo-pipe, more about it <a href="/docs/modules/resolve" class="inline-block underline">here</a>.
 
 ### Benefits
 - `Almost Zero Cost Abstraction`: Efficient code structuring without performance overhead.
@@ -64,11 +64,11 @@ Multiple elements can be resolved at the same time or chained as a pseudo-pipe.
 ```ts
 {
     path: "/branch",
-    f: c => c.branch.hello("hi") as string,
     branch: {
-        name: "hello",
-        f: c => c.arguments
-    }
+        name: "length",
+        f: c => c.length
+    },
+    f: c => c.branch.length("hello") as string,
 }
 ```
 Branches can interact with the resolve property and be conditional, where you can have one or many.

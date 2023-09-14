@@ -1,5 +1,6 @@
 import matter from "gray-matter"
 import fs from "fs/promises"
+import { minify } from "html-minifier-terser";
 
 // yes, I know
 const dirs = [
@@ -23,4 +24,5 @@ let meow = dirs.map(async (dir) => {
 })
 
 const val = await Promise.all(meow)
-await fs.writeFile("../src/lib/data.json", JSON.stringify(val))
+const stringified = JSON.stringify(val)
+await fs.writeFile("../src/lib/data.json", stringified)

@@ -27,11 +27,9 @@ To be a globally recognized web framework that celebrates the joy of coding, sup
 
 @emastho TODO:
 
-- border search sidebar
-- search scrollbar
 - search slash shouldnt work while open
-- id links
-- sidebar on search click change category
+- category change in many places doesnt work
+- make components friendly
 
 @mimiMonads TODO:
 
