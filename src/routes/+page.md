@@ -10,7 +10,7 @@
 # Welcome to Vixeny!
 
 <div class="warning">
-  <strong>Warning:</strong><div>Vixeny is currently in Alpha stage. The Beta version is dropping soon. Stay tuned!</div>
+  <strong>Warning:</strong> Vixeny is currently in Alpha stage. We appreciate your <a href="https://github.com/mimiMonads/vixeny/issues">feedback</a>!
 </div>
 
 ## Welcome to Vixeny
@@ -45,4 +45,5 @@ export default {
 div > :global(*:not(:last-child)) {
 margin-bottom: 8px;
 }
+a { display: inline-block;margin: 0; }
 </style>
