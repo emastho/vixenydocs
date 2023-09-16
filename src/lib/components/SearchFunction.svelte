@@ -35,6 +35,10 @@
 	});
 </script>
 
+<div>
+	<h2>Search</h2>
+	<button on:click|preventDefault={() => searchModal.set(false)}>Close</button>
+</div>
 <input
 	type="text"
 	placeholder="Search..."
@@ -78,5 +82,20 @@
 
 	li:nth-child(even) {
 		background: #2b2b2b;
+	}
+
+	div {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-bottom: 32px;
+	}
+
+	div button {
+		border: none;
+		outline: none;
+		background: none;
+		color: gray;
+		cursor: pointer;
 	}
 </style>
