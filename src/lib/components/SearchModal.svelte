@@ -39,7 +39,7 @@
 	.modal-content {
 		display: flex;
 		flex-direction: column;
-		min-width: 700px;
+		width: 700px;
 		max-width: 700px;
 		min-height: 200px;
 		background: #252525;
@@ -47,5 +47,16 @@
 		border-radius: 8px;
 		padding: 2rem;
 		max-height: 70%;
+	}
+
+	@media (width < 1100px) {
+		.modal {
+			padding-top: 0;
+		}
+
+		.modal-content {
+			border-radius: 0;
+			max-height: 100%;
+		}
 	}
 </style>

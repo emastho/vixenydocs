@@ -36,7 +36,7 @@
 </script>
 
 <div>
-	<h2>Search</h2>
+	<strong>Search</strong>
 	<button on:click|preventDefault={() => searchModal.set(false)}>Close</button>
 </div>
 <input
