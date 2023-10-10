@@ -38,7 +38,6 @@ export default {
 
 <div>
 <FancyLink href="/basics">Introduction</FancyLink>
-<FancyLink href="/docs">Documentation</FancyLink>
 </div>
 
 <style>
