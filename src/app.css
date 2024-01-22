@@ -27,26 +27,26 @@ ul {
 
 
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #222222; 
+    background: #222222;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #2b2b2b; 
+    background: #2b2b2b;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3a3a; 
+    background: #3a3a3a;
 }
 
 ol li::marker {
-	font-family: Helvetica;
+    margin: 0;
 }
 
 section h1 {
@@ -67,7 +67,7 @@ section h1 {
 
 section a {
     display: block;
-   /*  color: #323232; */
+    /*  color: #323232; */
     color: rgb(299, 299, 299);
     margin-bottom: 32px;
 }
@@ -79,7 +79,8 @@ section .link {
 }
 
 section p,
-section ul, section code {
+section ul,
+section code {
     color: #d3d3d3;
     line-height: 32px;
     font-size: 16px;
@@ -101,11 +102,11 @@ strong {
 
 .warning {
     width: 100%;
-border: 1px solid #FFA500;
-padding: 10px;
-margin-block: 16px;
-background-color: #333;
-color: #FFA500;
+    padding: 10px;
+    margin-block: 16px;
+    background-color: #333;
+    color: #FFA500;
+    margin-bottom: 36px;
 }
 
 @media (width < 1100px) {

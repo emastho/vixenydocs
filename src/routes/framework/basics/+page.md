@@ -8,13 +8,9 @@
     <meta name="description" content="about this page" />
 </svelte:head>
 
-# Introduction
+# Basics
 
-Welcome to Vixeny, a flexible web framework that is purely functional programming supporting other paradigms providing avenues to success, easy testing, predictable structures, opt-in side effects, performance, safety, readability, and community support. Get started to build extraordinary web applications.
-
-In this introduction, our focus is on showcasing the capabilities of Vixeny rather than the intricate 'how-tos'. Comprehensive documentation, complete with type specifications and TSDocs, is available on this site and the project. Additionally, while Vixeny excels in functional programming, we've tailored our content to cater to both functional and non-functional programmers alike.
-
-Our framework is founded on objects rather than classes, allowing for more intuitive data manipulation. With numerous abstractions designed to enhance the developer experience, we believe that Vixeny's approach is not necessarily challenging, but distinctively different. Although the project is open-source, for the benefit of beginners, we will not delve deeply into its internals in this introduction.
+Welcome to Vixeny, a flexible web framework that supports purely functional programming, other paradigms, is easy to test, predictable, side effect free and safe while staying performant.
 
 <Heading title="Basics" size="2" />
 
@@ -65,7 +61,7 @@ await serve(
 
 Vixeny has three basic types:
 
-1. **Untyped**: Standard petitions without a `type`. The expecting return type is `BodyInit`.
+**Untyped**: Standard petitions without a `type`. The expecting return type is `BodyInit`.
    Example:
    ```ts
    {
@@ -74,7 +70,7 @@ Vixeny has three basic types:
    }
    ```
 
-2. **Type Request**: Changes the return type to `Response`, allowing custom status codes and properties.
+**Type Request**: Changes the return type to `Response`, allowing custom status codes and properties.
    Example:
    ```ts
    {
@@ -86,7 +82,7 @@ Vixeny has three basic types:
    }
    ```
 
-3. **Type Response**: Bypasses the optimizer, directly receiving and returning Request and Response objects, respectively.
+**Type Response**: Bypasses the optimizer, directly receiving and returning Request and Response objects, respectively.
    Example:
    ```ts
    {
@@ -128,4 +124,3 @@ We will see in the `data flow` that Vixeny offers unique features like:
   - `Composing in Context` for cohesive and maintainable code
   - `Mutable` for mutable data handling, providing versatility and accommodating various paradigms and preferences.
 
-<PreviousNext next="/data_flow" />

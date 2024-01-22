@@ -118,4 +118,3 @@ Understanding data manipulation and testing in Vixeny, by embracing functional p
 
 coming soon: `fluency`
 
-<PreviousNext previous="data_flow" next="docs"/>

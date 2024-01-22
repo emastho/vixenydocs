@@ -62,8 +62,12 @@
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
 <svelte:body on:keydown={maybeOpenSearch} />
+<div class="warning" style="margin-top: 0; position: fixed; z-index: 10;">
+	<strong>Warning:</strong> Docs are currently under development, join us at
+	<a href="https://discord.gg/PMXbQtDD3m">discord</a>.
+</div>
 
-<main>
+<main style="padding-top: 40px;">
 	{#if sidebar}
 		<MobileMenu {closeSidebar} buttonElement={sidebarButton} />
 	{/if}
@@ -84,7 +88,7 @@
 		</div>
 	</header>
 	<div class="container">
-		<aside>
+		<aside style="padding-bottom: 80px;">
 			<div class="logoArea">
 				<a href="/" on:click={() => accordion.set(1)}>
 					<img src={Logo} alt="Logo" height="45" />
@@ -144,6 +148,7 @@
 		flex-direction: column;
 		position: fixed;
 		height: 100%;
+		overflow-y: scroll;
 	}
 
 	.search {
@@ -187,6 +192,7 @@
 	}
 
 	footer {
+		margin-top: 64px;
 		text-align: center;
 		color: #464646;
 	}

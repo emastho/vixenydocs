@@ -26,7 +26,7 @@
 
 <div>
 	{#if previous != ''}
-		<a href={previous} on:click={() => maybeChangeCategory(1)}>Before</a>
+		<a href={previous} on:click={() => maybeChangeCategory(1)}>Previous</a>
 	{/if}
 	{#if next != ''}
 		<a href={next} on:click={() => maybeChangeCategory(2)}>{nameNext === '' ? 'Next' : nameNext}</a>

@@ -49,7 +49,7 @@ In Vixeny, functions, methods, and values in **`f`** are unique, and each contex
 
 ***important:*** Even if this `resolve` is async, it will be resolved and passed as value to the next element in the chain. 
  
-Multiple elements can be resolved at the same time or chained as a pseudo-pipe, more about it <a href="/docs/modules/resolve" class="inline-block underline">here</a>.
+Multiple elements can be resolved at the same time or chained as a pseudo-pipe, more about it here.
 
 ### Benefits
 - `Almost Zero Cost Abstraction`: Efficient code structuring without performance overhead.
@@ -99,4 +99,3 @@ Vixeny's `Resolve`, `Branch`, and `Mutable` allow crafting scalable, efficient, 
 
 In `data control` , we will see how to manipulate and control `petition` , `branch` and `resolve`
 
-<PreviousNext previous="/basics" next="/data_control" />
