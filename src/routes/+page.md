@@ -17,25 +17,40 @@
 
 # Welcome to Vixeny!
 
-<p style="margin-top: -32px;">
-Multi-paradigm web development framework, optimizing developer experience, application speed, and functional programming capabilities. Start your journey with Vixeny to create robust, maintainable, and efficient web applications.</p>
 
+**Introducing Vixeny: A New Era in Web Development**
+
+*   **Unmatched Speed**: Experience the fastest framework in the Deno ecosystem.
+*   **DRY and Functional**: Designed with the principles of DRY (Don't Repeat Yourself) and advanced functional programming, including naitve mocking and code isolation.
+*   **Zero-Dependency Architecture**: Lean and efficient, with a focus on simplicity and performance.
+*   **Native Plugin Support**: Enhance functionality with ease using native plugins.
+*   **Robust Security**: Predictable and deterministc.
+*   **Advanced Type Checking**: Ensures safe, predictable code.
+*   **Versatile Paradigms**: Supports functional programming and other paradigms in a cohesive manner.
+*   **Object-Oriented**: Facilitates easy code manipulation and maintenance.
+*   **Test-Friendly**: Framework designed to be easily testable, end to end.
+*   **Future-Proof**: Stay ahead in web development with Vixeny's innovative features.
+
+**Start your journey with Vixeny – redefine efficiency and innovation in web development.**
 <h2 style="margin-top: 48px;">
 Quick start
 </h2>
 
 ```ts
-import vixeny from "vixeny/fun";
+import {vixeny , warp} from "vixeny";
+
+const options = { hasName: "http://127.0.0.1:4000/" };
+
+const paths = wrap(options)()
+  .stdPetition({
+      path: "/",
+      f: () => "hello world"
+  });
 
 export default {
   port: 4000,
   hostname: "127.0.0.1",
-  fetch: vixeny({ hasName: "http://127.0.0.1:4000/" })([
-    { 
-      path: "/",
-      f: () => "hello world"
-    }
-  ]) 
+  fetch: vixeny(options)(paths.unwrap())
 }
 ```
 

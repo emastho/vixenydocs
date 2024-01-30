@@ -12,35 +12,43 @@ Setup a basic "hello world" server in Bun and Deno as follows:
 
 ### In Bun:
 
-```
+```bash
 bun add vixeny
+bun main.ts
 ```
 
 ```ts
-import vixeny from "vixeny/fun";
+import { vixeny , wrap } from "vixeny";
+
+const options = { hasName: "http://127.0.0.1:4000/" };
+
+const paths = wrap(options)()
+  .stdPetition({
+      path: "/",
+      f: () => "hello world"
+  });
 
 export default {
   port: 4000,
   hostname: "127.0.0.1",
-  fetch: vixeny({ hasName: "http://127.0.0.1:4000/" })([
-    { 
-      path: "/",
-      f: () => "hello world"
-    },
-    {
-      path: "/meow",
-      method: "POST",
-      f: (ctx) => ctx.req.body ?? ":("
-    }
-  ]) 
+  fetch: vixeny(options)(paths.unwrap())
 }
 
 ```
 
 ### In Deno:
+
+add a `deno.json` :
+```json
+{
+  "imports": {
+    "vixeny": "https://deno.land/x/endofunctor/main.ts"
+  }
+}
+```
+
 ```ts
-import { serve } from "https://deno.land/std/http/server.ts";
-import vixeny from "https://deno.land/x/endofunctor/fun.ts";
+import { vixeny } from "vixeny";
 
 await serve(
   vixeny({ hasName: "http://127.0.0.1:4000/" })([
@@ -51,6 +59,16 @@ await serve(
   ]),
   { port: 4000, hostname: "127.0.0.1" },
 );
+
+Deno.serve(
+    { port: 4000, hostname: "127.0.0.1" },
+    vixeny(options)(paths.unwrap())
+ )
+ 
 ```   
+
+```bash
+deno run -A main.ts
+```
 
 <PreviousNext previous="/" next="/framework/routing" />
