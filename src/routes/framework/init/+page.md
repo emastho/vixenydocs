@@ -50,15 +50,13 @@ add a `deno.json` :
 ```ts
 import { vixeny } from "vixeny";
 
-await serve(
-  vixeny({ hasName: "http://127.0.0.1:4000/" })([
-    {
+const options = { hasName: "http://127.0.0.1:4000/" };
+
+const paths = wrap(options)()
+  .stdPetition({
       path: "/",
       f: () => "hello world"
-    }
-  ]),
-  { port: 4000, hostname: "127.0.0.1" },
-);
+  });
 
 Deno.serve(
     { port: 4000, hostname: "127.0.0.1" },
