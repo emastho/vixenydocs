@@ -7,9 +7,6 @@
 </svelte:head>
 
 # Quick start
-
-Setup a basic "hello world" server in Bun and Deno as follows:
-
 ### In Bun:
 
 ```bash

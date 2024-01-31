@@ -20,9 +20,7 @@ Routing in Vixeny is extremely simple and powerful, here's how it looks.
 }
 ```
 
-Yup. An object.
-
-This object is called `Petition`.
+Yup. An object and this kind of objects are called `Petition`.
 
 <Heading title="wrap" size="2" />
 
@@ -65,13 +63,9 @@ const router = wrap(options)()
   // '/api/ping'
   .logPaths()
 
-
-
 // router for server
 vixeny(options)(router.unwrap())
-
 ```
-
 <Heading title="Petitions" size="2" />
 
 Vixeny's Petition objects simplify route definitions
@@ -92,9 +86,8 @@ const surprise: Petition = {
 }
 
 export { surprise }
-
 ```
-This example illustrates the flexibility of Vixeny's routing. By importing and modifying the surprise Petition, we easily create additional routes
+This example illustrates the flexibility by importing and modifying the surprise Petition, we easily create additional routes
 
 ```ts
 import { surprise }  from 'somewhere.ts'
@@ -108,10 +101,7 @@ export default wrap(options)()
   // '/woof'
   // '/woooow'
   .logPaths()
-
-
 ```
-
 <Heading title="Petitions types in wrap" size="2" />
 
  There are two type of petitions:
@@ -126,14 +116,7 @@ wrap(options)()
   })
   .customPetition({
     path: "/response/who/:name",
-    f: (c) => (c.param.name === "Bun" || c.param.name === "Deno")
-        ? new Response('{"meow": "yes"}', {
-              status: 200,
-              headers: {
-                  "content-type": "application/json"
-              }
-        })
-        : new Response("Only devs here", {status: 400})
+    f: (c) =>  new Response(c.param.name)
   })
 ```
 
