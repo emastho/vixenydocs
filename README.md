@@ -27,25 +27,11 @@ To be a globally recognized web framework that celebrates the joy of coding, sup
 
 @emastho TODO:
 
-- search slash shouldnt work while open
-- category change in many places doesnt work
+
 - make components friendly
 
 @mimiMonads TODO:
 
-COMPONENTS:
- - ~~Parameters~~
- - Query 50%
- - Cookies 50%
- - ~~Headings~~ 
- - Options
- - Sign
- - Verify
- - Resolve 50%
- - Stringtify
- - Branch 50%
- - Mutable 40%
- - Object Manipulation
- - Set States
+
 
 TESTING:
