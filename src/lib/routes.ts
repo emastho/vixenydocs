@@ -6,6 +6,7 @@ export const routes: { href?: string, name: string, categoryId: number }[] = [
     { href: '/framework/plugins', name: 'Extending', categoryId: 1 },
     { href: "/framework/mutable", name: "Mutable", categoryId: 1 },
     { href:'https://github.com/mimiMonads/bunSQLVixeny', name: "SQLBun", categoryId: 2 },
+    { href:'https://github.com/mimiMonads/vixenyPluginImplementation', name: "Plugins", categoryId: 2 },
     // { name: 'Encode', categoryId: 3 },
     // { name: 'Files', categoryId: 3 },
     // { name: 'JWT', categoryId: 3 },

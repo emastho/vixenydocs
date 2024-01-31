@@ -20,22 +20,24 @@ Routing in Vixeny is extremely simple and powerful, here's how it looks.
 }
 ```
 
-Yup. An object and this kind of objects are called `Petition`.
+Yup, an object, and this kind of objects are called `Petition`.
 
-<Heading title="wrap" size="2" />
+<Heading title="Introduction to wrap" size="2" />
 
 In the `versatile` world of JavaScript, wrap plays a key role in harmonizing the language's polymorphic nature with Vixeny's functional approach. It ensures scalability and maintains code purity, crucial for efficient web development.
 
 ```ts
-// api.ts
+// name of this file: api.ts
 import { wrap } from "vixeny";
+//routing options
 import { options } from "somewhere.ts"; 
 
 const api = wrap({
-  //global options
+  //setting up options
   ...options,
   startWith: "/api",
 })()
+//creating a petition
   .stdPetition({
     path: "/ping",
     f: () => "pong",
@@ -63,12 +65,12 @@ const router = wrap(options)()
   // '/api/ping'
   .logPaths()
 
-// router for server
+// unwrapping all the petitions giving them to the router
 vixeny(options)(router.unwrap())
 ```
-<Heading title="Petitions" size="2" />
+<Heading title="Working with petitions" size="2" />
 
-Vixeny's Petition objects simplify route definitions
+Let's create a Petition without wrap and export it an create new different routes out of it.
 
 ```ts
 import { Petition } from "vixeny/optimizer/types";
@@ -87,7 +89,7 @@ const surprise: Petition = {
 
 export { surprise }
 ```
-This example illustrates the flexibility by importing and modifying the surprise Petition, we easily create additional routes
+In another file:
 
 ```ts
 import { surprise }  from 'somewhere.ts'
@@ -102,6 +104,9 @@ export default wrap(options)()
   // '/woooow'
   .logPaths()
 ```
+
+Applying to any other key in the object.
+
 <Heading title="Petitions types in wrap" size="2" />
 
  There are two type of petitions:
