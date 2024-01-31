@@ -60,7 +60,7 @@ const router = wrap(options)()
   })
   //joining `api` to this wrap
   .union(api.unwrap())
-  // console loging:
+  // console logging:
   // '/'
   // '/api/ping'
   .logPaths()
@@ -101,9 +101,9 @@ import { surprise }  from 'somewhere.ts'
 
 export default wrap(options)()
   .stdPetition(surprise)
-  .stdPetition({...surprise, paht: '/woof'})
-  .stdPetition({...surprise, paht: '/woooow'})
-  // console loging:
+  .stdPetition({...surprise, path: '/woof'})
+  .stdPetition({...surprise, path: '/woooow'})
+  // console logging:
   // '/meow'
   // '/woof'
   // '/woooow'
@@ -111,7 +111,6 @@ export default wrap(options)()
 
 
 ```
-
 
 <Heading title="Petitions types in wrap" size="2" />
 
@@ -162,4 +161,4 @@ vixeny(options)([
   ])
 ```
 
-<PreviousNext previous="/framework/init" next="/framework/resolve" />
+<PreviousNext previous="/framework/init" next="/framework/wrap" />

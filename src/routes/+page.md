@@ -58,7 +58,6 @@ export default {
 
 <div>
 <FancyLink href="/framework/init">Let's begin</FancyLink>
-<FancyLink href="/examples">Examples</FancyLink>
 </div>
 
 <style>
