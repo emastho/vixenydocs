@@ -3,6 +3,7 @@ export const routes: { href?: string, name: string, categoryId: number }[] = [
     { href: "/framework/routing", name: "Routing", categoryId: 1 },
     { href: '/framework/wrap', name: 'Wrap', categoryId: 1 },
     { href: '/framework/branch', name: 'Branch', categoryId: 1 },
+    { href: '/framework/morpishim', name: 'Morpishim', categoryId: 1 },
     { href: '/framework/plugins', name: 'Extending', categoryId: 1 },
     { href: "/framework/mutable", name: "Mutable", categoryId: 1 },
     { href:'https://github.com/mimiMonads/bunSQLVixeny', name: "SQLBun", categoryId: 2 },
