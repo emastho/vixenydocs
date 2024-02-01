@@ -61,8 +61,8 @@ const router = wrap(options)()
   //joining `api` to this wrap
   .union(api.unwrap())
   // console logging:
-  // '/'
-  // '/api/ping'
+  // outputs: '/'
+  //          '/api/ping'
   .logPaths()
 
 // unwrapping all the petitions giving them to the router
@@ -70,7 +70,7 @@ vixeny(options)(router.unwrap())
 ```
 <Heading title="Working with petitions" size="2" />
 
-Let's create a Petition without wrap and export it an create new different routes out of it.
+Let's create a Petition without wrap and export it an create new differents routes out of it.
 
 ```ts
 import { Petition } from "vixeny/optimizer/types";
@@ -99,13 +99,13 @@ export default wrap(options)()
   .stdPetition({...surprise, path: '/woof'})
   .stdPetition({...surprise, path: '/woooow'})
   // console logging:
-  // '/meow'
-  // '/woof'
-  // '/woooow'
+  // outputs: '/meow'
+  //          '/woof'
+  //          '/woooow'
   .logPaths()
 ```
 
-Applying to any other key in the object.
+Applies to any other key in the object.
 
 <Heading title="Petitions types in wrap" size="2" />
 
