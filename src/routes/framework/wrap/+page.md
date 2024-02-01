@@ -55,7 +55,7 @@ export default wrap()()
     //          "/api"
     .logPaths()
 ```
-Additionally, you can add `extencion`` to its second curried function and modify the `base`. This allows for further customization of the routing:
+Additionally, you can add `extencion` to its second curried function (`wrap()(here)`) and modify the `base`. This allows for further customization of the routing:
 
 ```ts
 import extencion from "./extencion.ts"
