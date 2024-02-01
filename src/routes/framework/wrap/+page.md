@@ -10,10 +10,10 @@
 
 One of the most important uses of `wrap` in Vixeny is to protect and modularize `Petitions`, especially when they are exported or modified. This ensures that your code remains organized and maintainable. Let's demonstrate this with an example involving multiple files:
 
-First, create a file named `extencion.ts`:
+First, create a file named `extension.ts`:
 
 ```ts
-//file: extencion.ts
+//file: extension.ts
 export default wrap()()
   .stdPetition({
     path: "/",
@@ -21,14 +21,14 @@ export default wrap()()
   })
 ```
 
-Next, create two separate files, `a.ts` and `b.ts`, which import and utilize `extencion.ts`:
+Next, create two separate files, `a.ts` and `b.ts`, which import and utilize `extension.ts`:
 
 ```ts
-import extencion from "./extencion.ts"
+import extencion from "./extension.ts"
 
 // file: a.ts
 export default wrap()()
-    .union(extencion.unwrap())
+    .union(extension.unwrap())
     .stdPetition({
     path: "/hello",
     f: () => "helloWorld"
@@ -41,11 +41,11 @@ export default wrap()()
 ```
 
 ```ts
-import extencion from "./extencion.ts"
+import extension from "./extension.ts"
 
 // file: b.ts
 export default wrap()()
-    .union(extencion.unwrap())
+    .union(extension.unwrap())
     .stdPetition({
     path: "/api",
     f: () => "helloWorld"
@@ -55,15 +55,15 @@ export default wrap()()
     //          "/api"
     .logPaths()
 ```
-Additionally, you can add `extencion` to its second curried function (`wrap()(here)`) and modify the `base`. This allows for further customization of the routing:
+Additionally, you can add `extension` to its second curried function (`wrap()(here)`) and modify the `base`. This allows for further customization of the routing:
 
 ```ts
-import extencion from "./extencion.ts"
+import extension from "./extension.ts"
 
 export default wrap()(
-    extencion.union(
-        // changing the start path of the wrap `extencion`
-        extencion.changeOptions({ "startWith": "/api" })
+    extension.union(
+        // changing the start path of the wrap `extension`
+        extension.changeOptions({ "startWith": "/api" })
         .unwrap(),
     ))
     .stdPetition({
@@ -71,7 +71,7 @@ export default wrap()(
         f: () => "helloWorld",
     })
     // console logging
-    // outputs: "/api/hello"
+    // outputs: "/api/"
     //          "/"
     .logSize()
 ```
