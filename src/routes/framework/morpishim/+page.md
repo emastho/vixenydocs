@@ -63,8 +63,7 @@ The Optimizer in Vixeny, after identifying all necessary functions, begins the c
   .stdPetition({
     path: "/date",
     resolve: {
-      date: morphism(o)({ f : c =>c.date }
-      )
+      date: morphism(o)({ f : c => c.date })
     },
     f: c => c.resolve.date !== c.date
         ? 'Always true'
