@@ -88,7 +88,7 @@ In Vixeny, the `optimizer` is a crucial function that oversees the `CTX` in `f`,
  - `"hash"`: Produces a random hash (string).
  - `"cookie"`: Accesses cookies.
  - `"resolve"`: Resolves any `morpishim` before the execution of the current `CTX`.
- - `"branch"`: A function within `CTX` that is also a `morpishim`.
+ - `"branch"`: A function within `CTX` that is also a `morpishim` and it has its own `CTX`.
  - `"mutable"`: Adds a fixed point to all `morpishim` in the `petition`, regardless of depth.
  - `"arguments"`: Arguments passed to `branch`.
  - `"token"`: (requires `crypto`) Checks and parses a cookie with the given key.
