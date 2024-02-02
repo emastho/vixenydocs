@@ -60,21 +60,16 @@ The Optimizer in Vixeny, after identifying all necessary functions, begins the c
 - **Uniqueness of `CTX`**: With the exception of `mutable`, each `CTX` instance remains unique and isolated, ensuring petitions remain decoupled.
 
   ```ts
-  wrap()()
-    .stdPetition({
-      path: "/user/:id",
-      resolve: {
-        hello: { f: c => {
-            // Demonstrating isolation by modifying `c.param.id` within a resolve
-            c.param.id = null;
-            return c.param.id; 
-          }
-        }, 
-      },
-      f: c => c.resolve.hello !== c.param.id
-          ? 'Always true'
-          : 'Unreachable'
-    })
+  .stdPetition({
+    path: "/date",
+    resolve: {
+      date: morphism(o)({ f : c =>c.date }
+      )
+    },
+    f: c => c.resolve.date !== c.date
+        ? 'Always true'
+        : 'Unreachable'
+  })
   ```
 
 - **Nested Resolves and Branches**: Vixeny supports an unlimited nesting of resolves and branches within each other.
