@@ -57,7 +57,7 @@ The Optimizer in Vixeny, after identifying all necessary functions, begins the c
     })
   ```
 
-- **Uniqueness of `CTX`**: With the exception of `mutable` marked properties, each `CTX` instance remains unique and isolated, ensuring petitions remain decoupled.
+- **Uniqueness of `CTX`**: With the exception of `mutable`, each `CTX` instance remains unique and isolated, ensuring petitions remain decoupled.
 
   ```ts
   wrap()()
@@ -80,7 +80,7 @@ The Optimizer in Vixeny, after identifying all necessary functions, begins the c
 - **Nested Resolves and Branches**: Vixeny supports an unlimited nesting of resolves and branches within each other.
 
   ```ts
-  const hello = morphism({
+  const hello = morphism(options)({
     resolve: {
       nestedHello: {
         f: () => "hello world"
@@ -89,7 +89,7 @@ The Optimizer in Vixeny, after identifying all necessary functions, begins the c
     f: (c) => c.resolve.nestedHello,
   });
 
-  wrap()()
+  wrap(options)()
     .stdPetition({
       path: "/hello",
       resolve: {
