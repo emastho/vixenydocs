@@ -7,45 +7,32 @@
 </svelte:head>
 
 
-# Demystifying Vixeny: Building Your Digital Home
+# Demystifying Vixeny: Your Guide to Building Digital Experiences
 
-Imagine embarking on the exciting journey of building your dream home. In this adventure, Vixeny acts as your master architect and project manager, guiding every step with precision and care, ensuring that your digital creation comes to life just as you envisioned.
+Imagine Vixeny guiding you through the process of crafting your dream home, simplifying the complexities of web development into something straightforward and manageable. It employs two key concepts —`Resolve` and `Branch`— much like the essential steps in building a house, laying the foundation and then expanding upon it to add the final touches.
 
-## The Foundations of Vixeny: Resolve and Branch
+## Foundations First: Resolve
 
-In the construction of your home, every detail matters—from laying the foundation to the finishing touches that make your house a home. Vixeny employs two main concepts to manage this process: `Resolve` and `Branch`, akin to the preparation and expansion phases of building.
+`Resolve` prepares your site, organizing all the essentials before construction starts. It's like getting the land ready, ensuring materials are on-site. This includes setting up data and permissions in advance, guaranteeing that when it's time to build, everything's in place.
 
-### Laying the Groundwork with Resolve
+## Adding Features: Branch
 
-Before any construction begins, the groundwork must be meticulously prepared. `Resolve` in Vixeny handles this essential prep work for your web application, gathering all necessary data, permissions, and tools before the main functionality comes to life.
-
-- **Preparation Phase**: Just like ensuring the land is ready and materials are on-site for a house, `Resolve` sets up everything needed for the main function of your site, ensuring a solid foundation.
-- **Asynchronous Operations**: Mirroring the waiting period for materials to arrive, asynchronous `Resolves` wait for data, making sure everything is perfectly aligned and ready for use.
-- **Execution Order**: Emphasizing the critical sequence of construction steps, `Resolves` ensure that all preliminary tasks are completed in order, setting the stage for the main functionality.
-
-### Expanding Creatively with Branch
-
-With the foundation set, imagine adding unique features to your home—a garden, a sunroom, or a bespoke library. `Branch` in Vixeny enables these expansions, allowing for additional operations that bring extra functionality and flair to your application.
-
-- **Modular Design**: Like choosing a design for a room that can be replicated or adapted elsewhere, Branches offer reusability, letting you extend your application’s functionality without starting from scratch.
-- **Maintaining Purity**: Ensuring the use of quality materials that preserve your home's integrity, Vixeny emphasizes the purity of functions in Branches, preventing unexpected side effects and maintaining reliability.
-- **Future-proofing with Mocking**: Planning for future changes or additions is crucial in both home building and web development. Mocking in Vixeny allows for testing different scenarios, ensuring your application is robust and adaptable, ready to meet evolving user needs.
+Once the basics are set, `Branch` lets you customize, adding unique features to your site. Think of it as choosing room designs or adding a garden, enhancing your home's functionality and appeal without starting over.
 
 ## Building with Intention: The Vixeny Way
 
-Constructing with Vixeny is about more than just assembling code. It's about crafting with purpose, vision, and adaptability. The principles of modularity, purity, and testability stand as the foundation pillars, ensuring that your digital creation—like a well-built home—is functional, beautiful, and enduring.
+Vixeny’s approach mirrors thoughtful home construction, emphasizing:
 
-- **Reusability and Flexibility**: Just as a well-designed home can adapt to its inhabitants' changing needs, Vixeny’s modular approach with resolves and branches ensures your application can grow and evolve.
-- **Quality and Reliability**: High-quality materials make a home safe and lasting; similarly, the purity of functions in Vixeny guarantees that your application performs reliably under various conditions.
-- **Prepared for the Future**: Anticipating future needs and changes makes a house a lasting home. Vixeny’s testing capabilities, through mocking, ensure that your application is prepared for whatever the future holds.
-
+- **Reusability**: Modular design lets you replicate and adapt features easily, akin to using a beloved room design throughout your home.
+- **Purity**: Ensuring operations are clean and predictable, much like choosing quality materials for your home, Vixeny keeps your project stable and reliable.
+- **Testing for the Future**: Mocking tests different scenarios, preparing your site for future needs—just as planning for potential home additions or changes.
 
 
 ## Morphism
 
 ### Resolve and Branch
 
-The Optimizer in Vixeny, after identifying all necessary functions, orchestrates the composition of petitions. This process intricately weaves together all resolves and branches, both of which are considered types of morphisms. Interestingly, a petition in itself is conceptualized as a morphism. This highlights the functional and compositional core of Vixeny, where both resolves and branches play pivotal roles:
+Now, let's talk more about the Optimizer in Vixeny; after identifying all necessary functions, orchestrates the composition of petitions. This process intricately weaves together all resolves and branches, both of which are considered types of morphisms. Interestingly, a petition in itself is conceptualized as a morphism. This highlights the functional and compositional core of Vixeny, where both resolves and branches play pivotal roles:
 
 ## Resolve
 
@@ -204,8 +191,127 @@ wrap()()
   })
 ```
 
-- **Explanation**: This branch, `fetchUserDataBranch`, performs an asynchronous fetch operation to retrieve user data based on `userId`. The petition uses this branch to fetch and return the user data as a response.
+### Explaining `Mutable` in Context
 
-## Conclusion
 
-Branches in Vixeny offer a robust mechanism for extending the functionality of petitions conserving all the functionallities of the `CTX`, allowing for both synchronous and asynchronous operations to be encapsulated within reusable units, which is specially imporant for mocking and testing.
+- **Mutability Concept**: In this scenario, `Mutable` refers to the ability of the context (`c`) to have its state changed and those changes preserved across subsequent transformations or operations.
+
+- **Implementation with `mutStdPetition`**: By using `mutStdPetition`, adds the key `mutable` which persistent. This allows subsequent operations or morphisms to access and further modify the updated state. Specifically, any property added to `c.mutable` becomes a preserved state that can be referenced or altered in later stages of processing.
+
+### Practical Example
+
+```ts
+// Initial operation with mutStdPetition, introducing a mutable context
+.mutStdPetition({
+  // Configuration and initial transformation
+  resolve: {
+    // Use morphism to modify and use the mutable state
+    randomNumber: morphism(o)({ f : c => 
+    { 
+      c.mutable.randomNumber = c.randomNumber; 
+      return c.randomNumber; 
+      } 
+    )
+  },
+  // Subsequent operation accessing and evaluating the mutable state
+  f: c => c.mutable.randomNumber !== c.randomNumber
+      ? 'Condition based on mutable state'
+      : 'Potentially reachable if state matches'
+})
+```
+
+In this example, `c.mutable.randomNumber` is set in one operation, and this state is then available for comparison in the next operation. This demonstrates how `Mutable` allows for complex, state-dependent logic to be implemented across a sequence of morphisms, leveraging the state preserved in `c.mutable`.
+
+It's important to notice that `mutStdPetition` and `stdPetition` are composed differently and a pure state like `stdPetition` is totally independent of `mutStdPetition`
+
+
+
+
+### Purpose of morphism
+
+`morphism` functions are designed to facilitate explicit data transformation in a type-safe manner, especially useful in scenarios where TypeScript's type inference capabilities are stretched thin by deep nesting or complex operations. By breaking down transformations into manageable, clearly defined steps, `morphism` ensures that each operation is both comprehensible and type-safe.
+
+### TypeScript's Typing Limitation
+
+TypeScript's type system, while robust, cannot always effectively manage or infer types in deeply nested or highly complex transformations. This limitation can lead to challenges in enforcing type safety, particularly in applications that require detailed manipulation of nested data structures.
+
+
+### Practical Application
+
+To explain the provided code snippets effectively, let's break down the concept of morphisms as used here, especially 
+
+
+#### Hello Morphism
+
+The first morphism, `hello`, is defined to perform no direct transformation but specifies a nested `resolve` structure with a static value and a function that returns a string "hello". The final function `f` extracts the `nested` part of the resolved structure.
+
+```ts
+const hello = morphism()({
+  resolve: {
+    //resolves first
+    nested: {
+      crypto: {
+        globalKey: 'your secret'
+      },
+      f: () => "hello",
+    },
+  },
+  // showing inference from a nested resolve
+  f: (f) => f.resolve.nested,
+});
+```
+
+#### NestedHello Morphism
+
+The `nestedHello` morphism wraps the `hello` morphism within its `resolve`, showing how morphisms can be nested or chained to build upon the results of previous transformations.
+
+```ts
+const nestedHello = morphism(o)({
+  resolve: {
+    hello: hello,
+  },
+  // showing inference from a nested resolve
+  f: (f) => f.resolve.hello,
+});
+```
+
+#### isValidUser Morphism
+
+This morphism validates a JWT token by checking if it exists and if its `iat` (issued at time) is before the current time. It showcases how to perform conditional checks within a morphism.
+
+```ts
+const isValidUser = morphism()({
+  crypto: {
+    globalKey: 'your secret',
+    token: {
+      jwtToken: {},
+    },
+  },
+  f: c => c.token.jwtToken && (c.token.jwtToken as {name:string,iat:number}).iat < Date.now()
+    ? c.token.jwtToken
+    : null
+});
+```
+
+#### Please Morphism
+
+Finally, the `check` morphism demonstrates how to resolve dependencies using previous morphisms (`isValidUser`) and process the result further.
+
+```ts
+const please = morphism()({
+  resolve: {
+    check: isValidUser
+  },
+  f: c => c.resolve.check !== null 
+    ? 'Valid token'
+    : 'Invalid token'
+});
+```
+
+### Key Concepts
+
+- **Branching and Resolving**: These operations allow for the construction of complex data transformation pipelines. Branching can be seen as defining various paths of data flow and logic, while resolving handles the actual execution of these paths to produce a final outcome.
+- **Modularity**: Morphisms can be nested and reused, promoting modularity and reuse of logic.
+- **Declarative Logic**: The structure allows for a clear, declarative definition of data transformations and conditions, improving readability and maintainability.
+
+
