@@ -36,22 +36,24 @@
 Quick start
 </h2>
 
+## Easy testing
+
 ```ts
-import {vixeny , warp} from "vixeny";
+const baseName = globalOptions.hasName;
+const path = root.testRequests();
 
-const options = { hasName: "http://127.0.0.1:4000/" };
-
-const paths = wrap(options)()
-  .stdPetition({
-      path: "/",
-      f: () => "hello world"
-  });
-
-export default {
-  port: 4000,
-  hostname: "127.0.0.1",
-  fetch: vixeny(options)(paths.unwrap())
-}
+test("can check if using Bun", async () => {
+  //base root
+  expect(
+    await path(new Request(baseName))
+      .then((res) => res.status),
+  ).toStrictEqual(200);
+  // ping pong test
+  expect(
+    await path(new Request(baseName + "ping"))
+      .then((res) => res.text()),
+  ).toStrictEqual("pong");
+});
 ```
 
 ## Continue

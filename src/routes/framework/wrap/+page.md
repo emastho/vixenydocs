@@ -6,6 +6,8 @@
     <meta name="description" content="Understanding wrap"/>
 </svelte:head>
 
+# Wrap
+
 ### Union
 
 One of the most important uses of `wrap` in Vixeny is to protect and modularize `Petitions`, especially when they are exported or modified. This ensures that your code remains organized and maintainable. Let's demonstrate this with an example involving multiple files:
