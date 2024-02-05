@@ -39,7 +39,7 @@ Now, let's talk more about the Optimizer in Vixeny; after identifying all necess
 - **Definition**: In any morphism, a `resolve` guarantees its resolution prior to the execution of the petition's main function (`f`).
 
   ```ts
-  wrap()()
+  wrap(options)()
     .stdPetition({
       path: "/withResolve",
       resolve: {
@@ -68,7 +68,7 @@ Now, let's talk more about the Optimizer in Vixeny; after identifying all necess
 - **Execution Order**: All resolves are executed and completed prior to their integration into the `CTX`, ensuring their resolved outputs are accessible within the `CTX` for the petition's logic.
 
   ```ts
-  wrap()()
+  wrap(options)()
     .stdPetition({
       path: "/helloWorld",
       resolve: {
@@ -82,7 +82,7 @@ Now, let's talk more about the Optimizer in Vixeny; after identifying all necess
 - **Uniqueness of `CTX`**: With the exception of `mutable`, each `CTX` instance remains unique and isolated, ensuring petitions remain decoupled.
 
   ```ts
-  wrap(o)()
+  wrap(options)()
   .stdPetition({
     path: "/date",
     resolve: {
@@ -129,11 +129,11 @@ In Vixeny, a `Branch` is used to incorporate additional logic or operations with
 A branch can be as simple as a function that returns a static message. This example demonstrates how to define and use a simple branch within a petition:
 
 ```ts
-const helloBranch = morphism()({
+const helloBranch = morphism(options)({
   f: (c) => "Hello from branch",
 });
 
-wrap()()
+wrap(options)()
   .stdPetition({
     path: "/helloBranch",
     branch: {
@@ -154,7 +154,7 @@ const greetUserBranch = morphism()({
   f: (c) => `Hello, ${c.arguments.name}`,
 });
 
-wrap()()
+wrap(options)()
   .stdPetition({
     path: "/greet/:name",
     branch: {
@@ -171,14 +171,14 @@ wrap()()
 Branches can perform asynchronous operations, such as fetching data from a database or an external API:
 
 ```ts
-const fetchUserDataBranch = morphism()({
+const fetchUserDataBranch = morphism(options)({
   async f: (c) => {
     const userId = c.arguments.userId;
     return await fetch(`https://api.example.com/users/${userId}`).then(res => res.json());
   },
 });
 
-wrap()()
+wrap(options)()
   .stdPetition({
     path: "/user/:userId",
     branch: {
@@ -206,7 +206,7 @@ wrap()()
   // Configuration and initial transformation
   resolve: {
     // Use morphism to modify and use the mutable state
-    randomNumber: morphism(o)({ f : c => 
+    randomNumber: morphism(options)({ f : c => 
     { 
       c.mutable.randomNumber = c.randomNumber; 
       return c.randomNumber; 
@@ -246,7 +246,7 @@ To explain the provided code snippets effectively, let's break down the concept 
 The first morphism, `hello`, is defined to perform no direct transformation but specifies a nested `resolve` structure with a static value and a function that returns a string "hello". The final function `f` extracts the `nested` part of the resolved structure.
 
 ```ts
-const hello = morphism()({
+const hello = morphism(options)({
   resolve: {
     //resolves first
     nested: {
@@ -266,7 +266,7 @@ const hello = morphism()({
 The `nestedHello` morphism wraps the `hello` morphism within its `resolve`, showing how morphisms can be nested or chained to build upon the results of previous transformations.
 
 ```ts
-const nestedHello = morphism(o)({
+const nestedHello = morphism(options)({
   resolve: {
     hello: hello,
   },
@@ -280,7 +280,7 @@ const nestedHello = morphism(o)({
 This morphism validates a JWT token by checking if it exists and if its `iat` (issued at time) is before the current time. It showcases how to perform conditional checks within a morphism.
 
 ```ts
-const isValidUser = morphism()({
+const isValidUser = morphism(options)({
   crypto: {
     globalKey: 'your secret',
     token: {
@@ -298,7 +298,7 @@ const isValidUser = morphism()({
 Finally, the `check` morphism demonstrates how to resolve dependencies using previous morphisms (`isValidUser`) and process the result further.
 
 ```ts
-const please = morphism()({
+const please = morphism(options)({
   resolve: {
     check: isValidUser
   },
