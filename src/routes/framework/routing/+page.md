@@ -8,20 +8,6 @@
     <meta name="description" content="Learn how to create routes in Vixeny" />
 </svelte:head>
 
-# Routing
-
-Routing in Vixeny is extremely simple and powerful, here's how it looks.
-
-```ts
-{
-    path: "/meow",
-    method: "POST",
-    f: (ctx) => ctx.req.body ?? ":("
-}
-```
-
-Yup, an object, and this kind of objects are called `Petition`.
-
 <Heading title="Introduction to wrap" size="2" />
 
 In the `versatile` world of JavaScript, wrap plays a key role in harmonizing the language's polymorphic nature with Vixeny's functional approach. It ensures scalability and maintains code purity, crucial for efficient web development.
