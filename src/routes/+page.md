@@ -36,6 +36,11 @@
 Quick start
 </h2>
 
+<div>
+<FancyLink href="/framework/init">Let's begin</FancyLink>
+</div>
+
+
 ## Easy testing
 
 ```ts
@@ -51,11 +56,8 @@ test("Checking in `/`", async () => {
 });
 ```
 
-## Continue
+## Coming soon ...
 
-<div>
-<FancyLink href="/framework/init">Let's begin</FancyLink>
-</div>
 
 <style>
 div > :global(*:not(:last-child)) {
