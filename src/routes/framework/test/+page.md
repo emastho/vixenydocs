@@ -67,6 +67,22 @@ test("/random", async () => {
 For a feature reliant on external APIs, like fetching current weather data, we aim to test without real-time data fetches. Here, we introduce a mocked synchronous function to simulate the data fetching:
 
 ```ts
+// Original asynchronous resolve function for fetching weather data
+const routes = wrap(options)()
+  .stdPetition({
+    path: "/weather",
+    resolve: {
+      currentWeather: {
+        async f: () => {
+          return await fetch("https://api.weather.com/current").then(res => res.json());
+        }
+      }
+    },
+    f: (c) => {
+      return c.resolve.currentWeather.temperature > 75 ? "It's warm outside" : "It's cool outside";
+    },
+  });
+
 // Mocking the resolve function for controlled testing
 const mockedWeatherResolve = () => ({ temperature: 80 });
 
