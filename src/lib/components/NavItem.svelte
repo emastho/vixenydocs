@@ -3,10 +3,14 @@
 
 	export let href: string;
 	export let name: string;
+	export let target: boolean | undefined;
+
+	let targetBlank: { target?: string } = {};
+	if (target) targetBlank.target = '_blank';
 </script>
 
 <li>
-	<a {href} class:active={$page.url.pathname == href}>{name}</a>
+	<a {href} class:active={$page.url.pathname == href} {...targetBlank}>{name}</a>
 </li>
 
 <style>

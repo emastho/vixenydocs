@@ -1,7 +1,6 @@
 <script lang="ts">
 	import NavItem from './NavItem.svelte';
 	import { routes, categories } from '$lib/routes';
-	import { accordion } from '$lib/stores/main';
 </script>
 
 {#each categories as category}
@@ -28,7 +27,7 @@
 		</div>
 		<ul class="navItems">
 			{#each routes.filter((item) => item.categoryId == category.id) as route}
-				<NavItem name={route.name} href={route.href} />
+				<NavItem name={route.name} href={route.href} target={route.newTab} />
 			{/each}
 		</ul>
 	</div>
