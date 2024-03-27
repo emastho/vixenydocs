@@ -12,6 +12,8 @@
 	import nprogress from 'nprogress';
 	import { browser } from '$app/environment';
 	let sidebarButton: HTMLElement;
+	import { fly, fade } from 'svelte/transition';
+	import { onMount } from 'svelte';
 
 	beforeNavigate(() => {
 		nprogress.start();
@@ -19,6 +21,12 @@
 
 	afterNavigate(() => {
 		nprogress.done();
+		// if ($page.url.pathname != '/') {
+		// 	const currentCategory = routes.filter((route) => route.href == $page.url.pathname);
+		// 	if (currentCategory.length > 0) {
+		// 		accordion.set(currentCategory[0].categoryId);
+		// 	}
+		// }
 	});
 
 	let sidebar = false;
@@ -31,7 +39,7 @@
 		sidebar = false;
 	};
 
-	const maybeOpenSearch = (e: KeyboardEvent) => {
+	const maybeOpenSearch = (e) => {
 		if (e.key == '/') {
 			e.preventDefault();
 			searchModal.update((prev) => !prev);
@@ -40,28 +48,33 @@
 		}
 	};
 
-	// const openSearch = (e: Event) => {
-	// 	e.preventDefault();
-	// 	searchModal.set(true);
-	// };
+	let kek = false;
+
+	const openSearch = (e) => {
+		e.preventDefault();
+		searchModal.set(true);
+	};
 
 	$: if ($searchModal && browser) {
 		document.body.classList.add('overflow');
 	} else if (!$searchModal && browser) {
 		document.body.classList.remove('overflow');
 	}
+	onMount(() => {
+		kek = true;
+	});
 </script>
 
 <svelte:head>
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
 <svelte:body on:keydown={maybeOpenSearch} />
-<div class="warning warning-fixed">
+<div class="warning" style="margin-top: 0; position: fixed; z-index: 10;">
 	<strong>Warning:</strong> Docs are currently under development, join us at
 	<a href="https://discord.gg/PMXbQtDD3m">discord</a>.
 </div>
 
-<main style="">
+<main style="padding-top: 40px;">
 	{#if sidebar}
 		<MobileMenu {closeSidebar} buttonElement={sidebarButton} />
 	{/if}
@@ -122,16 +135,21 @@
 			</footer>
 		</aside>
 		<section>
+			<div style="display: flex;">
+				{#if kek}
+					{#each 'meow' as letter, i}
+						<div style="overflow: hidden;" in:fly={{ y: 50, duration: 500, delay: 200 * i }}>
+							{letter}
+						</div>
+					{/each}
+				{/if}
+			</div>
 			<slot />
 		</section>
 	</div>
 </main>
 
 <style>
-	main {
-		padding-top: 40px;
-	}
-
 	.alternative {
 		padding: 3rem;
 	}
@@ -149,39 +167,39 @@
 		overflow-y: scroll;
 	}
 
-	/* .search { */
-	/* 	padding-block: 32px; */
-	/* 	font-size: 16px; */
-	/* 	color: #464646; */
-	/* 	display: flex; */
-	/* 	align-items: center; */
-	/* 	justify-content: center; */
-	/* 	cursor: pointer; */
-	/* 	user-select: none; */
-	/* 	display: flex; */
-	/* 	column-gap: 16px; */
-	/* 	background: none; */
-	/* 	outline: none; */
-	/* 	border: none; */
-	/* } */
+	.search {
+		padding-block: 32px;
+		font-size: 16px;
+		color: #464646;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		user-select: none;
+		display: flex;
+		column-gap: 16px;
+		background: none;
+		outline: none;
+		border: none;
+	}
 
-	/* .search div { */
-	/* 	border: 2px solid #2b2b2b; */
-	/* 	padding: 8px; */
-	/* 	width: 100%; */
-	/* 	border-radius: 8px; */
-	/* 	display: flex; */
-	/* 	align-items: center; */
-	/* 	justify-content: space-around; */
-	/* } */
-	/**/
-	/* .search span { */
-	/* 	background: #2b2b2b; */
-	/* 	border-radius: 3px; */
-	/* 	padding-inline: 8px; */
-	/* 	padding-block: 2px; */
-	/* 	font-size: 12px; */
-	/* } */
+	.search div {
+		border: 2px solid #2b2b2b;
+		padding: 8px;
+		width: 100%;
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.search span {
+		background: #2b2b2b;
+		border-radius: 3px;
+		padding-inline: 8px;
+		padding-block: 2px;
+		font-size: 12px;
+	}
 
 	.logoArea {
 		display: flex;
@@ -252,12 +270,6 @@
 		font-family: 'monospace';
 	}
 
-	.warning-fixed {
-		margin-top: 0;
-		position: fixed;
-		z-index: 10;
-	}
-
 	@media (width < 1100px) {
 		aside {
 			display: none;
@@ -269,17 +281,8 @@
 
 		section {
 			height: auto;
-			padding-inline: 24px;
+			padding-inline: 2rem;
 			max-width: 100%;
-		}
-
-		.warning-fixed {
-			position: unset;
-			margin: 0;
-		}
-
-		main {
-			padding-top: 0;
 		}
 	}
 
