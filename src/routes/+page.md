@@ -11,7 +11,7 @@
 </svelte:head>
 
 
-<div class="warning">
+<div class="warning" style="border-radius: 6px;">
   <strong>Warning:</strong> Vixeny is currently in Alpha stage. We appreciate your <a href="https://github.com/mimiMonads/vixeny/issues">feedback</a>!
 </div>
 

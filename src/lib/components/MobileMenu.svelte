@@ -33,15 +33,15 @@
 <div transition:fly={{ x: -300, duration: 150, opacity: 1 }} class="menu" bind:this={menuZone}>
 	<nav>
 		<ul>
-			<li>
-				<button
-					class="searchButton"
-					on:click|preventDefault={() => {
-						searchModal.set(true);
-						closeSidebar();
-					}}>Search</button
-				>
-			</li>
+			<!-- <li> -->
+			<!-- 	<button -->
+			<!-- 		class="searchButton" -->
+			<!-- 		on:click|preventDefault={() => { -->
+			<!-- 			searchModal.set(true); -->
+			<!-- 			closeSidebar(); -->
+			<!-- 		}}>Search</button -->
+			<!-- 	> -->
+			<!-- </li> -->
 			<li>
 				{#each categories as category}
 					<div class="title">{category.name}</div>
@@ -103,6 +103,8 @@
 		padding: 2rem;
 		z-index: 100;
 		border-right: 2px solid #252525;
+		top: 0;
+		overflow: scroll;
 	}
 
 	.other {
