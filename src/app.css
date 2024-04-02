@@ -103,7 +103,6 @@ strong {
 .warning {
     width: 100%;
     padding: 10px;
-    margin-block: 16px;
     background-color: #333;
     color: #FFA500;
     margin-bottom: 36px;
@@ -121,4 +120,25 @@ strong {
 
 .underline {
     text-decoration: underline;
+}
+
+code {
+    display: inline-block;
+    padding-right: 16px;
+}
+
+pre::-webkit-scrollbar {
+    height: 8px;
+    width: 10px;
+}
+
+/* Track */
+pre::-webkit-scrollbar-track {
+    background: #222222;
+    border-radius: 8px;
+}
+
+/* Handle */
+pre::-webkit-scrollbar-thumb {
+    background: #2b2b2b;
 }

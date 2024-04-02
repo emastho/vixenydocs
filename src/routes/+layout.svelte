@@ -46,9 +46,9 @@
 	// 	searchModal.set(true);
 	// };
 
-	$: if ($searchModal && browser) {
+	$: if (($searchModal || sidebar) && browser) {
 		document.body.classList.add('overflow');
-	} else if (!$searchModal && browser) {
+	} else if ((!$searchModal || !sidebar) && browser) {
 		document.body.classList.remove('overflow');
 	}
 </script>
@@ -57,10 +57,6 @@
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
 <svelte:body on:keydown={maybeOpenSearch} />
-<div class="warning warning-fixed">
-	<strong>Warning:</strong> Docs are currently under development, join us at
-	<a href="https://discord.gg/PMXbQtDD3m">discord</a>.
-</div>
 
 <main style="">
 	{#if sidebar}
@@ -116,10 +112,6 @@
 </main>
 
 <style>
-	main {
-		padding-top: 40px;
-	}
-
 	.alternative {
 		padding: 3rem;
 	}
@@ -235,12 +227,6 @@
 		font-family: 'monospace';
 	}
 
-	.warning-fixed {
-		margin-top: 0;
-		position: fixed;
-		z-index: 10;
-	}
-
 	@media (width < 1100px) {
 		aside {
 			display: none;
@@ -254,11 +240,6 @@
 			height: auto;
 			padding-inline: 24px;
 			max-width: 100%;
-		}
-
-		.warning-fixed {
-			position: unset;
-			margin: 0;
 		}
 
 		main {

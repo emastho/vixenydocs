@@ -30,6 +30,9 @@ To be a globally recognized web framework that celebrates the joy of coding, sup
 
 - make components friendly
 
+- showcase list
+- mobile
+
 @mimiMonads TODO:
 
 
