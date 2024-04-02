@@ -41,10 +41,10 @@
 		}
 	};
 
-	// const openSearch = (e: Event) => {
-	// 	e.preventDefault();
-	// 	searchModal.set(true);
-	// };
+	const openSearch = (e: Event) => {
+		e.preventDefault();
+		searchModal.set(true);
+	};
 
 	$: if (($searchModal || sidebar) && browser) {
 		document.body.classList.add('overflow');
@@ -85,7 +85,7 @@
 					<img src={Logo} alt="Logo" height="45" />
 				</a>
 			</div>
-			<!--
+
 			<button class="search" on:click={openSearch}>
 				<div>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -98,8 +98,8 @@
 					<span>/</span>
 				</div>
 			</button>
-      -->
-			<div class="alternative" />
+
+			<!-- <div class="alternative" /> -->
 			<Navigation />
 			<footer>
 				<Links />
@@ -112,9 +112,9 @@
 </main>
 
 <style>
-	.alternative {
+	/* .alternative {
 		padding: 3rem;
-	}
+	} */
 
 	aside {
 		flex-shrink: 0;
@@ -129,8 +129,9 @@
 		overflow-y: scroll;
 	}
 
-	/* .search {
-		padding-block: 32px;
+	.search {
+		padding-block: 48px;
+		padding-inline: 0;
 		font-size: 16px;
 		color: #464646;
 		display: flex;
@@ -138,21 +139,23 @@
 		justify-content: center;
 		cursor: pointer;
 		user-select: none;
-		display: flex;
-		column-gap: 16px;
 		background: none;
 		outline: none;
 		border: none;
-	} 
+	}
 
 	.search div {
 		border: 2px solid #2b2b2b;
-		padding: 8px;
+		padding: 8px 16px;
 		width: 100%;
 		border-radius: 8px;
 		display: flex;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: space-between;
+	}
+
+	.search div:hover {
+		background: #1f1f1f;
 	}
 
 	.search span {
@@ -162,7 +165,7 @@
 		padding-block: 2px;
 		font-size: 12px;
 	}
-*/
+
 	.logoArea {
 		display: flex;
 		justify-content: center;

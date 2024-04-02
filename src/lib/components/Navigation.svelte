@@ -14,7 +14,7 @@
 		color: rgb(206, 206, 206);
 		display: block;
 		font-size: small;
-		padding-block: 16px;
+		padding-bottom: 16px;
 		padding-left: 0.2rem;
 	}
 

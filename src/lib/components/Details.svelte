@@ -5,7 +5,7 @@
 
 {#each categories as category}
 	<div class="details">
-		<div class="summary" role="button" tabindex="0">
+		<div class="summary">
 			{category.name}
 			<span>
 				<svg
@@ -35,7 +35,6 @@
 
 <style>
 	.details .summary {
-		cursor: pointer;
 		user-select: none;
 		padding: 0.5rem 1.2rem;
 		border-radius: 6px;
@@ -48,6 +47,10 @@
 	.details .summary {
 		list-style: none;
 		position: relative;
+	}
+
+	.details .summary:hover {
+		background-color: #353535;
 	}
 
 	.details .summary span {
