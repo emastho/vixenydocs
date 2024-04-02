@@ -1,26 +1,24 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { searchModal } from '$lib/stores/main';
+	import SearchFunction from '$lib/components/SearchFunction.svelte';
 
 	let target: HTMLElement;
 
 	const clickOutside = (e: Event) => {
-		if (!target.contains(e.target as Node) && !e.defaultPrevented) {
+		//@ts-ignore
+		if (e.target == target) {
 			searchModal.set(false);
 		}
 	};
-
-	const Something = () => import('$lib/components/SearchFunction.svelte');
 </script>
 
 <svelte:body on:click={clickOutside} />
-<div class="modal" transition:fade={{ duration: 10 }}>
-	<div bind:this={target} class="modal-content">
-		{#await Something() then something}
-			<svelte:component this={something.default} />
-		{:catch e}
-			Wow, I am really bad at javascript, error
-		{/await}
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events-->
+<div class="modal" bind:this={target} transition:fade={{ duration: 10 }}>
+	<div class="modal-content">
+		<SearchFunction />
 	</div>
 </div>
 
@@ -32,7 +30,7 @@
 		z-index: 10;
 		width: 100%;
 		height: 100svh;
-		backdrop-filter: blur(3px);
+		backdrop-filter: blur(2px);
 		padding-top: 64px;
 	}
 
@@ -45,8 +43,9 @@
 		background: #252525;
 		color: white;
 		border-radius: 8px;
-		padding: 2rem;
 		max-height: 70%;
+		box-shadow: 0 4px 8px #15151550;
+		padding: 32px;
 	}
 
 	@media (width < 1100px) {

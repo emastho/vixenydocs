@@ -1,37 +1,49 @@
-<script>
-	import list from '$lib/data.json';
+<script lang="ts">
+	// import list from '$lib/data.json';
 	import { create, insert, search } from '@orama/orama';
 	import { onMount } from 'svelte';
 	import { searchModal } from '$lib/stores/main';
-	import { fade } from 'svelte/transition';
 
-	let input;
+	let input: HTMLInputElement;
+	// i know, input.value just didnt work and im tired of trying to find out why
+	let inputValue = '';
 	let db;
 	let searchResult = [];
+	let loading = true;
 
-	async function initializeDatabase() {
-		db = await create({
-			schema: { content: 'string', route: 'string' }
-		});
-
-		list.map(async (item) => {
-			await insert(db, {
-				content: item.content,
-				route: item.route
-			});
-		});
+	async function fetchData() {
+		const res = await fetch('/src/lib/data.json');
+		const data = await res.json();
+		loading = false;
+		console.log(data);
 	}
 
-	async function performSearch(term) {
-		searchResult = await search(db, {
-			term
-		});
-	}
+	// async function initializeDatabase() {
+	// 	db = await create({
+	// 		schema: { content: 'string', route: 'string' }
+	// 	});
 
-	initializeDatabase();
+	// 	list.map(async (item) => {
+	// 		await insert(db, {
+	// 			content: item.content,
+	// 			route: item.route
+	// 		});
+	// 	});
+
+	// 	loading = false;
+	// }
+
+	// async function performSearch(term) {
+	// 	searchResult = await search(db, {
+	// 		term
+	// 	});
+	// }
+
+	// initializeDatabase();
 
 	onMount(() => {
 		input.focus();
+		fetchData();
 	});
 </script>
 
@@ -39,40 +51,60 @@
 	<strong>Search</strong>
 	<button on:click|preventDefault={() => searchModal.set(false)}>Close</button>
 </div>
-<input
-	type="text"
-	placeholder="Search..."
-	bind:this={input}
-	on:input={(e) => performSearch(e.target.value)}
-	in:fade={{ duration: 200 }}
-/>
-
+<div class="inputDiv">
+	<input type="text" placeholder="Keyword..." bind:this={input} bind:value={inputValue} />
+	{#if inputValue.length > 0}
+		<button class="clear" on:click={() => (inputValue = '')}>Clear</button>
+	{/if}
+</div>
+{#if loading}
+	loading
+{/if}
 <ul>
-	{#each searchResult.hits ?? [] as item}
+	<!-- {#each searchResult.hits ?? [] as item}
 		<li>
 			<a href={item.document.route} on:click={() => searchModal.set(false)}>
 				{item.document.route}
 			</a>
 		</li>
-	{/each}
+	{/each} -->
 </ul>
 
 <style>
 	input {
-		width: 100%;
-		padding: 1rem;
-		margin-bottom: 16px;
-		border-radius: 4px;
 		outline: none;
 		border: none;
-		background: #222222;
 		color: white;
+		background: transparent;
 	}
 
 	ul {
 		height: 100%;
 		overflow-y: scroll;
 		border-radius: 4px;
+	}
+	.inputDiv {
+		position: relative;
+		width: 100%;
+		padding: 1rem;
+		background: #222222;
+		border-radius: 4px;
+
+		margin-bottom: 16px;
+	}
+
+	.inputDiv input {
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+
+	.clear {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		padding-inline: 16px;
 	}
 
 	li {
@@ -88,7 +120,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding-bottom: 32px;
+		padding-bottom: 16px;
 	}
 
 	div button {
@@ -97,5 +129,9 @@
 		background: none;
 		color: gray;
 		cursor: pointer;
+	}
+
+	div button:hover {
+		text-decoration: underline;
 	}
 </style>
