@@ -2,6 +2,7 @@
   import PreviousNext from "$lib/components/PreviousNext.svelte"
   import FancyLink from "$lib/components/FancyLink.svelte"
   import Tabs from "$lib/components/Tabs.svelte"
+  import {version} from "$app/environment"
 
   let tab = 0;
 </script>
@@ -15,8 +16,10 @@
   <strong>Warning:</strong> Vixeny is currently in Alpha stage. We appreciate your <a href="https://github.com/mimiMonads/vixeny/issues">feedback</a>!
 </div>
 
-# Welcome to Vixeny!
-
+<h1 style="padding-bottom: 8px">Welcome to Vixeny!</h1>
+<div style="padding-bottom: 32px; color: gray;">
+Docs {version}
+</div>
 
 **Introducing Vixeny: A New Era in Web Development**
 

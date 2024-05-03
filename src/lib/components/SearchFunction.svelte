@@ -3,6 +3,7 @@
 	import { create, insert, search } from '@orama/orama';
 	import { onMount } from 'svelte';
 	import { searchModal } from '$lib/stores/main';
+	import {version} from "$app/environment"
 
 	let input: HTMLInputElement;
 	// i know, input.value just didnt work and im tired of trying to find out why

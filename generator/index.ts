@@ -1,29 +1,60 @@
-import matter from "gray-matter"
-import fs from "fs/promises"
-import { minify } from "html-minifier-terser";
+import { routes } from "../src/lib/routes"
+import fs from "node:fs"
 
-// yes, I know
-const dirs = [
-    { path: "basics/+page.md", route: "/basics" },
-    // need to be changed
-    // { path: "data_control/+page.md", route: "/data_control" },
-    // { path: "data_flow/+page.md", route: "/data_flow" },
-    // { path: "docs/+page.md", route: "/docs" },
-    // { path: "docs/testing/+page.md", route: "/docs/testing" },
-    // { path: "docs/modules/branch/+page.md", route: "/docs/modules/branch" },
-    // { path: "docs/modules/cookies/+page.md", route: "/docs/modules/cookies" },
-    // { path: "docs/modules/mutable/+page.md", route: "/docs/modules/mutable" },
-    // { path: "docs/modules/parameters/+page.md", route: "/docs/modules/parameters" },
-    // { path: "docs/modules/query/+page.md", route: "/docs/modules/query" },
-    // { path: "docs/modules/resolve/+page.md", route: "/docs/modules/resolve" },
-    // { path: "resource/fpBasics/+page.md", route: "/resource/fpBasics" },
-]
+let step = 0;
+const log = (message: string) => {
+    step++;
+    process.stdout.write(`    📋 [${step}/4] ${message}.\n`)
+}
+const error = (a: string) => log(`ERROR: ${a}`)
 
-let meow = dirs.map(async (dir) => {
-    const a = await fs.readFile(`../src/routes/${dir.path}`, "utf-8")
-    return { content: matter(a).content, route: dir.route }
-})
+interface GeneratedList {
+    url: string,
+    content: string
+}
 
-const val = await Promise.all(meow)
-const stringified = JSON.stringify(val)
-await fs.writeFile("../src/lib/data.json", stringified)
+async function main() {
+    log("Starting to scan files")
+
+    let file = false;
+    let path = "";
+
+    for (let i = 0; i < routes.length; i++) {
+        if (routes[i].categoryId == 2) {
+            continue
+        }
+        path = `../src/routes${routes[i].href}/+page.md`
+        file = fs.existsSync(path)
+        if (!file) {
+            error(`"${routes[i].href}" doesnt exist, path used "${path}"`)
+            return
+        }
+    }
+
+    log("All files exist, starting to fill the \"database\"")
+
+    let data: GeneratedList[] = [];
+    for (let i = 0; i < routes.length; i++) {
+        if (routes[i].categoryId == 2) {
+            continue
+        }
+        path = `../src/routes${routes[i].href}/+page.md`
+
+        const file = Bun.file(path)
+        const contents = await file.text()
+        data.push({ url: routes[i].href, content: contents })
+    }
+    const generatedFile = Bun.file("data.json").writer()
+    generatedFile.write(JSON.stringify(data))
+
+    log("Filled database succesfully")
+
+    fs.renameSync("data.json", "../src/lib/data.json")
+
+    log("Database moved to frontend.")
+
+
+}
+main()
+
+
