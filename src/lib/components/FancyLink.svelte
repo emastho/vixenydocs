@@ -8,15 +8,17 @@
 <style>
 	a {
 		width: 100%;
-		border: 2px solid #2f2f2f;
+		/* border: 4px solid var(--side); */
+		border: 4px solid transparent;
+		background-color: var(--closer);
 		padding: 1.6rem;
 		border-radius: 8px;
 		margin: 0;
 	}
 
 	a:hover {
-		background: #6f5c9b;
-		border-color: #6f5c9b;
+		background: transparent;
+		border-color: var(--closer);
 	}
 
 	.hidden {

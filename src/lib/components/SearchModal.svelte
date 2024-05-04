@@ -30,7 +30,7 @@
 		z-index: 10;
 		width: 100%;
 		height: 100svh;
-		backdrop-filter: blur(2px);
+		backdrop-filter: blur(40px);
 		padding-top: 64px;
 	}
 
@@ -40,11 +40,10 @@
 		width: 700px;
 		max-width: 700px;
 		min-height: 200px;
-		background: #252525;
+		background: var(--closer);
 		color: white;
 		border-radius: 8px;
 		max-height: 70%;
-		box-shadow: 0 4px 8px #15151550;
 		padding: 32px;
 	}
 

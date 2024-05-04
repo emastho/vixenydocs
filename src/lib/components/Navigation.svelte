@@ -11,7 +11,7 @@
 
 <style>
 	nav .title {
-		color: rgb(206, 206, 206);
+		color: var(--subtext);
 		display: block;
 		font-size: small;
 		padding-bottom: 16px;

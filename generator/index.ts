@@ -53,7 +53,6 @@ async function main() {
 
     log("Database moved to frontend.")
 
-
 }
 main()
 

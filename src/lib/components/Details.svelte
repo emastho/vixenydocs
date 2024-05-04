@@ -39,9 +39,9 @@
 		padding: 0.5rem 1.2rem;
 		border-radius: 6px;
 		/* border: 2px solid #2f2f2f; */
-		background: #2b2b2b;
+		background: var(--closer);
 		transition: 200ms all ease-out 50ms;
-		color: white;
+		color: var(--text);
 	}
 
 	.details .summary {
@@ -50,7 +50,7 @@
 	}
 
 	.details .summary:hover {
-		background-color: #353535;
+		background-color: var(--closest);
 	}
 
 	.details .summary span {
@@ -64,7 +64,7 @@
 	}
 
 	span .opened {
-		color: #494949;
+		color: var(--text);
 	}
 
 	.navItems {

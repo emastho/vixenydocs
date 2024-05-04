@@ -42,13 +42,13 @@
 
 	a {
 		width: 100%;
-		border: 2px solid #2f2f2f;
+		border: 4px solid var(--closer);
 		padding: 1.6rem;
 		border-radius: 8px;
 	}
 
 	a:hover {
-		background: #6f5c9b;
-		border-color: #6f5c9b;
+		background: var(--closer);
+		border-color: var(--closer);
 	}
 </style>

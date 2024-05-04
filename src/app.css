@@ -17,7 +17,7 @@ p {
 
 a {
     text-decoration: none;
-    color: white;
+    color: var(--text);
 }
 
 ul {
@@ -32,17 +32,17 @@ ul {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #222222;
+    background: var(--bg);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #2b2b2b;
+    background: var(--closer);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #3a3a3a;
+    background: var(--closest);
 }
 
 ol li::marker {
@@ -68,20 +68,20 @@ section h1 {
 section a {
     display: block;
     /*  color: #323232; */
-    color: rgb(299, 299, 299);
+    color: var(--text);
     margin-bottom: 32px;
 }
 
 section .link {
     display: flex;
     column-gap: 8px;
-    color: #53535a;
+    color: var(--text);
 }
 
 section p,
 section ul,
 section code {
-    color: #d3d3d3;
+    color: var(--subtext);
     line-height: 32px;
     font-size: 16px;
 }
@@ -92,20 +92,21 @@ section p {
 
 section code:not(.language-ts):not(.language-typescript):not(.language-json):not(.language-bash) {
     padding: 2px 4px;
-    background-color: #323232;
+    background-color: var(--closer);
     border-radius: 4px;
 }
 
 strong {
-    color: white;
+    color: var(--text);
 }
 
 .warning {
     width: 100%;
-    padding: 10px;
-    background-color: #333;
-    color: #FFA500;
+    padding: 16px;
+    background-color: var(--closer);
+    color: #a6ff00;
     margin-bottom: 36px;
+    border-radius: 4px;
 }
 
 @media (width < 1100px) {
@@ -134,11 +135,16 @@ pre::-webkit-scrollbar {
 
 /* Track */
 pre::-webkit-scrollbar-track {
-    background: #222222;
+    background: var(--bg);
     border-radius: 8px;
 }
 
 /* Handle */
 pre::-webkit-scrollbar-thumb {
-    background: #2b2b2b;
+    background-color: var(--closer);
+}
+
+*::selection {
+    background-color: white;
+    color: black;
 }

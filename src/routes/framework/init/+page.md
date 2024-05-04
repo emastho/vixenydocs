@@ -7,6 +7,9 @@
 </svelte:head>
 
 # Quick start
+
+Here's how to start
+
 ### In Bun:
 
 ```bash

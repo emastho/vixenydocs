@@ -3,7 +3,7 @@
 	import { create, insert, search } from '@orama/orama';
 	import { onMount } from 'svelte';
 	import { searchModal } from '$lib/stores/main';
-	import {version} from "$app/environment"
+	import { version } from '$app/environment';
 
 	let input: HTMLInputElement;
 	// i know, input.value just didnt work and im tired of trying to find out why
@@ -88,7 +88,7 @@
 		position: relative;
 		width: 100%;
 		padding: 1rem;
-		background: #222222;
+		background: var(--bg);
 		border-radius: 4px;
 
 		margin-bottom: 16px;

@@ -66,11 +66,11 @@
 	}
 
 	a {
-		color: #464646;
+		color: var(--text);
 	}
 
 	a:hover {
-		color: #555;
+		color: var(--subtext);
 	}
 
 	.a-2 {
