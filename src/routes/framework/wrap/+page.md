@@ -8,6 +8,8 @@
 
 # Wrap
 
+Hello peepol
+
 ### Union
 
 One of the most important uses of `wrap` in Vixeny is to protect and modularize `Petitions`, especially when they are exported or modified. This ensures that your code remains organized and maintainable. Let's demonstrate this with an example involving multiple files:
@@ -26,7 +28,7 @@ export default wrap()()
 Next, create two separate files, `a.ts` and `b.ts`, which import and utilize `extension.ts`:
 
 ```ts
-import extencion from "./extension.ts"
+import extension from "./extension.ts"
 
 // file: a.ts
 export default wrap()()
@@ -145,4 +147,4 @@ You have three options for customization:
 - `add`: Adds specified functions to the list.
 - `remove`: Removes a function if it is added but not required, which could happen but is harmless to the `CTX`.
 
-<PreviousNext previous="/framework/routing" next="/framework/morpishim" />
+<PreviousNext previous="/framework/routing" next="/framework/morphism" />

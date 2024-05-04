@@ -59,8 +59,6 @@ test("Checking in `/`", async () => {
 });
 ```
 
-## Coming soon ...
-
 
 <style>
 div > :global(*:not(:last-child)) {

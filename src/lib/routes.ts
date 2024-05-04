@@ -2,7 +2,7 @@ export const routes: { href: string, name: string, categoryId: number, newTab?: 
     { href: "/framework/init", name: "Quick start", categoryId: 1 },
     { href: "/framework/routing", name: "Routing", categoryId: 1 },
     { href: '/framework/wrap', name: 'Wrap', categoryId: 1 },
-    { href: '/framework/morpishim', name: 'Morpishim', categoryId: 1 },
+    { href: '/framework/morphism', name: 'Morphism', categoryId: 1 },
     { href: '/framework/test', name: 'Testing', categoryId: 1 },
     { href: '/framework/plugins', name: "Extending", categoryId: 1 },
     { href: 'https://github.com/mimiMonads/bunSQLVixeny', name: "SQLBun", categoryId: 2, newTab: true },

@@ -8,7 +8,10 @@
     <meta name="description" content="Learn how to create routes in Vixeny" />
 </svelte:head>
 
-<Heading title="Introduction to wrap" size="2" />
+# Routing
+Routing is the most important thing, check this out
+
+<Heading title="Introduction" size="2" />
 
 In the `versatile` world of JavaScript, wrap plays a key role in harmonizing the language's polymorphic nature with Vixeny's functional approach. It ensures scalability and maintains code purity, crucial for efficient web development.
 
@@ -54,7 +57,7 @@ const router = wrap(options)()
 // unwrapping all the petitions giving them to the router
 vixeny(options)(router.unwrap())
 ```
-<Heading title="Working with petitions" size="2" />
+<Heading title="Petitions" size="2" />
 
 Let's create a Petition without wrap and export it an create new differents routes out of it.
 
@@ -93,7 +96,7 @@ export default wrap(options)()
 
 Applies to any other key in the object.
 
-<Heading title="Petitions types in wrap" size="2" />
+<Heading title="Types" size="2" />
 
  There are two type of petitions:
   - `stdPetition`: where you have to return a `BodyInt` or `Promise<BodyInt>`

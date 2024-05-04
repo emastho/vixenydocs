@@ -2,14 +2,14 @@
     import PreviousNext from "$lib/components/PreviousNext.svelte"
 </script>
 <svelte:head>
-    <title>Morpishim - Vixeny</title>
-    <meta name="description" content=" understanding morpishim" />
+    <title>Morphism - Vixeny</title>
+    <meta name="description" content=" understanding morphism" />
 </svelte:head>
 
 
-# Demystifying Vixeny: Your Guide to Building Digital Experiences
+# Morphism
 
-Imagine Vixeny guiding you through the process of crafting your dream home, simplifying the complexities of web development into something straightforward and manageable. It employs two key concepts —`Resolve` and `Branch`— much like the essential steps in building a house, laying the foundation and then expanding upon it to add the final touches.
+Imagine Vixeny guiding you through the process of crafting your dream home, simplifying the complexities of web development into something straightforward and manageable. It employs two key concepts `Resolve` and `Branch` much like the essential steps in building a house, laying the foundation and then expanding upon it to add the final touches.
 
 ## Foundations First: Resolve
 
