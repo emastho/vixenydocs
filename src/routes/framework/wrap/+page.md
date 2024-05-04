@@ -1,6 +1,4 @@
-<script>
-    import PreviousNext from "$lib/components/PreviousNext.svelte"
-</script>
+
 <svelte:head>
     <title>Wrap - Vixeny</title>
     <meta name="description" content="Understanding wrap"/>
@@ -147,4 +145,3 @@ You have three options for customization:
 - `add`: Adds specified functions to the list.
 - `remove`: Removes a function if it is added but not required, which could happen but is harmless to the `CTX`.
 
-<PreviousNext previous="/framework/routing" next="/framework/morphism" />

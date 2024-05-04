@@ -1,6 +1,4 @@
-<script>
-    import PreviousNext from "$lib/components/PreviousNext.svelte"
-</script>
+
 <svelte:head>
     <title>Morphism - Vixeny</title>
     <meta name="description" content=" understanding morphism" />
@@ -314,4 +312,3 @@ const please = morphism(options)({
 - **Modularity**: Morphisms can be nested and reused, promoting modularity and reuse of logic.
 - **Declarative Logic**: The structure allows for a clear, declarative definition of data transformations and conditions, improving readability and maintainability.
 
-<PreviousNext previous="/framework/wrap" next="/framework/test" />

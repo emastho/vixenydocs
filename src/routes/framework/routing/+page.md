@@ -1,8 +1,3 @@
-<script>
-    import Heading from "$lib/components/Heading.svelte"
-    import PreviousNext from "$lib/components/PreviousNext.svelte"
-</script>
-
 <svelte:head>
     <title>Routing - Vixeny</title>
     <meta name="description" content="Learn how to create routes in Vixeny" />
@@ -11,7 +6,7 @@
 # Routing
 Routing is the most important thing, check this out
 
-<Heading title="Introduction" size="2" />
+## Introduction
 
 In the `versatile` world of JavaScript, wrap plays a key role in harmonizing the language's polymorphic nature with Vixeny's functional approach. It ensures scalability and maintains code purity, crucial for efficient web development.
 
@@ -57,7 +52,7 @@ const router = wrap(options)()
 // unwrapping all the petitions giving them to the router
 vixeny(options)(router.unwrap())
 ```
-<Heading title="Petitions" size="2" />
+## Petitions
 
 Let's create a Petition without wrap and export it an create new differents routes out of it.
 
@@ -96,7 +91,7 @@ export default wrap(options)()
 
 Applies to any other key in the object.
 
-<Heading title="Types" size="2" />
+## Types
 
  There are two type of petitions:
   - `stdPetition`: where you have to return a `BodyInt` or `Promise<BodyInt>`
@@ -138,4 +133,3 @@ vixeny(options)([
   ])
 ```
 
-<PreviousNext previous="/framework/init" next="/framework/wrap" />

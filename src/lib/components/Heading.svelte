@@ -6,7 +6,9 @@
 </script>
 
 <svelte:element this={elem} id={title} class="block">{title}</svelte:element>
-<a href={`#${title}`}>#</a>
+{#if size != 1}
+	<a href={`#${title}`}>#</a>
+{/if}
 
 <style>
 	.block {

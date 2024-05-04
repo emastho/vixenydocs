@@ -12,6 +12,8 @@
 	import nprogress from 'nprogress';
 	import { browser } from '$app/environment';
 	import Links from '$lib/components/Links.svelte';
+	import { page } from '$app/stores';
+
 	let sidebarButton: HTMLElement;
 
 	beforeNavigate(() => {
@@ -109,6 +111,9 @@
 		</aside>
 		<section>
 			<slot />
+			{#if $page.url.pathname != '/'}
+				Hey
+			{/if}
 		</section>
 	</div>
 </main>

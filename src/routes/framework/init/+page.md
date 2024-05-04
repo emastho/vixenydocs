@@ -1,6 +1,4 @@
-<script>
-    import PreviousNext from "$lib/components/PreviousNext.svelte"
-</script>
+
 <svelte:head>
     <title>Quick start - Vixeny</title>
     <meta name="description" content="How to install Vixeny" />
@@ -21,5 +19,3 @@ bun create vixeny
 ```bash
 npx create-vixeny
 ```
-
-<PreviousNext previous="/" next="/framework/routing" />
