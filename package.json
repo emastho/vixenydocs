@@ -33,7 +33,9 @@
 		"@orama/orama": "^1.2.2",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"html-minifier-terser": "^7.2.0",
-		"nprogress": "^0.2.0"
+		"nprogress": "^0.2.0",
+		"rehype-autolink-headings": "^7.1.0",
+		"rehype-slug": "^6.0.0"
 	},
 	"license": "GPL2"
 }

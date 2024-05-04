@@ -119,10 +119,6 @@
 </main>
 
 <style>
-	/* .alternative {
-		padding: 3rem;
-	} */
-
 	aside {
 		flex-shrink: 0;
 		width: 270px;
