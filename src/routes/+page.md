@@ -1,10 +1,8 @@
 <script>
   import PreviousNext from "$lib/components/PreviousNext.svelte"
   import FancyLink from "$lib/components/FancyLink.svelte"
-  import Tabs from "$lib/components/Tabs.svelte"
   import {version} from "$app/environment"
 
-  let tab = 0;
 </script>
 <svelte:head>
     <title>Vixeny - Unleash the Power of Multi-Paradigm Programming</title>

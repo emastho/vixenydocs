@@ -4,6 +4,7 @@
 	import '../nprogress.css';
 	import Logo from '$lib/assets/vixenylogo-min.png';
 	import Iconie from '$lib/components/Iconie.svelte';
+	import Input from '$lib/components/Input.svelte';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import MobileMenu from '$lib/components/MobileMenu.svelte';
@@ -12,7 +13,11 @@
 	import nprogress from 'nprogress';
 	import { browser } from '$app/environment';
 	import Links from '$lib/components/Links.svelte';
-	import { page } from '$app/stores';
+
+	const tabsData = [
+		{ title: 'Tab 1', content: 'let meow = 5;', code: true },
+		{ title: 'Tab 2', content: 'meow 2' }
+	];
 
 	let sidebarButton: HTMLElement;
 
@@ -87,33 +92,18 @@
 					<img src={Logo} alt="Logo" height="45" />
 				</a>
 			</div>
-
-			<button class="search" on:click={openSearch}>
-				<div>
-					<span>
-						<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
-							><path
-								fill="currentColor"
-								d="m18.031 16.617l4.283 4.282l-1.415 1.415l-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9s9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617Zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.867-3.133-7-7-7s-7 3.133-7 7s3.133 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15Z"
-							/></svg
-						></span
-					>
-					Search
-					<span><div class="block">/</div></span>
-				</div>
-			</button>
-
-			<!-- <div class="alternative" /> -->
 			<Navigation />
-			<footer>
-				<Links />
-			</footer>
 		</aside>
 		<section>
-			<slot />
-			{#if $page.url.pathname != '/'}
-				Hey
-			{/if}
+			<div class="contentTop">
+				<div class="line">
+					<Input placeholder="Search" />
+					<Links />
+				</div>
+			</div>
+			<div class="content">
+				<slot />
+			</div>
 		</section>
 	</div>
 </main>
@@ -132,74 +122,45 @@
 		overflow-y: scroll;
 	}
 
-	.search {
-		padding-block: 48px;
-		padding-inline: 0;
-		font-size: 16px;
-		color: var(--text);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-		user-select: none;
-		background: none;
-		outline: none;
-		border: none;
-	}
-
-	.search div:not(.block) {
-		padding: 8px 16px;
-		width: 100%;
-		border-radius: 8px;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		background-color: var(--closer);
-	}
-
-	.search div:hover:not(.block) {
-		background: var(--closest);
-	}
-
-	.search span {
-		background: var(--closest);
-		border-radius: 4px;
-		padding: 8px;
-		font-size: 12px;
-		display: flex;
-		align-items: center;
-	}
-
-	.block {
-		font-size: 12px;
-		line-height: 12px;
-	}
-
-	.search span > * {
-		width: 12px;
-		height: 12px;
-	}
-
 	.logoArea {
 		display: flex;
 		justify-content: center;
 		flex-shrink: 0;
-	}
-
-	footer {
-		margin-top: 64px;
-		text-align: center;
+		padding-bottom: 64px;
 	}
 
 	section {
 		flex: 1;
-		padding: 3rem 4rem;
+		padding: 0 0 24px 0;
 		color: var(--text);
 		/* height: 100vh; */
-		padding-left: calc(270px + 4rem);
+		padding-left: calc(270px);
 		/* overflow-y: scroll; */
 		/* max-width: 120ch;*/
-		max-width: 85%;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.content {
+		width: 70%;
+	}
+
+	.line {
+		width: 70%;
+		display: flex;
+		padding-block: 16px;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.contentTop {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		border-bottom: 2px solid var(--side);
+		margin-bottom: 48px;
 	}
 
 	header {
