@@ -14,11 +14,6 @@
 	import { browser } from '$app/environment';
 	import Links from '$lib/components/Links.svelte';
 
-	const tabsData = [
-		{ title: 'Tab 1', content: 'let meow = 5;', code: true },
-		{ title: 'Tab 2', content: 'meow 2' }
-	];
-
 	let sidebarButton: HTMLElement;
 
 	beforeNavigate(() => {

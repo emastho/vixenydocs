@@ -1,4 +1,12 @@
+<script>
+    import Tabs from "$lib/components/Tabs.md"
+    import Bash from "$lib/components/SmallComponents/Bash.md"
 
+    const tab1 = [
+        {title: "Bun", component: Bash, details: {runtime: "bun"}},
+        {title: "Deno", component: Bash, details: {runtime: "deno"}}
+    ]
+</script>
 <svelte:head>
     <title>Quick start - Vixeny</title>
     <meta name="description" content="How to install Vixeny" />
@@ -8,14 +16,6 @@
 
 Here's how to start
 
-### In Bun:
+<Tabs data={tab1}/>
 
-```bash
-bun create vixeny
-```
 
-### In Deno:
-
-```bash
-npx create-vixeny
-```

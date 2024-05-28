@@ -1,7 +1,8 @@
 <script>
-// I couldnt find a better way, you could help me
 export let data;
+
 let index = 0;
+
 </script>
 
 <div class="buttons">
@@ -9,34 +10,37 @@ let index = 0;
 <button on:click={() => index = i} class:active={index == i}>{item.title}</button>
 {/each}
 </div>
-{#if typeof data[index].content == "function"}
-<svelte:component this={data[index].content} />
+
+{#if data[index].component}
+<svelte:component this={data[index].component} {...data[index].details} />
 {:else}
 
-{data[index].content}
+{data[index].text}
 
 {/if}
 
 <style>
 .buttons {
-font-size: 16px;
-display: inline-block;
+    font-size: 16px;
+    display: inline-block;
 
-border: 2px solid var(--closest);
-border-radius: 6px;
-overflow: hidden;
-box-shadow: 0 0 5px white;
+    border: 2px solid var(--closest);
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: var(--closest)
 }
+
 button {
-    background-color: var(--closest);
     color: var(--text);
     border: none;
     padding: 8px 16px;
+    background-color: transparent;
 }
 
 .active {
-background-color: transparent;
-color: var(--text);
+    background-color: var(--bg);
+    color: var(--text);
+    border-radius: 4px;
 }
 </style>
 
