@@ -1,17 +1,27 @@
 <script>
+	import Iconie from '$lib/components/Iconie.svelte';
 	export let placeholder;
 </script>
 
-<input type="text" {placeholder} disabled />
+<div>
+	<Iconie which="search" />
+	<input type="text" {placeholder} disabled />
+</div>
 
 <style>
+	div {
+		background-color: var(--further);
+		padding: 10px 16px;
+		border-radius: 4px;
+		display: flex;
+		align-items: center;
+		column-gap: 8px;
+	}
 	input {
 		border: none;
-		padding: 10px 16px;
+		background-color: transparent;
 		font-size: 14px;
-		background-color: var(--further);
 		color: var(--text);
-		border-radius: 4px;
 	}
 
 	input:focus {

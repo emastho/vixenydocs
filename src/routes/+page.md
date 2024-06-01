@@ -26,7 +26,6 @@ Docs {version}
 *   **Zero-Dependency Architecture**: Lean and efficient, with a focus on simplicity and performance.
 *   **Native Plugin Support**: Enhance functionality with ease using native plugins.
 *   **Robust Security**: Predictable and deterministc.
-*   **Advanced Type Checking**: Ensures safe, predictable code.
 *   **Versatile Paradigms**: Supports functional programming and other paradigms in a cohesive manner.
 *   **Object-Oriented**: Facilitates easy code manipulation and maintenance.
 *   **Test-Friendly**: Framework designed to be easily testable, end to end.
@@ -41,21 +40,6 @@ Quick start
 <FancyLink href="/framework/init">Let's begin</FancyLink>
 </div>
 
-
-## Easy testing
-
-```ts
-const baseName = globalOptions.hasName;
-const router = wrap.testRequests();
-
-test("Checking in `/`", async () => {
-  //base root
-  expect(
-    await router(new Request(baseName))
-      .then((res) => res.status),
-  ).toStrictEqual(200);
-});
-```
 
 
 <style>

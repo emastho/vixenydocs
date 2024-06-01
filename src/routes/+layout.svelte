@@ -2,14 +2,13 @@
 	import '../app.css';
 	import '../theme.css';
 	import '../nprogress.css';
-	import Logo from '$lib/assets/vixenylogo-min.png';
+	import Logo from '$lib/assets/vixenylogo-2.png';
 	import Iconie from '$lib/components/Iconie.svelte';
 	import Input from '$lib/components/Input.svelte';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import MobileMenu from '$lib/components/MobileMenu.svelte';
-	import SearchModal from '$lib/components/SearchModal.svelte';
-	import { accordion, searchModal } from '$lib/stores/main';
+	import { accordion } from '$lib/stores/main';
 	import nprogress from 'nprogress';
 	import Links from '$lib/components/Links.svelte';
 
@@ -32,14 +31,11 @@
 	const closeSidebar = () => {
 		sidebar = false;
 	};
-
-
 </script>
 
 <svelte:head>
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
-
 <main style="">
 	{#if sidebar}
 		<MobileMenu {closeSidebar} buttonElement={sidebarButton} />
@@ -48,7 +44,7 @@
 	<header>
 		<div>
 			<a href="/">
-				<img src={Logo} alt="Logo" height="45" />
+				<img class="logo" src={Logo} alt="Logo" height="80" />
 			</a>
 		</div>
 		<div>
@@ -61,7 +57,7 @@
 		<aside style="padding-bottom: 80px;">
 			<div class="logoArea">
 				<a href="/" on:click={() => accordion.set(1)}>
-					<img src={Logo} alt="Logo" height="45" />
+					<img src={Logo} alt="Logo" height="80" />
 				</a>
 			</div>
 			<Navigation />
@@ -73,17 +69,16 @@
 					<Links />
 				</div>
 			</div>
-      <div class="contentContainer">
-			<div class="content">
-				<slot />
+			<div class="contentContainer">
+				<div class="content">
+					<slot />
+				</div>
 			</div>
-      </div>
 		</section>
 	</div>
 </main>
 
 <style>
-	
 	aside {
 		flex-shrink: 0;
 		width: 270px;
@@ -105,7 +100,7 @@
 	}
 
 	section {
-		padding: 0 0 24px 0;
+		padding: 0 0 128px 0;
 		color: var(--text);
 		/* height: 100vh; */
 		padding-left: calc(270px);
@@ -113,10 +108,10 @@
 		/* max-width: 120ch;*/
 	}
 
-.contentContainer {
-display: flex;
-justify-content: center;
-}
+	.contentContainer {
+		display: flex;
+		justify-content: center;
+	}
 
 	.content {
 		width: 60%;
@@ -135,12 +130,11 @@ justify-content: center;
 		justify-content: center;
 		align-items: center;
 		width: 100%;
-		border-bottom: 2px solid var(--side);
 		margin-bottom: 48px;
-    position: sticky;
-    top: 0;
-    backdrop-filter: blur(3px);
-background-color: #1a1c20d9;
+		position: sticky;
+		top: 0;
+		backdrop-filter: blur(3px);
+		background-color: #1a1c20d9;
 	}
 
 	header {
@@ -211,6 +205,10 @@ background-color: #1a1c20d9;
 
 		.content {
 			width: calc(100% - 40px);
+		}
+
+		.logo {
+			height: 40px;
 		}
 	}
 
