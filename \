@@ -46,7 +46,7 @@
 
 	.div-2 {
 		display: flex;
-		column-gap: 4px;
+		column-gap: 8px;
 	}
 
 	a {

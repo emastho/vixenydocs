@@ -123,6 +123,7 @@ strong {
   color: #a6ff00;
   margin-bottom: 36px;
   border-radius: 4px;
+  user-select: none;
 }
 
 @media (width < 1100px) {

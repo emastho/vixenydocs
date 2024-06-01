@@ -2,16 +2,16 @@
 	export let placeholder;
 </script>
 
-<input type="text" {placeholder} />
+<input type="text" {placeholder} disabled />
 
 <style>
 	input {
 		border: none;
-		padding: 8px 16px;
+		padding: 10px 16px;
 		font-size: 14px;
 		background-color: var(--further);
 		color: var(--text);
-		border-radius: 2px;
+		border-radius: 4px;
 	}
 
 	input:focus {

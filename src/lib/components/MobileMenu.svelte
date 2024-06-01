@@ -97,7 +97,7 @@
 	}
 
 	.menu {
-		background: #222;
+		background: var(--side);
 		position: fixed;
 		width: 270px;
 		height: 100%;

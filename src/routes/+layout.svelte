@@ -11,7 +11,6 @@
 	import SearchModal from '$lib/components/SearchModal.svelte';
 	import { accordion, searchModal } from '$lib/stores/main';
 	import nprogress from 'nprogress';
-	import { browser } from '$app/environment';
 	import Links from '$lib/components/Links.svelte';
 
 	let sidebarButton: HTMLElement;
@@ -34,41 +33,19 @@
 		sidebar = false;
 	};
 
-	const maybeOpenSearch = (e: KeyboardEvent) => {
-		if (e.key == '/') {
-			e.preventDefault();
-			searchModal.update((prev) => !prev);
-		} else if (e.key == 'Escape' && $searchModal == true) {
-			searchModal.set(false);
-		}
-	};
 
-	const openSearch = (e: Event) => {
-		e.preventDefault();
-		searchModal.set(true);
-	};
-
-	$: if (($searchModal || sidebar) && browser) {
-		document.body.classList.add('overflow');
-	} else if ((!$searchModal || !sidebar) && browser) {
-		document.body.classList.remove('overflow');
-	}
 </script>
 
 <svelte:head>
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
-<svelte:body on:keydown={maybeOpenSearch} />
 
 <main style="">
 	{#if sidebar}
 		<MobileMenu {closeSidebar} buttonElement={sidebarButton} />
 	{/if}
-	{#if $searchModal}
-		<SearchModal />
-	{/if}
+
 	<header>
-		<div />
 		<div>
 			<a href="/">
 				<img src={Logo} alt="Logo" height="45" />
@@ -96,14 +73,17 @@
 					<Links />
 				</div>
 			</div>
+      <div class="contentContainer">
 			<div class="content">
 				<slot />
 			</div>
+      </div>
 		</section>
 	</div>
 </main>
 
 <style>
+	
 	aside {
 		flex-shrink: 0;
 		width: 270px;
@@ -114,7 +94,7 @@
 		flex-direction: column;
 		position: fixed;
 		height: 100%;
-		overflow-y: scroll;
+		/* overflow-y: scroll; */
 	}
 
 	.logoArea {
@@ -125,26 +105,27 @@
 	}
 
 	section {
-		flex: 1;
 		padding: 0 0 24px 0;
 		color: var(--text);
 		/* height: 100vh; */
 		padding-left: calc(270px);
 		/* overflow-y: scroll; */
 		/* max-width: 120ch;*/
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
 	}
 
+.contentContainer {
+display: flex;
+justify-content: center;
+}
+
 	.content {
-		width: 70%;
+		width: 60%;
 	}
 
 	.line {
-		width: 70%;
+		width: 60%;
 		display: flex;
-		padding-block: 16px;
+		padding-block: 12px;
 		justify-content: space-between;
 		align-items: center;
 	}
@@ -156,6 +137,10 @@
 		width: 100%;
 		border-bottom: 2px solid var(--side);
 		margin-bottom: 48px;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(3px);
+background-color: #1a1c20d9;
 	}
 
 	header {
@@ -180,7 +165,7 @@
 	}
 
 	header button {
-		background: var(--side);
+		background: var(--bg);
 		border: none;
 		padding: 0.4rem;
 		aspect-ratio: 1/1;
@@ -211,12 +196,21 @@
 
 		section {
 			height: auto;
-			padding-inline: 24px;
+			padding-inline: 0;
 			max-width: 100%;
 		}
 
 		main {
 			padding-top: 0;
+		}
+
+		.line {
+			width: 100%;
+			justify-content: center;
+		}
+
+		.content {
+			width: calc(100% - 40px);
 		}
 	}
 
