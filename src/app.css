@@ -127,6 +127,10 @@ strong {
   user-select: none;
 }
 
+.warning-2 {
+  color: var(--subtext)
+}
+
 @media (width < 1100px) {
   .warning {
     white-space: normal;

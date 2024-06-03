@@ -31,6 +31,8 @@
 	const closeSidebar = () => {
 		sidebar = false;
 	};
+
+	let searching = true;
 </script>
 
 <svelte:head>
@@ -67,6 +69,9 @@
 				<div class="line">
 					<Input placeholder="Search" />
 					<Links />
+					<!-- {#if searching} -->
+					<!-- 	<div class="searchModal">searching</div> -->
+					<!-- {/if} -->
 				</div>
 			</div>
 			<div class="contentContainer">
@@ -79,6 +84,17 @@
 </main>
 
 <style>
+	.searchModal {
+		width: 40%;
+		height: 200px;
+		background-color: rgba(0, 0, 0, 0.05);
+		backdrop-filter: blur(7px);
+		padding: 20px;
+		position: absolute;
+		bottom: 0;
+		transform: translateY(100%);
+	}
+
 	aside {
 		flex-shrink: 0;
 		width: 270px;

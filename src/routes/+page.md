@@ -14,6 +14,11 @@
   <strong>Warning:</strong> Vixeny is currently in Alpha stage. We appreciate your <a href="https://github.com/mimiMonads/vixeny/issues" target="_blank">feedback</a>!
 </div>
 
+<div class="warning warning-2">
+  <strong>Docs are under development</strong>: This website is stitched together by a bunch of lazy raccoons, it's gonna be finished, have patience.
+</div>
+
+
 <h1 style="padding-bottom: 8px">Welcome to Vixeny!</h1>
 <div style="padding-bottom: 32px; color: gray;">
 Docs {version}
