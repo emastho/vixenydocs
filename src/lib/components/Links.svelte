@@ -50,12 +50,12 @@
 	}
 
 	a {
-		color: var(--closest);
+		color: var(--subtext);
 		margin: 0;
 	}
 
 	a:hover {
-		color: var(--subtext);
+		color: var(--text);
 	}
 
 	.a-2 {
@@ -68,17 +68,17 @@
 		color: white;
 	}
 
-	.github {
-		color: #e5eaf0;
-	}
-
-	.discord {
-		color: #5865f2;
-	}
-
-	.docs {
-		color: #6f5c9b;
-	}
+	/* .github { */
+	/* 	color: #e5eaf0; */
+	/* } */
+	/**/
+	/* .discord { */
+	/* 	color: #5865f2; */
+	/* } */
+	/**/
+	/* .docs { */
+	/* 	color: #6f5c9b; */
+	/* } */
 
 	@media (width < 1100px) {
 		.div-2 {

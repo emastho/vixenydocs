@@ -3,7 +3,6 @@
 	import { routes, categories } from '$lib/routes';
 	import { page } from '$app/stores';
 	import { onMount, onDestroy } from 'svelte';
-	import { searchModal } from '$lib/stores/main';
 	import Links from './Links.svelte';
 
 	let menuZone: HTMLElement;
@@ -34,17 +33,6 @@
 <div transition:fly={{ x: -300, duration: 150, opacity: 1 }} class="menu" bind:this={menuZone}>
 	<nav>
 		<ul>
-			<!--
-      <li>
-				<button
-					class="searchButton"
-					on:click|preventDefault={() => {
-						searchModal.set(true);
-						closeSidebar();
-					}}>Search</button
-				>
-			</li>
-      -->
 			<li>
 				{#each categories as category}
 					<div class="title">{category.name}</div>

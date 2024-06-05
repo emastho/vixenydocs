@@ -1,60 +1,36 @@
-<script lang="ts">
-	import { fade } from 'svelte/transition';
-	import { searchModal } from '$lib/stores/main';
-	import SearchFunction from '$lib/components/SearchFunction.svelte';
-
-	let target: HTMLElement;
-
-	const clickOutside = (e: Event) => {
-		//@ts-ignore
-		if (e.target == target) {
-			searchModal.set(false);
-		}
-	};
+<script>
+	import { clickOutside } from '$lib/utils/clickOutside';
+	import { searchStore, searchModal } from '$lib/stores/main';
+	$: if ($searchStore.length > 0) {
+		searchModal.set(true);
+	} else if ($searchStore.length <= 0) {
+		searchModal.set(false);
+	}
 </script>
 
-<svelte:body on:click={clickOutside} />
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<!-- svelte-ignore a11y-click-events-have-key-events-->
-<div class="modal" bind:this={target} transition:fade={{ duration: 10 }}>
-	<div class="modal-content">
-		<SearchFunction />
+{#if $searchModal}
+	<div class="searchModal" use:clickOutside on:click_outside={() => searchModal.set(false)}>
+		<div class="modalContent">
+			{$searchStore}
+		</div>
 	</div>
-</div>
+{/if}
 
 <style>
-	.modal {
-		position: fixed;
-		display: flex;
-		justify-content: center;
-		z-index: 10;
+	.searchModal {
+		width: 40%;
+		height: 250px;
+		position: absolute;
+		bottom: 0;
+		transform: translateY(100%);
+	}
+
+	.modalContent {
+		background-color: var(--closest);
+		backdrop-filter: blur(7px);
 		width: 100%;
-		height: 100svh;
-		backdrop-filter: blur(40px);
-		padding-top: 64px;
-	}
-
-	.modal-content {
-		display: flex;
-		flex-direction: column;
-		width: 700px;
-		max-width: 700px;
-		min-height: 200px;
-		background: var(--closer);
-		color: white;
-		border-radius: 8px;
-		max-height: 70%;
-		padding: 32px;
-	}
-
-	@media (width < 1100px) {
-		.modal {
-			padding-top: 0;
-		}
-
-		.modal-content {
-			border-radius: 0;
-			max-height: 100%;
-		}
+		height: 100%;
+		padding: 20px;
+		overflow-y: scroll;
 	}
 </style>

@@ -8,9 +8,10 @@
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import MobileMenu from '$lib/components/MobileMenu.svelte';
-	import { accordion } from '$lib/stores/main';
+	import { accordion, searchStore, searchModal } from '$lib/stores/main';
 	import nprogress from 'nprogress';
 	import Links from '$lib/components/Links.svelte';
+	import SearchModal from '$lib/components/SearchModal.svelte';
 
 	let sidebarButton: HTMLElement;
 
@@ -31,8 +32,6 @@
 	const closeSidebar = () => {
 		sidebar = false;
 	};
-
-	let searching = true;
 </script>
 
 <svelte:head>
@@ -69,9 +68,7 @@
 				<div class="line">
 					<Input placeholder="Search" />
 					<Links />
-					<!-- {#if searching} -->
-					<!-- 	<div class="searchModal">searching</div> -->
-					<!-- {/if} -->
+					<SearchModal />
 				</div>
 			</div>
 			<div class="contentContainer">
@@ -84,17 +81,6 @@
 </main>
 
 <style>
-	.searchModal {
-		width: 40%;
-		height: 200px;
-		background-color: rgba(0, 0, 0, 0.05);
-		backdrop-filter: blur(7px);
-		padding: 20px;
-		position: absolute;
-		bottom: 0;
-		transform: translateY(100%);
-	}
-
 	aside {
 		flex-shrink: 0;
 		width: 270px;
@@ -216,7 +202,7 @@
 
 		.line {
 			width: 100%;
-			justify-content: center;
+			padding-inline: 12px;
 		}
 
 		.content {
@@ -225,6 +211,10 @@
 
 		.logo {
 			height: 40px;
+		}
+
+		.searchModal {
+			width: 100%;
 		}
 	}
 

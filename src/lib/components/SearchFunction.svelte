@@ -2,7 +2,6 @@
 	// import list from '$lib/data.json';
 	import { create, insert, search } from '@orama/orama';
 	import { onMount } from 'svelte';
-	import { searchModal } from '$lib/stores/main';
 	import { version } from '$app/environment';
 
 	let input: HTMLInputElement;

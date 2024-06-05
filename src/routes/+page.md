@@ -11,7 +11,7 @@
 
 
 <div class="warning">
-  <strong>Warning:</strong> Vixeny is currently in Alpha stage. We appreciate your <a href="https://github.com/mimiMonads/vixeny/issues" target="_blank">feedback</a>!
+  Vixeny is currently in Beta stage. We appreciate your <a href="https://github.com/mimiMonads/vixeny/issues" target="_blank">feedback</a>!
 </div>
 
 <div class="warning warning-2">

@@ -1,11 +1,13 @@
-<script>
+<script lang="ts">
 	import Iconie from '$lib/components/Iconie.svelte';
-	export let placeholder;
+	import { searchStore } from '$lib/stores/main';
+	export let placeholder: string;
+	console.log(searchStore);
 </script>
 
 <div>
 	<Iconie which="search" />
-	<input type="text" {placeholder} disabled />
+	<input bind:value={$searchStore} type="text" {placeholder} />
 </div>
 
 <style>
