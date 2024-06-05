@@ -15,13 +15,11 @@
 	let db;
 
 	async function loadData() {
-		console.log('loading data');
 		let data = await import('$lib/data.json');
 		searchData = data.default;
 	}
 
 	async function createSchema() {
-		console.log('creating schema');
 		db = await create({
 			schema: {
 				url: 'string',
@@ -31,8 +29,6 @@
 	}
 
 	async function insertData() {
-		console.log(`meow`);
-		console.log(db);
 		await insertMultiple(db, searchData, 500);
 	}
 
