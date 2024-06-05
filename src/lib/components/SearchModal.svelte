@@ -59,6 +59,9 @@
 	<div class="searchModal" use:clickOutside on:click_outside={() => searchModal.set(false)}>
 		<div class="modalContent">
 			{#if results}
+				{#if results.hits.length < 1}
+					No results
+				{/if}
 				{#each results.hits as item}
 					<a on:click={() => searchModal.set(false)} href={item.document.url}>
 						{item.document.url}</a
