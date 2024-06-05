@@ -2,7 +2,6 @@
 	import Iconie from '$lib/components/Iconie.svelte';
 	import { searchStore } from '$lib/stores/main';
 	export let placeholder: string;
-	console.log(searchStore);
 </script>
 
 <div>

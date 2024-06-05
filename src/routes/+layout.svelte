@@ -137,6 +137,7 @@
 		top: 0;
 		backdrop-filter: blur(3px);
 		background-color: #1a1c20d9;
+		z-index: 1;
 	}
 
 	header {
