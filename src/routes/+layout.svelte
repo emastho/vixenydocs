@@ -213,10 +213,6 @@
 		.logo {
 			height: 40px;
 		}
-
-		.searchModal {
-			width: 100%;
-		}
 	}
 
 	:global(.overflow) {

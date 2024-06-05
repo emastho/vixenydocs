@@ -98,4 +98,10 @@
 	a:nth-child(even) {
 		background-color: var(--side);
 	}
+
+	@media (width < 1100px) {
+		.searchModal {
+			width: calc(100% - 24px);
+		}
+	}
 </style>
