@@ -8,7 +8,7 @@
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import MobileMenu from '$lib/components/MobileMenu.svelte';
-	import { accordion, searchStore, searchModal } from '$lib/stores/main';
+	import { accordion } from '$lib/stores/main';
 	import nprogress from 'nprogress';
 	import Links from '$lib/components/Links.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
