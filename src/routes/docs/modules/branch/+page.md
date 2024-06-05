@@ -16,12 +16,14 @@ Here's a simple example of using a `branch`:
     }
 }
 ```
+
 Or even multiple branches:
+
 ```ts
 {
     path: "/branches",
-    f: c => 
-        c.branch.left("Hello ") as string + 
+    f: c =>
+        c.branch.left("Hello ") as string +
         c.branch.right("world!") as string,
     branch: [
         {
@@ -35,7 +37,9 @@ Or even multiple branches:
     ]
 }
 ```
+
 ### Interplay with Resolve
+
 Thanks to Vixeny's functional behavior, branches can interact with the resolve property, allowing complex compositions:
 
 ```ts
@@ -48,13 +52,15 @@ Thanks to Vixeny's functional behavior, branches can interact with the resolve p
             f: () => "hello"
         },
         name: "hello",
-        f: c => 
-            c.resolve.prefix as string +  
+        f: c =>
+            c.resolve.prefix as string +
             c.arguments as string
     }
 }
 ```
+
 or
+
 ```ts
 {
     path: "/branch",
@@ -69,13 +75,16 @@ or
     f: c => c.resolve.hello as string,
 }
 ```
+
 ### Conditional Branching
+
 Laziness, an essential concept in functional programming, allows invoking a function only if a condition is fulfilled. Here's an example using branch:
+
 ```ts
 //assuming that the user name will be passed by query
 {
     path: "/user/:runtime",
-    f: c => 
+    f: c =>
         c.param.runtime === "bun"
             ? c.branch.deno() as string
             : c.param.runtime == "deno"
@@ -84,25 +93,26 @@ Laziness, an essential concept in functional programming, allows invoking a func
     branch: [
         {
             name: "bun",
-            f: c => 
+            f: c =>
                 "Hello Bun user: " +
-                c.query?.user ?? "no user found"  
+                c.query?.user ?? "no user found"
         },
         {
             name: "deno",
-            f: c => 
+            f: c =>
                 "Hello Deno user: " +
-                c.query?.user ?? "no user found"  
+                c.query?.user ?? "no user found"
         }
     ]
 }
 ```
+
 ### Why Branch?
+
 Branching in Vixeny brings several key benefits:
 
 - **Flexibility**: You can define a variety of logical paths and handle them seamlessly.
 - **Laziness**: Invoke functions only when needed, improving efficiency.
 - **Modularity**: Isolate specific logic into branches, making your code easier to understand, test, and maintain.
-Composability: Interact with other functionalities like resolve to create complex yet elegant solutions.
-By embracing the branch feature, developers can achieve greater control and expressiveness in their Vixeny applications, managing the flow of data with precision and elegance.
-
+  Composability: Interact with other functionalities like resolve to create complex yet elegant solutions.
+  By embracing the branch feature, developers can achieve greater control and expressiveness in their Vixeny applications, managing the flow of data with precision and elegance.

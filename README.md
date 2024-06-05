@@ -1,7 +1,4 @@
-
-
 # Vixeny
-
 
 ## Mission
 
@@ -24,9 +21,7 @@ To be a globally recognized web framework that celebrates the joy of coding, sup
 - **Accessibility**: The website must have as much accessibility as possible.
 - **Simplicity**: Although Vixeny is purely functional, avoid anything related to it to keep it simple.
 
-
 @emastho TODO:
-
 
 - make components friendly
 
@@ -34,7 +29,5 @@ To be a globally recognized web framework that celebrates the joy of coding, sup
 - mobile
 
 @mimiMonads TODO:
-
-
 
 TESTING:

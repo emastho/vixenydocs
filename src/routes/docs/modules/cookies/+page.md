@@ -1,4 +1,3 @@
-
 ## Cookies in Vixeny
 
 In Vixeny, cookies are used to store user data between multiple requests. You can access the cookies in your function to use them in your response. Let's see how `cookies` work in Vixeny.
@@ -31,25 +30,25 @@ You can also include multiple cookies:
 
 In this example, `name` and `age` are cookies that can be accessed in the function using `ctx.cookies.name` and `ctx.cookies.age`.
 
-### Out of the context 
+### Out of the context
 
 In this code snippet, a function `greet` is defined outside the route configuration. To access the `cookies` inside the `greet` function, you need to add the `cookies` field to the `ctx` object using the `options` object with the `add` property in the route configuration. This is done by setting `options: { add: ["cookies"] }` in the `route` object.
 
 ```typescript
 function greet(ctx) {
-  return `Hello ${ctx.cookies?.name || 'default'}!`;
+	return `Hello ${ctx.cookies?.name || 'default'}!`;
 }
 
 const route = {
-  path: '/route',
-  options: { add: ["cookies"] },
-  f: greet
+	path: '/route',
+	options: { add: ['cookies'] },
+	f: greet
 };
 
 const route2 = {
-  path: '/route2',
-  options: { add: ["cookies"] },
-  f: ctx =>  greet(ctx) 
+	path: '/route2',
+	options: { add: ['cookies'] },
+	f: (ctx) => greet(ctx)
 };
 ```
 

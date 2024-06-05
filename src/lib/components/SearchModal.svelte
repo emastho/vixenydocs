@@ -15,11 +15,13 @@
 	let db;
 
 	async function loadData() {
+		console.log('loading data');
 		let data = await import('$lib/data.json');
 		searchData = data.default;
 	}
 
 	async function createSchema() {
+		console.log('creating schema');
 		db = await create({
 			schema: {
 				url: 'string',
@@ -29,6 +31,8 @@
 	}
 
 	async function insertData() {
+		console.log(`meow`);
+		console.log(db);
 		await insertMultiple(db, searchData, 500);
 	}
 
@@ -93,11 +97,5 @@
 	}
 	a:nth-child(even) {
 		background-color: var(--side);
-	}
-
-	@media (width < 1100px) {
-		.searchModal {
-			width: calc(100% - 24px);
-		}
 	}
 </style>

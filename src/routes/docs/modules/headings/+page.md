@@ -1,4 +1,3 @@
-
 ## Headers in Vixeny
 
 In Vixeny, headers are pivotal in defining a petition's characteristics. They offer flexibility by allowing initialization with custom values or predefined MIME types. The following sections delve into the nuances of using and defining headers in Vixeny.
@@ -15,7 +14,7 @@ Use the `headers` property within the `PetitionHeader` type to initialize header
     },
     f: ctx => '{"hello":"world"}'
 }
-    
+
 {
     path: "/path",
     headings: {
@@ -59,4 +58,3 @@ Every petition resonates with a distinct status number that epitomizes its outco
 ```
 
 In this context, the numeric value stands as a testament to the HTTP status code attached to the petition.
-

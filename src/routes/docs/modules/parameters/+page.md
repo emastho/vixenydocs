@@ -1,6 +1,6 @@
 <svelte:head>
-    <title>Functional something - Vixeny</title>
-    <meta name="description" content="about this page" />
+<title>Functional something - Vixeny</title>
+<meta name="description" content="about this page" />
 </svelte:head>
 
 ## Parameters in Vixeny
@@ -20,7 +20,7 @@ For example, if you want to create a parameter called `name`, you would include 
 }
 ```
 
-In this example, `:name` is a parameter that can be accessed in the function using `ctx.param.name`. 
+In this example, `:name` is a parameter that can be accessed in the function using `ctx.param.name`.
 
 ### Example
 
@@ -58,24 +58,23 @@ Here is an example:
 ```ts
 // Define the function
 function greet(ctx) {
-  return `Hello ${ctx.param.name}!`;
+	return `Hello ${ctx.param.name}!`;
 }
 
 // Define the route
 const route = {
-  path: '/hello/:name',
-  options: { add: ["param"] },
-  f: greet
+	path: '/hello/:name',
+	options: { add: ['param'] },
+	f: greet
 };
 
 // or
 const route2 = {
-  path: '/hello/:name',
-  options: { add: ["param"] },
-  f: ctx =>  greet(ctx) + "!"
+	path: '/hello/:name',
+	options: { add: ['param'] },
+	f: (ctx) => greet(ctx) + '!'
 };
 ```
-
 
 In this example, the greet function is defined outside of the route configuration and is then referenced in the f property of the route.
 
@@ -92,4 +91,3 @@ If you want to force the param object in ctx to be null, in this example, you ca
 ```
 
 In this example, `ctx.param` will always be `null` and it will always return `no_param`.
-

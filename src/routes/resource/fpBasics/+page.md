@@ -3,13 +3,12 @@
 </script>
 
 <svelte:head>
-    <title>Functional something - Vixeny</title>
-    <meta name="description" content="about this page" />
+<title>Functional something - Vixeny</title>
+<meta name="description" content="about this page" />
 </svelte:head>
 
 # hello
 
 hello
-
 
 <PreviousNext previous="/docs/testing" />
