@@ -1,7 +1,15 @@
-<script>
+<script lang="ts">
 	import { clickOutside } from '$lib/utils/clickOutside';
-	import { create, insertMultiple, search } from '@orama/orama';
+	import {
+		create,
+		insertMultiple,
+		search,
+		type TypedDocument,
+		type Orama,
+		type Results
+	} from '@orama/orama';
 	import { searchStore, searchModal } from '$lib/stores/main';
+
 	$: if ($searchStore.length > 0) {
 		searchModal.set(true);
 	} else if ($searchStore.length <= 0) {
@@ -10,9 +18,19 @@
 
 	let repeat = 0;
 
-	let searchData;
+	let searchData: {
+		url: string;
+		content: string;
+	}[];
 
-	let db;
+	let db: any;
+
+	type SearchDocument = TypedDocument<Orama<typeof documentSchema>>;
+
+	const documentSchema = {
+		url: 'string',
+		content: 'string'
+	} as const;
 
 	async function loadData() {
 		let data = await import('$lib/data.json');
@@ -20,12 +38,7 @@
 	}
 
 	async function createSchema() {
-		db = await create({
-			schema: {
-				url: 'string',
-				content: 'string'
-			}
-		});
+		db = await create({ schema: documentSchema });
 	}
 
 	async function insertData() {
@@ -38,8 +51,7 @@
 		});
 	}
 
-	let results;
-
+	let results: null | Results<SearchDocument>;
 	$: if ($searchStore.length > 0) {
 		if (repeat == 0) {
 			loadData().then(createSchema).then(insertData);
@@ -49,6 +61,11 @@
 			searchStuff();
 		}
 	}
+
+	const clickOnLink = () => {
+		searchModal.set(false);
+		searchStore.set('');
+	};
 </script>
 
 {#if $searchModal}
@@ -59,9 +76,7 @@
 					No results
 				{/if}
 				{#each results.hits as item}
-					<a on:click={() => searchModal.set(false)} href={item.document.url}>
-						{item.document.url}</a
-					>
+					<a on:click={clickOnLink} href={item.document.url}> {item.document.url}</a>
 				{/each}
 			{/if}
 		</div>
