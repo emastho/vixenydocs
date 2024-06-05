@@ -35,6 +35,7 @@ button {
     border: none;
     padding: 8px 16px;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .active {
