@@ -181,3 +181,8 @@ pre::-webkit-scrollbar-thumb {
   color: var(--text);
   text-decoration: underline;
 }
+
+.title {
+  display: block;
+  margin-bottom: 8px;
+}

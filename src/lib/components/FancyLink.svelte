@@ -11,12 +11,12 @@
 		/* border: 4px solid var(--side); */
 		background-color: var(--closer);
 		padding: 1.6rem;
-		border-radius: 8px;
+		border-radius: 4px;
 		margin: 0;
 	}
 
 	a:hover {
-		background: transparent;
+		background: var(--main);
 	}
 
 	.hidden {

@@ -215,6 +215,15 @@
 		}
 	}
 
+	@media (width < 1500px) {
+		.content {
+			width: 80%;
+		}
+		.line {
+			width: 80%;
+		}
+	}
+
 	:global(.overflow) {
 		height: 100%;
 		overflow-y: hidden;

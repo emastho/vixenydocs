@@ -2,6 +2,7 @@
   import PreviousNext from "$lib/components/PreviousNext.svelte"
   import FancyLink from "$lib/components/FancyLink.svelte"
   import {version} from "$app/environment"
+  import Features from "$lib/components/Features.svelte"
 
 </script>
 <svelte:head>
@@ -10,7 +11,7 @@
 </svelte:head>
 
 
-<div class="warning">
+<div class="warning" style="margin-bottom: 8px">
   Vixeny is currently in Beta stage. We appreciate your <a href="https://github.com/mimiMonads/vixeny/issues" target="_blank">feedback</a>!
 </div>
 
@@ -18,33 +19,20 @@
   <strong>Docs are under development</strong>: This website is stitched together by a bunch of lazy raccoons, it's gonna be finished, have patience.
 </div>
 
-
-<h1 style="padding-bottom: 8px">Welcome to Vixeny!</h1>
-<div style="padding-bottom: 32px; color: gray;">
+<div style="margin-top: 64px; margin-bottom: 16px">
+<h1 style="margin-bottom: 8px; padding: 0; font-size: 48px; color: var(--main)">Welcome to Vixeny.</h1>
+<div style="padding-bottom: 32px; margin-top: -8px; color: gray;">
 Docs {version}
 </div>
+</div>
 
-**Introducing Vixeny: A New Era in Web Development**
+<Features />
 
-*   **Unmatched Speed**: Experience the fastest framework in the Deno ecosystem.
-*   **DRY and Functional**: Designed with the principles of DRY (Don't Repeat Yourself) and advanced functional programming, including naitve mocking and code isolation.
-*   **Zero-Dependency Architecture**: Lean and efficient, with a focus on simplicity and performance.
-*   **Native Plugin Support**: Enhance functionality with ease using native plugins.
-*   **Robust Security**: Predictable and deterministc.
-*   **Versatile Paradigms**: Supports functional programming and other paradigms in a cohesive manner.
-*   **Object-Oriented**: Facilitates easy code manipulation and maintenance.
-*   **Test-Friendly**: Framework designed to be easily testable, end to end.
-*   **Future-Proof**: Stay ahead in web development with Vixeny's innovative features.
-
-**Start your journey with Vixeny – redefine efficiency and innovation in web development.**
 <h2 style="margin-top: 48px;">
 Quick start
 </h2>
 
-<div>
 <FancyLink href="/framework/init">Let's begin</FancyLink>
-</div>
-
 
 
 <style>
