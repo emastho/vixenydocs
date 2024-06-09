@@ -43,15 +43,17 @@
 	{/if}
 
 	<header>
-		<div>
-			<a href="/">
-				<img class="logo" src={Logo} alt="Logo" height="80" />
-			</a>
-		</div>
-		<div>
-			<button on:click={showSidebar} bind:this={sidebarButton}>
-				<Iconie which="menu" />
-			</button>
+		<div class="header-container">
+			<div>
+				<a href="/">
+					<img class="logo" src={Logo} alt="Logo" height="80" />
+				</a>
+			</div>
+			<div>
+				<button on:click={showSidebar} bind:this={sidebarButton}>
+					<Iconie which="menu" />
+				</button>
+			</div>
 		</div>
 	</header>
 	<div class="container">
@@ -144,20 +146,26 @@
 		width: 100%;
 		display: none;
 		background: var(--side);
-		padding: 1.5rem;
+		padding-block: 1.5rem;
 		align-items: center;
 	}
 
-	header div:nth-child(2) {
+	.header-container {
+		width: 80%;
+		margin: 0 auto;
+		display: flex;
+	}
+
+	.header-container div:nth-child(2) {
 		flex-shrink: 0;
 		text-align: center;
 	}
 
-	header > * {
+	.header-container > * {
 		flex: 1;
 	}
 
-	header div:last-child {
+	.header-container div:last-child {
 		text-align: right;
 	}
 
@@ -188,7 +196,7 @@
 		}
 
 		header {
-			display: flex;
+			display: block;
 		}
 
 		section {
@@ -203,7 +211,6 @@
 
 		.line {
 			width: 100%;
-			padding-inline: 12px;
 		}
 
 		.content {
