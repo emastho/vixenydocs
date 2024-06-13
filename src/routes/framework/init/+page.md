@@ -14,7 +14,7 @@
 
 # Introduction
 
-Welcome to Vixeny! We're glad you're here. We're not just about coding—we're about bringing people together. Our tools are designed to be straightforward and effective, making web development easier for everyone, no matter your experience level. Whether you're taking your first steps in coding or you're a seasoned developer, Vixeny is here to make your journey smoother and more enjoyable. Let's get started and see how Vixeny can help you create something amazing with ease and confidence!
+Welcome to Vixeny! We're glad you're here. We're not just about coding—we're about bringing people together. Making web development easier for everyone, no matter your experience level. Let's get started and see how Vixeny can help you create something amazing with ease!
 
 ## So, What's this project?
 
