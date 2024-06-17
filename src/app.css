@@ -107,9 +107,9 @@ section p {
   padding-block: 16px;
 }
 
-section code:not(.language-ts):not(.language-typescript):not(.language-json):not(.language-bash) {
-  padding: 2px 4px;
-  background-color: var(--closer);
+section code:not(.language-ts):not(.language-typescript):not(.language-json):not(.language-bash):not(.language-js):not(.language-javascript) {
+  padding: 2px 6px;
+  background-color: var(--closest);
   border-radius: 4px;
 }
 
