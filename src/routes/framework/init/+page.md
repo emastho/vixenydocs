@@ -1,10 +1,15 @@
 <script>
     import Tabs from "$lib/components/Tabs.md"
     import Bash from "$lib/components/SmallComponents/Bash.md"
-
+    import example1 from "$lib/examples/intro_core_0.md"
     const tab1 = [
         {title: "Bun", component: Bash, details: {runtime: "bun"}},
         {title: "Deno", component: Bash, details: {runtime: "deno"}}
+    ]
+
+    const tab2 = [
+        {title: "Main", component: example1, details: {runtime: "main"}},
+        {title: "Setup", component: example1, details: {runtime: "setup"}}
     ]
 </script>
 <svelte:head>
@@ -129,17 +134,7 @@ const server = wrap()()
 
 Vixeny can be tested without the need for a server, allowing for individual or comprehensive testing of wraps:
 
-```javascript
-// Re-using the last wrap
-const server = wrap(...)...
-
-const testServer = server.testRequests();
-
-// Simulate requests and test responses
-testServer(new Request("/helloWold")).then(response => {
-  // Perform assertions or checks on the response
-});
-```
+<Tabs data={tab2}/>
 
 ### Mocking
 
