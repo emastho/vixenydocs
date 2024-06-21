@@ -11,14 +11,10 @@ Imagine a feature in our digital architecture that responds to environmental cha
 Our focus falls on a `/random` feature, designed to yield different outcomes based on a random number generator. This setup mirrors real-life scenarios where outcomes pivot on user interactions or external data.
 
 ```ts
-const routes = wrap(options)()
-  .stdPetition({
-    path: "/random",
-    f: (c) =>
-      c.randomNumber > .5
-        ? c.randomNumber > .99 ? "winner" : "almost"
-        : "try again",
-  });
+const routes = wrap(options)().stdPetition({
+	path: '/random',
+	f: (c) => (c.randomNumber > 0.5 ? (c.randomNumber > 0.99 ? 'winner' : 'almost') : 'try again')
+});
 ```
 
 #### Crafting the Tests
@@ -26,39 +22,39 @@ const routes = wrap(options)()
 To ensure our feature behaves predictably across a range of states, we manipulate the random number generator, crafting scenarios to test the anticipated outcomes.
 
 ```ts
-test("/random", async () => {
-  // Testing for the "try again" outcome.
-  expect(
-    await routes
-      .handleRequest("/random")({
-        options: {
-          setRandomNumber: .25,
-        },
-      })(new Request("/random"))
-      .then((res) => res.text()),
-  ).toStrictEqual("try again");
+test('/random', async () => {
+	// Testing for the "try again" outcome.
+	expect(
+		await routes
+			.handleRequest('/random')({
+				options: {
+					setRandomNumber: 0.25
+				}
+			})(new Request('/random'))
+			.then((res) => res.text())
+	).toStrictEqual('try again');
 
-  // Testing for the "almost" outcome.
-  expect(
-    await routes
-      .handleRequest("/random")({
-        options: {
-          setRandomNumber: .51,
-        },
-      })(new Request("/random"))
-      .then((res) => res.text()),
-  ).toStrictEqual("almost");
+	// Testing for the "almost" outcome.
+	expect(
+		await routes
+			.handleRequest('/random')({
+				options: {
+					setRandomNumber: 0.51
+				}
+			})(new Request('/random'))
+			.then((res) => res.text())
+	).toStrictEqual('almost');
 
-  // Testing for the "winner" outcome.
-  expect(
-    await routes
-      .handleRequest("/random")({
-        options: {
-          setRandomNumber: .999,
-        },
-      })(new Request("/random"))
-      .then((res) => res.text()),
-  ).toStrictEqual("winner");
+	// Testing for the "winner" outcome.
+	expect(
+		await routes
+			.handleRequest('/random')({
+				options: {
+					setRandomNumber: 0.999
+				}
+			})(new Request('/random'))
+			.then((res) => res.text())
+	).toStrictEqual('winner');
 });
 ```
 
@@ -68,37 +64,35 @@ For a feature reliant on external APIs, like fetching current weather data, we a
 
 ```ts
 // Original asynchronous resolve function for fetching weather data
-const routes = wrap(options)()
-  .stdPetition({
-    path: "/weather",
-    resolve: {
-      currentWeather: {
-        async f: () => {
-          return await fetch("https://api.weather.com/current").then(res => res.json());
-        }
-      }
-    },
-    f: (c) => {
-      return c.resolve.currentWeather.temperature > 75 ? "It's warm outside" : "It's cool outside";
-    },
-  });
+const routes = wrap(options)().stdPetition({
+	path: '/weather',
+	resolve: {
+		currentWeather: {
+			f: () => {
+				return await fetch('https://api.weather.com/current').then((res) => res.json());
+			}
+		}
+	},
+	f: (c) => {
+		return c.resolve.currentWeather.temperature > 75 ? "It's warm outside" : "It's cool outside";
+	}
+});
 
 // Mocking the resolve function for controlled testing
 const mockedWeatherResolve = () => ({ temperature: 80 });
 
 // Injecting the mocked resolve using handleRequest
-const mockRoutes = routes.handleRequest("/weather")({
-  resolve: {
-    currentWeather: mockedWeatherResolve
-  }
+const mockRoutes = routes.handleRequest('/weather')({
+	resolve: {
+		currentWeather: mockedWeatherResolve
+	}
 });
 
 // Verifying behavior with the mocked data
-test("/weather", async () => {
-  expect(
-    await mockRoutes(new Request("/weather"))
-      .then(res => res.text())
-  ).toStrictEqual("It's warm outside");
+test('/weather', async () => {
+	expect(await mockRoutes(new Request('/weather')).then((res) => res.text())).toStrictEqual(
+		"It's warm outside"
+	);
 });
 ```
 
@@ -113,6 +107,5 @@ This approach grants us unparalleled control over the testing environment, mirro
 ## Conclusion: Building Digital Foundations with Assurance
 
 Just as thorough inspections ensure a home is ready for habitation, Vixeny's testing capabilities, particularly the use of mocked resolves, ensure that every digital component is built to perfection. This meticulous approach to testing empowers developers to construct with confidence, knowing every part of the application is crafted to meet and exceed expectations, ensuring a robust, functional, and adaptable digital experience. Through Resolve, Branch, and precise testing, Vixeny lays the groundwork for web applications that stand the test of time, embodying the principles of a well-constructed home.
-
 
 Thank you for your time.

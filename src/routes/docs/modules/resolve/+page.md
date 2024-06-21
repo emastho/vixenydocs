@@ -1,7 +1,9 @@
-
 ## Resolve
+
 If a `resolve`, the `petition`, or `branch` has a `resolve`, this function will be resolved first and passed to `resolve.NAME`. This also applies to `promises`.
+
 ### Sync
+
 ```ts
 {
     path: "/sync",
@@ -13,7 +15,9 @@ If a `resolve`, the `petition`, or `branch` has a `resolve`, this function will 
     f: context => context.resolve.nested as string
 }
 ```
+
 ### Async
+
 ```ts
 {
     path: "/async",
@@ -26,6 +30,7 @@ If a `resolve`, the `petition`, or `branch` has a `resolve`, this function will 
     f: context => context.resolve.hello as string
 }
 ```
+
 Also, you can resolve many elements at the same time.
 
 ```ts
@@ -46,7 +51,9 @@ Also, you can resolve many elements at the same time.
             : "no body"
 }
 ```
+
 Or you can `chain` them as a pseudo-pipe.
+
 ```ts
 {
     path: "/nested/:id",

@@ -5,11 +5,11 @@
   import Features from "$lib/components/Features.svelte"
 
 </script>
-<svelte:head>
-    <title>Vixeny - Unleash the Power of Multi-Paradigm Programming</title>
-    <meta name="description" content="Vixeny is a multi-paradigm web development framework, optimizing developer experience, application speed, and functional programming capabilities. Start your journey with Vixeny to create robust, maintainable, and efficient web applications.">
-</svelte:head>
 
+<svelte:head>
+<title>Vixeny - Unleash the Power of Multi-Paradigm Programming</title>
+<meta name="description" content="Vixeny is a multi-paradigm web development framework, optimizing developer experience, application speed, and functional programming capabilities. Start your journey with Vixeny to create robust, maintainable, and efficient web applications.">
+</svelte:head>
 
 <div class="warning" style="margin-bottom: 8px">
   Vixeny is currently in Beta stage. We appreciate your <a href="https://github.com/mimiMonads/vixeny/issues" target="_blank">feedback</a>!
@@ -33,7 +33,6 @@ Quick start
 </h2>
 
 <FancyLink href="/framework/init">Let's begin</FancyLink>
-
 
 <style>
 div > :global(*:not(:last-child)) {

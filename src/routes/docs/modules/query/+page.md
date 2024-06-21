@@ -1,4 +1,3 @@
-
 ## Queries in Vixeny
 
 In Vixeny, queries are the key-value pairs in the URL after the `?` symbol. These pairs can be accessed in your function to use them in your response. Let's see how `queries` work in Vixeny.
@@ -18,7 +17,6 @@ For example:
 
 In this example, `name` is a query parameter that can be accessed in the function using `ctx.query.name` , the optimizer will infer the use of `name`
 
-
 ### Multiple Queries
 
 You can also include multiple query parameters:
@@ -32,29 +30,27 @@ You can also include multiple query parameters:
 
 In this example, `name` and `age` are query parameters that can be accessed in the function using `ctx.query.name` and `ctx.query.age`.
 
-### Out of the context 
+### Out of the context
 
 In this code snippet, a function `greet` is defined outside the route configuration. To access the `query` parameters inside the `greet` function, you need to add the `query` field to the `ctx` object using the `options` object with the `add` property in the route configuration. This is done by setting `options: { add: ["query"] }` in the `route` object.
 
 ```typescript
 function greet(ctx) {
-  return `Hello ${ctx.query?.name || 'default'}!`;
+	return `Hello ${ctx.query?.name || 'default'}!`;
 }
 
 const route = {
-  path: '/route',
-  options: { add: ["query"] },
-  f: greet
+	path: '/route',
+	options: { add: ['query'] },
+	f: greet
 };
 
 const route2 = {
-  path: '/route2',
-  options: { add: ["query"] },
-  f: ctx =>  greet(ctx) 
+	path: '/route2',
+	options: { add: ['query'] },
+	f: (ctx) => greet(ctx)
 };
 ```
-
-
 
 ### Using "only" Field
 

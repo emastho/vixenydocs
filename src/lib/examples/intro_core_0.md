@@ -20,15 +20,13 @@ const hey = petitions.common()({
 {:else}
 
 ```ts
-import { petitions } from "vixeny";
+import { petitions } from 'vixeny';
 
 const sayHello = petitions.resolve()({
-  f: () => "hello",
+	f: () => 'hello'
 });
 
-export  {
-  sayHello
-}
+export { sayHello };
 ```
 
 {/if}

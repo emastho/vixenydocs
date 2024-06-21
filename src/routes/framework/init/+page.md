@@ -29,9 +29,10 @@
         {title: "setup.ts", component: example3, details: {runtime: "setup"}}
     ]
 </script>
+
 <svelte:head>
-    <title>Quick start - Vixeny</title>
-    <meta name="description" content="How to install Vixeny" />
+<title>Quick start - Vixeny</title>
+<meta name="description" content="How to install Vixeny" />
 </svelte:head>
 
 # Introduction
@@ -40,21 +41,21 @@ Welcome to Vixeny! We're glad you're here. We're not just about coding—we're a
 
 ## So, What's this project?
 
-An ecosystem of functional web tools, that aims to make code more: 
+An ecosystem of functional web tools, that aims to make code more:
 
 - Open: All our
-tools are exportable and can be used in other frameworks and projects
+  tools are exportable and can be used in other frameworks and projects
 
 - Reusable: Make it once and use it again, because of the purity of `Vixeny`,
-every element can be reused and composed in many ways. 
+  every element can be reused and composed in many ways.
 
-- Testable: Thanks to its monolithic structure, it can be tested in any state 
+- Testable: Thanks to its monolithic structure, it can be tested in any state
 
 - Smart: Asyncronless with an integrated system that helps you to detect bugs and optimize your code on the
-fly. 
+  fly.
 
 - Safe and maintainable: Everything is deterministic, and its object-based structure allows the maintainers to easily add things without needing to push
-broken code changes. 
+  broken code changes.
 
 - Fast: Holding the record of being the fastest framework when it comes to `(r: Request) => Response | Promise<Response>` handlers innot only Deno but also Bun.
 
@@ -79,27 +80,24 @@ Without more delays, let's start with our basics~
 In Vixeny, routes are referred to as "petitions." These are objects that in almost all cases necessitate a function, denoted as `f`, and a `path`. The example below illustrates how to define a basic petition:
 
 ```javascript
-import { petitions } from "vixeny";
+import { petitions } from 'vixeny';
 
-// Returning a `BodyInit` 
+// Returning a `BodyInit`
 const helloWorld = petitions.common()({
-  path: "/hello",
-  f: () => "helloWorld",
+	path: '/hello',
+	f: () => 'helloWorld'
 });
 
-// Returning a `Response` 
+// Returning a `Response`
 const ping = petitions.standard()({
-  path: "/ping",
-  f: () => new Response("Pong"),
+	path: '/ping',
+	f: () => new Response('Pong')
 });
-
 ```
 
 This there are some special petitions `resolve` and `branch` that will cover later but here a quick snapshot of the you can do:
 
-
 <Tabs data={tab0}/>
-
 
 # Wrap
 
@@ -124,21 +122,20 @@ Vixeny can be tested without the need for a server, allowing for individual or c
 Vixeny supports testing individual petitions by injecting values while preserving their structure:
 
 ```javascript
-const request = new Request("http://localhost/one");
-const paths = wrap()()
-  .stdPetition({
-    path: "/one",
-    f: (c) => c.date.toString(),
-  });
+const request = new Request('http://localhost/one');
+const paths = wrap()().stdPetition({
+	path: '/one',
+	f: (c) => c.date.toString()
+});
 
 // Handling the request without modifications
-const handles = paths.handleRequest("/one")({});
+const handles = paths.handleRequest('/one')({});
 
 // Handling the request with a mock date injected
-const mocked = paths.handleRequest("/one")({
-  options: {
-    setDate: 1710592645075,
-  },
+const mocked = paths.handleRequest('/one')({
+	options: {
+		setDate: 1710592645075
+	}
 });
 
 // Outputs the current date
@@ -155,12 +152,12 @@ You can combine petitions from another `wrap` instance with the current one, all
 ```javascript
 // Assuming `server`
 export default wrap()()
-  .union(server.unwrap())
-  .stdPetition({
-    path: "/hello",
-    f: () => "helloWorld",
-  })
-  .logPaths(); // Outputs paths from both the current wrap and the imported `extension`.
+	.union(server.unwrap())
+	.stdPetition({
+		path: '/hello',
+		f: () => 'helloWorld'
+	})
+	.logPaths(); // Outputs paths from both the current wrap and the imported `extension`.
 ```
 
 Vixeny is fully typed, with JSDoc examples provided for ease of use. Hover over the code in your IDE to check.
@@ -173,7 +170,6 @@ is defined as:
 
 > The chaining of the resolution of any morphism by its `resolve`.
 
-
 What does that even mean?! well, anything with a `resolve`, has to be resolved before its caller accesses to it, making a chain, let's see more examples.
 
 ## Morphism
@@ -182,17 +178,15 @@ The most fundamental type in Vixeny is a "Morphism." Something extends to anythi
 
 ```javascript
 // Resolve
-const hello = petitions.resolve()(
-  {
-    resolve: {
-      // Nested resolve
-      nested: {
-        f: () => "hello",
-      },
-    },
-    f: (f) => f.resolve.nested,
-  },
-);
+const hello = petitions.resolve()({
+	resolve: {
+		// Nested resolve
+		nested: {
+			f: () => 'hello'
+		}
+	},
+	f: (f) => f.resolve.nested
+});
 ```
 
 > Any `resolve` or `branch` can be utilized within a `morphism`, but there are
@@ -211,14 +205,13 @@ The resolution process guarantees that all necessary data is fetched and
 available for use within your petitions.
 
 ```javascript
-wrap(options)()
-  .stdPetition({
-    path: "/withResolve",
-    resolve: {
-      hi: { f: () => "Hello world" },
-    },
-    f: (ctx) => ctx.resolve.hi,
-  });
+wrap(options)().stdPetition({
+	path: '/withResolve',
+	resolve: {
+		hi: { f: () => 'Hello world' }
+	},
+	f: (ctx) => ctx.resolve.hi
+});
 ```
 
 ### SyncAgnostic
@@ -229,16 +222,15 @@ synchronous or asynchronous. This allows for greater flexibility and simplicity
 in defining your application's logic:
 
 ```javascript
-wrap(options)()
-  .stdPetition({
-    path: "/helloWorld",
-    resolve: {
-      hello: { f: async () => await Promise.resolve("Hello") },
-      world: { f: () => "world" },
-    },
-    // Important to notice that `f` is synchronous even if the resolve `hello` is not.
-    f: (ctx) => `${ctx.resolve.hello} ${ctx.resolve.world}`,
-  });
+wrap(options)().stdPetition({
+	path: '/helloWorld',
+	resolve: {
+		hello: { f: async () => await Promise.resolve('Hello') },
+		world: { f: () => 'world' }
+	},
+	// Important to notice that `f` is synchronous even if the resolve `hello` is not.
+	f: (ctx) => `${ctx.resolve.hello} ${ctx.resolve.world}`
+});
 ```
 
 ### Mockable
@@ -248,38 +240,31 @@ purposes, as shown below:
 
 ```javascript
 // Define the original asynchronous resolve function for fetching weather data
-const routes = wrap(options)()
-  .stdPetition({
-    path: "/weather",
-    resolve: {
-      currentWeather: {
-        f: async () =>
-          await fetch("https://api.weather.com/current").then((res) =>
-            res.json()
-          ),
-      },
-    },
-    f: (c) =>
-      c.resolve.currentWeather.temperature > 75
-        ? "It's warm outside"
-        : "It's cool outside",
-  });
+const routes = wrap(options)().stdPetition({
+	path: '/weather',
+	resolve: {
+		currentWeather: {
+			f: async () => await fetch('https://api.weather.com/current').then((res) => res.json())
+		}
+	},
+	f: (c) => (c.resolve.currentWeather.temperature > 75 ? "It's warm outside" : "It's cool outside")
+});
 
 // Mock the resolve function for testing
 const mockedWeatherResolve = () => ({ temperature: 80 });
 
 // Inject the mocked resolve
-const mockRoutes = routes.handleRequest("/weather")({
-  resolve: {
-    currentWeather: mockedWeatherResolve,
-  },
+const mockRoutes = routes.handleRequest('/weather')({
+	resolve: {
+		currentWeather: mockedWeatherResolve
+	}
 });
 
 // Test the behavior with mocked data
-test("/weather", async () => {
-  expect(
-    await mockRoutes(new Request("/weather")).then((res) => res.text()),
-  ).toStrictEqual("It's warm outside");
+test('/weather', async () => {
+	expect(await mockRoutes(new Request('/weather')).then((res) => res.text())).toStrictEqual(
+		"It's warm outside"
+	);
 });
 ```
 
@@ -321,39 +306,39 @@ which exposes all native functions (including plugins, not covered here):
 
 ```typescript
 export default wrap()()
-  .stdPetition({
-    path: "/",
-    f: () => "helloWorld",
-  })
-  // Console logging: []
-  .logLastCheck()
-  .stdPetition({
-    path: "/hello/:id",
-    f: (c) => c.param.id,
-  })
-  // Console logging: ["param"]
-  .logLastCheck();
+	.stdPetition({
+		path: '/',
+		f: () => 'helloWorld'
+	})
+	// Console logging: []
+	.logLastCheck()
+	.stdPetition({
+		path: '/hello/:id',
+		f: (c) => c.param.id
+	})
+	// Console logging: ["param"]
+	.logLastCheck();
 ```
 
 The composer analyzes your petitions and selectively adds only the necessary elements to the `CTX`. This process ensures optimal performance and cleaner code by avoiding unnecessary inclusions. However, the optimizer's automated nature means it might not automatically include external function requirements. You can manually specify these as needed:
 
 ```typescript
 export default wrap()()
-  .stdPetition({
-    path: "/hello/query1",
-    f: (c) => functionOutsideOfContext(c),
-  })
-  // Console logging: []
-  .logLastCheck()
-  .stdPetition({
-    path: "/hello/query2",
-    f: (c) => functionOutsideOfContext(c),
-    options: {
-      add: ["query"],
-    },
-  })
-  // Console logging: ["query"]
-  .logLastCheck();
+	.stdPetition({
+		path: '/hello/query1',
+		f: (c) => functionOutsideOfContext(c)
+	})
+	// Console logging: []
+	.logLastCheck()
+	.stdPetition({
+		path: '/hello/query2',
+		f: (c) => functionOutsideOfContext(c),
+		options: {
+			add: ['query']
+		}
+	})
+	// Console logging: ["query"]
+	.logLastCheck();
 ```
 
 Customization options include `only`, which bypasses the optimizer to add only specified functions; `add`, which includes additional functions; and `remove`, which excludes.
