@@ -1,15 +1,32 @@
 <script>
     import Tabs from "$lib/components/Tabs.md"
     import Bash from "$lib/components/SmallComponents/Bash.md"
-    import example1 from "$lib/examples/intro_core_0.md"
-    const tab1 = [
+    import example0 from "$lib/examples/intro_core_0.md"
+    import example1 from "$lib/examples/intro_core_1.md"
+    import example2 from "$lib/examples/intro_core_2.md"
+    import example3 from "$lib/examples/intro_core_3.md"
+    const install = [
         {title: "Bun", component: Bash, details: {runtime: "bun"}},
         {title: "Deno", component: Bash, details: {runtime: "deno"}}
     ]
+    const tab0 = [
+        {title: "main.ts", component: example0, details: {runtime: "main"}},
+        {title: "setup.ts", component: example0, details: {runtime: "setup"}}
+    ]
 
-    const tab2 = [
+    const tab1 = [
         {title: "main.ts", component: example1, details: {runtime: "main"}},
         {title: "setup.ts", component: example1, details: {runtime: "setup"}}
+    ]
+
+    const tab2 = [
+        {title: "main.ts", component: example2, details: {runtime: "main"}},
+        {title: "setup.ts", component: example2, details: {runtime: "setup"}}
+    ]
+
+    const tab3 = [
+        {title: "main.ts", component: example3, details: {runtime: "main"}},
+        {title: "setup.ts", component: example3, details: {runtime: "setup"}}
     ]
 </script>
 <svelte:head>
@@ -39,7 +56,13 @@ fly.
 - Safe and maintainable: Everything is deterministic, and its object-based structure allows the maintainers to easily add things without needing to push
 broken code changes. 
 
-- Fast: Holding the record of being the fastest framework when it comes to `(r: Request) => Response | Promise<Response>` handlers innot only Deno but also Bun
+- Fast: Holding the record of being the fastest framework when it comes to `(r: Request) => Response | Promise<Response>` handlers innot only Deno but also Bun.
+
+# Quick start
+
+Ready to install it?.
+
+<Tabs data={install}/>
 
 ## How?
 
@@ -74,67 +97,27 @@ const ping = petitions.standard()({
 
 This there are some special petitions `resolve` and `branch` that will cover later but here a quick snapshot of the you can do:
 
-```ts
-// Setting up a resolution
-const sayHello = petitions.resolve()({
-  f: () => "hello",
-});
 
-const hey = petitions.common()({
-  path: "/hey",
-  resolve: {
-    sayHello,
-  }
-  f: ({ resolve }) => `${resolve.sayHello} World!`,
-});
-```
-
+<Tabs data={tab0}/>
 
 
 # Wrap
 
 The `wrap` is a pure function designed to facilitate the handling and manipulation of petitions. It allows you to configure options, and incorporate a suite of tools for debugging, testing, and more.
 
-```javascript
-const options = {...}; // Optional configuration
-
-  export const root = wrap(options)()
-  .stdPetition({
-    path: "/ping",
-    f: () => "pong"
-  })
-  .addAnyPetition(helloWorld)
-  ;
-```
+<Tabs data={tab1}/>
 
 ### Debugging
 
 With `wrap`, you can easily inspect the current state at any point between methods:
 
-```javascript
-const server = wrap()()
-  .stdPetition({
-    path: "/one",
-    f: () => "one",
-  })
-  // Logging the paths after adding the first petition:
-  .logPaths()
-  .stdPetition({
-    path: "/two",
-    f: () => "two",
-  })
-  // Logging the paths after adding the second petition:
-  .logPaths()
-  .union(root.unwrap())
-  .logPaths();
-// Logging the paths including `/hello`
-```
+<Tabs data={tab2}/>
 
 ### Testing
 
 Vixeny can be tested without the need for a server, allowing for individual or comprehensive testing of wraps:
 
-<Tabs data={tab2}/>
+<Tabs data={tab3}/>
 
 ### Mocking
 
@@ -374,9 +357,3 @@ export default wrap()()
 ```
 
 Customization options include `only`, which bypasses the optimizer to add only specified functions; `add`, which includes additional functions; and `remove`, which excludes.
-
-# Quick start
-
-Ready to install it?.
-
-<Tabs data={tab1}/>

@@ -5,35 +5,30 @@
 {#if runtime == "main"}
 
 ```ts
-import { server } from "./setup.ts"
+import { petitions } from "vixeny";
+import { sayHello } from "./setup.ts"
 
-const testServer = server.testRequests();
-
-// Simulate requests and test responses
-testServer(new Request("/helloWold")).then(response => {
-  // Perform assertions or checks on the response
+const hey = petitions.common()({
+  path: "/hey",
+  resolve: {
+    sayHello,
+  }
+  f: ({ resolve }) => `${resolve.sayHello} World!`,
 });
-
 ```
 
 {:else}
 
 ```ts
-const server = wrap()()
-  .stdPetition({
-    path: "/helloWold",
-    f: () => "helloWold",
-  })
-  .stdPetition({
-    path: "/one",
-    f: () => "one",
-  })
-  .stdPetition({
-    path: "/two",
-    f: () => "two",
-  })
+import { petitions } from "vixeny";
 
-export server
+const sayHello = petitions.resolve()({
+  f: () => "hello",
+});
+
+export  {
+  sayHello
+}
 ```
 
 {/if}
