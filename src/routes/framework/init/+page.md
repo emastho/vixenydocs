@@ -8,8 +8,8 @@
     ]
 
     const tab2 = [
-        {title: "Main", component: example1, details: {runtime: "main"}},
-        {title: "Setup", component: example1, details: {runtime: "setup"}}
+        {title: "main.ts", component: example1, details: {runtime: "main"}},
+        {title: "setup.ts", component: example1, details: {runtime: "setup"}}
     ]
 </script>
 <svelte:head>

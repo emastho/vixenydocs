@@ -5,7 +5,7 @@
 {#if runtime == "main"}
 
 ```ts
-import { serve } from "./setup.ts"
+import { server } from "./setup.ts"
 
 const testServer = server.testRequests();
 
@@ -20,6 +20,10 @@ testServer(new Request("/helloWold")).then(response => {
 
 ```ts
 const server = wrap()()
+  .stdPetition({
+    path: "/helloWold",
+    f: () => "helloWold",
+  })
   .stdPetition({
     path: "/one",
     f: () => "one",
