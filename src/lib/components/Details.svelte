@@ -36,10 +36,9 @@
 <style>
 	.details .summary {
 		user-select: none;
-		padding: 0.5rem 1.2rem;
-		border-radius: 6px;
+		padding: 14px 32px;
 		/* border: 2px solid #2f2f2f; */
-		background: var(--closer);
+		background: var(--front);
 		transition: 200ms all ease-out 50ms;
 		color: var(--text);
 	}
@@ -50,7 +49,7 @@
 	}
 
 	.details .summary:hover {
-		background-color: var(--closest);
+		background-color: var(--fronter);
 	}
 
 	.details .summary span {

@@ -1,17 +1,19 @@
 <script lang="ts">
 	import Iconie from '$lib/components/Iconie.svelte';
 	import { searchStore } from '$lib/stores/main';
+	import { onMount } from 'svelte';
+
 	export let placeholder: string;
 </script>
 
 <div>
 	<Iconie which="search" />
-	<input bind:value={$searchStore} type="text" {placeholder} />
+	<input tabindex="5" bind:value={$searchStore} type="text" {placeholder} />
 </div>
 
 <style>
 	div {
-		background-color: var(--further);
+		background-color: var(--closest);
 		padding: 10px 16px;
 		border-radius: 4px;
 		display: flex;
@@ -25,7 +27,11 @@
 		color: var(--text);
 	}
 
+	div:focus-within {
+		background-color: var(--front);
+	}
+
 	input:focus {
-		outline: 1px solid var(--closest);
+		outline: none;
 	}
 </style>
