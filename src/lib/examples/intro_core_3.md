@@ -10,7 +10,10 @@ import { server } from './setup.ts';
 const testServer = server.testRequests();
 
 // "helloWold"
-console.log(testServer(new Request('/helloWold')).then((response) => response.text()));
+console.log(
+  testServer(new Request('/helloWold'))
+  .then((response) => response.text())
+);
 ```
 
 {:else}
