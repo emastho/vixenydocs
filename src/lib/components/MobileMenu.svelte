@@ -85,15 +85,16 @@
 	}
 
 	.menu {
-		background: var(--side);
+		background: var(--bg-opacity);
 		position: fixed;
 		width: 270px;
 		height: 100%;
 		padding: 2rem;
 		z-index: 100;
-		border-right: 2px solid #252525;
+		border-right: 2px solid var(--side);
 		top: 0;
 		overflow: scroll;
+		backdrop-filter: blur(16px);
 	}
 
 	/* .other {
