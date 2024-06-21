@@ -8,7 +8,7 @@
 		type Orama,
 		type Results
 	} from '@orama/orama';
-	import { searchStore, searchModal } from '$lib/stores/main';
+	import { searchStore, searchModal, inputTarget } from '$lib/stores/main';
 
 	$: if ($searchStore.length > 0) {
 		searchModal.set(true);
@@ -75,8 +75,10 @@
 				{#if results.hits.length < 1}
 					No results
 				{/if}
-				{#each results.hits as item}
-					<a on:click={clickOnLink} href={item.document.url}> {item.document.url}</a>
+				{#each results.hits as item, i}
+					<a tabindex={5 + i} on:click={clickOnLink} href={item.document.url}>
+						{item.document.url}</a
+					>
 				{/each}
 			{/if}
 		</div>
@@ -108,6 +110,10 @@
 	}
 	a:nth-child(even) {
 		background-color: var(--side);
+	}
+
+	a:focus {
+		outline: 4px solid var(--main);
 	}
 
 	@media (width < 1100px) {

@@ -14,8 +14,9 @@
 		color: var(--subtext);
 		display: block;
 		font-size: small;
-		padding-bottom: 16px;
-		padding-left: 0.2rem;
+		padding-bottom: 8px;
+		padding-left: 0.4rem;
+		padding-inline: 32px;
 	}
 
 	nav .items > :global(*:not(:last-child)) {

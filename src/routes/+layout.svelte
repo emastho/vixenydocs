@@ -60,7 +60,7 @@
 		<aside style="padding-bottom: 80px;">
 			<div class="logoArea">
 				<a href="/" on:click={() => accordion.set(1)}>
-					<img src={Logo} alt="Logo" height="80" />
+					<img src={Logo} alt="Logo" height="90" />
 				</a>
 			</div>
 			<Navigation />
@@ -88,7 +88,7 @@
 		width: 270px;
 		/* height: 100vh; */
 		background-color: var(--side);
-		padding: 3rem 1.6rem 2rem 1.6rem;
+		padding: 3rem 0;
 		display: flex;
 		flex-direction: column;
 		position: fixed;
