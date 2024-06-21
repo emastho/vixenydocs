@@ -46,7 +46,7 @@
 		<div class="header-container">
 			<div>
 				<a href="/">
-					<img class="logo" src={Logo} alt="Logo" height="80" />
+					<img class="logo" src={Logo} alt="Logo" height="50" />
 				</a>
 			</div>
 			<div>
@@ -87,7 +87,8 @@
 		flex-shrink: 0;
 		width: 270px;
 		/* height: 100vh; */
-		background-color: var(--side);
+		background-color: var(--bg);
+		border-right: 2px solid var(--side);
 		padding: 3rem 0;
 		display: flex;
 		flex-direction: column;
@@ -137,16 +138,18 @@
 		margin-bottom: 48px;
 		position: sticky;
 		top: 0;
-		backdrop-filter: blur(3px);
-		background-color: #1a1c20d9;
+		background-color: var(--bg-opacity);
+		backdrop-filter: blur(8px);
+		border-bottom: 2px solid var(--side);
 		z-index: 1;
 	}
 
 	header {
 		width: 100%;
 		display: none;
-		background: var(--side);
-		padding-block: 1.5rem;
+		/* background: var(--side); */
+		border-bottom: 2px solid var(--side);
+		padding-block: 16px;
 		align-items: center;
 	}
 
@@ -159,6 +162,9 @@
 	.header-container div:nth-child(2) {
 		flex-shrink: 0;
 		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: end;
 	}
 
 	.header-container > * {
@@ -218,7 +224,7 @@
 		}
 
 		.logo {
-			height: 40px;
+			height: 50px;
 		}
 	}
 

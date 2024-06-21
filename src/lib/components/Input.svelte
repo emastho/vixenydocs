@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Iconie from '$lib/components/Iconie.svelte';
 	import { searchStore } from '$lib/stores/main';
-	import { onMount } from 'svelte';
 
 	export let placeholder: string;
 </script>
@@ -13,7 +12,9 @@
 
 <style>
 	div {
-		background-color: var(--closest);
+		/* background-color: var(--closest); */
+		background-color: var(--bg);
+		border: 2px solid var(--side);
 		padding: 10px 16px;
 		border-radius: 4px;
 		display: flex;
@@ -28,7 +29,7 @@
 	}
 
 	div:focus-within {
-		background-color: var(--front);
+		border: 2px solid var(--closest);
 	}
 
 	input:focus {

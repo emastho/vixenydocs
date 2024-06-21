@@ -25,9 +25,8 @@
 </div>
 
 <div style="margin-top: 64px; margin-bottom: 16px">
-	<h1 style="margin-bottom: 8px; padding: 0; font-size: 48px; color: var(--main)">
-		Welcome to Vixeny.
-	</h1>
+	<h2 style="margin-bottom: 0px; padding: 0; color: var(--text)">Welcome to</h2>
+	<h1 style="margin-bottom: 8px; padding: 0; color: var(--main)">Vixeny</h1>
 	<div style="padding-bottom: 32px; margin-top: -8px; color: gray;">
 		Docs {version}
 	</div>
@@ -46,5 +45,11 @@
 	a {
 		display: inline-block;
 		margin: 0;
+	}
+	h2 {
+		font-size: clamp(20px, 2vw, 32px);
+	}
+	h1 {
+		font-size: clamp(56px, 8vw, 128px);
 	}
 </style>

@@ -38,9 +38,10 @@
 		user-select: none;
 		padding: 14px 32px;
 		/* border: 2px solid #2f2f2f; */
-		background: var(--front);
-		transition: 200ms all ease-out 50ms;
+		/* background: var(--side); */
 		color: var(--text);
+
+		border-block: 2px solid var(--side);
 	}
 
 	.details .summary {
@@ -48,15 +49,11 @@
 		position: relative;
 	}
 
-	.details .summary:hover {
-		background-color: var(--fronter);
-	}
-
 	.details .summary span {
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		right: 1.2rem;
+		right: 32px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
