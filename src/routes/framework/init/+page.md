@@ -35,6 +35,7 @@
 <meta name="description" content="How to install Vixeny" />
 </svelte:head>
 
+
 # Introduction
 
 Welcome to Vixeny! We're glad you're here. We're not just about coding—we're about bringing people together. Making web development easier for everyone, no matter your experience level. Let's get started and see how Vixeny can help you create something amazing with ease!
