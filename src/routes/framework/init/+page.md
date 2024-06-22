@@ -303,25 +303,27 @@ export default wrap()()
 		f: () => 'helloWorld'
 	})
 	// Console logging: []
-	.logLastCheck()
+	.debugLast()
 	.stdPetition({
 		path: '/hello/:id',
 		f: (c) => c.param.id
 	})
 	// Console logging: ["param"]
-	.logLastCheck();
+	.debugLast();
 ```
 
 The composer analyzes your petitions and selectively adds only the necessary elements to the `CTX`. This process ensures optimal performance and cleaner code by avoiding unnecessary inclusions. However, the optimizer's automated nature means it might not automatically include external function requirements. You can manually specify these as needed:
 
 ```typescript
+import { wrap } from 'vixeny';
+
 export default wrap()()
 	.stdPetition({
 		path: '/hello/query1',
 		f: (c) => functionOutsideOfContext(c)
 	})
 	// Console logging: []
-	.logLastCheck()
+	.debugLast()
 	.stdPetition({
 		path: '/hello/query2',
 		f: (c) => functionOutsideOfContext(c),
@@ -330,7 +332,7 @@ export default wrap()()
 		}
 	})
 	// Console logging: ["query"]
-	.logLastCheck();
+	.debugLast()
 ```
 
 Customization options include `only`, which bypasses the optimizer to add only specified functions; `add`, which includes additional functions; and `remove`, which excludes.
