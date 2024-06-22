@@ -11,8 +11,8 @@ const testServer = server.testRequests();
 
 // "helloWold"
 console.log(
-  testServer(new Request('/helloWold'))
-  .then((response) => response.text())
+ await testServer(new Request('http://localhost/helloWold'))
+    .then((response) => response.text())
 );
 ```
 

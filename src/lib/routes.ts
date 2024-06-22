@@ -2,6 +2,7 @@ export const routes: { href: string; name: string; categoryId: number; newTab?: 
 	{ href: '/framework/init', name: 'Quick start', categoryId: 1 },
 	{ href: '/framework/routing', name: 'Routing', categoryId: 1 },
 	{ href: '/framework/composing', name: 'Composing', categoryId: 1 },
+	{ href: '/framework/extending', name: 'Extending', categoryId: 1 },
 	{ href: '/library/wrap', name: 'Wrap', categoryId: 2 },
 	{ href: '/library/test', name: 'Testing', categoryId: 2 },
 ];

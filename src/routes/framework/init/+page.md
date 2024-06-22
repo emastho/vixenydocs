@@ -106,24 +106,27 @@ The `wrap` is a pure function designed to facilitate the handling and manipulati
 
 <Tabs data={tab1}/>
 
-### Debugging
+## Debugging
 
 With `wrap`, you can easily inspect the current state at any point between methods:
 
 <Tabs data={tab2}/>
 
-### Testing
+## Testing
 
 Vixeny can be tested without the need for a server, allowing for individual or comprehensive testing of wraps:
 
 <Tabs data={tab3}/>
 
-### Mocking
+## Mocking
 
 Vixeny supports testing individual petitions by injecting values while preserving their structure:
 
 ```javascript
+import { wrap } from "vixeny";
+
 const request = new Request('http://localhost/one');
+
 const paths = wrap()().stdPetition({
 	path: '/one',
 	f: (c) => c.date.toString()
@@ -144,21 +147,6 @@ console.log(await handles(request).then((r) => r.text()));
 
 // Outputs the mocked date: "1710592645075"
 console.log(await mocked(request).then((r) => r.text()));
-```
-
-### Join
-
-You can combine petitions from another `wrap` instance with the current one, allowing for the reuse of petitions across different parts of your application:
-
-```javascript
-// Assuming `server`
-export default wrap()()
-	.union(server.unwrap())
-	.stdPetition({
-		path: '/hello',
-		f: () => 'helloWorld'
-	})
-	.logPaths(); // Outputs paths from both the current wrap and the imported `extension`.
 ```
 
 Vixeny is fully typed, with JSDoc examples provided for ease of use. Hover over the code in your IDE to check.
