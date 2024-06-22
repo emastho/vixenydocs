@@ -275,7 +275,7 @@ const hey = petitions.common()({
   resolve: {
     sayHello,
   }
-  f: ({ resolve , branch }) => `${resolve.sayHello} World!`,
+  f: ({ resolve }) => `${resolve.sayHello} World!`,
 });
 
 const serve = wrap(options)()
