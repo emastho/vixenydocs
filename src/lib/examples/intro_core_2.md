@@ -23,10 +23,13 @@ const server = wrap()()
 	})
 	// [ "/one" , "/two" ]
 	.logPaths()
-	// adding another wrap
+	// Adding another wrap
 	.union(otherWrap.unwrap())
 	// [ "/one" , "/two" , "/three"]
-	.logPaths();
+	.logPaths()
+	// Debug console
+	.debugLast()
+	;
 ```
 
 {:else}

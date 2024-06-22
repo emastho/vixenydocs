@@ -5,6 +5,8 @@
     import example1 from "$lib/examples/intro_core_1.md"
     import example2 from "$lib/examples/intro_core_2.md"
     import example3 from "$lib/examples/intro_core_3.md"
+	import example4 from "$lib/examples/intro_core_4.md"
+
     const install = [
         {title: "Bun", component: Bash, details: {runtime: "bun"}},
         {title: "Deno", component: Bash, details: {runtime: "deno"}}
@@ -27,6 +29,11 @@
     const tab3 = [
         {title: "main.ts", component: example3, details: {runtime: "main"}},
         {title: "setup.ts", component: example3, details: {runtime: "setup"}}
+    ]
+
+	const tab4 = [
+        {title: "main.ts", component: example4, details: {runtime: "main"}},
+        {title: "setup.ts", component: example4, details: {runtime: "setup"}}
     ]
 </script>
 
@@ -166,26 +173,38 @@ What does that even mean?! well, anything with a `resolve`, has to be resolved b
 The most fundamental type in Vixeny is a "Morphism." Something extends to anything that has an `f`, and they can be linked together making powerful monolithic structures (All code combined, tightly linked).
 
 ```javascript
-// Resolve
-const hello = petitions.resolve()({
+import { petitions , composer } from 'vixeny';
+
+const request = new Request('http://localhost/')
+
+const nested = petitions.resolve()({
+    f: () => 'hello'
+})
+
+const hello = composer.anyRequest()({
 	resolve: {
 		// Nested resolve
-		nested: {
-			f: () => 'hello'
-		}
+		nested
 	},
 	f: (f) => f.resolve.nested
 });
+
+console.log(
+	//hello
+    hello(request)
+)
 ```
 
 > Any `resolve` or `branch` can be utilized within a `morphism`, but there are
 > not considered `petitions`, meaning, you can not use them directly in a
 > `wrap`.
 
+Let's break it down with more examples.
+
 ## Resolve Properties
 
 Vixeny's resolution mechanism ensures that data dependencies are resolved before
-the main function is executed. Simplifying asynchronous data handling. Below, we
+the main function is executed. Simplifying asynchronous data handling and composition. Below, we
 explore key properties of resolution in Vixeny.
 
 ### Resolves
@@ -194,6 +213,8 @@ The resolution process guarantees that all necessary data is fetched and
 available for use within your petitions.
 
 ```javascript
+import { wrap } from 'vixeny';
+
 wrap(options)().stdPetition({
 	path: '/withResolve',
 	resolve: {
@@ -211,10 +232,17 @@ synchronous or asynchronous. This allows for greater flexibility and simplicity
 in defining your application's logic:
 
 ```javascript
+import { wrap } from 'vixeny';
+
+const hello = petitions.resolve()(
+	{ f: async () => await Promise.resolve('Hello') }
+)
+
 wrap(options)().stdPetition({
 	path: '/helloWorld',
 	resolve: {
-		hello: { f: async () => await Promise.resolve('Hello') },
+		hello,
+		// Everything in vixeny is nameless and stateless by nature.
 		world: { f: () => 'world' }
 	},
 	// Important to notice that `f` is synchronous even if the resolve `hello` is not.
@@ -227,35 +255,7 @@ wrap(options)().stdPetition({
 This design also simplifies the process of mocking dependencies for testing
 purposes, as shown below:
 
-```javascript
-// Define the original asynchronous resolve function for fetching weather data
-const routes = wrap(options)().stdPetition({
-	path: '/weather',
-	resolve: {
-		currentWeather: {
-			f: async () => await fetch('https://api.weather.com/current').then((res) => res.json())
-		}
-	},
-	f: (c) => (c.resolve.currentWeather.temperature > 75 ? "It's warm outside" : "It's cool outside")
-});
-
-// Mock the resolve function for testing
-const mockedWeatherResolve = () => ({ temperature: 80 });
-
-// Inject the mocked resolve
-const mockRoutes = routes.handleRequest('/weather')({
-	resolve: {
-		currentWeather: mockedWeatherResolve
-	}
-});
-
-// Test the behavior with mocked data
-test('/weather', async () => {
-	expect(await mockRoutes(new Request('/weather')).then((res) => res.text())).toStrictEqual(
-		"It's warm outside"
-	);
-});
-```
+<Tabs data={tab4}/>
 
 ### Composable and Reusable
 
@@ -263,6 +263,7 @@ The resolution mechanism allows for the reuse and on-the-fly modification of any
 morphism, making your code more modular and maintainable:
 
 ```javascript
+import { wrap , petitions } from 'vixeny';
 
 // Setting up a resolution
 const sayHello = petitions.resolve()({
@@ -294,6 +295,8 @@ this entail? Let's delve into the concept of `ctx` and its role in TypeScript,
 which exposes all native functions (including plugins, not covered here):
 
 ```typescript
+import { wrap } from 'vixeny';
+
 export default wrap()()
 	.stdPetition({
 		path: '/',
