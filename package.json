@@ -1,44 +1,44 @@
 {
-	"name": "svl",
-	"version": "1.0.7",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir . --check .",
-		"format": "prettier --plugin-search-dir . --write ."
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/adapter-vercel": "^3.0.3",
-		"@sveltejs/kit": "^1.22.4",
-		"@types/node": "^20.5.9",
-		"@types/nprogress": "^0.2.0",
-		"gray-matter": "^4.0.3",
-		"mdsvex": "^0.11.0",
-		"prettier": "^2.8.0",
-		"prettier-plugin-svelte": "^2.10.1",
-		"shiki": "^1.6.0",
-		"svelte": "^4.0.5",
-		"svelte-check": "^3.4.3",
-		"tslib": "^2.4.1",
-		"typescript": "^5.0.0",
-		"vite": "^4.4.2"
-	},
-	"type": "module",
-	"dependencies": {
-		"@iconify/svelte": "^3.1.4",
-		"@jsdevtools/rehype-toc": "^3.0.2",
-		"@orama/orama": "^1.2.2",
-		"@sveltejs/adapter-static": "^2.0.3",
-		"html-minifier-terser": "^7.2.0",
-		"nprogress": "^0.2.0",
-		"prismjs": "^1.29.0",
-		"rehype-autolink-headings": "^7.1.0",
-		"rehype-slug": "^6.0.0"
-	},
-	"license": "GPL2"
+  "name": "svl",
+  "version": "1.0.7",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "prettier --plugin-search-dir . --check .",
+    "format": "prettier --plugin-search-dir . --write ."
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/adapter-vercel": "^3.0.3",
+    "@sveltejs/kit": "^1.22.4",
+    "@types/node": "^20.5.9",
+    "@types/nprogress": "^0.2.0",
+    "gray-matter": "^4.0.3",
+    "mdsvex": "^0.11.0",
+    "prettier": "^2.8.0",
+    "prettier-plugin-svelte": "^2.10.1",
+    "shiki": "^1.6.0",
+    "svelte": "^4.0.5",
+    "svelte-check": "^3.4.3",
+    "tslib": "^2.4.1",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.2"
+  },
+  "type": "module",
+  "dependencies": {
+    "@iconify/svelte": "^3.1.4",
+    "@jsdevtools/rehype-toc": "^3.0.2",
+    "@orama/orama": "^1.2.2",
+    "@sveltejs/adapter-static": "^2.0.3",
+    "html-minifier-terser": "^7.2.0",
+    "nprogress": "^0.2.0",
+    "prismjs": "^1.29.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0"
+  },
+  "license": "GPL2"
 }

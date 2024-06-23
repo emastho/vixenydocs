@@ -1,8 +1,12 @@
 ## Branch
 
-As its name implies, **`branch`** gives us a way to create functions within the `context`, which will be `composed` by Vixeny. These functions are designed to handle different branches of logic.
+As its name implies, **`branch`** gives us a way to create functions within the
+`context`, which will be `composed` by Vixeny. These functions are designed to
+handle different branches of logic.
 
-The `context` will receive the arguments in `arguments`, and these functions can be **`asynchronous`**. This means you can use asynchronous operations like fetching data or performing calculations without blocking the main thread.
+The `context` will receive the arguments in `arguments`, and these functions can
+be **`asynchronous`**. This means you can use asynchronous operations like
+fetching data or performing calculations without blocking the main thread.
 
 Here's a simple example of using a `branch`:
 
@@ -40,7 +44,8 @@ Or even multiple branches:
 
 ### Interplay with Resolve
 
-Thanks to Vixeny's functional behavior, branches can interact with the resolve property, allowing complex compositions:
+Thanks to Vixeny's functional behavior, branches can interact with the resolve
+property, allowing complex compositions:
 
 ```ts
 {
@@ -78,7 +83,8 @@ or
 
 ### Conditional Branching
 
-Laziness, an essential concept in functional programming, allows invoking a function only if a condition is fulfilled. Here's an example using branch:
+Laziness, an essential concept in functional programming, allows invoking a
+function only if a condition is fulfilled. Here's an example using branch:
 
 ```ts
 //assuming that the user name will be passed by query
@@ -111,8 +117,12 @@ Laziness, an essential concept in functional programming, allows invoking a func
 
 Branching in Vixeny brings several key benefits:
 
-- **Flexibility**: You can define a variety of logical paths and handle them seamlessly.
+- **Flexibility**: You can define a variety of logical paths and handle them
+  seamlessly.
 - **Laziness**: Invoke functions only when needed, improving efficiency.
-- **Modularity**: Isolate specific logic into branches, making your code easier to understand, test, and maintain.
-  Composability: Interact with other functionalities like resolve to create complex yet elegant solutions.
-  By embracing the branch feature, developers can achieve greater control and expressiveness in their Vixeny applications, managing the flow of data with precision and elegance.
+- **Modularity**: Isolate specific logic into branches, making your code easier
+  to understand, test, and maintain. Composability: Interact with other
+  functionalities like resolve to create complex yet elegant solutions. By
+  embracing the branch feature, developers can achieve greater control and
+  expressiveness in their Vixeny applications, managing the flow of data with
+  precision and elegance.

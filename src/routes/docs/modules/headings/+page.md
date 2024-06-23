@@ -1,10 +1,16 @@
 ## Headers in Vixeny
 
-In Vixeny, headers are pivotal in defining a petition's characteristics. They offer flexibility by allowing initialization with custom values or predefined MIME types. The following sections delve into the nuances of using and defining headers in Vixeny.
+In Vixeny, headers are pivotal in defining a petition's characteristics. They
+offer flexibility by allowing initialization with custom values or predefined
+MIME types. The following sections delve into the nuances of using and defining
+headers in Vixeny.
 
 ### Initializing Headers
 
-Use the `headers` property within the `PetitionHeader` type to initialize headers. This enables the assignment of either a default MIME type or specific custom headers. The following examples demonstrate the similarity between both assignments:
+Use the `headers` property within the `PetitionHeader` type to initialize
+headers. This enables the assignment of either a default MIME type or specific
+custom headers. The following examples demonstrate the similarity between both
+assignments:
 
 ```ts
 {
@@ -24,11 +30,14 @@ Use the `headers` property within the `PetitionHeader` type to initialize header
 }
 ```
 
-In the snippets above, the `headers` attribute can adopt either a `HeadersInit` instance or a predefined `defaultMime`. Notably, there are 74 predefined `content-type` values available.
+In the snippets above, the `headers` attribute can adopt either a `HeadersInit`
+instance or a predefined `defaultMime`. Notably, there are 74 predefined
+`content-type` values available.
 
 ### Setting Status Text
 
-To articulate a customized status text for your petition, utilize the `statusText` attribute:
+To articulate a customized status text for your petition, utilize the
+`statusText` attribute:
 
 ```ts
 {
@@ -41,11 +50,13 @@ To articulate a customized status text for your petition, utilize the `statusTex
 }
 ```
 
-This feature facilitates the conveyance of a comprehensible message accompanying the petition's status.
+This feature facilitates the conveyance of a comprehensible message accompanying
+the petition's status.
 
 ### Defining Status Number
 
-Every petition resonates with a distinct status number that epitomizes its outcome. This value can be assigned using the `status` attribute:
+Every petition resonates with a distinct status number that epitomizes its
+outcome. This value can be assigned using the `status` attribute:
 
 ```ts
 {
@@ -57,4 +68,5 @@ Every petition resonates with a distinct status number that epitomizes its outco
 }
 ```
 
-In this context, the numeric value stands as a testament to the HTTP status code attached to the petition.
+In this context, the numeric value stands as a testament to the HTTP status code
+attached to the petition.

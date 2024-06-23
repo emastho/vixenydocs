@@ -5,14 +5,14 @@
 {#if runtime == "main"}
 
 ```ts
-import { server } from './setup.ts';
+import { server } from "./setup.ts";
 
 const testServer = server.testRequests();
 
 // "helloWold"
 console.log(
- await testServer(new Request('http://localhost/helloWold'))
-    .then((response) => response.text())
+  await testServer(new Request("http://localhost/helloWold"))
+    .then((response) => response.text()),
 );
 ```
 

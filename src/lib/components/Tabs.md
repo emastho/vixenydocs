@@ -11,9 +11,8 @@ let index = 0;
 {/each}
 </div>
 
-{#if data[index].component}
-<svelte:component this={data[index].component} {...data[index].details} />
-{:else}
+{#if data[index].component} <svelte:component this={data[index].component}
+{...data[index].details} /> {:else}
 
 {data[index].text}
 

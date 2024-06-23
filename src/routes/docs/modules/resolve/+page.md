@@ -1,6 +1,7 @@
 ## Resolve
 
-If a `resolve`, the `petition`, or `branch` has a `resolve`, this function will be resolved first and passed to `resolve.NAME`. This also applies to `promises`.
+If a `resolve`, the `petition`, or `branch` has a `resolve`, this function will
+be resolved first and passed to `resolve.NAME`. This also applies to `promises`.
 
 ### Sync
 
@@ -72,8 +73,19 @@ Or you can `chain` them as a pseudo-pipe.
 }
 ```
 
-So why do we need them? These functionalities are not merely a way to organize code; they represent a robust approach to crafting scalable and maintainable applications. By isolating code and creating powerful and customizable plugins, you're not only enhancing the current development process but also building a foundation that can easily adapt and grow with future needs.
+So why do we need them? These functionalities are not merely a way to organize
+code; they represent a robust approach to crafting scalable and maintainable
+applications. By isolating code and creating powerful and customizable plugins,
+you're not only enhancing the current development process but also building a
+foundation that can easily adapt and grow with future needs.
 
-- **`Almost Zero Cost Abstraction`**: These compositions don't really hurt performance, and in some cases, they're even faster. This efficiency means that you can structure your code in a way that makes sense to you without worrying about the overhead.
-- **`Testable`**: As we will explore later, you can test your `petitions` in a pure form, where there's no need for databases or any external factors outside of Vixeny. This isolation makes testing more reliable and straightforward.
-- **`Composable`**: Treating `petitions` as values allows you to reuse, modify, and merge them at your will. This composability fosters a more modular and adaptable codebase, enabling you to easily tweak or expand functionality.
+- **`Almost Zero Cost Abstraction`**: These compositions don't really hurt
+  performance, and in some cases, they're even faster. This efficiency means
+  that you can structure your code in a way that makes sense to you without
+  worrying about the overhead.
+- **`Testable`**: As we will explore later, you can test your `petitions` in a
+  pure form, where there's no need for databases or any external factors outside
+  of Vixeny. This isolation makes testing more reliable and straightforward.
+- **`Composable`**: Treating `petitions` as values allows you to reuse, modify,
+  and merge them at your will. This composability fosters a more modular and
+  adaptable codebase, enabling you to easily tweak or expand functionality.

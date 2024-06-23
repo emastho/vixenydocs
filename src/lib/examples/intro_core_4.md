@@ -3,8 +3,9 @@
 </script>
 
 {#if runtime == "main"}
+
 ```ts
-import { wrap , mockedWeatherIsWarm , currentWeather , request } from './setup.ts';
+import { currentWeather, mockedWeatherIsWarm, request, wrap } from "./setup.ts";
 
 // Define the original asynchronous resolve function for fetching weather data
 const routes = wrap()().stdPetition({
@@ -27,10 +28,10 @@ console.log(
   // "It's warm outside"
   await mockRoutes(request).then((res) => res?.text()),
 );
-
 ```
 
 {:else}
+
 ```ts
 import { petitions, wrap } from "vixeny";
 
@@ -45,12 +46,7 @@ const currentWeather = petitions.resolve()({
 // Mock the resolve function for testing
 const mockedWeatherIsWarm = { f: () => ({ temperature: 80 }) };
 
-export {
-    request,
-    currentWeather,
-    mockedWeatherIsWarm,
-    wrap
-}
+export { currentWeather, mockedWeatherIsWarm, request, wrap };
 ```
 
 {/if}
