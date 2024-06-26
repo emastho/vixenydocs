@@ -73,11 +73,6 @@ An ecosystem of functional web tools, that aims to make code more:
   `(r: Request) => Response | Promise<Response>` handlers innot only Deno but
   also Bun.
 
-# Quick start
-
-Ready to install it?.
-
-<Tabs data={install}/>
 
 ## How?
 
@@ -93,6 +88,12 @@ to learn but different and rewarding, focusing more on the flow of your code,
 with that unique ability to see everything at any point with full transparency.
 
 Without more delays, let's start with our basics~
+
+# Quick start
+
+Ready to install it?.
+
+<Tabs data={install}/>
 
 # Petitions
 
