@@ -54,22 +54,22 @@ create something amazing with ease!
 
 An ecosystem of functional web tools, that aims to make code more:
 
-- Open: All our tools are exportable and can be used in other frameworks and
+- `Open` : All our tools are exportable and can be used in other frameworks and
   projects
 
-- Reusable: Make it once and use it again, because of the purity of `Vixeny`,
+- `Reusable` : Make it once and use it again, because of the purity of `Vixeny`,
   every element can be reused and composed in many ways.
 
-- Testable: Thanks to its monolithic structure, it can be tested in any state
+- `Testable` : Thanks to its monolithic structure, it can be tested in any state
 
-- Smart: Asyncronless with an integrated system that helps you to detect bugs
+- `Smart` : Asyncronless with an integrated system that helps you to detect bugs
   and optimize your code on the fly.
 
-- Safe and maintainable: Everything is deterministic, and its object-based
+- `Safe and maintainable` : Everything is deterministic, and its object-based
   structure allows the maintainers to easily add things without needing to push
   broken code changes.
 
-- Fast: Holding the record of being the fastest framework when it comes to
+- `Fast` : Holding the record of being the fastest framework when it comes to
   `(r: Request) => Response | Promise<Response>` handlers innot only Deno but
   also Bun.
 
@@ -343,7 +343,11 @@ manually specify these as needed:
 
 ```typescript
 import { wrap } from "vixeny";
-
+ 
+const functionOutsideOfContext = <T extends Object>(ctx: T) => 
+  Object.keys(ctx)
+  .toString()
+ 
 export default wrap()()
   .stdPetition({
     path: "/hello/query1",
