@@ -49,8 +49,6 @@ console.log(
 
 You will find a detailed explanation of them in `library`.
 
-Your explanation about the maintainability of Vixeny code offers valuable insights into the benefits of the framework. I'll refine your text for better clarity and grammatical correctness. Here’s an improved version:
-
 ## Maintainability
 
 Until now, we've primarily focused on functions from `Vixeny`. This focus isn't simply because the project is functional in nature, but also because Vixeny ensures that all exported functions are self-contained, promoting:
