@@ -6,7 +6,7 @@
     import example2 from "$lib/examples/intro_core_2.md"
     import example3 from "$lib/examples/intro_core_3.md"
 	import example4 from "$lib/examples/intro_core_4.md"
-
+ import FancyLink from '$lib/components/FancyLink.svelte';
     const install = [
         {title: "Bun", component: Bash, details: {runtime: "bun"}},
         {title: "Deno", component: Bash, details: {runtime: "deno"}}
@@ -72,7 +72,6 @@ An ecosystem of functional web tools, that aims to make code more:
 - `Fast` : Holding the record of being the fastest framework when it comes to
   `(r: Request) => Response | Promise<Response>` handlers innot only Deno but
   also Bun.
-
 
 ## How?
 
@@ -343,11 +342,11 @@ manually specify these as needed:
 
 ```typescript
 import { wrap } from "vixeny";
- 
-const functionOutsideOfContext = <T extends Object>(ctx: T) => 
+
+const functionOutsideOfContext = <T extends Object>(ctx: T) =>
   Object.keys(ctx)
-  .toString()
- 
+    .toString();
+
 export default wrap()()
   .stdPetition({
     path: "/hello/query1",
@@ -369,3 +368,5 @@ export default wrap()()
 Customization options include `only`, which bypasses the optimizer to add only
 specified functions; `add`, which includes additional functions; and `remove`,
 which excludes.
+
+<FancyLink href="/framework/routing">Next</FancyLink>
