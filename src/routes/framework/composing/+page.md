@@ -51,18 +51,19 @@ You will find a detailed explanation of them in `library`.
 
 Your explanation about the maintainability of Vixeny code offers valuable insights into the benefits of the framework. I'll refine your text for better clarity and grammatical correctness. Here’s an improved version:
 
----
-
 ## Maintainability
 
-Until now, we've focused primarily on functions from `vixeny`. This emphasis isn't merely because the project is functional in nature, but also because this approach ensures:
+Until now, we've primarily focused on functions from `Vixeny`. This focus isn't simply because the project is functional in nature, but also because Vixeny ensures that all exported functions are self-contained, promoting:
 
 - **Future-Proof**: Code written today in Vixeny will remain valid in the future.
-- **Adaptability**: Bug corrections and extensions can be made without breaking existing code.
+- **Adaptability**: Bug corrections and extensions can be implemented without breaking existing code.
+
+Consider the following example:
 
 ```ts
 import { petitions } from "vixeny";
 
+// Creating a resolve
 const getHello = petitions.resolve()({
   f: () => "hello",
 });
@@ -70,7 +71,7 @@ const getHello = petitions.resolve()({
 console.log(getHello);
 ```
 
-Even though `getHello` appears as an object with a key `f`:
+Although `getHello` may seem to be just an object with the key `f`, logging this function reveals:
 
 ```js
 {
@@ -83,7 +84,7 @@ Even though `getHello` appears as an object with a key `f`:
 }
 ```
 
-It's crucial to understand that this is a `readonly` object. This means that once `getHello` is defined, its structure and behavior cannot be altered, which helps to safeguard the integrity and stability against weird side effects, also, this behavior extends `wrap` and other applications like `plugins` and `templates`.
+It's crucial to understand that this object is `readonly`. Once `getHello` is defined, its structure and behavior cannot be altered by any of Vixeny's tools, which helps to safeguard the integrity and stability of your applications against unexpected side effects.
 
 
 ## Types
