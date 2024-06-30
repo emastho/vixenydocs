@@ -8,7 +8,7 @@
 
 Now that we know how to create routes and have some insights into what we can do, let's discuss `petitions` and `composer` and explore why they exist.
 
-The TL;DR is that `petitions` create `typed objects` that maintain structure across versions, think about it as an abstract route. You can link these objects together like Legos, and also compose them into functional units with `composer` to use within Vixeny or wherever else they may be needed.
+The TL;DR is that `petitions` create `Morphic Objects` that maintain structure across versions, think about it as an abstract route. You can link these objects together like Legos, and also compose them into functional units with `composer` to use within Vixeny or wherever else they may be needed.
 
 ```ts
 import { composer, petitions } from "vixeny";
