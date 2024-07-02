@@ -48,10 +48,10 @@ const apiWrap = wrap(api)()
   });
 
 // Merging the paths
-const root = wrap()()
+const root = wrap()(
   // You can also unwrap it in the constructor
   // apiWrap.unwrap(),
-
+  )
   .union(apiWrap.unwrap())
   .stdPetition({
     path: "/",
@@ -105,6 +105,8 @@ const app = wrap()()
     path: "/hello",
     f: () => "world",
   });
+
+// Note that we are using the same `app`, all instance of wrap are immutable
 
 // Testing the wrap
 const handler = app
@@ -160,6 +162,8 @@ const app = wrap()()
     path: "/hello",
     f: () => "world",
   });
+
+// Note that we are using the same `app`, all instance of wrap are immutable
 
 const strictSlashTests = app
   .testRequests();
