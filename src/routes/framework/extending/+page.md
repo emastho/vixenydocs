@@ -16,7 +16,7 @@ Enclosing in Vixeny allows you to nest wraps, other frameworks  and functions wi
 
 ```ts
 // Making a wrap with a specific index base set at the fourth segment
-const wrapAt4 = wrap({
+const handlerAt4 = wrap({
   indexBase: {
     at: 4,  
   },
@@ -31,11 +31,11 @@ const wrapAt4 = wrap({
   })
   .compose();
 
-// Making a server that includes the wrap within a broader path context
-const serve = wrap()()
+// Making a handler that includes the wrap within a broader path context
+const handler = wrap()()
   .petitionWithoutCTX({
     path: "/bar/*",  // Encloses "wrapAt4" within the "/bar" path
-    r: wrapAt4,
+    r: handlerAt4,
   }).testRequests();
 
 const base = "http://localhost/bar";
@@ -43,10 +43,10 @@ const req = new Request(base + "/foo");
 const param = new Request(base + "/foo/param");
 
 // Executing and logging the response from the "/foo" route
-await serve(req).then((x) => x.text())
+await handler(req).then((x) => x.text())
  // Expected to log "from inside"
     .then(console.log);
-await serve(param)
+await handler(param)
     .then((x) => x.text())
     // Expected to log "param"
     .then(console.log); 

@@ -8,9 +8,9 @@
 import { otherWrap } from "./setup.ts";
 import { wrap } from "vixeny";
 
-const testServer = server.testRequests();
+const testHandler = handler.testRequests();
 
-const server = wrap()()
+const handler = wrap()()
   .stdPetition({
     path: "/one",
     f: () => "one",

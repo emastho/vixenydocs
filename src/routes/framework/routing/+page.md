@@ -107,35 +107,35 @@ const app = wrap()()
   });
 
 // Testing the wrap
-const server = app
+const handler = app
   .testRequests();
 
 // Testing the wrap with the options
-const atFourServer = app
+const atFourhandler = app
   // Adding the options
   .changeOptions(opt)
   .testRequests();
 
-// Expected behavior of the server
+// Expected behavior of the handler
 console.log(
   // true
-  (await server(atIndex)).status === 200,
+  (await handler(atIndex)).status === 200,
   // true
-  (await server(atFourBar)).status === 404,
+  (await handler(atFourBar)).status === 404,
   // true
-  (await server(atFourBar)).status === (await server(atIndexFoo)).status,
+  (await handler(atFourBar)).status === (await handler(atIndexFoo)).status,
 );
 
-// Checking the request status after moving the server one directory deeper
+// Checking the request status after moving the handler one directory deeper
 
 console.log(
   // true
-  (await atFourServer(atIndex)).status === 404,
+  (await atFourhandler(atIndex)).status === 404,
   // true
-  (await atFourServer(atFourBar)).status === 200,
+  (await atFourhandler(atFourBar)).status === 200,
   // true
-  (await atFourServer(atFourBar)).status ===
-    (await atFourServer(atIndexFoo)).status,
+  (await atFourhandler(atFourBar)).status ===
+    (await atFourhandler(atIndexFoo)).status,
 );
 ```
 

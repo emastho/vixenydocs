@@ -90,15 +90,15 @@ Without more delays, let's start with our basics~
 
 # Quick start
 
-Ready to install it?.
+Ready to install?.
 
 <Tabs data={install}/>
 
-# Petitions
+<br>
 
-In Vixeny, routes are referred to as "petitions." These are objects that in
-almost all cases necessitate a function, denoted as `f`, and a `path`. The
-example below illustrates how to define a basic petition:
+# Creating Your First Petition
+
+In Vixeny, routes are referred to as `petitions`. These are objects that necessitate a function, denoted as `f`, and a `path`. The example below illustrates how to define a basic petition:
 
 ```javascript
 import { petitions } from "vixeny";
@@ -109,17 +109,15 @@ const helloWorld = petitions.common()({
   f: () => "helloWorld",
 });
 
-// Returning a `Response`
-const ping = petitions.standard()({
-  path: "/ping",
-  f: () => new Response("Pong"),
-});
+
 ```
 
-This there are some special petitions `resolve` and `branch` that will cover
+There are some special petitions `resolve` and `branch` that will cover
 later but here a quick snapshot of the you can do:
 
 <Tabs data={tab0}/>
+
+<br>
 
 # Wrap
 
@@ -138,7 +136,7 @@ methods:
 
 ## Testing
 
-Vixeny can be tested without the need for a server, allowing for individual or
+Vixeny can be tested without the need for a handler, allowing for individual or
 comprehensive testing of wraps:
 
 <Tabs data={tab3}/>
@@ -193,7 +191,7 @@ before its caller accesses to it, making a chain, let's see more examples.
 
 The most fundamental type in Vixeny is a "Morphism." Something extends to
 anything that has an `f`, and they can be linked together making powerful
-monolithic structures (All code combined, tightly linked).
+monolithic structures (All code interconnected and tightly integrated).
 
 ```javascript
 import { composer, petitions } from "vixeny";
@@ -308,65 +306,5 @@ const serve = wrap(options)()
 > This feature underscores the importance of utilizing `morphism` to ensure type
 > safety within your functions.
 
-# Composer
-
-The `composer` in Vixeny plays a crucial role by overseeing the `ctx` within
-functions, composing petitions, chaining `resolve` and `branch`, and efficiently
-handling both asynchronous and synchronous operations. But what exactly does
-this entail? Let's delve into the concept of `ctx` and its role in TypeScript,
-which exposes all native functions (including plugins, not covered here):
-
-```typescript
-import { wrap } from "vixeny";
-
-export default wrap()()
-  .stdPetition({
-    path: "/",
-    f: () => "helloWorld",
-  })
-  // Console logging: []
-  .debugLast()
-  .stdPetition({
-    path: "/hello/:id",
-    f: (c) => c.param.id,
-  })
-  // Console logging: ["param"]
-  .debugLast();
-```
-
-The composer analyzes your petitions and selectively adds only the necessary
-elements to the `CTX`. This process ensures optimal performance and cleaner code
-by avoiding unnecessary inclusions. However, the optimizer's automated nature
-means it might not automatically include external function requirements. You can
-manually specify these as needed:
-
-```typescript
-import { wrap } from "vixeny";
-
-const functionOutsideOfContext = <T extends Object>(ctx: T) =>
-  Object.keys(ctx)
-    .toString();
-
-export default wrap()()
-  .stdPetition({
-    path: "/hello/query1",
-    f: (c) => functionOutsideOfContext(c),
-  })
-  // Console logging: []
-  .debugLast()
-  .stdPetition({
-    path: "/hello/query2",
-    f: (c) => functionOutsideOfContext(c),
-    options: {
-      add: ["query"],
-    },
-  })
-  // Console logging: ["query"]
-  .debugLast();
-```
-
-Customization options include `only`, which bypasses the optimizer to add only
-specified functions; `add`, which includes additional functions; and `remove`,
-which excludes.
 
 <FancyLink href="/framework/routing">Next</FancyLink>

@@ -176,4 +176,66 @@ It's important to note that `petitionWithoutCTX` and `petitions.response` do not
 have a `CTX` and are not composed like other functions. This isolation of code,
 typically done with `at`, will be covered in the `extending` section.
 
+# Composer
+
+The `composer` in Vixeny plays a crucial role by overseeing the `ctx` within
+functions, composing petitions, chaining `resolve` and `branch`, and efficiently
+handling both asynchronous and synchronous operations. But what exactly does
+this entail? Let's delve into the concept of `ctx` and its role in TypeScript,
+which exposes all native functions (including plugins, not covered here):
+
+```typescript
+import { wrap } from "vixeny";
+
+export default wrap()()
+  .stdPetition({
+    path: "/",
+    f: () => "helloWorld",
+  })
+  // Console logging: []
+  .debugLast()
+  .stdPetition({
+    path: "/hello/:id",
+    f: (c) => c.param.id,
+  })
+  // Console logging: ["param"]
+  .debugLast();
+```
+
+The composer analyzes your petitions and selectively adds only the necessary
+elements to the `CTX`. This process ensures optimal performance and cleaner code
+by avoiding unnecessary inclusions. However, the optimizer's automated nature
+means it might not automatically include external function requirements. You can
+manually specify these as needed:
+
+```typescript
+import { wrap } from "vixeny";
+
+const functionOutsideOfContext = <T extends Object>(ctx: T) =>
+  Object.keys(ctx)
+    .toString();
+
+export default wrap()()
+  .stdPetition({
+    path: "/hello/query1",
+    f: (c) => functionOutsideOfContext(c),
+  })
+  // Console logging: []
+  .debugLast()
+  .stdPetition({
+    path: "/hello/query2",
+    f: (c) => functionOutsideOfContext(c),
+    options: {
+      add: ["query"],
+    },
+  })
+  // Console logging: ["query"]
+  .debugLast();
+```
+
+Customization options include `only`, which bypasses the optimizer to add only
+specified functions; `add`, which includes additional functions; and `remove`,
+which excludes.
+
+
 <FancyLink href="/framework/extending">Next</FancyLink>

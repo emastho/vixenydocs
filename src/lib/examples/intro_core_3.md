@@ -5,13 +5,13 @@
 {#if runtime == "main"}
 
 ```ts
-import { server } from "./setup.ts";
+import { handler } from "./setup.ts";
 
-const testServer = server.testRequests();
+const testHandler = handler.testRequests();
 
 // "helloWold"
 console.log(
-  await testServer(new Request("http://localhost/helloWold"))
+  await testHandler(new Request("http://localhost/helloWold"))
     .then((response) => response.text()),
 );
 ```
@@ -21,7 +21,7 @@ console.log(
 ```ts
 import { wrap } from "vixeny";
 
-const server = wrap()()
+const handler = wrap()()
   .stdPetition({
     path: "/helloWold",
     f: () => "helloWold",
@@ -35,7 +35,7 @@ const server = wrap()()
     f: () => "two",
   })
 
-export server
+export handler
 ```
 
 {/if}
