@@ -118,6 +118,8 @@ well as a simplified approach that does not use the context object (`CTX`).
 Let's add some CORS settings and see these petitions in action:
 
 ```ts
+import { wrap , plugins } from "vixeny";
+
 const opt = plugins.globalOptions({
   cors: {
     allowOrigins: "*",
