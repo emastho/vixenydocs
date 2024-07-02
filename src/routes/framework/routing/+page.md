@@ -13,7 +13,7 @@
 
 <svelte:head>
 
-<title>Quick start - Vixeny</title>
+<title>Routing - Vixeny</title>
 <meta name="description" content="Putting things together" />
 </svelte:head>
 
@@ -72,7 +72,7 @@ behavior will be explained further in the `Wrap` section of the `library`.
 We fully support wildcards `/path/*` using the following order:
 
 - Real paths (e.g., `/`, `/user`, `/user/:id`)
-- Wildcards (e.g., `/static/html/*` -> `/static/*` -> `/*`)
+- Wildcards and static files (e.g., `/static/html/*` -> `/static/*` -> `/*`)
 
 This means that `real paths` are prioritized over wildcards, which reflect other
 nested wildcards.
@@ -188,6 +188,47 @@ console.log(
   (await flexibleSlashTests(req)).status === 200,
   // Expected to be 200, /hello/ is treated the same as /hello
   (await flexibleSlashTests(trailingSlash)).status === 200,
+);
+```
+
+## Static File Handling
+
+In web development, serving static files (like images, scripts, and stylesheets) is a common requirement. Vixeny simplifies this process with built-in support for static file serving.
+
+Consider a scenario where you want to serve a simple `package.json` file from the root directory of your project. Here’s how you can set up Vixeny to handle this:
+
+```ts
+import { plugins, petitions, composeResponse } from "vixeny";
+
+// Define a basic response
+const helloWorld = petitions.common()({
+  path: '/',
+  f: () => 'hello world!'
+});
+
+// Create a request for a static file
+const req = new Request("http://localhost/package.json");
+
+// Compose the response handler with static file support
+const handler = composeResponse()([
+  helloWorld,
+  plugins.fileServer({
+    type: "fileServer",
+    // Specifies the directory from which files will be served, 
+    // relative to the directory where the server was started.
+    path: "./",
+    // Base directory path on the server under which files will be accessible
+    name: "/",
+    // Disables automatic MIME type detection to allow more granular control if required
+    mime: false
+  })
+]);
+
+// Fetching the package.json file
+console.log(
+  await Promise
+    .resolve(handler(req))
+    .then(x => x.text())
 );
 ```
 
