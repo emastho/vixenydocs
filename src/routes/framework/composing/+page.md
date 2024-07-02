@@ -181,8 +181,33 @@ typically done with `at`, will be covered in the `extending` section.
 The `composer` in Vixeny plays a crucial role by overseeing the `ctx` within
 functions, composing petitions, chaining `resolve` and `branch`, and efficiently
 handling both asynchronous and synchronous operations. But what exactly does
-this entail? Let's delve into the concept of `ctx` and its role in TypeScript,
-which exposes all native functions (including plugins, not covered here):
+this entail? Let's delve into the concept of `ctx` and its role.
+
+## Native components
+
+Plugins are not listed:
+
+- **args:** Passes the arguments to the current CTX when a `branch` is composed.
+- **resolve:** Gets the values of the resolved functions.
+- **branch:** Gets access to the functions in `branch`.
+- **req:** Direct access to the HTTP request object.
+- **query:** Facilitates easy access to URL query parameters.
+- **param:** Extracts URL path parameters.
+- **headers:** Provides access to HTTP request headers (Only for costume
+  petitions).
+- **date:** Offers access to the current timestamp.
+- **cookie:** Manages HTTP cookies.
+- **io:** Handles file operations.
+
+If `crypto` with at least a `globalKey` is present.
+
+- **sign:** Gives access to a sign function.
+- **verify:** Gives access to a verify function.
+- **token:** Verifies the cookies with the current key.
+
+## Debugging
+
+Transparency and bla bla (add later)
 
 ```typescript
 import { wrap } from "vixeny";
@@ -201,6 +226,8 @@ export default wrap()()
   // Console logging: ["param"]
   .debugLast();
 ```
+
+## Add, Remove and Only
 
 The composer analyzes your petitions and selectively adds only the necessary
 elements to the `CTX`. This process ensures optimal performance and cleaner code
@@ -236,6 +263,5 @@ export default wrap()()
 Customization options include `only`, which bypasses the optimizer to add only
 specified functions; `add`, which includes additional functions; and `remove`,
 which excludes.
-
 
 <FancyLink href="/framework/extending">Next</FancyLink>

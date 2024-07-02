@@ -98,7 +98,9 @@ Ready to install?.
 
 # Creating Your First Petition
 
-In Vixeny, routes are referred to as `petitions`. These are objects that necessitate a function, denoted as `f`, and a `path`. The example below illustrates how to define a basic petition:
+In Vixeny, routes are referred to as `petitions`. These are objects that
+necessitate a function, denoted as `f`, and a `path`. The example below
+illustrates how to define a basic petition:
 
 ```javascript
 import { petitions } from "vixeny";
@@ -108,12 +110,10 @@ const helloWorld = petitions.common()({
   path: "/hello",
   f: () => "helloWorld",
 });
-
-
 ```
 
-There are some special petitions `resolve` and `branch` that will cover
-later but here a quick snapshot of the you can do:
+There are some special petitions `resolve` and `branch` that will cover later
+but here a quick snapshot of the you can do:
 
 <Tabs data={tab0}/>
 
@@ -305,6 +305,5 @@ const serve = wrap(options)()
 
 > This feature underscores the importance of utilizing `morphism` to ensure type
 > safety within your functions.
-
 
 <FancyLink href="/framework/routing">Next</FancyLink>

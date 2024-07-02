@@ -48,10 +48,10 @@ const apiWrap = wrap(api)()
   });
 
 // Merging the paths
-const root = wrap()(
+const root = wrap()()
   // You can also unwrap it in the constructor
   // apiWrap.unwrap(),
-  )
+
   .union(apiWrap.unwrap())
   .stdPetition({
     path: "/",
@@ -193,17 +193,21 @@ console.log(
 
 ## Static File Handling
 
-In web development, serving static files (like images, scripts, and stylesheets) is a common requirement. Vixeny simplifies this process with built-in support for static file serving.
+In web development, serving static files (like images, scripts, and stylesheets)
+is a common requirement. Vixeny simplifies this process with built-in support
+for static file serving.
 
-Consider a scenario where you want to serve a simple `package.json` file from the root directory of your project. Here’s how you can set up Vixeny to handle this:
+Consider a scenario where you want to serve a simple `package.json` file from
+the root directory of your project. Here’s how you can set up Vixeny to handle
+this:
 
 ```ts
-import { plugins, petitions, composeResponse } from "vixeny";
+import { composeResponse, petitions, plugins } from "vixeny";
 
 // Define a basic response
 const helloWorld = petitions.common()({
-  path: '/',
-  f: () => 'hello world!'
+  path: "/",
+  f: () => "hello world!",
 });
 
 // Create a request for a static file
@@ -214,21 +218,21 @@ const handler = composeResponse()([
   helloWorld,
   plugins.fileServer({
     type: "fileServer",
-    // Specifies the directory from which files will be served, 
+    // Specifies the directory from which files will be served,
     // relative to the directory where the server was started.
     path: "./",
     // Base directory path on the server under which files will be accessible
     name: "/",
     // Disables automatic MIME type detection to allow more granular control if required
-    mime: false
-  })
+    mime: false,
+  }),
 ]);
 
 // Fetching the package.json file
 console.log(
   await Promise
     .resolve(handler(req))
-    .then(x => x.text())
+    .then((x) => x.text()),
 );
 ```
 
