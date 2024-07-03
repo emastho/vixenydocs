@@ -22,8 +22,7 @@
 This lesson will be brief, yet it is crucial for understanding the logic of
 pathing in Vixeny. We'll explore the granular power you have to manipulate your
 code. It's important to grasp these basic concepts before we dive deeper into
-`composing` and incorporating these ideas not only in this framework but in any
-other as well.
+`composing` and incorporating these ideas anywhere.
 
 ## Pathing
 
@@ -124,8 +123,6 @@ console.log(
   (await handler(atIndex)).status === 200,
   // true
   (await handler(atFourBar)).status === 404,
-  // true
-  (await handler(atFourBar)).status === (await handler(atIndexFoo)).status,
 );
 
 // Checking the request status after moving the handler one directory deeper
@@ -135,9 +132,6 @@ console.log(
   (await atFourhandler(atIndex)).status === 404,
   // true
   (await atFourhandler(atFourBar)).status === 200,
-  // true
-  (await atFourhandler(atFourBar)).status ===
-    (await atFourhandler(atIndexFoo)).status,
 );
 ```
 

@@ -13,7 +13,7 @@
 Now that we know how to create routes and have some insights into what we can
 do, let's discuss `petitions` and `composer` and explore why they exist.
 
-The TL;DR is that `petitions` create `Morphic Objects` that maintain structure
+The TL;DR is that `petitions` create `morphic objects` that maintain structure
 across versions, think about it as an abstract route. You can link these objects
 together like Legos, and also compose them into functional units with `composer`
 to use within Vixeny or wherever else they may be needed.
@@ -95,7 +95,7 @@ function reveals:
 }
 ```
 
-It's crucial to understand that this object is `readonly`. Once `getHello` is
+It's crucial to understand that this object is a `readonly like` object. Once `getHello` is
 defined, its structure and behavior cannot be altered by any of Vixeny's tools,
 which helps to safeguard the integrity and stability of your applications
 against unexpected side effects.
@@ -106,7 +106,7 @@ Vixeny allows different types of petition handling to suit various application
 needs. Here, we demonstrate the use of `custom` and `standard` petitions, as
 well as a simplified approach that does not use the context object (`CTX`).
 
-- **Custom Petition**: The headers are dynamically passed and set based on
+- **Custom Petition (costume)**: The headers are dynamically passed and set based on
   petition configurations and the provided options.
 - **Standard Petition (common)**: Utilizes a predefined response format. Note
   that headers are set statically and cannot be altered dynamically within the
@@ -181,11 +181,13 @@ typically done with `at`, will be covered in the `extending` section.
 # Composer
 
 The `composer` in Vixeny plays a crucial role by overseeing the `ctx` within
-functions, composing petitions, chaining `resolve` and `branch`, and efficiently
+functions, composing petitions and `branch`, chaining `resolve`, and efficiently
 handling both asynchronous and synchronous operations. But what exactly does
 this entail? Let's delve into the concept of `ctx` and its role.
 
 ## Native components
+
+Here a list of all the methods availiable.
 
 Plugins are not listed:
 
@@ -209,7 +211,7 @@ If `crypto` with at least a `globalKey` is present.
 
 ## Debugging
 
-Transparency and bla bla (add later)
+You can check and see what the comper will do at any moment with `debugLast`, adding an extra layer of transparency.
 
 ```typescript
 import { wrap } from "vixeny";
