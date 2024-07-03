@@ -7,17 +7,14 @@ const opt = plugins.globalOptions({
 });
 
 // Define a basic response
-const helloWorld = petitions.common()({
-  path: "/fff",
-  f: () => "hello world!",
+const ping = petitions.common()({
+  path: "/ping",
+  f: () => "pong",
 });
-
-// Create a request for a static file
-const req = new Request("http://localhost/package.json");
 
 // Compose the response handler with static file support
 const handler = composeResponse(opt)([
-  helloWorld,
+  ping,
   plugins.fileServer({
     type: "fileServer",
     // Specifies the directory from which files will be served,

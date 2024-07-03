@@ -31,8 +31,9 @@
 		Docs {version}
 	</div>
 </div>
+<br>
 <FancyLink href="/framework/init">Let's begin</FancyLink>
-
+<br>
 <Features />
 
 <h2 style="margin-top: 48px;">Quick start</h2>
