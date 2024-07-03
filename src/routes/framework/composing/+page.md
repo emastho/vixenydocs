@@ -95,10 +95,10 @@ function reveals:
 }
 ```
 
-It's crucial to understand that this object is a `readonly like` object. Once `getHello` is
-defined, its structure and behavior cannot be altered by any of Vixeny's tools,
-which helps to safeguard the integrity and stability of your applications
-against unexpected side effects.
+It's crucial to understand that this object is a `readonly like` object. Once
+`getHello` is defined, its structure and behavior cannot be altered by any of
+Vixeny's tools, which helps to safeguard the integrity and stability of your
+applications against unexpected side effects.
 
 ## Types
 
@@ -106,8 +106,8 @@ Vixeny allows different types of petition handling to suit various application
 needs. Here, we demonstrate the use of `custom` and `standard` petitions, as
 well as a simplified approach that does not use the context object (`CTX`).
 
-- **Custom Petition (costume)**: The headers are dynamically passed and set based on
-  petition configurations and the provided options.
+- **Custom Petition (costume)**: The headers are dynamically passed and set
+  based on petition configurations and the provided options.
 - **Standard Petition (common)**: Utilizes a predefined response format. Note
   that headers are set statically and cannot be altered dynamically within the
   function.
@@ -118,7 +118,7 @@ well as a simplified approach that does not use the context object (`CTX`).
 Let's add some CORS settings and see these petitions in action:
 
 ```ts
-import { wrap , plugins } from "vixeny";
+import { plugins, wrap } from "vixeny";
 
 const opt = plugins.globalOptions({
   cors: {
@@ -211,7 +211,8 @@ If `crypto` with at least a `globalKey` is present.
 
 ## Debugging
 
-You can check and see what the comper will do at any moment with `debugLast`, adding an extra layer of transparency.
+You can check and see what the comper will do at any moment with `debugLast`,
+adding an extra layer of transparency.
 
 ```typescript
 import { wrap } from "vixeny";

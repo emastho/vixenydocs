@@ -116,7 +116,6 @@ const helloWorld = petitions.common()({
   path: "/hello",
   f: () => new Response("hello World!"),
 });
-
 ```
 
 There are some special petitions `resolve` and `branch` that will cover later
@@ -124,7 +123,8 @@ but here a quick snapshot of the you can do:
 
 <Tabs data={tab0}/>
 
-Generally speaking, you will rarely ever have to declare them in this way, for that we have `wrap` to handle petitions and all our tools.
+Generally speaking, you will rarely ever have to declare them in this way, for
+that we have `wrap` to handle petitions and all our tools.
 
 <br>
 
@@ -135,7 +135,6 @@ manipulation of petitions. It allows you to configure options, and incorporate a
 suite of tools for debugging, testing, and more.
 
 <Tabs data={tab1}/>
-
 
 ## Testing
 
