@@ -86,7 +86,7 @@ Vixeny's name comes from seeing her like a style of coding, it's not difficult
 to learn but different and rewarding, focusing more on the flow of your code,
 with that unique ability to see everything at any point with full transparency.
 
-Without more delays, let's start with our basics~
+Without more delays, let's start with our `zero to hero`~
 
 # Quick start
 
@@ -96,7 +96,7 @@ Ready to install?.
 
 <br>
 
-# Creating Your First Petition
+# Petitions
 
 In Vixeny, routes are referred to as `petitions`. These are objects that
 necessitate a function, denoted as `f`, and a `path`. The example below
@@ -108,14 +108,23 @@ import { petitions } from "vixeny";
 // Returning a `BodyInit`
 const helloWorld = petitions.common()({
   path: "/hello",
-  f: () => "helloWorld",
+  f: () => "hello World!",
 });
+
+// Returning a `Response`
+const helloWorld = petitions.common()({
+  path: "/hello",
+  f: () => new Response("hello World!"),
+});
+
 ```
 
 There are some special petitions `resolve` and `branch` that will cover later
 but here a quick snapshot of the you can do:
 
 <Tabs data={tab0}/>
+
+Generally speaking, you will rarely ever have to declare them in this way, for that we have `wrap` to handle petitions and all our tools.
 
 <br>
 
@@ -127,12 +136,6 @@ suite of tools for debugging, testing, and more.
 
 <Tabs data={tab1}/>
 
-## Debugging
-
-With `wrap`, you can easily inspect the current state at any point between
-methods:
-
-<Tabs data={tab2}/>
 
 ## Testing
 
@@ -175,6 +178,8 @@ console.log(await mocked(request).then((r) => r.text()));
 
 Vixeny is fully typed, with JSDoc examples provided for ease of use. Hover over
 the code in your IDE to check.
+
+<br>
 
 # Resolution
 
