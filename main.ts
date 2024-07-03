@@ -1,5 +1,11 @@
 import { composeResponse, petitions, plugins } from "vixeny";
 
+const opt = plugins.globalOptions({
+  router: {
+    strictTrailingSlash: false,
+  },
+});
+
 // Define a basic response
 const helloWorld = petitions.common()({
   path: "/fff",
@@ -10,7 +16,7 @@ const helloWorld = petitions.common()({
 const req = new Request("http://localhost/package.json");
 
 // Compose the response handler with static file support
-const handler = composeResponse()([
+const handler = composeResponse(opt)([
   helloWorld,
   plugins.fileServer({
     type: "fileServer",
@@ -21,11 +27,11 @@ const handler = composeResponse()([
     name: "/",
     // Disables automatic MIME type detection to allow more granular control if required
     removeExtensionOf: [".html"],
-    slashIs: "index"
+    slashIs: "index",
   }),
 ]);
 
 export default {
-    fetch: handler,
-    port: 4173,
-}
+  fetch: handler,
+  port: 4173,
+};
