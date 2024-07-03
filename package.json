@@ -1,6 +1,6 @@
 {
   "name": "svl",
-  "version": "1.0.7",
+  "version": "0.1.42",
   "private": true,
   "scripts": {
     "dev": "vite dev",

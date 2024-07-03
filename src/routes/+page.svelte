@@ -31,6 +31,7 @@
 		Docs {version}
 	</div>
 </div>
+<FancyLink href="/framework/init">Let's begin</FancyLink>
 
 <Features />
 
