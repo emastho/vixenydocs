@@ -24,6 +24,10 @@
 	raccoons, it's gonna be finished, have patience.
 </div>
 
+<div class="warning warning-2">
+	<strong>Yay!</strong>: Hosted with vixeny.
+</div>
+
 <div style="margin-top: 64px; margin-bottom: 16px">
 	<h2 style="margin-bottom: 0px; padding: 0; color: var(--text)">Welcome to</h2>
 	<h1 style="margin-bottom: 8px; padding: 0; color: var(--main)">Vixeny</h1>
