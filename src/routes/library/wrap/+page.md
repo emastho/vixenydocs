@@ -1,3 +1,7 @@
+<script>
+  import '../../prims.mjs';
+</script>
+
 <svelte:head>
 
 <title>Wrap - Vixeny</title>

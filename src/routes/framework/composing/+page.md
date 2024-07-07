@@ -1,4 +1,5 @@
 <script>
+  import '../../prims.mjs';
   import FancyLink from '$lib/components/FancyLink.svelte';
 </script>
 

@@ -1,4 +1,5 @@
 <script>
+   import '../../prims.mjs';
     import Tabs from "$lib/components/Tabs.md"
     import Bash from "$lib/components/SmallComponents/Bash.md"
     import example0 from "$lib/examples/intro_core_0.md"
@@ -102,7 +103,7 @@ In Vixeny, routes are referred to as `petitions`. These are objects that
 necessitate a function, denoted as `f`, and a `path`. The example below
 illustrates how to define a basic petition:
 
-```javascript
+```javascript 
 import { petitions } from "vixeny";
 
 // Returning a `BodyInit`
