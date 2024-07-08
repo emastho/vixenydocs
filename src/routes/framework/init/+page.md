@@ -89,7 +89,7 @@ with that unique ability to see everything at any point with full transparency.
 
 Without more delays, let's start with our `zero to hero`~
 
-# Quick start
+## Quick start
 
 Ready to install?.
 
@@ -97,7 +97,7 @@ Ready to install?.
 
 <br>
 
-# Petitions
+## Petitions
 
 In Vixeny, routes are referred to as `petitions`. These are objects that
 necessitate a function, denoted as `f`, and a `path`. The example below
@@ -129,7 +129,7 @@ that we have `wrap` to handle petitions and all our tools.
 
 <br>
 
-# Wrap
+## Wrap
 
 The `wrap` is a pure function designed to facilitate the handling and
 manipulation of petitions. It allows you to configure options, and incorporate a
@@ -181,7 +181,7 @@ the code in your IDE to check.
 
 <br>
 
-# Resolution
+## Resolution
 
 Unlike traditional frameworks that rely on life cycles for code execution and
 rendering management, Vixeny employs a concept called "resolution." A resolution

@@ -12,31 +12,16 @@
 	/>
 </svelte:head>
 
-<div class="warning" style="margin-bottom: 8px">
-	Vixeny is currently in Beta stage. We appreciate your <a
-		href="https://github.com/mimiMonads/vixeny/issues"
-		target="_blank">feedback</a
-	>!
-</div>
 
-<div class="warning warning-2">
-	<strong>Docs are under development</strong>: This website is stitched together by a bunch of lazy
-	raccoons, it's gonna be finished, have patience.
-</div>
 
-<div class="warning warning-2">
-	<strong>Yay!</strong>: Hosted with vixeny.
-</div>
-
-<div style="margin-top: 64px; margin-bottom: 16px">
+<div>
 	<h2 style="margin-bottom: 0px; padding: 0; color: var(--text)">Welcome to</h2>
 	<h1 style="margin-bottom: 8px; padding: 0; color: var(--main)">Vixeny</h1>
 	<div style="padding-bottom: 32px; margin-top: -8px; color: gray;">
 		Docs {version}
 	</div>
 </div>
-<br>
-<FancyLink href="/framework/init">Let's begin</FancyLink>
+
 <br>
 <Features />
 
