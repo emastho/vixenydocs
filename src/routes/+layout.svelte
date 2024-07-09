@@ -94,7 +94,9 @@
 		flex-direction: column;
 		position: fixed;
 		height: 100%;
-		/* overflow-y: scroll; */
+		overflow-y: scroll;
+		scrollbar-width: thin;
+		scrollbar-color: var(--fronter) var(--side);
 	}
 
 	.logoArea {

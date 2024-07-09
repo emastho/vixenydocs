@@ -1,7 +1,7 @@
 <!-- Updated Svelte Component -->
 <div class="container">
 	<div class="card">
-	  <h2>Unmatched Speed</h2>
+	  <h2>Unmatched</h2>
 	  <p>Fastest framework in the ecosystem.</p>
 	</div>
 	<div class="card">
@@ -41,9 +41,10 @@
 	  flex: 1;
 	  padding: 24px; /* Adjusted padding for better content display */
 
-	  border: 1px solid var(--main); /* Subtle border */
+		border: 2px solid var(--closer);
+	  border-bottom: 4px solid var(--main); /* Subtle border */
 	  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Soft shadow for 3D effect */
-	  border-radius: 8px; /* Rounded corners for a smoother look */
+	  border-radius: 0px; /* Rounded corners for a smoother look */
 	  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions for interactions */
 	}
   
