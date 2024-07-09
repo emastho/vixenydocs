@@ -13,10 +13,12 @@
 </script>
 
 <svelte:head>
-
-<title>Routing - Vixeny</title>
-<script src='/prism.mjs' defer></script>
-<meta name="description" content="Putting things together" />
+    <title>Routing - Vixeny Framework</title>
+    <meta name="description" content="Learn about routing in the Vixeny framework. Understand pathing, priorities, handling trailing slashes, and static file handling with comprehensive examples." />
+    <meta name="keywords" content="Vixeny, routing, web development, pathing, priorities, trailing slashes, static file handling, JavaScript, TypeScript, petitions, wrap function" />
+    <meta name="author" content="Vixeny Team" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src='/prism.mjs' defer></script>
 </svelte:head>
 
 # Routing
@@ -28,7 +30,7 @@ code. It's important to grasp these basic concepts before we dive deeper into
 
 ## Pathing
 
-As we saw earlier in our introduction, we can create a `union` between two wraps
+ We can create a `union` between two wraps
 and also modify their base using `startswith`.
 
 ```ts

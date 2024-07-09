@@ -38,10 +38,12 @@
 </script>
 
 <svelte:head>
-
-<title>Quick start - Vixeny</title>
-<script src='/prism.mjs'></script>
-<meta name="description" content="How to install Vixeny" />
+    <title>Quick Start with Vixeny Framework - Installation and Examples</title>
+    <meta name="description" content="Learn how to quickly start with the Vixeny framework. Find installation guides and code examples for Bun and Deno runtimes." />
+    <meta name="keywords" content="Vixeny, web development, framework, installation, Bun, Deno, JavaScript, TypeScript, coding examples, petitions, wrap function, functional programming, reusable code" />
+    <meta name="author" content="Vixeny Team" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src='/prism.mjs'></script>
 </svelte:head>
 
 # Welcome to Vixeny!
