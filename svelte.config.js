@@ -4,8 +4,6 @@ import rehypeAuto from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeToc from "@jsdevtools/rehype-toc";
 import { vitePreprocess } from "@sveltejs/kit/vite";
-import remarkGfm from "remark-gfm";
-import remarkFrontmatter from "remark-frontmatter";
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { s } from "hastscript";
@@ -19,7 +17,6 @@ const config = {
     vitePreprocess(),
     mdsvex({
       extensions: [".md"],
-      remarkPlugins: [remarkGfm, remarkFrontmatter],
       rehypePlugins: [rehypeSlug, [rehypeAuto, {
         behavior: "prepend",
         properties: {

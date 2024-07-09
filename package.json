@@ -40,8 +40,6 @@
     "prismjs": "^1.29.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
-    "remark-frontmatter": "^5.0.0",
-    "remark-gfm": "^4.0.0",
     "vixeny": "^0.1.42"
   },
   "license": "GPL2"
