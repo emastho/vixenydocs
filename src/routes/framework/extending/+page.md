@@ -1,11 +1,12 @@
 <script>
-  import '../../prims.mjs';
+
   import FancyLink from '$lib/components/FancyLink.svelte';
 </script>
 
 <svelte:head>
 
 <title>Extending - Vixeny</title>
+<script src='/prism.mjs' defer></script>
 <meta name="description" content="Adding elements together" />
 </svelte:head>
 

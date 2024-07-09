@@ -1,5 +1,5 @@
 <script>
-  import '../../prims.mjs';
+
     import Tabs from "$lib/components/Tabs.md"
     import Bash from "$lib/components/SmallComponents/Bash.md"
     import example0 from "$lib/examples/intro_core_0.md"
@@ -15,6 +15,7 @@
 <svelte:head>
 
 <title>Routing - Vixeny</title>
+<script src='/prism.mjs' defer></script>
 <meta name="description" content="Putting things together" />
 </svelte:head>
 

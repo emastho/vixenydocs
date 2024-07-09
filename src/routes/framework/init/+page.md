@@ -1,5 +1,4 @@
 <script>
-   import '../../prims.mjs';
     import Tabs from "$lib/components/Tabs.md"
     import Bash from "$lib/components/SmallComponents/Bash.md"
     import example0 from "$lib/examples/intro_core_0.md"
@@ -41,6 +40,7 @@
 <svelte:head>
 
 <title>Quick start - Vixeny</title>
+<script src='/prism.mjs' defer></script>
 <meta name="description" content="How to install Vixeny" />
 </svelte:head>
 

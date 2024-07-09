@@ -1,9 +1,6 @@
-<script>
-  import '../../prims.mjs';
-</script>
 
 <svelte:head>
-
+<script src='/prism.mjs' defer></script>
 <title>Wrap - Vixeny</title>
 <meta name="description" content="Understanding wrap"/>
 </svelte:head>

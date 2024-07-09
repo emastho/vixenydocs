@@ -1,11 +1,11 @@
 <script>
-  import '../../prims.mjs';
   import FancyLink from '$lib/components/FancyLink.svelte';
 </script>
 
 <svelte:head>
-
+<script src='/prism.mjs' defer></script>
 <title>Morphism - Vixeny</title>
+
 <meta name="description" content="Understanding morphism" />
 </svelte:head>
 
