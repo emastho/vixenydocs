@@ -132,7 +132,7 @@ Notice that even if you specify only `path` and `f`, the log output is:
   }
 ```
 
-This happens because Vixeny's architecture is designed to ensure that all petitions have the necessary elements to function right out of the box!
+This level of consistency in Vixeny’s architecture ensures that all petitions work seamlessly across different versions right out of the box! This design choice not only simplifies development but also enhances maintainability and scalability.
 
 ### Reusability
 
