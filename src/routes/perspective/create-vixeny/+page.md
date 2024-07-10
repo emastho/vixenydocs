@@ -3,12 +3,16 @@
   // Importing necessary components
   import Tabs from "$lib/components/Tabs.md";
   import Bash from "$lib/components/SmallComponents/Bash.md";
-
+  import plugin from "$lib/examples/plugins_typebox.md";
   // Array containing the installation options for the Tabs component
   const install = [
     { title: "Bun", component: Bash, details: { runtime: "bun" } },
     { title: "Deno", component: Bash, details: { runtime: "deno" } }
   ];
+    const tab0 = [
+        {title: "main.ts", component: plugin, details: {runtime: "main"}},
+        {title: "setup.ts", component: plugin, details: {runtime: "setup"}}
+    ];
 </script>
 
 <svelte:head>
@@ -68,45 +72,9 @@ You will end up with a template like this:
 ## Lazyness
 
 ## Plugins
+/// examples
 
-```ts
-// dev
-import * as Avj from "@feathersjs/schema";
-import * as TypeBox from "@sinclair/typebox";
-// vix
-import * as Vixney from "vixeny";
-import { typeBox } from "vixeny-plugins";
-
-const { plugins, wrap  } = Vixney
-const { Type } = TypeBox;
-
-const parser = typeBox.composedBox(Vixney)(Avj)(TypeBox);
-const bodyParser = parser({
-  key: {
-    scheme: {
-      id: Type.Number(),
-      text: Type.String(),
-      createdAt: Type.Number(),
-      userId: Type.Number(),
-    },
-    options: { $id: "Message", additionalProperties: false },
-  },
-});
-
-const opt = plugins.globalOptions({
-  cyclePlugin: {
-    typebox: bodyParser,
-  },
-});
-
-const serve = wrap(opt)()
-  .stdPetition({
-    path: "/hi",
-    method: "POST",
-    f: ({ typebox }) => JSON.stringify(typebox?.key),
-  })
-  .compose();
-  ```
+<Tabs data={tab0}/>
 
 
 ## Templates
