@@ -30,7 +30,7 @@ code. It's important to grasp these basic concepts before we dive deeper into
 
 ## Pathing
 
- We can create a `union` between two wraps
+ We can create an `union` between two wraps 
 and also modify their base using `startswith`.
 
 ```ts
@@ -51,10 +51,10 @@ const apiWrap = wrap(api)()
   });
 
 // Merging the paths
-const root = wrap()()
+const root = wrap()(
   // You can also unwrap it in the constructor
   // apiWrap.unwrap(),
-
+  )
   .union(apiWrap.unwrap())
   .stdPetition({
     path: "/",
@@ -65,10 +65,7 @@ const root = wrap()()
   .logPaths();
 ```
 
-This helps manage the complexity of routing by providing an easy way to export
-and import `Petitions`. Moreover, since `Wrap` has a monadic structure,
-importing, testing, or modifying any wrap cannot affect other instances. This
-behavior will be explained further in the `Wrap` section of the `library`.
+This helps manage the complexity of routing by providing an easy way to export and import `petitions`. Moreover, since `wrap` has a  monadic structure (A programming concept that helps manage workflows by allowing functions to chain operations in a sequence, while ensuring each operation is isolated from others), importing, testing, or modifying any wrap cannot affect other instances. This behavior will be explained further in the `wrap` section of the library.
 
 ## Priority
 
@@ -93,7 +90,7 @@ import { plugins, wrap } from "vixeny";
 // Requests
 const atIndex = new Request("http://localhost/hello");
 const atFourBar = new Request("http://localhost/bar/hello");
-const atIndexFoo = new Request("http://localhost/Foo/hello");
+const atIndexFoo = new Request("http://localhost/foo/hello");
 
 // Setting up options
 const opt = plugins.globalOptions({

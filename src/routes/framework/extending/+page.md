@@ -10,7 +10,11 @@
 <meta name="description" content="Adding elements together" />
 </svelte:head>
 
-# Enclosing
+# Extending
+
+// Intro
+
+## Enclosing
 
 Enclosing in Vixeny allows you to nest wraps, other frameworks and functions
 within other wraps, effectively creating a clousere that the current wrap can't
@@ -53,5 +57,13 @@ await handler(param)
   // Expected to log "param"
   .then(console.log);
 ```
+
+## Plugins
+ 
+ // Comming soon.
+
+## Exporting
+
+// Cooming soon.
 
 Thanks for your time.

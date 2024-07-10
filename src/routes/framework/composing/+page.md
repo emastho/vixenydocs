@@ -3,10 +3,12 @@
 </script>
 
 <svelte:head>
-<script src='/prism.mjs' defer></script>
-<title>Morphism - Vixeny</title>
+  <script src='/prism.mjs' defer></script>
+  <title>Morphism - Vixeny Framework</title>
+  <meta name="description" content="Understanding morphism in the Vixeny framework. Learn how to create and compose petitions and resolves for effective routing and functional programming." />
+  <meta name="keywords" content="Vixeny, morphism, routing, web development, petitions, composer, JavaScript, TypeScript, functional programming, web framework" />
+  <meta name="author" content="Vixeny Team" />
 
-<meta name="description" content="Understanding morphism" />
 </svelte:head>
 
 # Composing
@@ -58,48 +60,6 @@ console.log(
 
 You will find a detailed explanation of them in `library`.
 
-## Maintainability
-
-Until now, we've primarily focused on functions from `Vixeny`. This focus isn't
-simply because the project is functional in nature, but also because Vixeny
-ensures that all exported functions are self-contained, promoting:
-
-- **Future-Proof**: Code written today in Vixeny will remain valid in the
-  future.
-- **Adaptability**: Bug corrections and extensions can be implemented without
-  breaking existing code.
-
-Consider the following example:
-
-```ts
-import { petitions } from "vixeny";
-
-// Creating a resolve
-const getHello = petitions.resolve()({
-  f: () => "hello",
-});
-
-console.log(getHello);
-```
-
-Although `getHello` may seem to be just an object with the key `f`, logging this
-function reveals:
-
-```js
-{
-  f: [Function: f],
-  type: "morphism",
-  isUsing: [],
-  isAsync: false,
-  o: undefined,
-  ... // and potentially more attributes in the future
-}
-```
-
-It's crucial to understand that this object is a `readonly like` object. Once
-`getHello` is defined, its structure and behavior cannot be altered by any of
-Vixeny's tools, which helps to safeguard the integrity and stability of your
-applications against unexpected side effects.
 
 ## Types
 
@@ -179,14 +139,14 @@ It's important to note that `petitionWithoutCTX` and `petitions.response` do not
 have a `CTX` and are not composed like other functions. This isolation of code,
 typically done with `at`, will be covered in the `extending` section.
 
-# Composer
+## Composer
 
 The `composer` in Vixeny plays a crucial role by overseeing the `ctx` within
 functions, composing petitions and `branch`, chaining `resolve`, and efficiently
 handling both asynchronous and synchronous operations. But what exactly does
 this entail? Let's delve into the concept of `ctx` and its role.
 
-## Native components
+### Native components
 
 Here a list of all the methods availiable.
 
