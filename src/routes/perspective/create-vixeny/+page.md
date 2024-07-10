@@ -69,8 +69,94 @@ You will end up with a template like this:
 
 ## Plugins
 
+```ts
+// dev
+import * as Avj from "@feathersjs/schema";
+import * as TypeBox from "@sinclair/typebox";
+// vix
+import * as Vixney from "vixeny";
+import { typeBox } from "vixeny-plugins";
+
+const { plugins, wrap  } = Vixney
+const { Type } = TypeBox;
+
+const parser = typeBox.composedBox(Vixney)(Avj)(TypeBox);
+const bodyParser = parser({
+  key: {
+    scheme: {
+      id: Type.Number(),
+      text: Type.String(),
+      createdAt: Type.Number(),
+      userId: Type.Number(),
+    },
+    options: { $id: "Message", additionalProperties: false },
+  },
+});
+
+const opt = plugins.globalOptions({
+  cyclePlugin: {
+    typebox: bodyParser,
+  },
+});
+
+const serve = wrap(opt)()
+  .stdPetition({
+    path: "/hi",
+    method: "POST",
+    f: ({ typebox }) => JSON.stringify(typebox?.key),
+  })
+  .compose();
+  ```
+
+
 ## Templates
 
+```ts
+import * as pugModule from "pug";
+import { plugins , composeResponse } from "vixeny";
+import { pugStaticServerPlugin } from "vixeny-perspective";
+
+const serve = composeResponse()([
+  {
+    type: "fileServer",
+    name: "/",
+    path: "./public/",
+    template: [pugStaticServerPlugin(pugModule.compileFile)()],
+  },
+]);
+```
+
 ## Semi Static
+
+
+```ts
+import * as pugModule from "pug";
+import { plugins , composeResponse } from "vixeny";
+import { pugStaticServerPlugin } from "vixeny-perspective";
+
+const serve = composeResponse()([
+  {
+    type: "fileServer",
+    name: "/",
+    path: "./public/",
+    template: [pugStaticServerPlugin(pugModule.compileFile)()],
+  },
+]);
+
+const serve2 = composeResponse()([
+  {
+    type: "fileServer",
+    name: "/",
+    path: "./public/",
+    template: [
+      pugStaticServerPlugin(pugModule.compileFile)({
+        petition: composer.objectNullRequest()({
+          f: () => ({ name: "Dave" }),
+        }),
+      }),
+    ],
+  },
+]);
+```
 
 
