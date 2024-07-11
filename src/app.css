@@ -105,10 +105,11 @@ section p {
   padding-block: 16px;
 }
 
-section code:not(.language-ts):not(.language-typescript):not(.language-json):not(.language-bash):not(.language-js):not(.language-javascript) {
+section code:not([class*=language-]) {
   padding: 2px 6px;
   background-color: var(--closest);
-  border-radius: 4px;
+  /* border-radius: 4px; */
+  margin-block: 2px;
 }
 
 strong {
