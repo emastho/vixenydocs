@@ -191,12 +191,16 @@
 
 	:global(section ul) {
 		list-style-type: decimal;
-		padding-left: 30px;
+		padding-left: calc(17px + 32px);
 	}
 
-	:global(section ul li::marker) {
-		font-family: 'monospace';
+	:global(section ul p) {
+		padding-block: 4px;
 	}
+
+	/* :global(section ul li::marker) {
+		font-family: 'monospace';
+	} */
 
 	@media (width < 1100px) {
 		aside {
