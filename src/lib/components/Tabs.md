@@ -24,7 +24,7 @@ let index = 0;
     display: inline-block;
 
     border: 2px solid var(--closest);
-    border-radius: 6px;
+    /* border-radius: 6px; */
     overflow: hidden;
     background-color: var(--closest)
 }
@@ -40,6 +40,6 @@ button {
 .active {
     background-color: var(--bg);
     color: var(--text);
-    border-radius: 4px;
+    /* border-radius: 4px; */
 }
 </style>
