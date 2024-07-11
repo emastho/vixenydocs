@@ -6,14 +6,14 @@
 
 ```ts
 import { wrap } from "vixeny";
-import { opt , request } from "./setup.ts"
+import { options , request } from "./setup.ts"
 
-const serve = wrap(opt)()
+const serve = wrap(options)()
   .stdPetition({
     path: "/hi",
     method: "POST",
-    f: ({ typebox }) => typebox?.key
-     ? typebox.key.userId
+    f: ({ typebox }) => typebox?.user
+     ? typebox.user.userId
      : null,
   })
   .compose();
@@ -45,7 +45,7 @@ const { Type } = TypeBox;
 const parser = typeBox.composedBox(Vixney)(Avj)(TypeBox);
 
 const bodyParser = parser({
-  key: {
+  user: {
     scheme: {
       id: Type.Number(),
       text: Type.String(),
@@ -56,7 +56,7 @@ const bodyParser = parser({
   },
 });
 
-const opt = plugins.globalOptions({
+const options = plugins.globalOptions({
   cyclePlugin: {
     typebox: bodyParser,
   },
@@ -74,7 +74,7 @@ const opt = plugins.globalOptions({
     body: JSON.stringify(validData),
   });
 
-export { opt , request}
+export { options , request}
 
 ```
 
