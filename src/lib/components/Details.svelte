@@ -38,7 +38,7 @@
 		user-select: none;
 		padding: 14px 32px;
 		/* border: 2px solid #2f2f2f; */
-		/* background: var(--side); */
+		background: var(--side); 
 		color: var(--text);
 
 		border-block: 2px solid var(--side);
