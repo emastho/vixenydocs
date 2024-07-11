@@ -22,7 +22,7 @@
 	li a {
 		display: block;
 		/* background: #2f2f2f; */
-		padding: 0.5rem 32px;
+		padding: 10px 32px;
 		 /* border-radius: 8px;  */
 		/* border: 2px solid #2f2f2f; */
 		transition: 150ms all;

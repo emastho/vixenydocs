@@ -16,7 +16,7 @@
 		background-color: var(--bg);
 		border: 2px solid var(--side);
 		padding: 10px 16px;
-		border-radius: 4px;
+		/* border-radius: 4px; */
 		display: flex;
 		align-items: center;
 		column-gap: 8px;

@@ -64,6 +64,6 @@
 	}
 
 	.navItems {
-		padding-top: 8px;
+		/* padding-top: 8px; */
 	}
 </style>

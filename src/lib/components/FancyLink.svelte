@@ -11,7 +11,7 @@
 		/* border: 4px solid var(--side); */
 		background-color: var(--closer);
 		padding: 1.6rem;
-		border-radius: 4px;
+		/* border-radius: 4px; */
 		margin: 0;
 	}
 

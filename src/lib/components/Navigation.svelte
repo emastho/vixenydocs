@@ -19,9 +19,9 @@
 		padding-inline: 32px;
 	}
 
-	nav .items > :global(*:not(:last-child)) {
+	/* nav .items > :global(*:not(:last-child)) {
 		margin-bottom: 8px;
-	}
+	} */
 
 	nav {
 		align-items: start;
