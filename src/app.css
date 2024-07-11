@@ -210,13 +210,22 @@ pre::-webkit-scrollbar-thumb {
 blockquote {
   font-family: monospace;
   white-space: pre-wrap; 
-  border-left: 5px solid #ccc; 
-  padding-left: 10px; 
-  margin-top: 32px;
-  margin-bottom: 32px;
+  border: 2px solid var(--side);
+  border-left: 5px solid var(--main); 
+  margin: 32px 0;
+  color: white;
+  overflow: auto;
 }
 
 blockquote p {
-  color: green;
-  padding: 0;
+  /* color: green; */
+  padding: 16px;
+  line-height: 24px;
+}
+
+blockquote code:not([class*=language-]) {
+  padding: 8px 6px;
+  margin: 0;
+  background-color: var(--bg);
+  display: inline;
 }
