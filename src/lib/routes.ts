@@ -9,7 +9,6 @@ export const routes: {
   { href: "/framework/composing", name: "Composing", categoryId: 1 },
   { href: "/framework/extending", name: "Extending", categoryId: 1 },
   { href: "/library/wrap", name: "Wrap", categoryId: 2 },
-  { href: "/library/test", name: "Testing", categoryId: 2 },
   { href: "/perspective/create-vixeny", name: "Templates", categoryId: 3 },
   { href: "/plugins/native", name: "Offical", categoryId: 4 },
   { href: "/about/questions", name: "Q&A", categoryId: 5 },
