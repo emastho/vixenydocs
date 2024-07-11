@@ -186,9 +186,9 @@ pre::-webkit-scrollbar-thumb {
   margin-bottom: 8px;
 }
 
-.toc {
+/* .toc {
   margin-bottom: 64px;
-}
+} */
 
 .toc-link {
   margin: 8px 0;
@@ -228,4 +228,15 @@ blockquote code:not([class*=language-]) {
   margin: 0;
   background-color: var(--bg);
   display: inline;
+}
+
+.toc .toc-level-1:last-child {
+  padding-bottom: 64px;
+}
+
+.toc .toc-level-1:empty {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0;
 }
