@@ -100,9 +100,9 @@ You can find this file at `src/globalOptions.ts`.
 
 ### Plugins and Templates
 
-#### Plugins
+#### Example of Using Typebox plugin
 
-As we know from the core introduction, plugins only exist if they are included in the `options`, where a basic implementation but by default all files are set up in `create-vixeny`.
+As we know from the core introduction, plugins only exist if they are included in the `options`, here a basic implementation but by default all files are set up in `create-vixeny`.
 
 You can find this file at `src/plugins`.
 
@@ -139,6 +139,7 @@ In the next example we will use pug so, let's create a file called `hello.pug`.
            pugModule.compileFile
          )({
            preserveExtension: false,
+           // Default case
            default: {
              name: 'avant'
            }
@@ -153,6 +154,10 @@ In the next example we will use pug so, let's create a file called `hello.pug`.
    fetch('http://127.0.0.1:3000/hello')
    ```
 
+Passing the default object to the themplate:
+
+![alt text](/avantExample.png)
+
 ### Semi-Static Routes
 
 As we saw in the last example, you can have a default case but vixeny's structure also allows you to have a petition for the whole `staticFileServe`.
@@ -160,17 +165,20 @@ As we saw in the last example, you can have a default case but vixeny's structur
 #### Using `composer.objectNullRequest`
 
 1. Create a petition that checks for a query parameter:
+
+To do this we need composer.objectNullRequest , where if this petition returns null it will return the default case, otherwise it will pass the object to the template.
+
    ```javascript
    import { composer } from "vixeny";
 
    const petition = composer.objectNullRequest()({
+    // If query.name exist, it returns the object query, otherwhise it returns null
      f: ({ query }) => 
        query?.name 
-       ? query 
-       : null
+          ? query 
+          : null
    });
    ```
-
 2. Modify `pugStaticServerPlugin` to use the petition:
    ```ts
    import { pugStaticServerPlugin } from "vixeny-perspective";

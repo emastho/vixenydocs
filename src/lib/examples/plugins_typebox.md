@@ -62,17 +62,17 @@ const options = plugins.globalOptions({
   },
 });
 
-  const validData = {
-    id: 10,
-    text: "Sample text",
-    createdAt: Date.now(),
-    userId: 50,
-  };
+const validData = {
+  id: 10,
+  text: "Sample text",
+  createdAt: Date.now(),
+  userId: 50,
+};
 
-  const request = new Request("http://hihihi.com/hi", {
-    method: "POST",
-    body: JSON.stringify(validData),
-  });
+const request = new Request("http://hihihi.com/hi", {
+  method: "POST",
+  body: JSON.stringify(validData),
+});
 
 export { options , request}
 

@@ -56,6 +56,7 @@ section h1 {
 section h2,
 section h3,
 section h4 {
+  /* */
   margin-top: 96px;
   margin-bottom: 16px;
 }
@@ -216,4 +217,5 @@ blockquote {
 
 blockquote p {
   color: green;
+  padding: 0;
 }
