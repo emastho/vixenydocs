@@ -11,25 +11,23 @@
      * @param {number} timeout Timeout in milliseconds before aborting the fetch.
      * @returns {Promise<Object>} A promise that resolves to the response object.
      */
-    async function makeRequestWithTimeout(url, timeout = 5000) {
-        const controller = new AbortController();
-        const signal = controller.signal;
-        const timeoutId = setTimeout(() => controller.abort(), timeout);
+    async function makeRequestWithTimeout(url) {
+    
+     
 
         try {
             const startTime = performance.now();
-            const res = await fetch(url, { signal });
-            const data = await res.text();
+            const res = await fetch(url);
             const duration = performance.now() - startTime;
-
-            clearTimeout(timeoutId);
-
+            const data = await res.text();
+   
             const objResponse = {
                 url,
                 latency: `${(duration).toFixed(2)} ms`, 
                 host: 'deno deploy', 
                 status: res.status,
             }
+
 
             objResponse.data = displaysData
                 ? data
