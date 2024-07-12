@@ -25,6 +25,7 @@
             clearTimeout(timeoutId);
 
             const objResponse = {
+                url,
                 latency: `${(duration).toFixed(2)} ms`, 
                 host: 'deno deploy', 
                 status: res.status,
@@ -47,7 +48,7 @@
 
         try {
             const result = await makeRequestWithTimeout(url, 5000);
-            response = JSON.stringify(result, null, 2); // Pretty print JSON
+            response = JSON.stringify(result, null, 2); 
         } catch (err) {
             error = err.message;
         } finally {

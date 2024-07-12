@@ -360,5 +360,3 @@ const serve = wrap(options)()
 
 <FancyLink href="/framework/routing">Next</FancyLink>
 
-
-<Request  displaysData={false} />
