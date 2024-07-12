@@ -68,7 +68,7 @@
         padding: 10px 20px;
         font-size: 16px;
         color: white;
-        background-color: #007BFF;
+        background-color: var(--closer);
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -92,7 +92,7 @@
     {#if isLoading}
         Loading...
     {:else}
-        Make Request
+        Make request to :  <code>{url}</code>
     {/if}
 </button>
 

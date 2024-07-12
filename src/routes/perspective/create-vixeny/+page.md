@@ -4,6 +4,7 @@
   import Tabs from "$lib/components/Tabs.md";
   import Bash from "$lib/components/SmallComponents/Bash.md";
   import plugin from "$lib/examples/plugins_typebox.md";
+  import Request from "$lib/components/Request.svelte"
   // Array containing the installation options for the Tabs component
   const install = [
     { title: "Bun", component: Bash, details: { runtime: "bun" } },
@@ -198,6 +199,9 @@ To do this we need composer.objectNullRequest , where if this petition returns n
    ```
 
 #### Fetching with and without a Query Parameter
+
+
+<Request  displaysData={false} />
 
 - Default:
   ```javascript

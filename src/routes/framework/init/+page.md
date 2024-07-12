@@ -7,7 +7,6 @@
     import example3 from "$lib/examples/intro_core_3.md"
 	  import example4 from "$lib/examples/intro_core_4.md"
     import FancyLink from '$lib/components/FancyLink.svelte';
-    import Request from "$lib/components/Request.svelte"
     const install = [
         {title: "Bun", component: Bash, details: {runtime: "bun"}},
         {title: "Deno", component: Bash, details: {runtime: "deno"}}
@@ -359,4 +358,5 @@ const serve = wrap(options)()
 
 
 <FancyLink href="/framework/routing">Next</FancyLink>
+
 
