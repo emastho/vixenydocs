@@ -5,8 +5,9 @@
     import example1 from "$lib/examples/intro_core_1.md"
     import example2 from "$lib/examples/intro_core_2.md"
     import example3 from "$lib/examples/intro_core_3.md"
-	import example4 from "$lib/examples/intro_core_4.md"
- import FancyLink from '$lib/components/FancyLink.svelte';
+	  import example4 from "$lib/examples/intro_core_4.md"
+    import FancyLink from '$lib/components/FancyLink.svelte';
+    import Request from "$lib/components/Request.svelte"
     const install = [
         {title: "Bun", component: Bash, details: {runtime: "bun"}},
         {title: "Deno", component: Bash, details: {runtime: "deno"}}
@@ -92,6 +93,7 @@ The best way to dive into Vixeny is by jumping straight into examples. Feel free
 To get started, you can install our fully-equipped templates from the links below:
 
 <Tabs data={install}/>
+
 
 It's recommended to learn how the template engine  works, via the link below.
 
@@ -356,5 +358,7 @@ const serve = wrap(options)()
 > safety within your functions.
 
 
-
 <FancyLink href="/framework/routing">Next</FancyLink>
+
+
+<Request  displaysData={false} />
