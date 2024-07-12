@@ -201,7 +201,7 @@ To do this we need composer.objectNullRequest , where if this petition returns n
 #### Fetching with and without a Query Parameter
 
 
-<Request  displaysData={false} />
+<Request url="https://vixeny.deno.dev/ping" displaysData={false} />
 
 - Default:
   ```javascript
