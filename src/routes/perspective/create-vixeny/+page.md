@@ -28,6 +28,22 @@ Welcome to vixeny templates! Here are some basics of how the template engine wor
 
 >  [Dynamic routes](https://vixeny.dev/framework/init)
 
+
+## Before We Start!
+
+We will be using a second server hosted on `Deno Deploy` for the examples. You can ping the server here:
+
+<Request url="https://vixeny.deno.dev/ping" displaysData={false} />
+
+**Disclaimers**
+
+- It's a free-tier host.
+- We are not affiliated with Deno or the Deno team.
+- The first ping call is always slower due to the handshake with the server; the average ping is 55ms.
+
+
+
+
 ## Introduction to Vixeny's Structure
 
 Let's dive into the structure briefly seeing how everything interacts.
@@ -151,13 +167,10 @@ In the next example we will use pug so, let's create a file called `hello.pug`.
    ```
 
 3. Fetch the rendered page:
-   ```javascript
-   fetch('http://127.0.0.1:3000/hello')
-   ```
 
-Passing the default object to the themplate:
+<Request url="https://vixeny.deno.dev/hello" displaysData={false} />
 
-![alt text](/avantExample.png)
+
 
 ### Semi-Static Routes
 
@@ -201,18 +214,15 @@ To do this we need composer.objectNullRequest , where if this petition returns n
 #### Fetching with and without a Query Parameter
 
 
-<Request url="https://vixeny.deno.dev/ping" displaysData={false} />
+
 
 - Default:
-  ```javascript
-  fetch('http://127.0.0.1:3000/hello')
-  ```
-![alt text](/avantExample.png)
+
+<Request url="https://vixeny.deno.dev/hello" displaysData={true} />
 
 - With a query parameter:
-  ```javascript
-  fetch('http://127.0.0.1:3000/hello?name=dave')
-  ```
-![alt text](/daveExample.png)
+
+
+<Request url="https://vixeny.deno.dev/hello?name=dave" displaysData={true} />
 
 You can find this file at `src/plugins`.
