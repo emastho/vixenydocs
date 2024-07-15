@@ -1,6 +1,7 @@
 <script>
-    export let url = 'https://vixeny.dev/';
+    export let url = '/';
     export let displaysData = true;
+    let base = 'https://vixeny.deno.dev';
     let response = '';
     let error = '';
     let isLoading = false;
@@ -11,7 +12,7 @@
      * @param {number} timeout Timeout in milliseconds before aborting the fetch.
      * @returns {Promise<Object>} A promise that resolves to the response object.
      */
-    async function makeRequestWithTimeout(url) {
+    async function makeRequestWithTimeout( url) {
     
      
 
@@ -24,7 +25,7 @@
             const objResponse = {
                 url,
                 latency: `${(duration).toFixed(2)} ms`, 
-                host: 'deno deploy', 
+                host: 'deno deploy (free tier)', 
                 status: res.status,
             }
 
@@ -45,7 +46,7 @@
         error = '';
 
         try {
-            const result = await makeRequestWithTimeout(url, 5000);
+            const result = await makeRequestWithTimeout(base + url, 5000);
             response = JSON.stringify(result, null, 2); 
         } catch (err) {
             error = err.message;

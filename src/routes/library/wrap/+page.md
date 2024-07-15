@@ -66,8 +66,6 @@ testing. So we decided to `wrap` everything together! Mainly to have:
 
 ## Methods
 
-For more details, see the [documentation](https://vixeny.dev/library/wrap#addAnyPetition).
-
 ### addAnyPetition
 
 `addAnyPetition` allows for adding a petition of any type to the current wrap instance,
@@ -103,9 +101,6 @@ const api = wrap()().addAnyPetition(requestPetition);
  ready for execution or further configuration. This method is pivotal for finalizing the setup
  of routing and request handling mechanisms before application deployment.
 
- @returns {Object} A composite entity representing the fully configured request handling logic.
-
- @example
  ```js
  const app = wrap()()
    .addAnyPetition({ path: "/test", f: () => "Test" })
@@ -118,7 +113,6 @@ const api = wrap()().addAnyPetition(requestPetition);
 or a `Promise<Response>`. This method is suitable for scenarios where the standard response
 structure does not fit your needs.
 
-Usage example:
 ```js
 wrap(options)()
   .customPetition({

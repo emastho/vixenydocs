@@ -33,12 +33,11 @@ Welcome to vixeny templates! Here are some basics of how the template engine wor
 
 We will be using a second server hosted on `Deno Deploy` for the examples. You can ping the server here:
 
-<Request url="https://vixeny.deno.dev/ping" displaysData={false} />
+<Request url="/ping" displaysData={false} />
 
 **Disclaimers**
 
 - It's a free-tier host.
-- We are not affiliated with Deno or the Deno team.
 - The first ping call is always slower due to the handshake with the server; the average ping is 55ms.
 
 
@@ -168,7 +167,7 @@ In the next example we will use pug so, let's create a file called `hello.pug`.
 
 3. Fetch the rendered page:
 
-<Request url="https://vixeny.deno.dev/hello" displaysData={false} />
+<Request url="/hello" displaysData={false} />
 
 
 
@@ -218,11 +217,11 @@ To do this we need composer.objectNullRequest , where if this petition returns n
 
 - Default:
 
-<Request url="https://vixeny.deno.dev/hello" displaysData={true} />
+<Request url="/hello" displaysData={true} />
 
 - With a query parameter:
 
 
-<Request url="https://vixeny.deno.dev/hello?name=dave" displaysData={true} />
+<Request url="/hello?name=dave" displaysData={true} />
 
 You can find this file at `src/plugins`.
