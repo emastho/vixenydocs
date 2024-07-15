@@ -225,6 +225,32 @@ Applies a function over each petition, wrapping each result, and then flattens a
  });
  ```
 
+### logPaths
+
+
+ `logPaths` is a utility method that logs the paths of all the petitions wrapped by this instance.
+ It helps in debugging by providing a quick overview of the defined petition paths at any given moment.
+
+ Example usage:
+ ```javascript
+ wrap()()
+   .stdPetition({
+       path: '/one',
+       f: () => null
+   })
+   // Logging the paths after adding the first petition:
+   // Output: /one
+   .logPaths()
+   .stdPetition({
+       path: '/two',
+       f: () => null
+   })
+   // Logging the paths after adding the second petition:
+   // Output:
+   //   /one
+   //   /two
+   .logPaths()
+ ```
 
 ### pure
 
