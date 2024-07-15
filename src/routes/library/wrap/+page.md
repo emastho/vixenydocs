@@ -89,8 +89,6 @@ const api = wrap()().addAnyPetition(requestPetition);
  while preserving the existing petitions. This is useful for dynamically adjusting configurations, such as
  modifying routes or other settings, without needing to redefine all petitions.
 
-  For more details, see the [documentation](https://vixeny.dev/library/wrap#changeoptions).
-
  Usage example:
  ```javascript
  const initialWrap = wrap(initialOptions)().stdPetition({path: '/test', f: () => "Test"});
@@ -128,8 +126,6 @@ wrap(options)()
     f: (c) => new Response(c.param.name),
   })
 ```
-
-
 
 ### debugLast
 
@@ -268,6 +264,7 @@ Applies a function over each petition, wrapping each result, and then flattens a
  });
  ```
 ### union
+
  Combines petitions from another `wrap` instance with the current one. This is particularly useful for modularizing
  and reusing petitions across different parts of your application. By importing and unioning petitions, you can
  maintain clean separation of concerns and ensure your code remains organized.

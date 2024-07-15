@@ -96,7 +96,7 @@ To get started, you can install our fully-equipped templates from the links belo
 
 It's recommended to learn how the template engine  works, via the link below.
 
->  [Template engine](https://vixeny.dev/perspective/create-vixeny)
+>  [Template engine](/perspective/create-vixeny)
 
 Enjoy exploring and have fun coding!
 

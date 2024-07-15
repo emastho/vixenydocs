@@ -26,7 +26,7 @@
 # Welcome
 Welcome to vixeny templates! Here are some basics of how the template engine works, it's recommended to learn how the dynamic path system works, via the link below.
 
->  [Dynamic routes](https://vixeny.dev/framework/init)
+>  [Dynamic routes](/framework/init)
 
 
 ## Before We Start!
