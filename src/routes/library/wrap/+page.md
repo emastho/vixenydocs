@@ -548,9 +548,6 @@ replicatedWrap.logPaths(); // Output: ['/example']
 baseWrap.logPaths(); // Output: ['/modified']
 ```
 
-### stdPetition
-
-To effectively complete the `### stdPetition` section of your document, it's essential to define its role clearly within the `wrap` framework, describe its functionality, and demonstrate its practical usage. Here’s an enriched version of this section:
 
 ### stdPetition
 
