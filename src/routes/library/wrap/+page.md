@@ -34,31 +34,103 @@ testing. So we decided to `wrap` everything together! Mainly to have:
 
 ### First and second curried
 
+Currying in functional programming allows a function with multiple arguments to be decomposed into a sequence of functions, each taking a single argument. In the context of `wrap`.
 
- The second `()` can either be left empty or used to add another `wrap`.
- This allows for flexible composition of your application's routing and request handling.
+```ts
+import { wrap, plugins } from 'vixeny';
 
- @example
- ```js
- import { api } from './somewhere'
- const options = {...} // Optional<funRouterOptions>
- // Composing with another wrap
- export const root = wrap(options)(
-   api.unwrap()
- )
-   .stdPetition({
-     path: "/",
-     f: () => "helloWorld",
-   })
+// Global options configured with plugins
+const opt = plugins.globalOptions({})
+
+// The first currying stage allows for setting initial configuration.
+const handler = wrap(opt)()
+ .stdPetition({
+    path: '/',
+    f: () => 'Morning!'
+ });
  ```
 
-### Inmutability
+In the given example, `wrap(opt)` is the first stage where options are provided. The second invocation `()` without arguments indicates that the initial configuration has been applied. Here’s how you might utilize the second currying stage for deeper functional composition:
 
-// TODO
+```javascript
+import { wrap } from 'vixeny';
+
+// Define a base API wrap with a specific route prefix
+const api = wrap({
+    wrap: {
+        startsWith: "/api"
+    }
+})()
+ .stdPetition({
+    path: '/',
+    f: () => 'Morning!'
+ });
+
+// Using the second currying stage to extend with another wrap instance
+const extendedHandler = wrap()(
+    api.unwrap()
+)
+ .stdPetition({
+    path: '/',
+    f: () => 'Evening!'
+ })
+ // Logs all configured paths for debugging
+ .logPaths(); 
+
+```
+
+Also there is another option:
+
+```javascript
+import  { wrap , petitions  } from 'vixeny';
+
+const custom = petitions.custom()({
+    path: "/custom",
+    f: () => new Response("Hello")
+})
+
+const standart = petitions.common()({
+    path: "/custom",
+    f: () => "Hello"
+})
+
+wrap()(
+    [custom , standart]
+)
+```
 
 ### Special Options
 
-// TODO
+The `wrap` function offers several configuration options:
+
+- **`startWith`**: This option is used to specify a base path for all the routes defined within a `wrap` instance. When set, `startWith` prepends the specified path to all route paths within the instance, allowing for organized and hierarchical URL structures, which is particularly useful for segmenting different areas of your application, such as admin, API, or user interfaces.
+
+```javascript
+import { wrap } from 'vixeny';
+
+// Define a base API wrap with a specific route prefix
+const api = wrap({
+      wrap: {
+        startsWith: "/api"
+    }
+})()
+ .stdPetition({
+    path: '/',
+    f: () => 'Morning!'
+ });
+
+// Using the second currying stage to extend with another wrap instance
+const extendedHandler = wrap()(
+    api.unwrap()
+)
+ .stdPetition({
+    path: '/',
+    f: () => 'Evening!'
+ })
+ // Logs all configured paths for debugging
+ .logPaths(); 
+
+```
 
 ### Plugins
 
@@ -68,18 +140,44 @@ testing. So we decided to `wrap` everything together! Mainly to have:
 
 ### addAnyPetition
 
-`addAnyPetition` allows for adding a petition of any type to the current wrap instance,
-increasing flexibility in handling different Petitions as HTTP requests.
+The `addAnyPetition` method is a versatile tool within the `wrap` framework that allows the integration of different types of petitions into the current wrap instance.
 
-```js
+#### Functionality:
 
- const requestPetition = petitions.custom()({
-   path: "/response",
-   f: () => new Response("standard"),
- });
+- **Dynamic Integration**: You can dynamically add any type of petition to the existing wrap configuration. 
+- **Sealed Options**: Petitions added using `addAnyPetition` retain their configurations and behaviors as specified. This sealing of options ensures that once a petition is added, its core attributes cannot be inadvertently altered, thereby preserving the integrity and expected behavior of the application.
 
-const api = wrap()().addAnyPetition(requestPetition);
+#### Examples:
+
+Here's how you might use `addAnyPetition` to add both a custom and a standard petition to a wrap instance:
+
+```javascript
+import { wrap, petitions } from 'vixeny';
+
+// Create a custom petition that responds with a custom HTTP response
+const customPetition = petitions.custom()({
+    path: "/custom",
+    f: () => new Response("Custom Response Content")
+});
+
+// Create a standard petition with a simple greeting message
+const standardPetition = petitions.standard()({
+    path: "/greet",
+    f: () => "Hello, World!"
+});
+
+// Initialize a new wrap instance and add both petitions
+const app = wrap()()
+    .addAnyPetition(customPetition)
+    .addAnyPetition(standardPetition);
+
+// This setup enables the app to handle both '/custom' and '/greet' paths with their respective responses
 ```
+
+#### Practical Use:
+
+`addAnyPetition` is particularly useful in scenarios where the application needs to handle the same auth petition for different routes.
+
 
 ### changeOptions
 
@@ -89,23 +187,90 @@ const api = wrap()().addAnyPetition(requestPetition);
 
  Usage example:
  ```javascript
- const initialWrap = wrap(initialOptions)().stdPetition({path: '/test', f: () => "Test"});
- // Now, changing options for the wrap
- const modifiedWrap = initialWrap.changeOptions(newOptions);
- // `modifiedWrap` now operates with `newOptions`, while still handling the '/test' petition
+import { wrap, plugins } from 'vixeny';
+
+// Define a plugin that determines user roles
+const userIs = (name) => plugins.type({
+    name: Symbol.for('anyName'),
+    type: {},
+    // Returns the name in a nested function format
+    f: () => () => () => name  
+});
+
+// Create instances of the plugin for different users
+const bubbles = userIs('Bubbles');
+const avant = userIs('Avant');
+
+// Initial configuration with the 'Bubbles' user plugin
+const initialOptions = plugins.globalOptions({
+    cyclePlugin: {
+        user: bubbles
+    }
+});
+
+// Create a wrap instance with the initial configuration
+const handler = wrap(initialOptions)()
+    .stdPetition({
+        path: "/",
+        f: ({ user }) => `Hello, ${user}!`
+    });
+
+// Changing the configuration to use the 'Avant' user plugin
+const updatedHandler = handler.changeOptions({
+    cyclePlugin: {
+        user: avant
+    }
+});
+
+// Showcase
+const req = new Request("http://localhost/")
+console.log(
+    await handler.testRequests()(req).then(r => r.text()),
+    await handlerToMock.testRequests()(req).then(r => r.text()),
+)
+
+// The updated handler will now greet 'Avant' instead of 'Bubbles'
  ```
+
+To complete the `### compose` section of your document, here's a detailed explanation that highlights its functionality, usage, and practical applications within the `wrap` framework:
 
 ### compose
 
- `compose` consolidates all petitions within the wrap instance into a cohesive, operational unit,
- ready for execution or further configuration. This method is pivotal for finalizing the setup
- of routing and request handling mechanisms before application deployment.
+The `compose` method in the `wrap` framework is a powerful feature that consolidates all petitions within a wrap instance into a cohesive, operational unit. This method finalizes the configuration of routing and request handling, making the wrap instance ready for execution.
 
- ```js
- const app = wrap()()
-   .addAnyPetition({ path: "/test", f: () => "Test" })
+#### Functionality:
+
+- **Optimized**: Streamlines the execution path by reducing the overhead involved in handling requests, making the application more efficient and responsive.
+
+#### How It Works:
+
+- When `compose` is called, it aggregates all the petitions and their configurations into one coherent structure.
+- The result is a function that takes a request and matches it against the defined petitions, returning the appropriate response based on the application's logic.
+
+#### Usage Example:
+
+Here’s how you might use `compose` to set up a basic web application that handles different routes:
+
+```javascript
+import { wrap } from 'vixeny';
+
+const app = wrap()()
+   .stdPetition({ 
+    path: "/", 
+    f: () => "Welcome to our homepage!" 
+  })
+   .stdPetition({ 
+    path: "/about", 
+    f: () => "Learn more about us on this page." 
+  })
    .compose();
- ```
+
+// This function can now be used to handle incoming HTTP requests
+// Example of handling a request to the root path
+const request = new Request("http://localhost/");
+// Outputs: "Welcome to our homepage!"
+console.log(await app(request).then(r => r.text())); 
+```
 
 ### customPetition
 
@@ -113,12 +278,38 @@ const api = wrap()().addAnyPetition(requestPetition);
 or a `Promise<Response>`. This method is suitable for scenarios where the standard response
 structure does not fit your needs.
 
-```js
-wrap(options)()
-  .customPetition({
-    path: "/response/who/:name",
-    f: (c) => new Response(c.param.name),
-  })
+> Headers have to be passed manually
+
+```javascript
+import  { wrap , petitions  } from 'vixeny';
+
+// Making a custome petition outside of the wrap
+const custome =  petitions.custom({
+    cors: {
+        allowOrigins: '*'
+    }
+})({
+    path: '/fromPetition',
+    f: ({ headers }) => new Response("hello", {
+        headers
+    })
+})
+
+const handler = wrap({
+    cors: {
+        allowOrigins: '*'
+    }
+})()
+    .customPetition({
+        path: '/fromInside',
+        f: ({ headers }) => new Response("hello", {
+            headers
+        })
+    })
+    // Both are equivalent in signatures
+    .addAnyPetition(custome)
+
+
 ```
 
 ### debugLast
