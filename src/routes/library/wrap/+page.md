@@ -314,27 +314,51 @@ const handler = wrap({
 
 ### debugLast
 
-`logLastCheck` is a diagnostic tool that logs the keys or parameters currently being used by the last petition added.
-This is particularly helpful for developers to understand which parts of the context (`c`) are being composed.
+The `debugLast` method in the wrap framework is a powerful debugging tool designed to give developers insight into the internal state and usage of the context within the last added petition. 
 
-@example
-Example usage:
+For example: 
+
+Context:
+ - `isUsing`: Shows the componets that you are using.
+ - `isAsync`: Shows if the current petition is async.
+
+Components:
+ - `$NAME` : This information depends on the component.
+
+Plugin:
+ - `$NAME` : This information depends on the plugin.
+
 ```javascript
+import  { wrap } from 'vixeny';
+
+import  { wrap } from 'vixeny';
+
 wrap()()
   .stdPetition({
       path: '/one',
-      f: _c => null
+      f: () => null
   })
-  // Logging the used context after the first petition (expected to be empty as none is used):
-  // Output: []
-  // Important!, `_c` will be the Request
+  /**
+   * Console logging:
+   * 
+   * --- Context ---
+   * using: 
+   * isAsync: false
+   */
   .debugLast()
   .stdPetition({
       path: '/two/:id',
       f: c => c.param.id
   })
-  // Logging the used context after adding a petition that accesses a URL parameter:
-  // Output: [ "param" ]
+  /**
+   * Console logging:
+   * 
+   * --- Context ---
+   * using: param
+   * isAsync: false
+   * --- Components ---
+   * param: [id] 
+   */
   .debugLast()
 ```
 ### exclude
