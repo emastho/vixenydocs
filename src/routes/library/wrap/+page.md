@@ -664,8 +664,6 @@ console.log(
 
 ### unwrap
 
-### unwrap
-
 The `unwrap` method in the `wrap` framework is a crucial feature designed to decompose a wrapped instance into its constituent petitions. This allows for the exporting or further manipulation of these petitions individually or in combination with other `wrap` instances. This method is particularly useful for integrating multiple `wrap` instances or for configuring a server to handle all defined petitions in a structured manner.
 
 #### Functionality:
