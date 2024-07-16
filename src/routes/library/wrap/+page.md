@@ -363,22 +363,39 @@ wrap()()
 ```
 ### exclude
 
-  Excludes one or more petitions based on their paths from the current wrap instance, creating a new instance without the specified paths.
-  This is useful for dynamically adjusting the set of active petitions, perhaps in response to configuration changes or to conditionally
-  remove certain routes in different environments or contexts.
+The exclude method in the `wrap` framework is a powerful feature that allows developers to dynamically remove one or more petitions based on their paths from an existing `wrap` instance. This functionality is particularly useful for managing different configurations and routes dynamically, adapting to various operational needs without reconstructing the entire `wrap`.
 
-  The method accepts either a single path string or an array of path strings to exclude.
 
-  Example usage:
-  ```typescript
-  // Assuming wrap()() has defined several petitions including paths '/excludeMe' and '/keepMe'
-  const filteredWrap = wrap()()
-    .exclude(['/excludeMe'])
-    // Now, the wrap instance `filteredWrap` will not include the petition for '/excludeMe'
-  ```
+#### How It Works:
 
-  This facilitates flexible and dynamic petition management within your application's routing logic.
+ - `exclude` removes the specified paths from the current wrap instance before the application of any global path prefixes such as those set by startWith.
 
+
+```typescript
+import  { wrap } from 'vixeny';
+
+// Creating a wrap with multiple routes
+const handler = wrap()()
+    .stdPetition({
+        path: "/pathOne",
+        f: () => 'one'
+    })
+    .stdPetition({
+        path: "/pathTwo",
+        f: () => 'two'
+    })
+    .stdPetition({
+        path: "/pathThree",
+        f: () => 'three'
+    });
+
+// Excluding multiple paths dynamically
+const handlerWithoutTwoThree = handler.exclude(["/pathTwo", "/pathThree"]);
+
+// Remaining active path
+handlerWithoutTwoThree.logPaths(); // Outputs: ['/pathOne']
+
+```
 
 ### flatMap
 
