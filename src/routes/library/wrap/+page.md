@@ -132,10 +132,6 @@ const extendedHandler = wrap()(
 
 ```
 
-### Plugins
-
-// TODO
-
 ## Methods
 
 ### addAnyPetition
@@ -401,6 +397,41 @@ handlerWithoutTwoThree.logPaths(); // Outputs: ['/pathOne']
 
 Applies a function over each petition, wrapping each result, and then flattens all results into a single wrap.
 
+> flatMap is mostly used for the mantainers of `vixeny/core`
+
+```javascript
+import  { wrap } from 'vixeny';
+
+// Creating a wrap
+const handler = wrap()()
+    .stdPetition({
+        path: "/pathOne",
+        f: () => 'one'
+    })
+    .stdPetition({
+        path: "/pathTwo",
+        f: () => 'two'
+    })
+    .stdPetition({
+        path: "/pathThree",
+        f: () => 'two'
+    })
+
+// Gives granural control over the primitives inside of the `wrap`
+// In this examples we are making all the petitions `Async`
+const asyncHandler = handler
+    .flatMap(
+        p => handler.pure({
+            ...p,
+            isAsync: true
+        })
+    )
+    // Cheking the wrapped petitions
+    .flatMap(
+        p => void console.log(p) ?? handler.pure(p)
+    )
+```
+
 ### handleRequest
 
  `handleRequest` dynamically processes a request getting a specified path. If the path exists among the defined petitions,
@@ -410,7 +441,7 @@ Applies a function over each petition, wrapping each result, and then flattens a
  This function is particularly useful for testing, allowing you to inject mock options or modify the petition's behavior
  on-the-fly without altering the original petition definitions.
 
- Example usage:
+ #### Example usage:
 
  Suppose we have a petition defined to handle requests to '/one', returning the current date as a string.
  We can use `handleRequest` to process a request directly or modify its behavior for testing.
@@ -442,57 +473,117 @@ Applies a function over each petition, wrapping each result, and then flattens a
  ```
 ### petitionWithoutCTX
 
- `petitionWithoutCTX` allows to bypass the `composer` and it is not bind to it's rules, keeping the function untouched.
+The `petitionWithoutCTX` method in the `wrap` framework is a specialized function designed to allow petitions to operate independently of the broader context typically managed by the `composer`. This method is essential for scenarios where a petition must execute with a fixed, predetermined setup, ensuring its behavior remains consistent and unaffected by external configurations.
 
- ```js
- const api = wrap()().addAnyPetition({
-   path: "/data",
-   r: wrappedPetitions.compose()
- });
- ```
+#### Functionality:
 
-### logPaths
+- **Context Independence**: Petitions added with `petitionWithoutCTX` do not depend on the context provided by the `composer`. This makes them suitable for fixed-response endpoints or for integrating legacy systems where dynamic context manipulation is unnecessary or undesirable.
+- **Simplified Configuration**: Simplifies the petition configuration by bypassing the contextual logic, thus reducing the complexity for certain routes within the application.
+
+#### How It Works:
+
+- Petitions defined through `petitionWithoutCTX` receive a minimal, predefined set of parameters, typically only what is necessary for the petition to fulfill its response duty.
+- These petitions are isolated in terms of functionality, meaning changes to the global or inherited context do not affect them.
+
+#### Usage Example:
+
+Here's an example illustrating the use of `petitionWithoutCTX` to set up a static content delivery endpoint, which does not require any dynamic context manipulation:
+
+```javascript
+import { wrap } from 'vixeny';
+
+const staticContentHandler = wrap()()
+  .petitionWithoutCTX({
+    path: "/static",
+    r: () => new Response("<p>Static Content</p>", {
+      headers: new Headers({"Content-Type": "text/html"})
+    }),
+  });
+
+// Example of serving a request to the static path
+const request = new Request("http://localhost/static");
+staticContentHandler(request).then(response => {
+  console.log(response.text()); // Outputs: "<p>Static Content</p>"
+});
+```
+
+#### Practical Use:
+
+- **Performance Optimization**: Ideal for endpoints where the response is static or predetermined, allowing these routes to be optimized for faster processing by skipping unnecessary context evaluations.
+- **Legacy Integration**: Useful in situations where parts of an older system are being integrated into a new application without altering their operational logic.
+
+#### Benefits:
+
+- **Consistency**: Ensures that the behavior of the petition remains unchanged regardless of the broader application context, providing stability across requests.
 
 
- `logPaths` is a utility method that logs the paths of all the petitions wrapped by this instance.
- It helps in debugging by providing a quick overview of the defined petition paths at any given moment.
-
- Example usage:
- ```javascript
- wrap()()
-   .stdPetition({
-       path: '/one',
-       f: () => null
-   })
-   // Logging the paths after adding the first petition:
-   // Output: /one
-   .logPaths()
-   .stdPetition({
-       path: '/two',
-       f: () => null
-   })
-   // Logging the paths after adding the second petition:
-   // Output:
-   //   /one
-   //   /two
-   .logPaths()
- ```
 
 ### pure
 
-// TODO
+The `pure` method in the `wrap` framework is a foundational concept borrowed from functional programming, emphasizing immutability and side-effect-free operations. In the context of `wrap`, pure creates a new `wrap` instance that is functionally equivalent to its input but is disconnected from the original instance's state except for the link to the initial options.
+
+> flatMap is mostly used for the mantainers of `vixeny/core`
+> Preserve the current `options`
+
+```javascript 
+import { wrap } from 'vixeny';
+
+const baseWrap = wrap()()
+    .stdPetition({
+        path: '/example',
+        f: () => "Original Response"
+    });
+
+// Using pure to replicate the base configuration without carrying over any added state or modifications
+const replicatedWrap = baseWrap.pure();
+
+// Modifying the original wrap instance
+baseWrap.stdPetition({
+    path: '/modified',
+    f: () => "Modified Response"
+});
+
+// Logging paths to show that the replicated wrap does not include modifications
+replicatedWrap.logPaths(); // Output: ['/example']
+baseWrap.logPaths(); // Output: ['/modified']
+```
 
 ### stdPetition
 
- Defines a standard Petition where `f` returns either a `BodyInit` or a `Promise<BodyInit>`.
+To effectively complete the `### stdPetition` section of your document, it's essential to define its role clearly within the `wrap` framework, describe its functionality, and demonstrate its practical usage. Here’s an enriched version of this section:
 
- ```javascript
- export const root = wrap()()
-   .stdPetition({
-     path: "/",
-     f: () => "helloWorld",
-   })
- ```
+### stdPetition
+
+The `stdPetition` method in the `wrap` framework defines a standard petition that processes HTTP requests and returns a response. This function is a core part of the `wrap` system, designed to handle typical web requests with a straightforward and predictable setup. It simplifies the creation of commonly used HTTP routes within an application.
+
+
+#### Usage Example:
+
+Here's a straightforward example that demonstrates setting up a basic route with `stdPetition`:
+
+```javascript
+import { wrap , petitions} from 'vixeny';
+
+// Another way to see `stdPetition`
+const std = petitions.common()({
+    path: '/anotherPath',
+    f: () => 'Hello'
+})
+
+// Creating a wrap instance with a standard petition
+const app = wrap()()
+    .stdPetition({
+        path: '/greet',
+        f: () => "Hello, World!"
+    })
+    .addAnyPetition(std);
+
+// This setup enables the app to handle a GET request at '/greet' with a simple greeting message
+const request = new Request("http://localhost/greet");
+
+// Example of handling the request and outputting the response
+app(request).then(response => console.log(response.text())); // Outputs: "Hello, World!"
+```
 
 ### testRequests
 
@@ -504,16 +595,34 @@ Applies a function over each petition, wrapping each result, and then flattens a
  This is particularly useful for unit testing or integration testing, where you want to validate
  the behavior of your request handling logic under controlled conditions.
 
+ > Wraps the `petitions` in `Promise.resolve`
+
  Usage example:
  ```javascript
- // Assuming `wrap` has been configured with multiple petitions
- const server = wrap(...)...
- const testServer = server.testRequests();
+import { wrap } from "vixeny";
 
- // Now you can use `testServer` to simulate requests and test responses
- testServer(new Request("/some-path")).then(response => {
-   // assertions or checks on the response
- });
+const handler = wrap()()
+  .stdPetition({
+    path: "/helloWold",
+    f: () => "helloWold",
+  })
+  .stdPetition({
+    path: "/one",
+    f: () => "one",
+  })
+  .stdPetition({
+    path: "/two",
+    f: () => "two",
+  })
+
+
+const testHandler = handler.testRequests();
+
+console.log(
+  await testHandler(new Request("http://localhost/helloWold"))
+    .then((response) => response.text()),
+);
+
  ```
 ### union
 
@@ -525,8 +634,23 @@ Applies a function over each petition, wrapping each result, and then flattens a
  Assuming `extension.ts` exports a wrapped petition, it can be combined with the petitions defined in `a.ts`:
 
  ```typescript
- // Assuming extension is imported from "extension.ts"
- export default wrap()()
+ import { wrap } from "vixeny";
+
+ const extension = wrap({
+    wrap: {
+        startsWith: "/extension"
+    }
+ })()
+  .stdPetition({
+    path: "/one",
+    f: () => "one",
+  })
+  .stdPetition({
+    path: "/two",
+    f: () => "two",
+  });
+
+ const handeler = wrap()()
    .union(extension.unwrap())
    .stdPetition({
      path: "/hello",
@@ -540,21 +664,59 @@ Applies a function over each petition, wrapping each result, and then flattens a
 
 ### unwrap
 
- Unwraps the current `wrap` instance into its constituent petitions, typically for the purpose of exporting
- or further manipulation. This can be especially useful when combining multiple wrap instances or configuring
- a server to handle all defined petitions.
+### unwrap
 
- The `unwrap` method adjusts the paths based on the `startWith` option if it's set, allowing for prefixing all
- paths within the unwrapped petitions, facilitating organized and hierarchical URL structures.
+The `unwrap` method in the `wrap` framework is a crucial feature designed to decompose a wrapped instance into its constituent petitions. This allows for the exporting or further manipulation of these petitions individually or in combination with other `wrap` instances. This method is particularly useful for integrating multiple `wrap` instances or for configuring a server to handle all defined petitions in a structured manner.
 
- Example usage:
+#### Functionality:
 
- ```typescript
- // Combining unwrapped petitions from multiple sources into a single wrap instance
- composeResponse(options)(
-   wrap(options)()
-     .union(root.unwrap())
-     .union(api.unwrap())
-     .unwrap(), // Unwraps into an array of petitions ready for further processing
- );
- ```
+- **Decomposition**: `unwrap` breaks down a `wrap` instance into its underlying petitions, making them accessible for individual use or recombination.
+- **Preserves Path Adjustments**: If the `startWith` option is set, `unwrap` ensures that all paths within the unwrapped petitions are prefixed accordingly, facilitating organized and hierarchical URL structures.
+
+#### How It Works:
+
+- When invoked, `unwrap` extracts the petitions from a `wrap` instance while maintaining any path adjustments made through options like `startWith`.
+- This extraction allows the petitions to be utilized independently or merged with other `wrap` instances, maintaining flexibility and modularity.
+
+#### Usage Example:
+
+Here's an example demonstrating how to use `unwrap` to combine petitions from multiple sources into a single `wrap` instance:
+
+```javascript
+import { wrap } from 'vixeny';
+
+// Creating two separate wrap instances
+const api = wrap({
+    wrap: {
+        startsWith: "/api"
+    }
+})()
+  .stdPetition({
+    path: "/users",
+    f: () => "User List"
+  });
+
+const admin = wrap({
+    wrap: {
+        startsWith: "/admin"
+    }
+})()
+  .stdPetition({
+    path: "/controls",
+    f: () => "Admin Controls"
+  });
+
+// Combining unwrapped petitions from both instances into a single wrap instance
+const combined = wrap()()
+  .union(api.unwrap())
+  .union(admin.unwrap());
+
+// Using the combined instance to configure a server
+combined.logPaths(); // Logs paths like '/api/users' and '/admin/controls'
+```
+
+#### Practical Use:
+
+- **Modular Development**: Allows developers to create modular, reusable components that can be combined as needed without redundancy.
+- **Server Configuration**: Simplifies the process of configuring servers by consolidating multiple petition sources into a single operational unit.
+
