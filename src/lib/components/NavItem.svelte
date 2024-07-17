@@ -22,8 +22,8 @@
 	li a {
 		display: block;
 		/* background: #2f2f2f; */
-		padding: 10px 32px;
-		 /* border-radius: 8px;  */
+		padding: 8px 32px;
+		/* border-radius: 8px;  */
 		/* border: 2px solid #2f2f2f; */
 		transition: 150ms all;
 	}
@@ -33,8 +33,8 @@
 	}
 
 	li .active {
-		border-color: #6f5c9b; 
-		background: #6f5c9b; 
-		
+		/* border-color: #6f5c9b; */
+		text-decoration: underline;
+		/* background: #6f5c9b;  */
 	}
 </style>

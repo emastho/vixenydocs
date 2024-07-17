@@ -7,7 +7,7 @@
 	<div class="details">
 		<div class="summary">
 			{category.name}
-			<span>
+			<!-- <span>
 				<svg
 					class="opened"
 					xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@
 						d="M36 18L24 30L12 18"
 					/></svg
 				>
-			</span>
+			</span> -->
 		</div>
 		<ul class="navItems">
 			{#each routes.filter((item) => item.categoryId == category.id) as route}
@@ -34,14 +34,19 @@
 {/each}
 
 <style>
+	:global(.details a) {
+		font-size: 14px;
+	}
 	.details .summary {
 		user-select: none;
-		padding: 14px 32px;
+		padding: 16px 32px;
+		font-weight: bold;
 		/* border: 2px solid #2f2f2f; */
-		background: var(--side); 
+		background: var(--side);
 		color: var(--text);
 
-		border-block: 2px solid var(--side);
+		/* border-bottom: 2px solid var(--side); */
+		font-size: 14px;
 	}
 
 	.details .summary {
