@@ -3,8 +3,9 @@
 </script>
 
 <svelte:head>
-  <script src='/prism.mjs' defer></script>
-  <title>Morphism - Vixeny Framework</title>
+
+<script src='/prism.mjs' defer></script>
+<title>Morphism - Vixeny Framework</title>
   <meta name="description" content="Understanding morphism in the Vixeny framework. Learn how to create and compose petitions and resolves for effective routing and functional programming." />
   <meta name="keywords" content="Vixeny, morphism, routing, web development, petitions, composer, JavaScript, TypeScript, functional programming, web framework" />
   <meta name="author" content="Vixeny Team" />
@@ -59,7 +60,6 @@ console.log(
 ```
 
 You will find a detailed explanation of them in `library`.
-
 
 ## Types
 

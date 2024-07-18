@@ -6,15 +6,13 @@
 
 ```ts
 import { wrap } from "vixeny";
-import { options , request } from "./setup.ts"
+import { options, request } from "./setup.ts";
 
 const serve = wrap(options)()
   .stdPetition({
     path: "/hi",
     method: "POST",
-    f: ({ typebox }) => typebox?.user
-     ? typebox.user.userId
-     : null,
+    f: ({ typebox }) => typebox?.user ? typebox.user.userId : null,
   })
   .compose();
 
@@ -22,11 +20,9 @@ const response = await serveMock(request);
 const body = await response.text();
 
 console.log(
-    // 50
-    body
-)
-
-
+  // 50
+  body,
+);
 ```
 
 {:else}
@@ -39,7 +35,7 @@ import * as TypeBox from "@sinclair/typebox";
 import * as Vixney from "vixeny";
 import { typeBox } from "vixeny-plugins";
 
-const { plugins  } = Vixney
+const { plugins } = Vixney;
 const { Type } = TypeBox;
 
 const parser = typeBox.composedBox(Vixney)(Avj)(TypeBox);
@@ -74,8 +70,7 @@ const request = new Request("http://hihihi.com/hi", {
   body: JSON.stringify(validData),
 });
 
-export { options , request}
-
+export { options, request };
 ```
 
 {/if}

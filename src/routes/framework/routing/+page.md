@@ -13,13 +13,13 @@
 </script>
 
 <svelte:head>
-    <title>Routing - Vixeny Framework</title>
-    <meta name="description" content="Learn about routing in the Vixeny framework. Understand pathing, priorities, handling trailing slashes, and static file handling with comprehensive examples." />
-    <meta name="keywords" content="Vixeny, routing, web development, pathing, priorities, trailing slashes, static file handling, JavaScript, TypeScript, petitions, wrap function" />
-    <meta name="author" content="Vixeny Team" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src='/prism.mjs' defer></script>
-</svelte:head>
+
+<title>Routing - Vixeny Framework</title>
+<meta name="description" content="Learn about routing in the Vixeny framework. Understand pathing, priorities, handling trailing slashes, and static file handling with comprehensive examples." />
+<meta name="keywords" content="Vixeny, routing, web development, pathing, priorities, trailing slashes, static file handling, JavaScript, TypeScript, petitions, wrap function" />
+<meta name="author" content="Vixeny Team" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src='/prism.mjs' defer></script> </svelte:head>
 
 # Routing
 
@@ -30,8 +30,8 @@ code. It's important to grasp these basic concepts before we dive deeper into
 
 ## Pathing
 
- We can create an `union` between two wraps 
-and also modify their base using `startswith`.
+We can create an `union` between two wraps and also modify their base using
+`startswith`.
 
 ```ts
 import { plugins, wrap } from "vixeny";
@@ -51,10 +51,10 @@ const apiWrap = wrap(api)()
   });
 
 // Merging the paths
-const root = wrap()(
+const root = wrap()()
   // You can also unwrap it in the constructor
   // apiWrap.unwrap(),
-  )
+
   .union(apiWrap.unwrap())
   .stdPetition({
     path: "/",
@@ -65,7 +65,13 @@ const root = wrap()(
   .logPaths();
 ```
 
-This helps manage the complexity of routing by providing an easy way to export and import `petitions`. Moreover, since `wrap` has a  monadic structure (A programming concept that helps manage workflows by allowing functions to chain operations in a sequence, while ensuring each operation is isolated from others), importing, testing, or modifying any wrap cannot affect other instances. This behavior will be explained further in the `wrap` section of the library.
+This helps manage the complexity of routing by providing an easy way to export
+and import `petitions`. Moreover, since `wrap` has a monadic structure (A
+programming concept that helps manage workflows by allowing functions to chain
+operations in a sequence, while ensuring each operation is isolated from
+others), importing, testing, or modifying any wrap cannot affect other
+instances. This behavior will be explained further in the `wrap` section of the
+library.
 
 ## Priority
 

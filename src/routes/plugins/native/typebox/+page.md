@@ -16,13 +16,10 @@
 </script>
 
 <svelte:head>
-  <script src='/prism.mjs' defer></script>
-  <title>Typebox plugin - Vixeny</title>
+
+<script src='/prism.mjs' defer></script>
+<title>Typebox plugin - Vixeny</title>
   <meta name="description" content="Using Typebox in Vixeny"/>
 </svelte:head>
-
-
-
-
 
 <Tabs data={tab0}/>
