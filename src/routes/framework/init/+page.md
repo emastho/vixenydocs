@@ -1,4 +1,5 @@
 <script>
+  import { Tabs as Tab, TabItem } from 'flowbite-svelte';
     import Tabs from "$lib/components/Tabs.md"
     import Bash from "$lib/components/SmallComponents/Bash.md"
     import example0 from "$lib/examples/intro_core_0.md"
@@ -38,12 +39,13 @@
 </script>
 
 <svelte:head>
-    <title>Quick Start with Vixeny Framework - Installation and Examples</title>
-    <meta name="description" content="Learn how to quickly start with the Vixeny framework. Find installation guides and code examples for Bun and Deno runtimes." />
-    <meta name="keywords" content="Vixeny, web development, framework, installation, Bun, Deno, JavaScript, TypeScript, coding examples, petitions, wrap function, functional programming, reusable code" />
-    <meta name="author" content="Vixeny Team" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src='/prism.mjs'></script>
+
+<title>Quick Start with Vixeny Framework - Installation and Examples</title>
+<meta name="description" content="Learn how to quickly start with the Vixeny framework. Find installation guides and code examples for Bun and Deno runtimes." />
+<meta name="keywords" content="Vixeny, web development, framework, installation, Bun, Deno, JavaScript, TypeScript, coding examples, petitions, wrap function, functional programming, reusable code" />
+<meta name="author" content="Vixeny Team" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src='/prism.mjs'></script>
 </svelte:head>
 
 # Welcome to Vixeny!
@@ -54,7 +56,7 @@ We’re thrilled to have you explore our framework. Vixeny is all about making w
 
 An ecosystem of functional web tools, that aims to make code more:
 
-- `Open` : All our tools are exportable and can be used in other frameworks or 
+- `Open` : All our tools are exportable and can be used in other frameworks or
   projects.
 
 - `Reusable` : Make it once and use it again, because of the purity of `Vixeny`,
@@ -91,15 +93,28 @@ The best way to dive into Vixeny is by jumping straight into examples. Feel free
 
 To get started, you can install our fully-equipped templates from the links below:
 
-<Tabs data={install}/>
+<Tab defaultClass="tab">
+  <TabItem title="bun" open>
 
+```bash
+bun create vixeny
+```
 
-It's recommended to learn how the template engine  works, via the link below.
+  </TabItem>
+  <TabItem title="deno">
 
->  [Template engine](/perspective/create-vixeny)
+```bash
+npx create-vixeny
+```
+
+  </TabItem>
+</Tab>
+
+It's recommended to learn how the template engine works, via the link below.
+
+> [Template engine](/perspective/create-vixeny)
 
 Enjoy exploring and have fun coding!
-
 
 ## Petitions
 
@@ -107,24 +122,22 @@ In Vixeny, routes are referred to as `petitions`. These are objects that
 necessitate a function, denoted as `f`, and a `path`. The example below
 illustrates how to define a basic petition:
 
-```javascript 
-import { petitions } from "vixeny";
+```javascript
+import { petitions } from 'vixeny';
 
 // Returning a `BodyInit`
 const helloWorld = petitions.common()({
-  path: "/hello",
-  f: () => "hello World!",
+	path: '/hello',
+	f: () => 'hello World!'
 });
 
 // Returning a `Response`
 const ping = petitions.common()({
-  path: "/ping",
-  f: () => new Response("pong"),
+	path: '/ping',
+	f: () => new Response('pong')
 });
 
-console.log(
-  helloWorld
-)
+console.log(helloWorld);
 ```
 
 Notice that even if you specify only `path` and `f`, the log output is:
@@ -145,14 +158,11 @@ This level of consistency in Vixeny’s architecture ensures that all petitions 
 
 Vixeny also offers two special petitions, `resolve` and `branch`, which we'll delve into later. For now, here's a quick look at what you can do:
 
-
 <Tabs data={tab0}/>
 
 In practice, you'll rarely need to manually declare petitions like this. Instead, our `wrap` feature simplifies handling petitions and integrating all our tools.
 
-
 ## Wrap
-
 
 The `wrap` function in Vixeny is a pure function meticulously designed to the handling and manipulation of petitions. With `wrap`, you can:
 
@@ -181,23 +191,23 @@ Supports testing individual petitions by injecting values while
 preserving their structure:
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
-const request = new Request("http://localhost/one");
+const request = new Request('http://localhost/one');
 
 const paths = wrap()().stdPetition({
-  path: "/one",
-  f: (c) => c.date.toString(),
+	path: '/one',
+	f: (c) => c.date.toString()
 });
 
 // Handling the request without modifications
-const handles = paths.handleRequest("/one")({});
+const handles = paths.handleRequest('/one')({});
 
 // Handling the request with a mock date injected
-const mocked = paths.handleRequest("/one")({
-  options: {
-    setDate: 1710592645075,
-  },
+const mocked = paths.handleRequest('/one')({
+	options: {
+		setDate: 1710592645075
+	}
 });
 
 // Outputs the current date
@@ -209,7 +219,6 @@ console.log(await mocked(request).then((r) => r.text()));
 
 Vixeny is fully typed, with JSDoc examples provided for ease of use. Hover over
 the code in your IDE to check.
-
 
 ## Resolution
 
@@ -225,33 +234,30 @@ Still wondering what that means? In simpler terms, anything defined with a `reso
 
 At the heart of Vixeny lies a fundamental type known as a "Morphism." While this concept is abstracted away to keep things simple. Essentially, anything with an `f` (a functor) is considered a "Morphism", and for simpicity, we will bundle both terms as `petition`.
 
-
 ```javascript
+import { petitions, wrap } from 'vixeny';
 
-import { petitions, wrap } from "vixeny";
-
-const request = new Request("http://localhost/");
+const request = new Request('http://localhost/');
 
 const nested = petitions.resolve()({
-  f: () => "hello",
+	f: () => 'hello'
 });
 
-
 const handler = wrap()()
-    .stdPetition({
-        path: '/',
-        resolve: {
-            // Nested resolve
-            nested,
-          },
-          f: (f) => f.resolve.nested,
-    })
-    // Creates a handler
-    .compose()
+	.stdPetition({
+		path: '/',
+		resolve: {
+			// Nested resolve
+			nested
+		},
+		f: (f) => f.resolve.nested
+	})
+	// Creates a handler
+	.compose();
 
 console.log(
-  //hello
-  handler(request),
+	//hello
+	handler(request)
 );
 ```
 
@@ -273,51 +279,46 @@ The resolution process guarantees that all necessary data is fetched and
 available for use within your petitions.
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
-const request = new Request("http://localhost/");
+const request = new Request('http://localhost/');
 
-const handler = wrap()().stdPetition({
-  path: "/withResolve",
-  resolve: {
-    hi: { f: () => "Hello world" },
-  },
-  f: (ctx) => ctx.resolve.hi,
-})
-.compose();
+const handler = wrap()()
+	.stdPetition({
+		path: '/withResolve',
+		resolve: {
+			hi: { f: () => 'Hello world' }
+		},
+		f: (ctx) => ctx.resolve.hi
+	})
+	.compose();
 
-
-console.log(
-  handler(request),
-);
+console.log(handler(request));
 ```
 
 ### SyncAgnostic
 
 Vixeny's design ensures that the signature of your functor (function), `f`,
 remains unaffected by whether its dependencies, declared in `resolve`, are
-synchronous or asynchronous. This allows for greater flexibility and simplicity, 
+synchronous or asynchronous. This allows for greater flexibility and simplicity,
 specially when it comes to testing:
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
-const hello = petitions.resolve()(
-  { f: async () => await Promise.resolve("Hello") },
-);
+const hello = petitions.resolve()({ f: async () => await Promise.resolve('Hello') });
 
 wrap(options)().stdPetition({
-  path: "/helloWorld",
-  resolve: {
-    // Adding `hello`.
-    hello,
-    // Everything in vixeny is nameless and stateless by nature.
-    world: { f: () => "world" },
-  },
-  // Important to notice that `f` is synchronous even if the resolve `hello` is not.
-  f: (ctx) => `${ctx.resolve.hello} ${ctx.resolve.world}`,
+	path: '/helloWorld',
+	resolve: {
+		// Adding `hello`.
+		hello,
+		// Everything in vixeny is nameless and stateless by nature.
+		world: { f: () => 'world' }
+	},
+	// Important to notice that `f` is synchronous even if the resolve `hello` is not.
+	f: (ctx) => `${ctx.resolve.hello} ${ctx.resolve.world}`
 });
-
 ```
 
 ### Mockable
@@ -356,7 +357,4 @@ const serve = wrap(options)()
 > This feature underscores the importance of utilizing `morphism` to ensure type
 > safety within your functions.
 
-
 <FancyLink href="/framework/routing">Next</FancyLink>
-
-
