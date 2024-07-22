@@ -143,21 +143,17 @@ const extendedHandler = wrap()(
 
 ### addAnyPetition
 
-The `addAnyPetition` method is a versatile tool within the `wrap` framework that
-allows the integration of different types of petitions into the current wrap
+Allows the integration of different types of petitions into the current wrap
 instance.
 
-#### Functionality:
+#### Functionality
 
-- **Dynamic Integration**: You can dynamically add any type of petition to the
-  existing wrap configuration.
-- **Sealed Options**: Petitions added using `addAnyPetition` retain their
-  configurations and behaviors as specified. This sealing of options ensures
-  that once a petition is added, its core attributes cannot be inadvertently
-  altered, thereby preserving the integrity and expected behavior of the
-  application.
+- **Dynamic Integration**: Adds any type of petition to the existing wrap
+  configuration.
+- **Sealed Options**: Retains the configurations and behaviors of added
+  petitions.
 
-#### Examples:
+#### Usage Example
 
 Here's how you might use `addAnyPetition` to add both a custom and a standard
 petition to a wrap instance:
@@ -185,19 +181,26 @@ const app = wrap()()
 // This setup enables the app to handle both '/custom' and '/greet' paths with their respective responses
 ```
 
-#### Practical Use:
+#### Practical Use
 
-`addAnyPetition` is particularly useful in scenarios where the application needs
-to handle the same auth petition for different routes.
+- **Modularization**: Facilitates the modular addition of routes and
+  functionalities.
+- **Extensibility**: Enables extending the application with new features without
+  altering existing configurations.
 
 ### changeOptions
 
 Allows for changing the wrap options of the current instance, creating a new
-instance with the updated options while preserving the existing petitions. This
-is useful for dynamically adjusting configurations, such as modifying routes or
-other settings, without needing to redefine all petitions.
+instance with the updated options while preserving the existing petitions.
 
-Usage example:
+#### Functionality
+
+- **Option Modification**: Changes the configuration options of the current wrap
+  instance.
+- **Instance Preservation**: Preserves the existing petitions while updating the
+  options.
+
+#### Usage example
 
 ```javascript
 import { plugins, wrap } from "vixeny";
@@ -246,35 +249,23 @@ console.log(
 // The updated handler will now greet 'Avant' instead of 'Bubbles'
 ```
 
-To complete the `### compose` section of your document, here's a detailed
-explanation that highlights its functionality, usage, and practical applications
-within the `wrap` framework:
+#### Practical Use
+
+- **Dynamic Configuration**: Useful for applications that need to change
+  configurations at deployment.
+- **Testing**: Helps to check the behaivour with different settings.
 
 ### compose
 
-The `compose` method in the `wrap` framework is a powerful feature that
-consolidates all petitions within a wrap instance into a cohesive, operational
-unit. This method finalizes the configuration of routing and request handling,
-making the wrap instance ready for execution.
+Consolidates all petitions within a wrap instance into a cohesive, operational
+unit, making the instance ready for execution.
 
-#### Functionality:
+#### Functionality
 
-- **Optimized**: Streamlines the execution path by reducing the overhead
-  involved in handling requests, making the application more efficient and
-  responsive.
+- **Aggregation**: Aggregates all petitions into one coherent structure.
+- **Optimization**: Streamlines the execution path for efficiency.
 
-#### How It Works:
-
-- When `compose` is called, it aggregates all the petitions and their
-  configurations into one coherent structure.
-- The result is a function that takes a request and matches it against the
-  defined petitions, returning the appropriate response based on the
-  application's logic.
-
-#### Usage Example:
-
-Here’s how you might use `compose` to set up a basic web application that
-handles different routes:
+#### Usage Example
 
 ```javascript
 import { wrap } from "vixeny";
@@ -293,9 +284,17 @@ const app = wrap()()
 // This function can now be used to handle incoming HTTP requests
 // Example of handling a request to the root path
 const request = new Request("http://localhost/");
+
 // Outputs: "Welcome to our homepage!"
 console.log(await app(request).then((r) => r.text()));
 ```
+
+#### Practical Use
+
+- **Application Initialization**: Prepares the application for handling requests
+  efficiently.
+- **Route Management**: Consolidates routes and their handlers for streamlined
+  request processing.
 
 ### customPetition
 
@@ -305,62 +304,72 @@ where the standard response structure does not fit your needs.
 
 > Headers have to be passed manually
 
+#### Functionality
+
+- **Custom Responses**: Returns custom HTTP responses.
+
+#### Usage Example
+
 ```javascript
 import { petitions, wrap } from "vixeny";
 
-// Making a custome petition outside of the wrap
-const custome = petitions.custom({
-  cors: {
-    allowOrigins: "*",
-  },
-})({
-  path: "/fromPetition",
-  f: ({ headers }) =>
-    new Response("hello", {
-      headers,
-    }),
-});
-
 const handler = wrap({
+  // CORS are paseed to `headers`
   cors: {
     allowOrigins: "*",
   },
 })()
   .customPetition({
     path: "/fromInside",
+    headings: {
+      // Adding "content-type": "text/html"
+      headers: ".html",
+    },
     f: ({ headers }) =>
       new Response("hello", {
         headers,
       }),
   })
-  // Both are equivalent in signatures
-  .addAnyPetition(custome);
+  .compose();
+
+//  "access-control-allow-origin": "*",
+//  "content-type": "text/html",
+console.log(handler(new Request("http://localhost/fromInside")));
 ```
+
+#### Practical Use
+
+- **Custom Handling**: Ideal for endpoints requiring non-standard handling or
+  responses.
+- **Flexibility**: Provides flexibility in response customization.
 
 ### debugLast
 
-The `debugLast` method in the wrap framework is a powerful debugging tool
-designed to give developers insight into the internal state and usage of the
-context within the last added petition.
+Provides insight into the internal state and usage of the context within the
+last added petition.
 
-For example:
-
-Context:
+> Context:
 
 - `isUsing`: Shows the componets that you are using.
 - `isAsync`: Shows if the current petition is async.
 
-Components:
+> Components:
 
 - `$NAME` : This information depends on the component.
 
-Plugin:
+> Plugin:
 
 - `$NAME` : This information depends on the plugin.
 
-```javascript
-import { wrap } from "vixeny";
+#### Functionality
 
+- **Context Debugging**: Shows the components and context being used.
+- **Detailed Information**: Provides detailed information about the last
+  petition's context and components.
+
+#### Usage Example
+
+```javascript
 import { wrap } from "vixeny";
 
 wrap()()
@@ -392,18 +401,24 @@ wrap()()
   .debugLast();
 ```
 
+#### Practical Use
+
+- **Development**: Helps in understanding and debugging the internal state of
+  petitions during development.
+- **Error Tracking**: Useful for tracking and resolving issues in the request
+  handling logic.
+
 ### exclude
 
-The exclude method in the `wrap` framework is a powerful feature that allows
-developers to dynamically remove one or more petitions based on their paths from
-an existing `wrap` instance. This functionality is particularly useful for
-managing different configurations and routes dynamically, adapting to various
-operational needs without reconstructing the entire `wrap`.
+Dynamically removes one or more petitions based on their paths from an existing
+wrap instance.
 
-#### How It Works:
+#### Functionality
 
-- `exclude` removes the specified paths from the current wrap instance before
-  the application of any global path prefixes such as those set by startWith.
+- Dynamic Removal: Removes specified paths from the current wrap instance.
+- Pre-path Adjustment: Removes paths before applying any global path prefixes.
+
+#### Usage Example
 
 ```typescript
 import { wrap } from "vixeny";
@@ -430,12 +445,25 @@ const handlerWithoutTwoThree = handler.exclude(["/pathTwo", "/pathThree"]);
 handlerWithoutTwoThree.logPaths(); // Outputs: ['/pathOne']
 ```
 
+#### Practical Use
+
+- **Route Management**: Useful for dynamically adjusting the available routes.
+- **Configuration Adjustments**: Allows for removing certain routes based on
+  runtime conditions.
+
 ### flatMap
 
 Applies a function over each petition, wrapping each result, and then flattens
 all results into a single wrap.
 
-> flatMap is mostly used for the mantainers of `vixeny/core`
+> **flatMap** is mostly used for the mantainers of `vixeny/core`
+
+#### Functionality
+
+- **Function Application**: Applies a function to each petition.
+- **Result Flattening**: Flattens all results into a single wrap instance.
+
+#### Usage Example
 
 ```javascript
 import { wrap } from "vixeny";
@@ -471,22 +499,26 @@ const asyncHandler = handler
   );
 ```
 
+#### Practical Use
+
+- **Granular Control**: Provides granular control over petitions.
+- **Custom Transformations**: Enables custom transformations of petitions.
+
 ### handleRequest
 
-`handleRequest` dynamically processes a request getting a specified path. If the
-path exists among the defined petitions, it either applies provided
-modifications (useful for mocking or altering request handling behavior) or
-proceeds with the default petition handling logic.
+Dynamically composes a petition from the current wrap. Takes path exists among
+the defined petitions, it either applies provided modifications (useful for
+mocking or altering request handling behavior) or proceeds with the default
+petition handling logic.
 
-This function is particularly useful for testing, allowing you to inject mock
-options or modify the petition's behavior on-the-fly without altering the
-original petition definitions.
+#### Functionality
 
-#### Example usage:
+- **Dynamic Processing**: Processes requests dynamically, applying modifications
+  if needed.
+- **Default Handling**: Proceeds with default petition handling if no
+  modifications are provided.
 
-Suppose we have a petition defined to handle requests to '/one', returning the
-current date as a string. We can use `handleRequest` to process a request
-directly or modify its behavior for testing.
+#### Usage Example
 
 ```javascript
 const request = new Request("http://localhost/one");
@@ -514,16 +546,18 @@ console.log(await handles(request).then((r) => r.text()));
 console.log(await mocked(request).then((r) => r.text()));
 ```
 
+#### Practical Use
+
+- **Testing**: Useful for testing petition behavior with different
+  configurations.
+- **Mocking**: Allows for mocking requests and responses for testing purposes.
+
 ### petitionWithoutCTX
 
-The `petitionWithoutCTX` method in the `wrap` framework is a specialized
-function designed to allow petitions to operate independently of the broader
-context typically managed by the `composer`. This method is essential for
-scenarios where a petition must execute with a fixed, predetermined setup,
-ensuring its behavior remains consistent and unaffected by external
-configurations.
+Allows petitions to operate independently of the broader context managed by the
+composer, ensuring consistent behavior with a fixed setup
 
-#### Functionality:
+#### Functionality
 
 - **Context Independence**: Petitions added with `petitionWithoutCTX` do not
   depend on the context provided by the `composer`. This makes them suitable for
@@ -533,15 +567,7 @@ configurations.
   bypassing the contextual logic, thus reducing the complexity for certain
   routes within the application.
 
-#### How It Works:
-
-- Petitions defined through `petitionWithoutCTX` receive a minimal, predefined
-  set of parameters, typically only what is necessary for the petition to
-  fulfill its response duty.
-- These petitions are isolated in terms of functionality, meaning changes to the
-  global or inherited context do not affect them.
-
-#### Usage Example:
+#### Usage Example
 
 Here's an example illustrating the use of `petitionWithoutCTX` to set up a
 static content delivery endpoint, which does not require any dynamic context
@@ -566,7 +592,7 @@ staticContentHandler(request).then((response) => {
 });
 ```
 
-#### Practical Use:
+#### Practical Use
 
 - **Performance Optimization**: Ideal for endpoints where the response is static
   or predetermined, allowing these routes to be optimized for faster processing
@@ -575,22 +601,20 @@ staticContentHandler(request).then((response) => {
   are being integrated into a new application without altering their operational
   logic.
 
-#### Benefits:
-
-- **Consistency**: Ensures that the behavior of the petition remains unchanged
-  regardless of the broader application context, providing stability across
-  requests.
-
 ### pure
 
-The `pure` method in the `wrap` framework is a foundational concept borrowed
-from functional programming, emphasizing immutability and side-effect-free
-operations. In the context of `wrap`, pure creates a new `wrap` instance that is
-functionally equivalent to its input but is disconnected from the original
-instance's state except for the link to the initial options.
+Creates a new wrap instance that is functionally equivalent to its input but
+disconnected from the original instance's state.
 
-> flatMap is mostly used for the mantainers of `vixeny/core` Preserve the
+> **Pure** is mostly used for the mantainers of `vixeny/core` Preserve the
 > current `options`
+
+#### Functionality
+
+- **Immutability**: Emphasizes immutability and side-effect-free operations.
+- **State Independence**: Creates a new instance without the original state.
+
+#### Usage Example
 
 ```javascript
 import { wrap } from "vixeny";
@@ -615,13 +639,22 @@ replicatedWrap.logPaths(); // Output: ['/example']
 baseWrap.logPaths(); // Output: ['/modified']
 ```
 
+#### Practical Use
+
+- **State Isolation**: Useful for creating isolated instances for different
+  contexts.
+- **Modular Development**: Facilitates modular development by isolating
+  instances.
+
 ### stdPetition
 
-The `stdPetition` method in the `wrap` framework defines a standard petition
-that processes HTTP requests and returns a response. This function is a core
-part of the `wrap` system, designed to handle typical web requests with a
-straightforward and predictable setup. It simplifies the creation of commonly
-used HTTP routes within an application.
+Defines a standard petition that processes HTTP requests and returns a response.
+
+#### Functionality
+
+- **Standard Processing**: Handles typical web requests with a straightforward
+  setup.
+- **Predictable Setup**: Provides a predictable configuration for common routes.
 
 #### Usage Example:
 
@@ -652,20 +685,25 @@ const request = new Request("http://localhost/greet");
 app(request).then((response) => console.log(response.text())); // Outputs: "Hello, World!"
 ```
 
+#### Practical Use
+
+- **Route Handling**: Simplifies the creation of common HTTP routes.
+- **Application Initialization**: Useful for setting up basic route handling in
+  applications.
+
 ### testRequests
 
 Simulates a server environment for testing the functionality of all wrapped
-requests. This method creates a server-like instance that can handle requests
-directly, enabling comprehensive testing of the `wrap` configuration and all
-defined petitions without depending on an external runtime or actual server.
-
-This is particularly useful for unit testing or integration testing, where you
-want to validate the behavior of your request handling logic under controlled
-conditions.
+requests, enabling comprehensive testing without an external runtime.
 
 > Wraps the `petitions` in `Promise.resolve`
 
-Usage example:
+#### Functionality
+
+- **Simulation**: Creates a server-like instance for testing.
+- **Comprehensive Testing**: Enables detailed testing of request handling logic.
+
+#### Usage example
 
 ```javascript
 import { wrap } from "vixeny";
@@ -684,6 +722,7 @@ const handler = wrap()()
     f: () => "two",
   });
 
+// Creates a handler to test
 const testHandler = handler.testRequests();
 
 console.log(
@@ -692,15 +731,23 @@ console.log(
 );
 ```
 
+#### Practical Use
+
+- **Unit Testing**: Useful for unit testing request handling logic.
+- **Integration Testing**: Facilitates integration testing by simulating a
+  server environment.
+
 ### union
 
-Combines petitions from another `wrap` instance with the current one. This is
-particularly useful for modularizing and reusing petitions across different
-parts of your application. By importing and unioning petitions, you can maintain
-clean separation of concerns and ensure your code remains organized.
+Combines petitions from another wrap instance with the current one, useful for
+modularizing and reusing petitions across different parts of the application.
 
-Example usage: Assuming `extension.ts` exports a wrapped petition, it can be
-combined with the petitions defined in `a.ts`:
+#### Functionality
+
+- **Combination**: Combines petitions from multiple wrap instances.
+- **Modularization**: Supports modular development by reusing petitions.
+
+#### Usage Example
 
 ```typescript
 import { wrap } from "vixeny";
@@ -728,17 +775,16 @@ const handeler = wrap()()
   .logPaths(); // Outputs paths from both the current wrap and the imported `extension`.
 ```
 
-This method supports integrating only certain types of petitions, which align
-with the structure and functionality intended by the wrap's design.
+#### Practical Use
+
+- **Code Reuse**: Facilitates code reuse by combining existing petitions.
+- **Modular Development**: Supports modular development by integrating different
+  parts of the application.
 
 ### unwrap
 
-The `unwrap` method in the `wrap` framework is a crucial feature designed to
-decompose a wrapped instance into its constituent petitions. This allows for the
-exporting or further manipulation of these petitions individually or in
-combination with other `wrap` instances. This method is particularly useful for
-integrating multiple `wrap` instances or for configuring a server to handle all
-defined petitions in a structured manner.
+Decomposes a wrapped instance into its constituent petitions, making them
+accessible for individual use or recombination.
 
 #### Functionality:
 
@@ -748,17 +794,7 @@ defined petitions in a structured manner.
   ensures that all paths within the unwrapped petitions are prefixed
   accordingly, facilitating organized and hierarchical URL structures.
 
-#### How It Works:
-
-- When invoked, `unwrap` extracts the petitions from a `wrap` instance while
-  maintaining any path adjustments made through options like `startWith`.
-- This extraction allows the petitions to be utilized independently or merged
-  with other `wrap` instances, maintaining flexibility and modularity.
-
 #### Usage Example:
-
-Here's an example demonstrating how to use `unwrap` to combine petitions from
-multiple sources into a single `wrap` instance:
 
 ```javascript
 import { wrap } from "vixeny";
@@ -795,7 +831,9 @@ combined.logPaths(); // Logs paths like '/api/users' and '/admin/controls'
 
 #### Practical Use:
 
-- **Modular Development**: Allows developers to create modular, reusable
-  components that can be combined as needed without redundancy.
-- **Server Configuration**: Simplifies the process of configuring servers by
-  consolidating multiple petition sources into a single operational unit.
+Practical Use
+
+- **Modular Development**: Enables modular development by decomposing and
+  recombining petitions.
+- **Server Configuration**: Simplifies server configuration by consolidating
+  multiple petition sources.
