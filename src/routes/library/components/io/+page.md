@@ -1,3 +1,9 @@
+<svelte:head>
+  <script src='/prism.mjs' defer></script>
+  <title>IO - Vixeny</title>
+  <meta name="description" content="Understanding IO"/>
+</svelte:head>
+
 # IO
 
 An Agnostic Implementation for IO Operations

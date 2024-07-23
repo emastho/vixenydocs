@@ -10,14 +10,14 @@ The `branch` function was created to utilize all the functionalities of Vixeny w
 
 You can also pass arguments to these functions.
 
-## Properties
+## Key Properties
 
 - Can use plugins
 - Can have arguments
-- It's lazy
+- It is lazy
 - Accepts resolves
 - Can have resolves
-- It's reusable
+- It is  reusable
 - Can be in a resolve, branch, or petition (anything with an `f`)
 
 ## Args
@@ -59,7 +59,7 @@ const returnArgs = petitions.branch()({
 });
 ```
 
-## Examples
+## Example Usage
 
 ### Adds to CTX
 

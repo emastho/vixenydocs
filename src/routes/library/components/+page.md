@@ -6,20 +6,19 @@ Here a list of all the components for any petition with `f`
 
 Plugins are not listed:
 
-- [✅ resolve  >>](/library/components/resolve) 
-- [🌿 branch  >>](/library/components/branch)
-- [🌐 req  >>](/library/components/req)
-- [🔍 query  >>](/library/components/query) 
-- [📍 param  >>](/library/components/param) 
-- [📜 headers >>](/library/components/headers)
-- [🍪 cookie >>](/library/components/cookie)
-- [📂 io >>](/library/components/io)
+- [🌿 branch    >>](/library/components/branch)
+- [🍪 cookie    >>](/library/components/cookie)
+- [🔍 query     >>](/library/components/query) 
+- [📍 param     >>](/library/components/param) 
+- [📜 headers   >>](/library/components/headers)
+- [✅ resolve   >>](/library/components/resolve) 
+- [📂 io        >>](/library/components/io)
 
 
 ## Crypto
 
 If `crypto` with at least a `globalKey` is present:
 
-- [✍️ sign >>](/library/components/sign) 
-- [🔒 verify >>](/library/components/verify)
-- [🔑 token >>](/library/components/token)
+- [✍️ sign       >>](/library/components/sign) 
+- [🔒 verify    >>](/library/components/verify)
+- [🔑 token     >>](/library/components/token)
