@@ -1,55 +1,102 @@
-# IO
 
-An Agnostic Implementation for IO Operations
+<svelte:head>
+  <script src='/prism.mjs' defer></script>
+  <title>branch - Vixeny</title>
+  <meta name="description" content="Understanding cookies"/>
+  <meta name="keywords" content="cookies, web development, Vixeny framework, HTTP cookies"/>
 
-## IO - Specifications
+</svelte:head>
 
-### Runtime
+# Cookie
 
-- [x] Bun
-- [x] Deno
-- [ ] Node
+This is the standard method to retrieve cookies from a request.
 
-## IO - Methods
+## Optimization
 
-### textOf
+In the Vixeny framework, there's a component called `the checker`, which actively tries to optimize your functions.
 
-- If the file is not found or fails, it returns `null`.
+### Default Behavior
 
-```javascript
+In this example, it understands that we are only using `hello`.
+
+```ts
 import { wrap } from "vixeny";
 
-wrap()()
-  .customPetition({
-    path: "/getPackage",
-    f: async ({ io }) => {
-      const file = await io.textOf("./package.json");
+const handler = wrap()()
+  .stdPetition({
+    path: '/',
+    f: ({ cookie }) =>  cookie.hello ?? 'not found'
+  })
+  // `debugLast` shows all components used in the last request
+  // cookie: [hello?]
+  .debugLast()
+  .testRequests()
 
-      return new Response(file, {
-        status: file ? 200 : 404,
-      });
-    },
-  });
+await handler(new Request("http://localhost/", {
+  // Sending two cookies: `hello` and `user`
+  headers: {
+    Cookie: 'hello=world; user=Avant'
+  }
+}))
+  .then(x => x.text())
+  // Logging : world
+  .then(console.log)
 ```
 
-### writeText
+There are cases where the checker will not be able to infer the elements used, which will trigger a default case. You can check this at any time using `debugLast`.
 
-- Returns a boolean after the operation is completed.
-- It cannot throw an error.
-
-```javascript
+```ts
 import { wrap } from "vixeny";
 
-wrap()()
-  .customPetition({
-    path: "/write",
-    f: async ({ io }) => {
-      // Returns boolean
-      const wasWritten = await io.writeText("./file")("hello world!");
+const handler = wrap()()
+  .stdPetition({
+    path: '/',
+    f: ({ cookie }) =>  JSON.stringify(cookie) ?? 'not found'
+  })
+  // `debugLast` shows all components used in the last request
+  // cookie: Record<string, string|null> | null
+  .debugLast()
+  .testRequests()
 
-      return new Response(null, {
-        status: wasWritten ? 200 : 400,
-      });
+await handler(new Request("http://localhost/", {
+  // Sending two cookies: `hello` and `user`
+  headers: {
+    Cookie: 'hello=world; user=Avant'
+  }
+}))
+  .then(x => x.text())
+  // Logging : {"hello":"world","user":"Avant"}
+  .then(console.log)
+```
+
+### Only
+
+The `only` option restricts cookies to only accept the cookies specified in it.
+
+```ts
+import { wrap } from "vixeny";
+
+const handler = wrap()()
+  .stdPetition({
+    path: '/',
+    cookie: {
+      // Locking this path to use only the specified cookies
+      only: ['hello']
     },
-  });
+    f: ({ cookie }) => JSON.stringify(cookie) ?? 'not found'
+  })
+  // `debugLast` shows all components used in the last request
+  // cookie: [hello?]
+  .debugLast()
+  .testRequests()
+
+await handler(new Request("http://localhost/", {
+  // Sending two cookies: `hello` and `user`
+  headers: {
+    Cookie: 'hello=world; user=Avant'
+  }
+}))
+  .then(x => x.text())
+  // Logging : {"hello":"world"}
+  .then(console.log)
 ```
