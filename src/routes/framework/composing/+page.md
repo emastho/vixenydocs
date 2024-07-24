@@ -92,7 +92,7 @@ const handler = wrap(opt)()
   .customPetition({
     path: "/custom",
     headings: {
-      headers: "text/html",
+      headers: ".html",
     },
     f: ({ headers }) =>
       new Response("<p>Hello World!</p>", {
@@ -102,15 +102,11 @@ const handler = wrap(opt)()
   .stdPetition({
     path: "/std",
     headings: {
-      headers: "text/html",
+      headers: ".html",
     },
     // Headers are fixed; there's no way to change them dynamically
     f: () =>
-      new Response("<p>Hello World!</p>", {
-        headers: new Headers([
-          ["Content-Type", "text/html"],
-        ]),
-      }),
+      "<p>Hello World!</p>"
   })
   .petitionWithoutCTX({
     path: `/response`,
