@@ -1,12 +1,19 @@
+<script>
+  import ListOfComponents from '$lib/components/listOfComponets.svelte';
+</script>
+
 <svelte:head>
-  <script src='/prism.mjs' defer></script>
-  <title>branch - Vixeny</title>
+
+<script src='/prism.mjs' defer></script>
+<title>branch - Vixeny</title>
   <meta name="description" content="Understanding branch"/>
 </svelte:head>
 
 # Branch
 
-The `branch` function was created to utilize all the functionalities of Vixeny while being lazy. In contrast, `resolve` does the same but is always resolved before the request in context.
+The `branch` function was created to utilize all the functionalities of Vixeny
+while being lazy. In contrast, `resolve` does the same but is always resolved
+before the request in context.
 
 You can also pass arguments to these functions.
 
@@ -17,12 +24,13 @@ You can also pass arguments to these functions.
 - It is lazy
 - Accepts resolves
 - Can have resolves
-- It is  reusable
+- It is reusable
 - Can be in a resolve, branch, or petition (anything with an `f`)
 
 ## Args
 
-It gets the type of the `value` in the key `args`. In the next example, it gets the type of `text` as a string.
+It gets the type of the `value` in the key `args`. In the next example, it gets
+the type of `text` as a string.
 
 ```ts
 import { petitions } from "vixeny";
@@ -42,7 +50,7 @@ const hello = petitions.common()({
     returnArgs,
   },
   // It returns arguments
-  f: ({ branch }) => branch.returnArgs('hello world'),
+  f: ({ branch }) => branch.returnArgs("hello world"),
 });
 ```
 
@@ -63,7 +71,8 @@ const returnArgs = petitions.branch()({
 
 ### Adds to CTX
 
-Here we are using a petition in `wrap` and adding a branch that returns the string.
+Here we are using a petition in `wrap` and adding a branch that returns the
+string.
 
 ```ts
 import { petitions, wrap } from "vixeny";
@@ -123,7 +132,7 @@ const handler = wrap()()
   })
   .customPetition({
     path: "/user/:id",
-    method: 'POST',
+    method: "POST",
     // Adding Crypto
     crypto: {
       globalKey: key,
@@ -146,7 +155,7 @@ const token = await handler(new Request("http://localhost/getKey/bubbles"))
 
 // Valid request
 const req = new Request("http://localhost/user/bubbles", {
-  method: 'POST',
+  method: "POST",
   headers: {
     Cookie: "user=" + token,
   },
@@ -154,8 +163,8 @@ const req = new Request("http://localhost/user/bubbles", {
 
 // Invalid request 403
 console.log(
-  await handler(new Request("http://localhost/user/bubbles") , {
-    method: 'POST'
+  await handler(new Request("http://localhost/user/bubbles"), {
+    method: "POST",
   })
     .then((res) => res.status),
 );
@@ -164,7 +173,6 @@ console.log(
 console.log(
   await handler(req).then((res) => res.status),
 );
-
 ```
 
 ### Resolves as Branches
@@ -182,12 +190,12 @@ const world = petitions.resolve()({
 // Branch
 const hello = petitions.branch()({
   args: undefined,
-  f: () => 'hello',
+  f: () => "hello",
 });
 
 const handle = wrap()()
   .stdPetition({
-    path: '/',
+    path: "/",
     branch: {
       // Adding branches
       hello,
@@ -202,6 +210,10 @@ const handle = wrap()()
 console.log(
   // Logging `Hello world`
   await handle(new Request("http://localhost/"))
-    .then(res => res.text())
+    .then((res) => res.text()),
 );
 ```
+
+## List
+
+<ListOfComponents />

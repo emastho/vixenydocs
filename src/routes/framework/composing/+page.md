@@ -1,5 +1,7 @@
 <script>
   import FancyLink from '$lib/components/FancyLink.svelte';
+  import ListOfComponents from '$lib/components/listOfComponets.svelte';
+
 </script>
 
 <svelte:head>
@@ -105,8 +107,7 @@ const handler = wrap(opt)()
       headers: ".html",
     },
     // Headers are fixed; there's no way to change them dynamically
-    f: () =>
-      "<p>Hello World!</p>"
+    f: () => "<p>Hello World!</p>",
   })
   .petitionWithoutCTX({
     path: `/response`,
@@ -146,25 +147,7 @@ this entail? Let's delve into the concept of `ctx` and its role.
 
 Here a list of all the methods availiable.
 
-Plugins are not listed:
-
-- **args:** Passes the arguments to the current CTX when a `branch` is composed.
-- **resolve:** Gets the values of the resolved functions.
-- **branch:** Gets access to the functions in `branch`.
-- **req:** Direct access to the HTTP request object.
-- **query:** Facilitates easy access to URL query parameters.
-- **param:** Extracts URL path parameters.
-- **headers:** Provides access to HTTP request headers (Only for costume
-  petitions).
-- **date:** Offers access to the current timestamp.
-- **cookie:** Manages HTTP cookies.
-- **io:** Handles file operations.
-
-If `crypto` with at least a `globalKey` is present.
-
-- **sign:** Gives access to a sign function.
-- **verify:** Gives access to a verify function.
-- **token:** Verifies the cookies with the current key.
+<ListOfComponents />
 
 ## Debugging
 

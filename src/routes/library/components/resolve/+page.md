@@ -1,19 +1,28 @@
+<script>
+  import ListOfComponents from '$lib/components/listOfComponets.svelte';
+</script>
 
 <svelte:head>
-  <script src='/prism.mjs' defer></script>
-  <title>Resolve - Vixeny</title>
+
+<script src='/prism.mjs' defer></script>
+<title>Resolve - Vixeny</title>
   <meta name="description" content="Understanding resolve"/>
 </svelte:head>
 
 # Resolve
 
-Resolves in Vixeny ensure that all necessary data dependencies are resolved before the main function is executed. This mechanism simplifies asynchronous data handling and composition, making your code more modular and maintainable.
+Resolves in Vixeny ensure that all necessary data dependencies are resolved
+before the main function is executed. This mechanism simplifies asynchronous
+data handling and composition, making your code more modular and maintainable.
 
 #### Key Properties
 
-- **SyncAgnostic**: The signature of your function remains unaffected by whether its dependencies are synchronous or asynchronous.
-- **Mockable**: Simplifies the process of mocking dependencies for testing purposes without the need for actual calls.
-- **Composable and Reusable**: Allows for the reuse and on-the-fly modification of any morphism.
+- **SyncAgnostic**: The signature of your function remains unaffected by whether
+  its dependencies are synchronous or asynchronous.
+- **Mockable**: Simplifies the process of mocking dependencies for testing
+  purposes without the need for actual calls.
+- **Composable and Reusable**: Allows for the reuse and on-the-fly modification
+  of any morphism.
 
 ### Example Usage
 
@@ -87,7 +96,10 @@ const handler = wrap()()
 
 console.log(
   await handler(new Request("http://localhost/"))
-    .then(res => res.text())
+    .then((res) => res.text()),
 );
 ```
 
+## List
+
+<ListOfComponents />

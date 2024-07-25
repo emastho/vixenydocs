@@ -1,6 +1,11 @@
+<script>
+  import ListOfComponents from '$lib/components/listOfComponets.svelte';
+</script>
+
 <svelte:head>
-  <script src='/prism.mjs' defer></script>
-  <title>IO - Vixeny</title>
+
+<script src='/prism.mjs' defer></script>
+<title>IO - Vixeny</title>
   <meta name="description" content="Understanding IO"/>
 </svelte:head>
 
@@ -27,14 +32,14 @@ import { wrap } from "vixeny";
 
 wrap()()
   .customPetition({
-    path: '/getPackage',
+    path: "/getPackage",
     f: async ({ io }) => {
-      const file = await io.textOf('./package.json');
-      
+      const file = await io.textOf("./package.json");
+
       return new Response(file, {
-        status: file ? 200 : 404
+        status: file ? 200 : 404,
       });
-    }
+    },
   });
 ```
 
@@ -48,14 +53,18 @@ import { wrap } from "vixeny";
 
 wrap()()
   .customPetition({
-    path: '/write',
+    path: "/write",
     f: async ({ io }) => {
       // Returns boolean
-      const wasWritten = await io.writeText('./file')("hello world!");
+      const wasWritten = await io.writeText("./file")("hello world!");
 
       return new Response(null, {
-        status: wasWritten ? 200 : 400
+        status: wasWritten ? 200 : 400,
       });
-    }
+    },
   });
 ```
+
+## List
+
+<ListOfComponents />
