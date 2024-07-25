@@ -1,9 +1,15 @@
-<svelte:head>
+<script>
+  import ListOfComponents from '$lib/components/listOfComponets.svelte';
+  import ButtonToTop from '$lib/components/ButtonToTop.svelte';
+</script>
 
+<svelte:head>
 <script src='/prism.mjs' defer></script>
 <title>Wrap - Vixeny</title>
 <meta name="description" content="Understanding wrap"/>
 </svelte:head>
+
+<ButtonToTop />
 
 # Wrap
 

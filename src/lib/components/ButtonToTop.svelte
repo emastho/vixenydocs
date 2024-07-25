@@ -23,7 +23,7 @@
         clearTimeout(timeout);
         timeout = setTimeout(() => {
             showButton = false;
-        }, 3000);
+        }, 2000);
     };
 
     const scrollToTop = () => {
@@ -46,7 +46,7 @@
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background-color: #007bff;
+        background-color: var(--closest);
         color: white;
         border: none;
         padding: 10px;
