@@ -1,3 +1,15 @@
+<script>
+  import ListOfComponents from '$lib/components/listOfComponets.svelte';
+</script>
+
+<svelte:head>
+
+<script src='/prism.mjs' defer></script>
+<title>branch - Vixeny</title>
+  <meta name="description" content="Understanding sign and verify"/>
+  <meta name="keywords" content="sign, verify, JWT, web development, Vixeny framework, FP, functional programming"/>
+</svelte:head>
+
 ```ts
 import { wrap } from "vixeny";
 
@@ -68,3 +80,7 @@ await handler(
 )
   .then(console.log);
 ```
+
+## List
+
+<ListOfComponents />

@@ -7,6 +7,7 @@
 <script src='/prism.mjs' defer></script>
 <title>IO - Vixeny</title>
   <meta name="description" content="Understanding IO"/>
+  <meta name="keywords" content="IO, web development, Vixeny framework, FP, functional programming"/>
 </svelte:head>
 
 # IO

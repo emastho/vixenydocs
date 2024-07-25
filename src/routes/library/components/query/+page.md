@@ -7,7 +7,7 @@
 <script src='/prism.mjs' defer></script>
 <title>branch - Vixeny</title>
   <meta name="description" content="Understanding query parameters"/>
-  <meta name="keywords" content="query parameters, web development, Vixeny framework, HTTP queries"/>
+  <meta name="keywords" content="query parameters, web development, Vixeny framework, FP, functional programing, HTTP queries"/>
 </svelte:head>
 
 # Query
