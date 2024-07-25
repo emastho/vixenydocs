@@ -590,13 +590,16 @@ const staticContentHandler = wrap()()
       new Response("<p>Static Content</p>", {
         headers: new Headers({ "Content-Type": "text/html" }),
       }),
-  });
+  })
+  .testRequests();
 
 // Example of serving a request to the static path
 const request = new Request("http://localhost/static");
-staticContentHandler(request).then((response) => {
-  console.log(response.text()); // Outputs: "<p>Static Content</p>"
-});
+
+
+await staticContentHandler(request)
+  .then(res => res.text())
+  .then(console.log)
 ```
 
 #### Practical Use
