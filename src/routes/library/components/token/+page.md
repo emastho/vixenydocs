@@ -1,5 +1,6 @@
+
 <script>
-  import ListOfComponents from '$lib/components/listOfComponents.svelte';
+   import ListOfComponents from '$lib/components/listOfComponets.svelte';
 </script>
 
 <svelte:head>
