@@ -1,6 +1,6 @@
 <script>
-
-  import FancyLink from '$lib/components/FancyLink.svelte';
+import { Tabs as Tab, TabItem } from 'flowbite-svelte';
+import FancyLink from '$lib/components/FancyLink.svelte';
 </script>
 
 <svelte:head>
@@ -9,10 +9,6 @@
 <script src='/prism.mjs' defer></script>
 <meta name="description" content="Adding elements together" />
 </svelte:head>
-
-# Extending
-
-// Intro
 
 ## Enclosing
 
@@ -58,12 +54,5 @@ await handler(param)
   .then(console.log);
 ```
 
-## Plugins
-
-// Comming soon.
-
-## Exporting
-
-// Cooming soon.
 
 Thanks for your time.

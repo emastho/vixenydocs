@@ -65,7 +65,7 @@ An ecosystem of functional web tools, that aims to make code more:
 - `Reusable` : Make it once and use it again, because of the purity of `Vixeny`,
   every element can be reused and composed in many ways.
 
-- `Testable` : Thanks to its monolithic structure, it can be tested in any
+- `Testable` : Thanks to its monolithic structure, it can be tested at any
   state.
 
 - `Smart` : Asyncronless with an integrated system that helps you to detect bugs
@@ -90,16 +90,17 @@ suits your needs.
 ## Why `Vixeny`?
 
 Vixeny's name comes from seeing her like a style of coding, it's not difficult
-to learn but different and rewarding, focusing more on the flow of your code,
+to learn but rewarding, focusing more on the flow of your code,
 with that unique ability to see everything at any point with full transparency.
+
+And remember, you can copy, paste and run all the examples! and there are examples for everthing!.
 
 Now, without further ado, let's embark on your journey from 'zero to hero' with
 Vixeny!
-
+ 
 ## Quick start
 
-The best way to dive into Vixeny is by jumping straight into examples. Feel free
-to copy and run any of the examples provided. Designed to be backward compatible
+Designed to be backward compatible
 and runtime agnostic, Vixeny ensures that code you write today will continue to
 work seamlessly in the future, whether you're using Deno, Bun, or any other
 environment.
@@ -132,7 +133,7 @@ Enjoy exploring and have fun coding!
 
 ## Petitions
 
-In Vixeny, routes are referred to as `petitions`. These are objects that
+In Vixeny, routes and are referred to as `petitions`. These are objects that
 necessitate a function, denoted as `f`, and a `path`. The example below
 illustrates how to define a basic petition:
 
@@ -248,8 +249,7 @@ Unlike traditional frameworks that rely on life cycles for code execution and
 rendering management, Vixeny employs a concept called "resolution." A resolution
 is defined as:
 
-> A resolution involves chaining the resolution of any morphism (petition) by
-> its resolve.
+> A resolution involves chaining the resolution of any morphism (petition) by its resolve.
 
 Still wondering what that means? In simpler terms, anything defined with a
 `resolve` must be fully resolved before its caller can access it. This creates a
@@ -289,9 +289,7 @@ console.log(
 );
 ```
 
-> Any `resolve` or `branch` can be utilized within a `Morphism`, but there are
-> not considered `petitions`, meaning, you can not use them directly in a
-> `wrap`.
+> Any `resolve` or `branch` can be utilized within a `Morphism`, but there are not considered `petitions`, meaning, you can not use them directly in a `wrap`.
 
 Let's break it down with more examples.
 
@@ -386,7 +384,6 @@ const serve = wrap(options)()
   .addAnyPetition(hey)
 ```
 
-> This feature underscores the importance of utilizing `morphism` to ensure type
-> safety within your functions.
+> This feature underscores the importance of utilizing `morphism` to ensure type safety within your functions.
 
 <FancyLink href="/framework/routing">Next</FancyLink>
