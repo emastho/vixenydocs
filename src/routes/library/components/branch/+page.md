@@ -5,7 +5,7 @@
 <svelte:head>
 
 <script src='/prism.mjs' defer></script>
-<title>branch - Vixeny</title>
+<title>Branch - Vixeny</title>
   <meta name="description" content="Understanding branch"/>
   <meta name="keywords" content="branch, web development, Vixeny framework, FP, functional programming"/>
 </svelte:head>

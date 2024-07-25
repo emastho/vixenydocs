@@ -5,10 +5,26 @@
 <svelte:head>
 
 <script src='/prism.mjs' defer></script>
-<title>branch - Vixeny</title>
+<title>Sign and Verify- Vixeny</title>
   <meta name="description" content="Understanding sign and verify"/>
   <meta name="keywords" content="sign, verify, JWT, web development, Vixeny framework, FP, functional programming"/>
 </svelte:head>
+
+
+# Sign and verify
+
+Gives access to the respective functions in the CTX.
+
+
+> It needs `crypto` in the `petition`.
+
+## Specifications
+
+- [x] HS256
+
+## Sign
+
+Example of signing `param`.
 
 ```ts
 import { wrap } from "vixeny";
@@ -21,12 +37,18 @@ const handler = wrap()()
     },
     f: ({ sign, param }) => sign(param),
   })
+  // Creating a server element
   .testRequests();
 
+// Checking token
 await handler(new Request("http://localhost/sign/pluie"))
   .then((x) => x.text())
   .then(console.log);
 ```
+
+### Verify
+
+Example of signing `param` and verifing the validity of it.
 
 ```ts
 import { wrap } from "vixeny";

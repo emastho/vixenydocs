@@ -5,7 +5,7 @@
 <svelte:head>
 
 <script src='/prism.mjs' defer></script>
-<title>branch - Vixeny</title>
+<title>Param - Vixeny</title>
   <meta name="description" content="Understanding URL parameters"/>
   <meta name="keywords" content="URL parameters, FP, functional programing, web development, Vixeny framework, HTTP parameters"/>
 </svelte:head>
