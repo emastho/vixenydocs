@@ -10,8 +10,7 @@
     ];
 
     let crypto = [
-        { emoji: "✍️", name: "sign", link: "/library/components/sign", description: "Gives access to a sign function." },
-        { emoji: "🔒", name: "verify", link: "/library/components/verify", description: "Gives access to a verify function." },
+        { emoji: "🔒", name: "sign & verify", link: "/library/components/sign", description: "Gives access to a sign and verify function." },
         { emoji: "🔑", name: "token", link: "/library/components/token", description: "Verifies the cookies with the current key." }
     ];
 
