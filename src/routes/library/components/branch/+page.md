@@ -164,7 +164,7 @@ const req = new Request("http://localhost/user/bubbles", {
 
 // Invalid request 403
 console.log(
-  await handler(new Request("http://localhost/user/bubbles"), {
+  await handler(new Request("http://localhost/user/bubbles", {
     method: "POST",
   })
     .then((res) => res.status),
