@@ -4,7 +4,6 @@
   <title>branch - Vixeny</title>
   <meta name="description" content="Understanding cookies"/>
   <meta name="keywords" content="cookies, web development, Vixeny framework, HTTP cookies"/>
-
 </svelte:head>
 
 # Cookie
