@@ -145,6 +145,11 @@ const extendedHandler = wrap()(
   // Logs all configured paths for debugging
   .logPaths();
 ```
+## Components
+
+The list of components that you can use with:
+
+<ListOfComponents />
 
 ## Methods
 

@@ -46,7 +46,7 @@ await handler(new Request("http://localhost/sign/pluie"))
   .then(console.log);
 ```
 
-### Verify
+## Verify
 
 Example of signing `param` and verifing the validity of it.
 
