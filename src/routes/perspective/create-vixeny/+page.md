@@ -24,7 +24,7 @@
   <meta name="description" content="Using create-vixeny"/>
 </svelte:head>
 
-# Welcome
+# Perspective
 
 Welcome to Vixeny templates! Here are some basics on how the template engine works. It's recommended to learn about the dynamic path system via the link below.
 
@@ -206,7 +206,7 @@ const petition = composer.objectNullRequest()({
      }),
    });
    ```
-> `param` would not work.
+> param in CTX would not work.
 
 #### Fetching with and without a Query Parameter
 
