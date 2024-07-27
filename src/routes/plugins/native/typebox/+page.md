@@ -17,7 +17,7 @@
 <script src='/prism.mjs' defer></script>
 <title>Typebox plugin - Vixeny</title>
   <meta name="description" content="Using Typebox in Vixeny"/>
-  <meta name="keywords" content="typeboc, JWT, web development, Vixeny framework, FP, functional programming, plugin"/>
+  <meta name="keywords" content="typebox, JWT, web development, Vixeny framework, FP, functional programming, plugin"/>
 </svelte:head>
 
 # Typebox
