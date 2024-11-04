@@ -4,11 +4,13 @@
 	import { page } from '$app/stores';
 	import { onMount, onDestroy } from 'svelte';
 	import Links from './Links.svelte';
+	import { sidebar } from '$lib/stores/main';
 
 	let menuZone: HTMLElement;
 
-	export let closeSidebar: () => void;
-	export let buttonElement: HTMLElement;
+	const closeSidebar = () => {
+		sidebar.set(false);
+	};
 
 	const handleClick = (event: MouseEvent) => {
 		if (

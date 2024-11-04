@@ -57,8 +57,8 @@ section h2,
 section h3,
 section h4 {
 	/* */
-	margin-top: 64px;
-	margin-bottom: 32px;
+	margin-top: 128px;
+	margin-bottom: 16px;
 }
 
 section h1,
@@ -72,12 +72,17 @@ section h4 {
 
 section h1 a,
 section h2 a,
-section h3 a {
+section h3 a,
+section h4 a {
 	margin: 0;
 }
 
 section h1 {
-	font-size: 26px;
+	font-size: 40px;
+}
+
+section h2 {
+	font-size: 24px;
 }
 
 section a {
@@ -106,7 +111,7 @@ section p {
 }
 
 section code:not([class*='language-']) {
-	padding: 2px 6px;
+	padding: 0px 10px;
 	background-color: var(--closest);
 	/* border-radius: 4px; */
 	margin-block: 2px;
@@ -233,7 +238,7 @@ blockquote code:not([class*='language-']) {
 }
 
 .toc .toc-level-1:last-child {
-	padding-bottom: 64px;
+	padding-bottom: 128px;
 }
 
 .toc .toc-level-1:empty {
@@ -279,4 +284,31 @@ blockquote code:not([class*='language-']) {
 	background-color: var(--bg);
 	color: var(--text);
 	/* border-radius: 4px; */
+}
+
+.navCollapsible {
+	color: var(--text);
+	font-size: 14px;
+	width: 100%;
+	background: var(--closer);
+	padding: 12px 14px;
+	text-align: left;
+	border: unset;
+	border-radius: 2px;
+	cursor: pointer;
+	transition: 30ms ease-out;
+}
+
+a.navCollapsible {
+	margin: 8px 0;
+	line-height: normal;
+}
+.navCollapsible:hover,
+.navActive {
+	background-color: var(--closest);
+}
+
+.navContent {
+	font-size: 14px;
+	margin-left: 16px;
 }
