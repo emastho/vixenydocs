@@ -53,6 +53,11 @@
 </div>
 
 <style>
+	.cols {
+		max-width: 1920px;
+		margin-inline: auto;
+	}
+
 	section {
 		padding: 0 0 128px 0;
 		color: var(--text);
@@ -76,7 +81,7 @@
 
 	main {
 		width: 800px;
-		max-width: 800px;
+		max-width: 100%;
 		display: flex;
 		justify-content: center;
 		flex-shrink: 0;
@@ -122,7 +127,7 @@
 		font-family: 'monospace';
 	} */
 
-	@media (width < 1100px) {
+	@media (width < 1200px) {
 		aside {
 			display: none;
 		}
@@ -130,7 +135,6 @@
 		section {
 			height: auto;
 			padding-inline: 0;
-			max-width: 100%;
 		}
 
 		.outside {
@@ -144,10 +148,6 @@
 
 		.content {
 			width: calc(100% - 40px);
-		}
-
-		:global(.logo) {
-			height: 50px;
 		}
 	}
 

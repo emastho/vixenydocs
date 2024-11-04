@@ -237,6 +237,10 @@ blockquote code:not([class*='language-']) {
 	display: inline;
 }
 
+.toc a {
+	color: var(--subtext);
+}
+
 .toc .toc-level-1:last-child {
 	padding-bottom: 128px;
 }
@@ -250,10 +254,6 @@ blockquote code:not([class*='language-']) {
 
 .toc-level {
 	margin-block: 0;
-}
-
-.toc a {
-	cusor: pointer;
 }
 
 .tab {
