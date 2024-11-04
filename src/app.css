@@ -243,6 +243,14 @@ blockquote code:not([class*='language-']) {
 	padding-bottom: 0;
 }
 
+.toc-level {
+	margin-block: 0;
+}
+
+.toc a {
+	cusor: pointer;
+}
+
 .tab {
 	list-style-type: none;
 	padding: 0;

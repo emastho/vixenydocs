@@ -34,10 +34,7 @@
 	};
 </script>
 
-<svelte:head>
-	<link rel="preload" as="image" href={Logo} />
-</svelte:head>
-<main style="">
+<div class="outside">
 	{#if sidebar}
 		<MobileMenu {closeSidebar} buttonElement={sidebarButton} />
 	{/if}
@@ -57,14 +54,6 @@
 		</div>
 	</header>
 	<div class="container">
-		<aside style="padding-bottom: 80px;">
-			<div class="logoArea">
-				<a href="/" on:click={() => accordion.set(1)}>
-					<img src={Logo} alt="Logo" height="90" />
-				</a>
-			</div>
-			<Navigation />
-		</aside>
 		<section>
 			<div class="contentTop">
 				<div class="line">
@@ -73,59 +62,48 @@
 					<SearchModal />
 				</div>
 			</div>
-			<div class="contentContainer">
-				<div class="content">
-					<slot />
-				</div>
+			<div class="cols">
+				<aside>meow</aside>
+				<main>
+					<div class="content">
+						<slot />
+					</div>
+				</main>
+				<div class="empty" />
 			</div>
 		</section>
 	</div>
-</main>
+</div>
 
 <style>
-	aside {
-		flex-shrink: 0;
-		width: 270px;
-		/* height: 100vh; */
-		background-color: var(--bg);
-		border-right: 2px solid var(--side);
-		padding: 3rem 0;
-		display: flex;
-		flex-direction: column;
-		position: fixed;
-		height: 100%;
-		overflow-y: scroll;
-		scrollbar-width: thin;
-		scrollbar-color: var(--fronter) var(--side);
-	}
-
-	.logoArea {
-		display: flex;
-		justify-content: center;
-		flex-shrink: 0;
-		padding-bottom: 64px;
-	}
-
 	section {
 		padding: 0 0 128px 0;
 		color: var(--text);
-		/* height: 100vh; */
-		padding-left: calc(270px);
-		/* overflow-y: scroll; */
-		/* max-width: 120ch;*/
 	}
 
-	.contentContainer {
+	.cols {
+		width: 100%;
+		display: flex;
+	}
+
+	aside,
+	.empty {
+		flex: 1;
+	}
+
+	main {
+		width: 800px;
 		display: flex;
 		justify-content: center;
+		flex-shrink: 0;
 	}
 
 	.content {
-		width: 60%;
+		/* width: 800px; */
 	}
 
 	.line {
-		width: 60%;
+		width: 800px;
 		display: flex;
 		padding-block: 12px;
 		justify-content: space-between;
@@ -137,7 +115,7 @@
 		justify-content: center;
 		align-items: center;
 		width: 100%;
-		margin-bottom: 48px;
+		margin-bottom: 32px;
 		position: sticky;
 		top: 0;
 		background-color: var(--bg-opacity);
@@ -217,7 +195,7 @@
 			max-width: 100%;
 		}
 
-		main {
+		.outside {
 			padding-top: 0;
 		}
 
