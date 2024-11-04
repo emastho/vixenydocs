@@ -10,7 +10,6 @@
 	import nprogress from 'nprogress';
 	import Links from '$lib/components/Links.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
-	import Header from '$lib/components/Header.svelte';
 	import Aside from '$lib/components/Aside.svelte';
 
 	let sidebarButton: HTMLElement;
@@ -29,7 +28,6 @@
 		<MobileMenu />
 	{/if}
 
-	<Header />
 	<div class="container">
 		<section>
 			<div class="contentTop">
@@ -141,6 +139,7 @@
 
 		.line {
 			width: 100%;
+			padding-inline: 16px;
 		}
 
 		.content {
@@ -149,15 +148,6 @@
 
 		:global(.logo) {
 			height: 50px;
-		}
-	}
-
-	@media (width < 1500px) {
-		.content {
-			width: 80%;
-		}
-		.line {
-			width: 80%;
 		}
 	}
 

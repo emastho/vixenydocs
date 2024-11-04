@@ -288,10 +288,11 @@ blockquote code:not([class*='language-']) {
 
 .navCollapsible {
 	color: var(--text);
-	font-size: 14px;
+	font-size: 16px;
+	line-height: normal;
 	width: 100%;
-	background: var(--closer);
-	padding: 12px 14px;
+	background: unset;
+	padding: 6px 8px;
 	text-align: left;
 	border: unset;
 	border-radius: 2px;
@@ -300,7 +301,7 @@ blockquote code:not([class*='language-']) {
 }
 
 a.navCollapsible {
-	margin: 8px 0;
+	margin: 0;
 	line-height: normal;
 }
 .navCollapsible:hover,
@@ -308,7 +309,6 @@ a.navCollapsible {
 	background-color: var(--closest);
 }
 
-.navContent {
-	font-size: 14px;
-	margin-left: 16px;
+.navContent .navCollapsible {
+	padding-left: calc(0px + 16px);
 }

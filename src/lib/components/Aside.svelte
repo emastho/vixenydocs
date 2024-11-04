@@ -26,9 +26,9 @@
 		list-style-type: none;
 		padding: 0;
 		margin: 0;
+		line-height: normal;
 	}
 
 	li {
-		margin-bottom: 8px;
 	}
 </style>
