@@ -1,6 +1,5 @@
 <script>
   import ListOfComponents from '$lib/components/listOfComponets.svelte';
-  import ButtonToTop from '$lib/components/ButtonToTop.svelte';
 </script>
 
 <svelte:head>
@@ -9,8 +8,6 @@
 <title>Wrap - Vixeny</title>
 <meta name="description" content="Understanding wrap"/>
 </svelte:head>
-
-<ButtonToTop />
 
 # Wrap
 
@@ -46,17 +43,16 @@ be decomposed into a sequence of functions, each taking a single argument. In
 the context of `wrap`.
 
 ```ts
-import { plugins, wrap } from "vixeny";
+import { plugins, wrap } from 'vixeny';
 
 // Global options configured with plugins
 const opt = plugins.globalOptions({});
 
 // The first currying stage allows for setting initial configuration.
-const handler = wrap(opt)()
-  .stdPetition({
-    path: "/",
-    f: () => "Morning!",
-  });
+const handler = wrap(opt)().stdPetition({
+	path: '/',
+	f: () => 'Morning!'
+});
 ```
 
 In the given example, `wrap(opt)` is the first stage where options are provided.
@@ -65,49 +61,44 @@ configuration has been applied. Here’s how you might utilize the second curryi
 stage for deeper functional composition:
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 // Define a base API wrap with a specific route prefix
 const api = wrap({
-  wrap: {
-    startsWith: "/api",
-  },
-})()
-  .stdPetition({
-    path: "/",
-    f: () => "Morning!",
-  });
+	wrap: {
+		startsWith: '/api'
+	}
+})().stdPetition({
+	path: '/',
+	f: () => 'Morning!'
+});
 
 // Using the second currying stage to extend with another wrap instance
-const extendedHandler = wrap()(
-  api.unwrap(),
-)
-  .stdPetition({
-    path: "/",
-    f: () => "Evening!",
-  })
-  // Logs all configured paths for debugging
-  .logPaths();
+const extendedHandler = wrap()(api.unwrap())
+	.stdPetition({
+		path: '/',
+		f: () => 'Evening!'
+	})
+	// Logs all configured paths for debugging
+	.logPaths();
 ```
 
 Also there is another option:
 
 ```javascript
-import { petitions, wrap } from "vixeny";
+import { petitions, wrap } from 'vixeny';
 
 const custom = petitions.custom()({
-  path: "/custom",
-  f: () => new Response("Hello"),
+	path: '/custom',
+	f: () => new Response('Hello')
 });
 
 const standart = petitions.common()({
-  path: "/custom",
-  f: () => "Hello",
+	path: '/custom',
+	f: () => 'Hello'
 });
 
-wrap()(
-  [custom, standart],
-);
+wrap()([custom, standart]);
 ```
 
 ### Special Options
@@ -121,30 +112,28 @@ The `wrap` function offers several configuration options:
   different areas of your application, such as admin, API, or user interfaces.
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 // Define a base API wrap with a specific route prefix
 const api = wrap({
-  wrap: {
-    startsWith: "/api",
-  },
-})()
-  .stdPetition({
-    path: "/",
-    f: () => "Morning!",
-  });
+	wrap: {
+		startsWith: '/api'
+	}
+})().stdPetition({
+	path: '/',
+	f: () => 'Morning!'
+});
 
 // Using the second currying stage to extend with another wrap instance
-const extendedHandler = wrap()(
-  api.unwrap(),
-)
-  .stdPetition({
-    path: "/",
-    f: () => "Evening!",
-  })
-  // Logs all configured paths for debugging
-  .logPaths();
+const extendedHandler = wrap()(api.unwrap())
+	.stdPetition({
+		path: '/',
+		f: () => 'Evening!'
+	})
+	// Logs all configured paths for debugging
+	.logPaths();
 ```
+
 ## Components
 
 The list of components that you can use with:
@@ -171,24 +160,22 @@ Here's how you might use `addAnyPetition` to add both a custom and a standard
 petition to a wrap instance:
 
 ```javascript
-import { petitions, wrap } from "vixeny";
+import { petitions, wrap } from 'vixeny';
 
 // Create a custom petition that responds with a custom HTTP response
 const customPetition = petitions.custom()({
-  path: "/custom",
-  f: () => new Response("Custom Response Content"),
+	path: '/custom',
+	f: () => new Response('Custom Response Content')
 });
 
 // Create a standard petition with a simple greeting message
 const standardPetition = petitions.standard()({
-  path: "/greet",
-  f: () => "Hello, World!",
+	path: '/greet',
+	f: () => 'Hello, World!'
 });
 
 // Initialize a new wrap instance and add both petitions
-const app = wrap()()
-  .addAnyPetition(customPetition)
-  .addAnyPetition(standardPetition);
+const app = wrap()().addAnyPetition(customPetition).addAnyPetition(standardPetition);
 
 // This setup enables the app to handle both '/custom' and '/greet' paths with their respective responses
 ```
@@ -215,47 +202,50 @@ instance with the updated options while preserving the existing petitions.
 #### Usage example
 
 ```javascript
-import { plugins, wrap } from "vixeny";
+import { plugins, wrap } from 'vixeny';
 
 // Define a plugin that determines user roles
 const userIs = (name) =>
-  plugins.type({
-    name: Symbol.for("anyName"),
-    type: {},
-    // Returns the name in a nested function format
-    f: () => () => () => name,
-  });
+	plugins.type({
+		name: Symbol.for('anyName'),
+		type: {},
+		// Returns the name in a nested function format
+		f: () => () => () => name
+	});
 
 // Create instances of the plugin for different users
-const bubbles = userIs("Bubbles");
-const avant = userIs("Avant");
+const bubbles = userIs('Bubbles');
+const avant = userIs('Avant');
 
 // Initial configuration with the 'Bubbles' user plugin
 const initialOptions = plugins.globalOptions({
-  cyclePlugin: {
-    user: bubbles,
-  },
+	cyclePlugin: {
+		user: bubbles
+	}
 });
 
 // Create a wrap instance with the initial configuration
-const handler = wrap(initialOptions)()
-  .stdPetition({
-    path: "/",
-    f: ({ user }) => `Hello, ${user}!`,
-  });
+const handler = wrap(initialOptions)().stdPetition({
+	path: '/',
+	f: ({ user }) => `Hello, ${user}!`
+});
 
 // Changing the configuration to use the 'Avant' user plugin
 const updatedHandler = handler.changeOptions({
-  cyclePlugin: {
-    user: avant,
-  },
+	cyclePlugin: {
+		user: avant
+	}
 });
 
 // Showcase
-const req = new Request("http://localhost/");
+const req = new Request('http://localhost/');
 console.log(
-  await handler.testRequests()(req).then((r) => r.text()),
-  await handlerToMock.testRequests()(req).then((r) => r.text()),
+	await handler
+		.testRequests()(req)
+		.then((r) => r.text()),
+	await handlerToMock
+		.testRequests()(req)
+		.then((r) => r.text())
 );
 
 // The updated handler will now greet 'Avant' instead of 'Bubbles'
@@ -280,22 +270,22 @@ unit, making the instance ready for execution.
 #### Usage Example
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 const app = wrap()()
-  .stdPetition({
-    path: "/",
-    f: () => "Welcome to our homepage!",
-  })
-  .stdPetition({
-    path: "/about",
-    f: () => "Learn more about us on this page.",
-  })
-  .compose();
+	.stdPetition({
+		path: '/',
+		f: () => 'Welcome to our homepage!'
+	})
+	.stdPetition({
+		path: '/about',
+		f: () => 'Learn more about us on this page.'
+	})
+	.compose();
 
 // This function can now be used to handle incoming HTTP requests
 // Example of handling a request to the root path
-const request = new Request("http://localhost/");
+const request = new Request('http://localhost/');
 
 // Outputs: "Welcome to our homepage!"
 console.log(await app(request).then((r) => r.text()));
@@ -323,30 +313,30 @@ where the standard response structure does not fit your needs.
 #### Usage Example
 
 ```javascript
-import { petitions, wrap } from "vixeny";
+import { petitions, wrap } from 'vixeny';
 
 const handler = wrap({
-  // CORS are paseed to `headers`
-  cors: {
-    allowOrigins: "*",
-  },
+	// CORS are paseed to `headers`
+	cors: {
+		allowOrigins: '*'
+	}
 })()
-  .customPetition({
-    path: "/fromInside",
-    headings: {
-      // Adding "content-type": "text/html"
-      headers: ".html",
-    },
-    f: ({ headers }) =>
-      new Response("hello", {
-        headers,
-      }),
-  })
-  .compose();
+	.customPetition({
+		path: '/fromInside',
+		headings: {
+			// Adding "content-type": "text/html"
+			headers: '.html'
+		},
+		f: ({ headers }) =>
+			new Response('hello', {
+				headers
+			})
+	})
+	.compose();
 
 //  "access-control-allow-origin": "*",
 //  "content-type": "text/html",
-console.log(handler(new Request("http://localhost/fromInside")));
+console.log(handler(new Request('http://localhost/fromInside')));
 ```
 
 #### Practical Use
@@ -382,35 +372,35 @@ last added petition.
 #### Usage Example
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 wrap()()
-  .stdPetition({
-    path: "/one",
-    f: () => null,
-  })
-  /**
-   * Console logging:
-   *
-   * --- Context ---
-   * using:
-   * isAsync: false
-   */
-  .debugLast()
-  .stdPetition({
-    path: "/two/:id",
-    f: (c) => c.param.id,
-  })
-  /**
-   * Console logging:
-   *
-   * --- Context ---
-   * using: param
-   * isAsync: false
-   * --- Components ---
-   * param: [id]
-   */
-  .debugLast();
+	.stdPetition({
+		path: '/one',
+		f: () => null
+	})
+	/**
+	 * Console logging:
+	 *
+	 * --- Context ---
+	 * using:
+	 * isAsync: false
+	 */
+	.debugLast()
+	.stdPetition({
+		path: '/two/:id',
+		f: (c) => c.param.id
+	})
+	/**
+	 * Console logging:
+	 *
+	 * --- Context ---
+	 * using: param
+	 * isAsync: false
+	 * --- Components ---
+	 * param: [id]
+	 */
+	.debugLast();
 ```
 
 #### Practical Use
@@ -433,25 +423,25 @@ wrap instance.
 #### Usage Example
 
 ```typescript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 // Creating a wrap with multiple routes
 const handler = wrap()()
-  .stdPetition({
-    path: "/pathOne",
-    f: () => "one",
-  })
-  .stdPetition({
-    path: "/pathTwo",
-    f: () => "two",
-  })
-  .stdPetition({
-    path: "/pathThree",
-    f: () => "three",
-  });
+	.stdPetition({
+		path: '/pathOne',
+		f: () => 'one'
+	})
+	.stdPetition({
+		path: '/pathTwo',
+		f: () => 'two'
+	})
+	.stdPetition({
+		path: '/pathThree',
+		f: () => 'three'
+	});
 
 // Excluding multiple paths dynamically
-const handlerWithoutTwoThree = handler.exclude(["/pathTwo", "/pathThree"]);
+const handlerWithoutTwoThree = handler.exclude(['/pathTwo', '/pathThree']);
 
 // Remaining active path
 handlerWithoutTwoThree.logPaths(); // Outputs: ['/pathOne']
@@ -478,37 +468,34 @@ all results into a single wrap.
 #### Usage Example
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 // Creating a wrap
 const handler = wrap()()
-  .stdPetition({
-    path: "/pathOne",
-    f: () => "one",
-  })
-  .stdPetition({
-    path: "/pathTwo",
-    f: () => "two",
-  })
-  .stdPetition({
-    path: "/pathThree",
-    f: () => "two",
-  });
+	.stdPetition({
+		path: '/pathOne',
+		f: () => 'one'
+	})
+	.stdPetition({
+		path: '/pathTwo',
+		f: () => 'two'
+	})
+	.stdPetition({
+		path: '/pathThree',
+		f: () => 'two'
+	});
 
 // Gives granural control over the primitives inside of the `wrap`
 // In this examples we are making all the petitions `Async`
 const asyncHandler = handler
-  .flatMap(
-    (p) =>
-      handler.pure({
-        ...p,
-        isAsync: true,
-      }),
-  )
-  // Cheking the wrapped petitions
-  .flatMap(
-    (p) => void console.log(p) ?? handler.pure(p),
-  );
+	.flatMap((p) =>
+		handler.pure({
+			...p,
+			isAsync: true
+		})
+	)
+	// Cheking the wrapped petitions
+	.flatMap((p) => void console.log(p) ?? handler.pure(p));
 ```
 
 #### Practical Use
@@ -533,22 +520,21 @@ petition handling logic.
 #### Usage Example
 
 ```javascript
-const request = new Request("http://localhost/one");
+const request = new Request('http://localhost/one');
 
-const paths = wrap()()
-  .stdPetition({
-    path: "/one",
-    f: (c) => c.date.toString(),
-  });
+const paths = wrap()().stdPetition({
+	path: '/one',
+	f: (c) => c.date.toString()
+});
 
 // Handling the request without modifications
-const handles = paths.handleRequest("/one")({});
+const handles = paths.handleRequest('/one')({});
 
 // Handling the request with a mock date injected
-const mocked = paths.handleRequest("/one")({
-  options: {
-    setDate: 1710592645075,
-  },
+const mocked = paths.handleRequest('/one')({
+	options: {
+		setDate: 1710592645075
+	}
 });
 
 // Outputs the current date
@@ -586,25 +572,24 @@ static content delivery endpoint, which does not require any dynamic context
 manipulation:
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 const staticContentHandler = wrap()()
-  .petitionWithoutCTX({
-    path: "/static",
-    r: () =>
-      new Response("<p>Static Content</p>", {
-        headers: new Headers({ "Content-Type": "text/html" }),
-      }),
-  })
-  .testRequests();
+	.petitionWithoutCTX({
+		path: '/static',
+		r: () =>
+			new Response('<p>Static Content</p>', {
+				headers: new Headers({ 'Content-Type': 'text/html' })
+			})
+	})
+	.testRequests();
 
 // Example of serving a request to the static path
-const request = new Request("http://localhost/static");
-
+const request = new Request('http://localhost/static');
 
 await staticContentHandler(request)
-  .then(res => res.text())
-  .then(console.log)
+	.then((res) => res.text())
+	.then(console.log);
 ```
 
 #### Practical Use
@@ -632,21 +617,20 @@ disconnected from the original instance's state.
 #### Usage Example
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
-const baseWrap = wrap()()
-  .stdPetition({
-    path: "/example",
-    f: () => "Original Response",
-  });
+const baseWrap = wrap()().stdPetition({
+	path: '/example',
+	f: () => 'Original Response'
+});
 
 // Using pure to replicate the base configuration without carrying over any added state or modifications
 const replicatedWrap = baseWrap.pure();
 
 // Modifying the original wrap instance
 baseWrap.stdPetition({
-  path: "/modified",
-  f: () => "Modified Response",
+	path: '/modified',
+	f: () => 'Modified Response'
 });
 
 // Logging paths to show that the replicated wrap does not include modifications
@@ -677,24 +661,24 @@ Here's a straightforward example that demonstrates setting up a basic route with
 `stdPetition`:
 
 ```javascript
-import { petitions, wrap } from "vixeny";
+import { petitions, wrap } from 'vixeny';
 
 // Another way to see `stdPetition`
 const std = petitions.common()({
-  path: "/anotherPath",
-  f: () => "Hello",
+	path: '/anotherPath',
+	f: () => 'Hello'
 });
 
 // Creating a wrap instance with a standard petition
 const app = wrap()()
-  .stdPetition({
-    path: "/greet",
-    f: () => "Hello, World!",
-  })
-  .addAnyPetition(std);
+	.stdPetition({
+		path: '/greet',
+		f: () => 'Hello, World!'
+	})
+	.addAnyPetition(std);
 
 // This setup enables the app to handle a GET request at '/greet' with a simple greeting message
-const request = new Request("http://localhost/greet");
+const request = new Request('http://localhost/greet');
 
 // Example of handling the request and outputting the response
 app(request).then((response) => console.log(response.text())); // Outputs: "Hello, World!"
@@ -721,28 +705,27 @@ requests, enabling comprehensive testing without an external runtime.
 #### Usage example
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 const handler = wrap()()
-  .stdPetition({
-    path: "/helloWold",
-    f: () => "helloWold",
-  })
-  .stdPetition({
-    path: "/one",
-    f: () => "one",
-  })
-  .stdPetition({
-    path: "/two",
-    f: () => "two",
-  });
+	.stdPetition({
+		path: '/helloWold',
+		f: () => 'helloWold'
+	})
+	.stdPetition({
+		path: '/one',
+		f: () => 'one'
+	})
+	.stdPetition({
+		path: '/two',
+		f: () => 'two'
+	});
 
 // Creates a handler to test
 const testHandler = handler.testRequests();
 
 console.log(
-  await testHandler(new Request("http://localhost/helloWold"))
-    .then((response) => response.text()),
+	await testHandler(new Request('http://localhost/helloWold')).then((response) => response.text())
 );
 ```
 
@@ -765,29 +748,29 @@ modularizing and reusing petitions across different parts of the application.
 #### Usage Example
 
 ```typescript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 const extension = wrap({
-  wrap: {
-    startsWith: "/extension",
-  },
+	wrap: {
+		startsWith: '/extension'
+	}
 })()
-  .stdPetition({
-    path: "/one",
-    f: () => "one",
-  })
-  .stdPetition({
-    path: "/two",
-    f: () => "two",
-  });
+	.stdPetition({
+		path: '/one',
+		f: () => 'one'
+	})
+	.stdPetition({
+		path: '/two',
+		f: () => 'two'
+	});
 
 const handeler = wrap()()
-  .union(extension.unwrap())
-  .stdPetition({
-    path: "/hello",
-    f: () => "helloWorld",
-  })
-  .logPaths(); // Outputs paths from both the current wrap and the imported `extension`.
+	.union(extension.unwrap())
+	.stdPetition({
+		path: '/hello',
+		f: () => 'helloWorld'
+	})
+	.logPaths(); // Outputs paths from both the current wrap and the imported `extension`.
 ```
 
 #### Practical Use
@@ -812,33 +795,29 @@ accessible for individual use or recombination.
 #### Usage Example:
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 // Creating two separate wrap instances
 const api = wrap({
-  wrap: {
-    startsWith: "/api",
-  },
-})()
-  .stdPetition({
-    path: "/users",
-    f: () => "User List",
-  });
+	wrap: {
+		startsWith: '/api'
+	}
+})().stdPetition({
+	path: '/users',
+	f: () => 'User List'
+});
 
 const admin = wrap({
-  wrap: {
-    startsWith: "/admin",
-  },
-})()
-  .stdPetition({
-    path: "/controls",
-    f: () => "Admin Controls",
-  });
+	wrap: {
+		startsWith: '/admin'
+	}
+})().stdPetition({
+	path: '/controls',
+	f: () => 'Admin Controls'
+});
 
 // Combining unwrapped petitions from both instances into a single wrap instance
-const combined = wrap()()
-  .union(api.unwrap())
-  .union(admin.unwrap());
+const combined = wrap()().union(api.unwrap()).union(admin.unwrap());
 
 // Using the combined instance to configure a server
 combined.logPaths(); // Logs paths like '/api/users' and '/admin/controls'

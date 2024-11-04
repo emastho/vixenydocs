@@ -5,6 +5,7 @@
 
 <nav>
 	<ul>
+		<img src="/logo.png" height="64" alt="Logo" />
 		{#each categories as category}
 			<li>
 				<Collapsible title={category.name}>

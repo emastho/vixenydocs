@@ -2,17 +2,12 @@
 	import '../app.css';
 	import '../theme.css';
 	import '../nprogress.css';
-	import Input from '$lib/components/Input.svelte';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
-	import Navigation from '$lib/components/Navigation.svelte';
 	import MobileMenu from '$lib/components/MobileMenu.svelte';
-	import { accordion, sidebar } from '$lib/stores/main';
+	import { sidebar } from '$lib/stores/main';
 	import nprogress from 'nprogress';
-	import Links from '$lib/components/Links.svelte';
-	import SearchModal from '$lib/components/SearchModal.svelte';
 	import Aside from '$lib/components/Aside.svelte';
-
-	let sidebarButton: HTMLElement;
+	import ButtonToTop from '$lib/components/ButtonToTop.svelte';
 
 	beforeNavigate(() => {
 		nprogress.start();
@@ -27,16 +22,10 @@
 	{#if $sidebar}
 		<MobileMenu />
 	{/if}
+	<ButtonToTop />
 
 	<div class="container">
 		<section>
-			<div class="contentTop">
-				<div class="line">
-					<Input placeholder="Search" />
-					<Links />
-					<SearchModal />
-				</div>
-			</div>
 			<div class="cols">
 				<aside>
 					<Aside />
@@ -61,6 +50,7 @@
 	section {
 		padding: 0 0 128px 0;
 		color: var(--text);
+		padding-top: 80px;
 	}
 
 	.cols {
@@ -92,28 +82,6 @@
 		width: 100%;
 	}
 
-	.line {
-		width: 800px;
-		display: flex;
-		padding-block: 12px;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.contentTop {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		margin-bottom: 32px;
-		position: sticky;
-		top: 0;
-		background-color: var(--bg-opacity);
-		backdrop-filter: blur(8px);
-		border-bottom: 2px solid var(--side);
-		z-index: 1;
-	}
-
 	:global(section ul) {
 		list-style-type: decimal;
 		padding-left: calc(17px + 32px);
@@ -122,10 +90,6 @@
 	:global(section ul p) {
 		padding-block: 4px;
 	}
-
-	/* :global(section ul li::marker) {
-		font-family: 'monospace';
-	} */
 
 	@media (width < 1200px) {
 		aside {
@@ -139,11 +103,6 @@
 
 		.outside {
 			padding-top: 0;
-		}
-
-		.line {
-			width: 100%;
-			padding-inline: 16px;
 		}
 
 		.content {
