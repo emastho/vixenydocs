@@ -37,7 +37,7 @@ const opt = plugins.globalOptions({
 
 ### Using it in a Wrap
 
-In this example, we are going to use `customPetition` and `stdPetition` and
+In this example, we are going to use `customPetition` and `get` and
 correctly add headers.
 
 ```ts
@@ -62,7 +62,7 @@ const handler = wrap(opt)()
         headers,
       }),
   })
-  .stdPetition({
+  .get({
     path: "/std",
     headings: {
       headers: "text/html",
@@ -90,7 +90,7 @@ await handler(requestOf("http://localhost/custom"))
 
 ### Composing with Petitions
 
-In this example, we are going to use `custom` and `common` in `petitions` and
+In this example, we are going to use `custom` and `add` in `petitions` and
 correctly add headers.
 
 ```ts
@@ -122,7 +122,7 @@ const custom = composer.petition(
 // Composing the petition using `composer`
 const std = composer.petition(
   // Making a custom petition
-  petitions.common(opt)({
+  petitions.add(opt)({
     path: "/std",
     headings: {
       headers: ".html",

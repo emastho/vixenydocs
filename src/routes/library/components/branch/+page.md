@@ -45,7 +45,7 @@ const returnArgs = petitions.branch()({
 });
 
 // Creating a petition at `/`
-const hello = petitions.common()({
+const hello = petitions.add()({
   path: "/",
   branch: {
     returnArgs,
@@ -87,7 +87,7 @@ const returnArgs = petitions.branch()({
 });
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/user/:id",
     branch: {
       // Adding a branch
@@ -123,7 +123,7 @@ const getBody = petitions.branch()({
 
 const handler = wrap()()
   // Getting keys
-  .stdPetition({
+  .get({
     path: "/getKey/:name",
     // Adding Crypto
     crypto: {
@@ -195,7 +195,7 @@ const hello = petitions.branch()({
 });
 
 const handle = wrap()()
-  .stdPetition({
+  .get({
     path: "/",
     branch: {
       // Adding branches

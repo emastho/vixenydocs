@@ -27,7 +27,7 @@ In this example, it understands that we are only using `hello`.
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/",
     f: ({ cookie }) => cookie.hello ?? "not found",
   })
@@ -57,7 +57,7 @@ which will trigger a default case. You can check this at any time using
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/",
     f: ({ cookie }) => JSON.stringify(cookie) ?? "not found",
   })
@@ -87,7 +87,7 @@ The `only` option restricts cookies to only accept the cookies specified in it.
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/",
     cookie: {
       // Locking this path to use only the specified cookies

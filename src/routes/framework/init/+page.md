@@ -141,13 +141,13 @@ illustrates how to define a basic petition:
 import { petitions } from "vixeny";
 
 // Returning a `BodyInit`
-const helloWorld = petitions.common()({
+const helloWorld = petitions.add()({
   path: "/hello",
   f: () => "hello World!",
 });
 
 // Returning a `Response`
-const ping = petitions.common()({
+const ping = petitions.add()({
   path: "/ping",
   f: () => new Response("pong"),
 });
@@ -218,9 +218,10 @@ import { wrap } from "vixeny";
 
 const request = new Request("http://localhost/one");
 
-const paths = wrap()().stdPetition({
-  path: "/one",
-  f: (c) => c.date.toString(),
+const paths = wrap()()
+  .get({
+    path: "/one",
+    f: (c) => c.date.toString(),
 });
 
 // Handling the request without modifications
@@ -271,8 +272,8 @@ const nested = petitions.resolve()({
   f: () => "hello",
 });
 
-const handler = wrap()()
-  .stdPetition({
+const handler = await wrap()()
+  .get({
     path: "/",
     resolve: {
       // Nested resolve
@@ -310,8 +311,8 @@ import { wrap } from "vixeny";
 
 const request = new Request("http://localhost/");
 
-const handler = wrap()()
-  .stdPetition({
+const handler = await wrap()()
+  .get({
     path: "/withResolve",
     resolve: {
       hi: { f: () => "Hello world" },
@@ -337,7 +338,7 @@ const hello = petitions.resolve()({
   f: async () => await Promise.resolve("Hello"),
 });
 
-wrap(options)().stdPetition({
+wrap(options)().get({
   path: "/helloWorld",
   resolve: {
     // Adding `hello`.
@@ -346,7 +347,7 @@ wrap(options)().stdPetition({
     world: { f: () => "world" },
   },
   // Important to notice that `f` is synchronous even if the resolve `hello` is not.
-  f: (ctx) => `${ctx.resolve.hello} ${ctx.resolve.world}`,
+  f: ({ resolve }) => `${resolve.hello} ${resolve.world}`,
 });
 ```
 
@@ -372,7 +373,7 @@ const sayHello = petitions.resolve()({
 });
 
 // Creating a petition
-const hey = petitions.common()({
+const hey = petitions.add()({
   path: "/hey",
   resolve: {
     sayHello,

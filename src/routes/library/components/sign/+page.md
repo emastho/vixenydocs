@@ -30,7 +30,7 @@ Example of signing `param`.
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/sign/:user",
     crypto: {
       globalKey: "secret!",
@@ -60,7 +60,7 @@ const cryptoOptions = {
   },
 };
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/sign/:user",
     // Manually adding crypto options,
     crypto: {

@@ -23,11 +23,11 @@ const handlerAt4 = wrap({
     at: 4,
   },
 })()
-  .stdPetition({
+  .get({
     path: "/foo",
     f: () => "from inside",
   })
-  .stdPetition({
+  .get({
     path: "/foo/:hello",
     f: ({ param }) => param.hello,
   })

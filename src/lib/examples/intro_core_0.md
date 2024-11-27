@@ -8,7 +8,7 @@
 import { petitions } from "vixeny";
 import { sayHello } from "./setup.ts"
 
-const hey = petitions.common()({
+const hey = petitions.add()({
   path: "/hey",
   resolve: {
     sayHello,

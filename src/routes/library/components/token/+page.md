@@ -57,7 +57,7 @@ const key = `secret!`;
 
 const handler = wrap()()
   // Getting keys
-  .stdPetition({
+  .get({
     path: "/getKey/:name",
     // Adding Crypto
     crypto: {

@@ -45,7 +45,7 @@ const api = plugins.globalOptions({
 
 // Creating a wrap
 const apiWrap = wrap(api)()
-  .stdPetition({
+  .get({
     path: "/hello",
     f: () => "api",
   });
@@ -56,7 +56,7 @@ const root = wrap()()
   // apiWrap.unwrap(),
 
   .union(apiWrap.unwrap())
-  .stdPetition({
+  .get({
     path: "/",
     f: () => "main",
   })
@@ -107,7 +107,7 @@ const opt = plugins.globalOptions({
 
 // Making a wrap
 const app = wrap()()
-  .stdPetition({
+  .get({
     path: "/hello",
     f: () => "world",
   });
@@ -159,7 +159,7 @@ const opt = plugins.globalOptions({
 });
 
 const app = wrap()()
-  .stdPetition({
+  .get({
     path: "/hello",
     f: () => "world",
   });
@@ -195,7 +195,7 @@ console.log(
 ## Static File Handling
 
 In web development, serving static files (like images, scripts, and stylesheets)
-is a common requirement. Vixeny simplifies this process with built-in support
+is a add requirement. Vixeny simplifies this process with built-in support
 for static file serving.
 
 Consider a scenario where you want to serve a simple `package.json` file from
@@ -206,7 +206,7 @@ this:
 import { composeResponse, petitions, plugins } from "vixeny";
 
 // Define a basic response
-const helloWorld = petitions.common()({
+const helloWorld = petitions.add()({
   path: "/",
   f: () => "hello world!",
 });

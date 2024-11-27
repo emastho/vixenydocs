@@ -27,7 +27,7 @@ In this example, it understands that we are only using `id`.
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/user/:id",
     f: ({ param }) => param.id ?? "not found",
   })
@@ -48,7 +48,7 @@ Checking always the `path` to get the valid keys for `param`.
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/user/:id/:token",
     f: ({ param }) => JSON.stringify(param) ?? "not found",
   })
@@ -72,7 +72,7 @@ specified in it.
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/user/:id",
     param: {
       // Locking this path to use only the specified parameters
@@ -101,7 +101,7 @@ important parameters.
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/user/:id",
     param: {
       // Enabling unique parameter simplification

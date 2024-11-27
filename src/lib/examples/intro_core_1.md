@@ -9,7 +9,7 @@ import { wrap } from "vixeny";
 import { helloWorld, options } from "./setup.ts";
 
 const root = wrap(options)()
-  .stdPetition({
+  .add({
     path: "/ping",
     f: () => "pong",
   })
@@ -23,7 +23,7 @@ import { petitions, plugins } from "vixeny";
 
 const options = plugins.globalOptions({});
 
-const helloWorld = petitions.common()({
+const helloWorld = petitions.add()({
   path: "/hello",
   f: () => "helloWorld",
 });

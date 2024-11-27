@@ -8,16 +8,16 @@
 import { otherWrap } from "./setup.ts";
 import { wrap } from "vixeny";
 
-const testHandler = handler.testRequests();
+const testHandler = await handler.testRequests();
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/one",
     f: () => "one",
   })
   // [ "/one" ]
   .logPaths()
-  .stdPetition({
+  .get({
     path: "/two",
     f: () => "two",
   })
@@ -36,7 +36,7 @@ const handler = wrap()()
 ```ts
 import { wrap } from "vixeny";
 
-const otherWrap = wrap()().stdPetition({
+const otherWrap = wrap()().get({
   path: "/three",
   f: () => "three",
 });

@@ -7,7 +7,7 @@
 ```ts
 import { handler } from "./setup.ts";
 
-const testHandler = handler.testRequests();
+const testHandler = await handler.testRequests();
 
 // "helloWold"
 console.log(
@@ -22,15 +22,15 @@ console.log(
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/helloWold",
     f: () => "helloWold",
   })
-  .stdPetition({
+  .get({
     path: "/one",
     f: () => "one",
   })
-  .stdPetition({
+  .get({
     path: "/two",
     f: () => "two",
   })

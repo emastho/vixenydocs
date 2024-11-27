@@ -8,7 +8,7 @@
 import { currentWeather, mockedWeatherIsWarm, request, wrap } from "./setup.ts";
 
 // Define the original asynchronous resolve function for fetching weather data
-const routes = wrap()().stdPetition({
+const routes = wrap()().get({
   path: "/weather",
   resolve: { currentWeather },
   f: ({ resolve }) =>
@@ -18,7 +18,7 @@ const routes = wrap()().stdPetition({
 });
 
 // Inject the mocked resolve
-const mockRoutes = routes.handleRequest("/weather")({
+const mockRoutes = await routes.handleRequest("/weather")({
   resolve: {
     currentWeather: mockedWeatherIsWarm,
   },

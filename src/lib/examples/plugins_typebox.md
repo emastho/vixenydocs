@@ -9,7 +9,7 @@ import { wrap } from "vixeny";
 import { options, request } from "./setup.ts";
 
 const serve = wrap(options)()
-  .stdPetition({
+  .get({
     path: "/hi",
     method: "POST",
     f: ({ typebox }) => typebox?.user ? typebox.user.userId : null,

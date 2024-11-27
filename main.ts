@@ -7,7 +7,7 @@ const opt = plugins.globalOptions({
 });
 
 // Define a basic response
-const ping = petitions.common()({
+const ping = petitions.add()({
   path: "/ping",
   f: () => "pong",
 });

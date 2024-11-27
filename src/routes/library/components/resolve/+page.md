@@ -40,7 +40,7 @@ const sayHello = petitions.resolve()({
 });
 
 // Creating a petition
-const hey = petitions.common()({
+const hey = petitions.add()({
   path: "/hey",
   resolve: {
     sayHello,
@@ -64,7 +64,7 @@ const hello = petitions.resolve()({
 
 // Using the resolve in a petition
 wrap(options)()
-  .stdPetition({
+  .get({
     path: "/helloWorld",
     resolve: {
       hello,
@@ -86,7 +86,7 @@ const nested = petitions.resolve()({
 
 // Handler with nested resolve
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/",
     resolve: {
       nested,

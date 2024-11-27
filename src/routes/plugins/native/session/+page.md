@@ -36,14 +36,14 @@ const handler = wrap({
     user,
   },
 })()
-  .stdPetition({
+  .get({
     path: "/",
     f: ({ user }) => {
       // Returns the current session
       return user.newSession({ hello: "hi" });
     },
   })
-  .stdPetition({
+  .get({
     path: "/only",
     // Returns a true if the user has a valid session
     f: ({ user }) => String(user.valid),

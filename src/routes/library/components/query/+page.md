@@ -27,7 +27,7 @@ In this example, it understands that we are only using `id`.
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/",
     f: ({ query }) => query.id ?? "not found",
   })
@@ -50,7 +50,7 @@ which will trigger a default case. You can check this at any time using
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/",
     f: ({ query }) => JSON.stringify(query) ?? "not found",
   })
@@ -74,7 +74,7 @@ specified in it.
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/",
     query: {
       // Locking this path to use only the specified parameters
@@ -105,7 +105,7 @@ streamline access to important parameters.
 import { wrap } from "vixeny";
 
 const handler = wrap()()
-  .stdPetition({
+  .get({
     path: "/",
     query: {
       // Enabling unique
