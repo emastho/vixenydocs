@@ -139,7 +139,7 @@ In the next example, we will use Pug. So, let's create a file called `hello.pug`
    ```
 
 2. Install the `pug` package and set up `src/plugins/pug.ts`:
-   ```ts
+   ```javascript
    // Getting dependencies
    import * as pugModule from "pug";
    import { composeResponse, plugins } from "vixeny";
@@ -192,7 +192,7 @@ const petition = composer.objectNullRequest()({
 ```
 
 2. Modify `pugStaticServerPlugin` to use the petition:
-   ```ts
+   ```javascript
    import { pugStaticServerPlugin } from "vixeny-perspective";
    import { composer } from "vixeny";
    import * as pugModule from "pug";

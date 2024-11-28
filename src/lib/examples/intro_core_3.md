@@ -4,7 +4,7 @@
 
 {#if runtime == "main"}
 
-```ts
+```javascript
 import { handler } from "./setup.ts";
 
 const testHandler = await handler.testRequests();
@@ -18,7 +18,7 @@ console.log(
 
 {:else}
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()

@@ -23,7 +23,7 @@ actively tries to optimize your functions.
 
 In this example, it understands that we are only using `id`.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()
@@ -46,7 +46,7 @@ There are cases where the checker will not be able to infer the elements used,
 which will trigger a default case. You can check this at any time using
 `debugLast`.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()
@@ -70,7 +70,7 @@ await handler(new Request("http://localhost/?id=123&user=Avant"))
 The `only` option restricts query parameters to only accept the parameters
 specified in it.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()
@@ -101,7 +101,7 @@ This option simplifies handling by replacing the `query` object with the value
 of the specified `name` key, if present. This is a targeted optimization to
 streamline access to important parameters.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()

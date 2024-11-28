@@ -23,7 +23,7 @@ Headers are unique and immutable, generated in each request-response cycle.
 We can set up CORS in the options, ensuring consistency and uniqueness across
 all the petitions.
 
-```ts
+```javascript
 import { plugins } from "vixeny";
 
 const opt = plugins.globalOptions({
@@ -40,7 +40,7 @@ const opt = plugins.globalOptions({
 In this example, we are going to use `customPetition` and `get` and
 correctly add headers.
 
-```ts
+```javascript
 import { plugins, wrap } from "vixeny";
 
 const opt = plugins.globalOptions({
@@ -93,7 +93,7 @@ await handler(requestOf("http://localhost/custom"))
 In this example, we are going to use `custom` and `add` in `petitions` and
 correctly add headers.
 
-```ts
+```javascript
 import { composer, petitions, plugins, wrap } from "vixeny";
 
 const opt = plugins.globalOptions({

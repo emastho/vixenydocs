@@ -33,7 +33,7 @@ You can also pass arguments to these functions.
 It gets the type of the `value` in the key `args`. In the next example, it gets
 the type of `text` as a string.
 
-```ts
+```javascript
 import { petitions } from "vixeny";
 
 // `args` are only used in `branch`
@@ -57,7 +57,7 @@ const hello = petitions.add()({
 
 You can also coerce the type, in this case to `Record<string, string>`:
 
-```ts
+```javascript
 import { petitions, wrap } from "vixeny";
 
 // `args` are only used in `branch`
@@ -75,7 +75,7 @@ const returnArgs = petitions.branch()({
 Here we are using a petition in `wrap` and adding a branch that returns the
 string.
 
-```ts
+```javascript
 import { petitions, wrap } from "vixeny";
 
 // `args` are only used in `branch`
@@ -109,7 +109,7 @@ console.log(
 
 In this example, the body will only be parsed if the token is valid.
 
-```ts
+```javascript
 import { petitions, wrap } from "vixeny";
 
 // Common key
@@ -180,7 +180,7 @@ console.log(
 
 Using a resolve as a branch and showing that you need to add `undefined`.
 
-```ts
+```javascript
 import { petitions, wrap } from "vixeny";
 
 // Resolve

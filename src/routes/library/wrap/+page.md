@@ -45,7 +45,7 @@ Currying in functional programming allows a function with multiple arguments to
 be decomposed into a sequence of functions, each taking a single argument. In
 the context of `wrap`.
 
-```ts
+```javascript
 import { plugins, wrap } from "vixeny";
 
 // Global options configured with plugins

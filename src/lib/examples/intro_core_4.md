@@ -4,7 +4,7 @@
 
 {#if runtime == "main"}
 
-```ts
+```javascript
 import { currentWeather, mockedWeatherIsWarm, request, wrap } from "./setup.ts";
 
 // Define the original asynchronous resolve function for fetching weather data
@@ -32,7 +32,7 @@ console.log(
 
 {:else}
 
-```ts
+```javascript
 import { petitions, wrap } from "vixeny";
 
 const request = new Request("http://localhost/weather");

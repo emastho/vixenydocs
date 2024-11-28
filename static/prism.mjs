@@ -1320,4 +1320,4 @@ function reactivateFunction() {
   console.log("prism active");
 }
 
-setTimeout(reactivateFunction, 1000);
+//setTimeout(reactivateFunction, 1000);

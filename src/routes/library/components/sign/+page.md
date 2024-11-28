@@ -26,7 +26,7 @@ Gives access to the respective functions in the CTX.
 
 Example of signing `param`.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()
@@ -50,7 +50,7 @@ await handler(new Request("http://localhost/sign/pluie"))
 
 Example of signing `param` and verifing the validity of it.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 // Generic

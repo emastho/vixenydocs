@@ -33,7 +33,7 @@ code. It's important to grasp these basic concepts before we dive deeper into
 We can create an `union` between two wraps and also modify their base using
 `startswith`.
 
-```ts
+```javascript
 import { plugins, wrap } from "vixeny";
 
 // Setting up options
@@ -90,7 +90,7 @@ might be wondering why we need this feature. We will explore its utility in more
 depth during the `extending` section after `composing`, but it is important to
 know that you can rebase the logic of your routing `at` any level.
 
-```ts
+```javascript
 import { plugins, wrap } from "vixeny";
 
 // Requests
@@ -147,7 +147,7 @@ console.log(
 By default, `/hello` and `/hello/` are not the same path but this can easily can
 be change with `strictTrailingSlash`.
 
-```ts
+```javascript
 const req = new Request("http://localhost/hello");
 const trailingSlash = new Request("http://localhost/hello/");
 
@@ -202,7 +202,7 @@ Consider a scenario where you want to serve a simple `package.json` file from
 the root directory of your project. Here’s how you can set up Vixeny to handle
 this:
 
-```ts
+```javascript
 import { composeResponse, petitions, plugins } from "vixeny";
 
 // Define a basic response

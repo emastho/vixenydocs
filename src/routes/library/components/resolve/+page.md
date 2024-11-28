@@ -31,7 +31,7 @@ Below are some examples demonstrating the usage of resolves within Vixeny.
 
 #### Basic Resolve
 
-```ts
+```javascript
 import { petitions, wrap } from "vixeny";
 
 // Setting up a resolution
@@ -54,7 +54,7 @@ const serve = wrap(options)()
 
 #### Using Resolve with Asynchronous Functions
 
-```ts
+```javascript
 import { petitions, wrap } from "vixeny";
 
 // Defining an asynchronous resolve function
@@ -76,7 +76,7 @@ wrap(options)()
 
 #### Nested Resolves
 
-```ts
+```javascript
 import { petitions, wrap } from "vixeny";
 
 // Nested resolve

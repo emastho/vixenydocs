@@ -16,7 +16,7 @@ Enclosing in Vixeny allows you to nest wraps, other frameworks and functions
 within other wraps, effectively creating a clousere that the current wrap can't
 access to.
 
-```ts
+```javascript
 // Making a wrap with a specific index base set at the fourth segment
 const handlerAt4 = wrap({
   indexBase: {

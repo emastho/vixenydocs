@@ -26,7 +26,7 @@ Expected behavior
 
 ### Basic Example
 How to declare it
-```ts
+```javascript
 import { wrap } from "./main.ts";
 
 // Common key
@@ -49,7 +49,7 @@ const handler = wrap()()
 
 ### Using with sign
 In conjunction with sign
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 // Common key

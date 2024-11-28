@@ -4,7 +4,7 @@
 
 {#if runtime == "main"}
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 import { helloWorld, options } from "./setup.ts";
 
@@ -18,7 +18,7 @@ const root = wrap(options)()
 
 {:else}
 
-```ts
+```javascript
 import { petitions, plugins } from "vixeny";
 
 const options = plugins.globalOptions({});

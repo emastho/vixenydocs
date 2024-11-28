@@ -4,7 +4,7 @@
 
 {#if runtime == "main"}
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 import { options, request } from "./setup.ts";
 
@@ -27,7 +27,7 @@ console.log(
 
 {:else}
 
-```ts
+```javascript
 // dev
 import * as Avj from "@feathersjs/schema";
 import * as TypeBox from "@sinclair/typebox";

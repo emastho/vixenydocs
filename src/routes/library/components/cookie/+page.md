@@ -23,7 +23,7 @@ actively tries to optimize your functions.
 
 In this example, it understands that we are only using `hello`.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()
@@ -53,7 +53,7 @@ There are cases where the checker will not be able to infer the elements used,
 which will trigger a default case. You can check this at any time using
 `debugLast`.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()
@@ -83,7 +83,7 @@ await handler(
 
 The `only` option restricts cookies to only accept the cookies specified in it.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()

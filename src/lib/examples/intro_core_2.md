@@ -4,7 +4,7 @@
 
 {#if runtime == "main"}
 
-```ts
+```javascript
 import { otherWrap } from "./setup.ts";
 import { wrap } from "vixeny";
 
@@ -33,7 +33,7 @@ const handler = wrap()()
 
 {:else}
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const otherWrap = wrap()().get({

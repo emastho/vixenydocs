@@ -24,7 +24,7 @@ across versions, think about it as an abstract route. You can link these objects
 together like Legos, and also compose them into functional units with `composer`
 to use within Vixeny or wherever else they may be needed.
 
-```ts
+```javascript
 import { composer, petitions } from "vixeny";
 
 const req = new Request("http://localhost/");
@@ -80,7 +80,7 @@ well as a simplified approach that does not use the context object (`CTX`).
 
 Let's add some CORS settings and see these petitions in action:
 
-```ts
+```javascript
 import { plugins, wrap } from "vixeny";
 
 const opt = plugins.globalOptions({

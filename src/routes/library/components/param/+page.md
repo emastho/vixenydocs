@@ -23,7 +23,7 @@ actively tries to optimize your functions.
 
 In this example, it understands that we are only using `id`.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()
@@ -44,7 +44,7 @@ await handler(new Request("http://localhost/user/123"))
 
 Checking always the `path` to get the valid keys for `param`.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()
@@ -68,7 +68,7 @@ await handler(new Request("http://localhost/user/123/456"))
 The `only` option restricts URL parameters to only accept the parameters
 specified in it.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()
@@ -97,7 +97,7 @@ This option simplifies handling by replacing the `param` object with the value
 first `:$VALUE`. This is a targeted optimization to streamline access to
 important parameters.
 
-```ts
+```javascript
 import { wrap } from "vixeny";
 
 const handler = wrap()()
