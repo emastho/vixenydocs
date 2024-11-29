@@ -20,6 +20,5 @@ export const routes: {
   { href: "/environment/core", name: "Core", categoryId: 2 },
   { href: "/environment/plugins", name: "Plugins", categoryId: 2 },
   { href: "/environment/perspective", name: "Perspective", categoryId: 2 },
-  { href: "/environment/create", name: "Create", categoryId: 3 },
   { href: "/library/qa", name: "Q&A", categoryId: 3 },
 ];
