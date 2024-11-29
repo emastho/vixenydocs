@@ -5,13 +5,20 @@
 {#if runtime == "main"}
 
 ```javascript
-import { handler } from "./setup.ts";
+import { wrap } from "vixeny";
 
+const handler = wrap()()
+  .get({
+    path: "/helloWorld",
+    f: () => "helloWorld",
+  })
+
+// Making a testable unit
 const testHandler = await handler.testRequests();
 
-// "helloWold"
+// "helloWorld"
 console.log(
-  await testHandler(new Request("http://localhost/helloWold"))
+  await testHandler(new Request("http://localhost/helloWorld"))
     .then((response) => response.text()),
 );
 ```
@@ -23,19 +30,22 @@ import { wrap } from "vixeny";
 
 const handler = wrap()()
   .get({
-    path: "/helloWold",
-    f: () => "helloWold",
-  })
-  .get({
-    path: "/one",
-    f: () => "one",
-  })
-  .get({
-    path: "/two",
-    f: () => "two",
+    path: "/helloWorld",
+    f: () => "helloWorld",
   })
 
-export handler
+// Making a testable unit
+const testHandler = await handler.handleRequest('/helloWorld')({});
+
+
+
+// "helloWorld"
+console.log(
+  await testHandler(new Request("http://localhost/helloWorld"))
+  //@ts-ignore
+    .then((response) => response.text()),
+);
+);
 ```
 
 {/if}

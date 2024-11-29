@@ -29,8 +29,8 @@
     ]
 
     const tab3 = [
-        {title: "main.ts", component: example3, details: {runtime: "main"}},
-        {title: "setup.ts", component: example3, details: {runtime: "setup"}}
+        {title: "wrap", component: example3, details: {runtime: "main"}},
+        {title: "unit", component: example3, details: {runtime: "setup"}}
     ]
 
 	const tab4 = [
