@@ -21,6 +21,12 @@
 
   // Re-apply syntax highlighting after each update
 
+  afterUpdate(
+    () => {
+      Prism.highlightAll();
+    }
+  )
+
 </script>
 
 <div class="buttons">
