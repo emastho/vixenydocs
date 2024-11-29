@@ -54,5 +54,4 @@ await handler(param)
   .then(console.log);
 ```
 
-
 Thanks for your time.

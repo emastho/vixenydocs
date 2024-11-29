@@ -195,8 +195,8 @@ console.log(
 ## Static File Handling
 
 In web development, serving static files (like images, scripts, and stylesheets)
-is a add requirement. Vixeny simplifies this process with built-in support
-for static file serving.
+is a add requirement. Vixeny simplifies this process with built-in support for
+static file serving.
 
 Consider a scenario where you want to serve a simple `package.json` file from
 the root directory of your project. Here’s how you can set up Vixeny to handle

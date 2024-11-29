@@ -1,18 +1,19 @@
-
 <script>
    import ListOfComponents from '$lib/components/listOfComponets.svelte';
 </script>
 
 <svelte:head>
-  <script src='/prism.mjs' defer></script>
-  <title>Token - Vixeny</title>
+
+<script src='/prism.mjs' defer></script>
+<title>Token - Vixeny</title>
   <meta name="description" content="Understanding token"/>
   <meta name="keywords" content="token, JWT, web development, Vixeny framework, FP, functional programming"/>
 </svelte:head>
 
 # Token
 
-A way to get a specific cookie and verify it. If the cookie is invalid, it will be null.
+A way to get a specific cookie and verify it. If the cookie is invalid, it will
+be null.
 
 > It needs `crypto` in the `petition`.
 
@@ -25,7 +26,9 @@ A way to get a specific cookie and verify it. If the cookie is invalid, it will 
 Expected behavior
 
 ### Basic Example
+
 How to declare it
+
 ```javascript
 import { wrap } from "./main.ts";
 
@@ -42,13 +45,15 @@ const handler = wrap()()
     },
     f: async ({ token }) =>
       // If the Token is valid it will parse the body
-      new Response(null, { status: token.user ? 200 : 403 })
+      new Response(null, { status: token.user ? 200 : 403 }),
   })
   .testRequests();
 ```
 
 ### Using with sign
+
 In conjunction with sign
+
 ```javascript
 import { wrap } from "vixeny";
 
@@ -74,7 +79,7 @@ const handler = wrap()()
     },
     f: async ({ token }) =>
       // If the Token is valid it will parse the body
-      new Response(null, { status: token.user ? 200 : 403 })
+      new Response(null, { status: token.user ? 200 : 403 }),
   })
   .testRequests();
 
@@ -92,9 +97,11 @@ const req = new Request("http://localhost/user/bubbles", {
 
 // Invalid request 403
 console.log(
-  await handler(new Request("http://localhost/user/bubbles", {
-    method: "POST"
-  }))
+  await handler(
+    new Request("http://localhost/user/bubbles", {
+      method: "POST",
+    }),
+  )
     .then((res) => res.status),
 );
 

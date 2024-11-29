@@ -1,17 +1,16 @@
-
 <script>
   // Importing necessary components
   import Tabs from "$lib/components/Tabs.md";
   import Bash from "$lib/components/SmallComponents/Bash.md";
   import plugin from "$lib/examples/plugins_typebox.md";
   import Request from "$lib/components/Request.svelte";
-  
+
   // Array containing the installation options for the Tabs component
   const install = [
     { title: "Bun", component: Bash, details: { runtime: "bun" } },
     { title: "Deno", component: Bash, details: { runtime: "deno" } }
   ];
-  
+
   const tab0 = [
     { title: "main.ts", component: plugin, details: { runtime: "main" } },
     { title: "setup.ts", component: plugin, details: { runtime: "setup" } }
@@ -19,27 +18,32 @@
 </script>
 
 <svelte:head>
-  <script src='/prism.mjs' defer></script>
-  <title>Introduction - Vixeny</title>
+
+<script src='/prism.mjs' defer></script>
+<title>Introduction - Vixeny</title>
   <meta name="description" content="Using create-vixeny"/>
 </svelte:head>
 
 # Perspective
 
-Welcome to Vixeny templates! Here are some basics on how the template engine works. It's recommended to learn about the dynamic path system via the link below.
+Welcome to Vixeny templates! Here are some basics on how the template engine
+works. It's recommended to learn about the dynamic path system via the link
+below.
 
 > [Dynamic routes](/framework/init)
 
 ## Before We Start!
 
-We will be using a second server hosted on `Deno Deploy` for the examples. You can ping the server here:
+We will be using a second server hosted on `Deno Deploy` for the examples. You
+can ping the server here:
 
 <Request url="/ping" displaysData={false} />
 
 **Disclaimers**
 
 - It's a free-tier host.
-- `Cold starting` might happen, but this is normal in the cloud environment; the average ping is 55ms.
+- `Cold starting` might happen, but this is normal in the cloud environment; the
+  average ping is 55ms.
 
 ## Introduction to Vixeny's Structure
 
@@ -47,7 +51,8 @@ Let's dive into the structure briefly to see how everything interacts.
 
 ### File Structure
 
-The structure of a typical Vixeny project after installation and template selection looks like this:
+The structure of a typical Vixeny project after installation and template
+selection looks like this:
 
 ```bash
 ./
@@ -83,12 +88,14 @@ The structure of a typical Vixeny project after installation and template select
    - **globalOptions.ts**: Holds options for `wrap` and the `handler`.
 3. **views**: Contains static templates.
    - **public**: Exposes all files for public access.
-   - **scripts**: Manages TypeScript `ts` files, which are then imported into `public` to convert to `mjs`.
+   - **scripts**: Manages TypeScript `ts` files, which are then imported into
+     `public` to convert to `mjs`.
 4. **watcher.mjs**: The debugger script.
 
 ### Current Options
 
-Templates work by pointing at a directory and hosting it to the handler. It's important to note that:
+Templates work by pointing at a directory and hosting it to the handler. It's
+important to note that:
 
 - They respect nested wildcards.
 - The handler can have more than one.
@@ -117,7 +124,9 @@ You can find this file at `src/globalOptions.ts`.
 
 #### Example of Using the Typebox Plugin
 
-As we know from the core introduction, plugins only exist if they are included in the `options`. Here is a basic implementation, but by default all files are set up in `create-vixeny`.
+As we know from the core introduction, plugins only exist if they are included
+in the `options`. Here is a basic implementation, but by default all files are
+set up in `create-vixeny`.
 
 You can find this file at `src/plugins`.
 
@@ -129,9 +138,11 @@ Most of the templates have a:
 
 - `default`: Provides an object to all the templates for compilation.
 - `preserveExtension`: Removes the extension of the file.
-- `petition`: Enables a semi-static route using a petition for all the routes in the wildcard.
+- `petition`: Enables a semi-static route using a petition for all the routes in
+  the wildcard.
 
-In the next example, we will use Pug. So, let's create a file called `hello.pug`.
+In the next example, we will use Pug. So, let's create a file called
+`hello.pug`.
 
 1. Create a `hello.pug` file:
    ```pug
@@ -174,13 +185,16 @@ In the next example, we will use Pug. So, let's create a file called `hello.pug`
 
 ### Semi-Static Routes
 
-As we saw in the last example, you can have a default case, but Vixeny's structure also allows you to have a petition for the whole `staticFileServe`.
+As we saw in the last example, you can have a default case, but Vixeny's
+structure also allows you to have a petition for the whole `staticFileServe`.
 
 #### Using `composer.objectNullRequest`
 
 1. Create a petition that checks for a query parameter:
 
-To do this, we need `composer.objectNullRequest`, where if this petition returns null, it will return the default case. Otherwise, it will pass the object to the template.
+To do this, we need `composer.objectNullRequest`, where if this petition returns
+null, it will return the default case. Otherwise, it will pass the object to the
+template.
 
 ```javascript
 import { composer } from "vixeny";
@@ -206,6 +220,7 @@ const petition = composer.objectNullRequest()({
      }),
    });
    ```
+
 > param in CTX would not work.
 
 #### Fetching with and without a Query Parameter

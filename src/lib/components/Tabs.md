@@ -35,20 +35,17 @@
   {/each}
 </div>
 
-{#if data[index].component}
-  <svelte:component this={data[index].component} {...data[index].details} />
-{:else}
-  <pre>
+{#if data[index].component} <svelte:component this={data[index].component}
+{...data[index].details} /> {:else}
+
+<pre>
     <code class="language-typescript">{data[index].text}</code> <!-- Add the language class -->
   </pre>
+
 {/if}
 
 <style>
-  :global(body) {
-    --text: #ffffff;      /* Light text for dark background */
-    --bg: #1e1e1e;        /* Dark background color */
-    --closest: #2d2d2d;   /* Slightly lighter for contrast */
-  }
+
 
   .buttons {
     font-size: 16px;

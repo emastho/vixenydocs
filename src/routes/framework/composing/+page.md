@@ -71,8 +71,8 @@ well as a simplified approach that does not use the context object (`CTX`).
 
 - **Custom Petition (costume)**: The headers are dynamically passed and set
   based on petition configurations and the provided options.
-- **Standard Petition (add)**: Utilizes a predefined response format. Note
-  that headers are set statically and cannot be altered dynamically within the
+- **Standard Petition (add)**: Utilizes a predefined response format. Note that
+  headers are set statically and cannot be altered dynamically within the
   function.
 - **Petition Without CTX (response)**: This type bypasses the use of the
   `composer`, offering a straightforward way to return responses with predefined

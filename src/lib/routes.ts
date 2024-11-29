@@ -26,14 +26,13 @@ export const categories = [
 // I dont want to merge conflicts xd
 // Here the new routes
 
- const categorie = [
+const categorie = [
   { id: 1, name: "Basics" },
   { id: 2, name: "Environment" },
   { id: 3, name: "Library" },
 ];
 
-
- const route: {
+const route: {
   href: string;
   name: string;
   categoryId: number;

@@ -1,33 +1,5 @@
-<script>
-    export let runtime = "main";
-</script>
-
-{#if runtime == "main"}
-
-```javascript
-import { wrap } from "vixeny";
-
-const root = wrap()()
-  .get({
-    path: "/ping",
-    f: () => "pong",
-  })
-  .post({
-    path: "/ping",
-    f: () => "pong",
-  })
-  .delte({
-    path: "/ping",
-    f: () => "pong",
-  });
-```
-
-{:else}
-
-```javascript
 import { petitions, wrap } from "vixeny";
 
-// User validation
 const hasUser = petitions.resolve()({
   f: ({ query }) => query && query?.user ? query.user : null,
 });
@@ -57,6 +29,3 @@ const root = wrap()()
       },
     }) => hasUser ? `welcome ${hasUser}!` : forbiden.clone(),
   });
-```
-
-{/if}

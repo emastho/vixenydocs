@@ -145,6 +145,7 @@ const extendedHandler = wrap()(
   // Logs all configured paths for debugging
   .logPaths();
 ```
+
 ## Components
 
 The list of components that you can use with:
@@ -601,10 +602,9 @@ const staticContentHandler = wrap()()
 // Example of serving a request to the static path
 const request = new Request("http://localhost/static");
 
-
 await staticContentHandler(request)
-  .then(res => res.text())
-  .then(console.log)
+  .then((res) => res.text())
+  .then(console.log);
 ```
 
 #### Practical Use

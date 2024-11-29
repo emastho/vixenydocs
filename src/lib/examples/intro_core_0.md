@@ -5,22 +5,26 @@
 
 </script>
 
-
 {#if runtime == "one"}
 
 ```javascript
 import { petitions } from "vixeny";
-import { sayHello } from "./setup.ts"
+
+// Using `resolve`
+const sayHello = petitions.resolve()({
+  f: () => "hello",
+});
 
 const hey = petitions.add()({
   path: "/hey",
   resolve: {
+    // Adding `sayHello` function
     sayHello,
-  }
+  },
+  // Resolving in context
   f: ({ resolve }) => `${resolve.sayHello} World!`,
 });
 ```
-
 
 {/if}
 
@@ -29,34 +33,20 @@ const hey = petitions.add()({
 ```javascript
 import { petitions } from "vixeny";
 
-const sayHello = petitions.resolve()({
-  f: () => "hello",
+// User validation
+const hasUser = petitions.resolve()({
+  f: ({ query }) => query && query?.user ? query.user : null,
 });
 
-export { sayHello };
-```
-
-{/if}
-
-
-{#if runtime == "three"}
-
-```javascript
-import { petitions } from "vixeny";
-
-const sayHello = petitions.resolve()({
-  f: () => "hello",
-});
-
-const hey = petitions.add()({
-  path: "/hey",
+const hi = petitions.add()({
+  path: "/hi",
   resolve: {
-    sayHello,
-  }
-  f: ({ resolve }) => `${resolve.sayHello} World!`,
+    hasUser,
+  },
+  f: ({ resolve }) =>
+    resolve.hasUser ? `hello ${resolve.hasUser}!` : "No user found",
 });
 ```
 
 {/if}
-
 

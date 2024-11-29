@@ -37,8 +37,8 @@ const opt = plugins.globalOptions({
 
 ### Using it in a Wrap
 
-In this example, we are going to use `customPetition` and `get` and
-correctly add headers.
+In this example, we are going to use `customPetition` and `get` and correctly
+add headers.
 
 ```javascript
 import { plugins, wrap } from "vixeny";

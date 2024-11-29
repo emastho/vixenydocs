@@ -1,189 +1,189 @@
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 h1,
 h2,
 h3,
 p {
-	padding: 0;
-	margin: 0;
-	font-weight: '1000';
+  padding: 0;
+  margin: 0;
+  font-weight: "1000";
 }
 
 a {
-	text-decoration: none;
-	color: var(--text);
+  text-decoration: none;
+  color: var(--text);
 }
 
 ul {
-	list-style-type: none;
-	padding-left: 0;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 ::-webkit-scrollbar {
-	width: 10px;
+  width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-	background: var(--bg);
+  background: var(--bg);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	background: var(--closer);
+  background: var(--closer);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	background: var(--closest);
+  background: var(--closest);
 }
 
 ol li::marker {
-	margin: 0;
+  margin: 0;
 }
 
 section h1 {
-	padding-bottom: 32px;
+  padding-bottom: 32px;
 }
 
 section h2,
 section h3,
 section h4 {
-	/* */
-	margin-top: 64px;
-	margin-bottom: 32px;
+  /* */
+  margin-top: 64px;
+  margin-bottom: 32px;
 }
 
 section h1,
 section h2,
 section h3,
 section h4 {
-	display: flex;
-	align-items: center;
-	gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 section h1 a,
 section h2 a,
 section h3 a {
-	margin: 0;
+  margin: 0;
 }
 
 section h1 {
-	font-size: 26px;
+  font-size: 26px;
 }
 
 section a {
-	display: block;
-	/*  color: #323232; */
-	color: var(--text);
-	margin-bottom: 32px;
+  display: block;
+  /*  color: #323232; */
+  color: var(--text);
+  margin-bottom: 32px;
 }
 
 section .link {
-	display: flex;
-	column-gap: 8px;
-	color: var(--text);
+  display: flex;
+  column-gap: 8px;
+  color: var(--text);
 }
 
 section p,
 section ul,
 section code {
-	color: var(--subtext);
-	line-height: 32px;
-	font-size: 16px;
+  color: var(--subtext);
+  line-height: 32px;
+  font-size: 16px;
 }
 
 section p {
-	padding-block: 16px;
+  padding-block: 16px;
 }
 
-section code:not([class*='language-']) {
-	padding: 2px 6px;
-	background-color: var(--closest);
-	/* border-radius: 4px; */
-	margin-block: 2px;
+section code:not([class*="language-"]) {
+  padding: 2px 6px;
+  background-color: var(--closest);
+  /* border-radius: 4px; */
+  margin-block: 2px;
 }
 
 strong {
-	color: var(--text);
+  color: var(--text);
 }
 
 .warning {
-	width: 100%;
-	padding: 16px;
-	background-color: var(--closer);
-	color: #a6ff00;
-	margin-bottom: 36px;
-	border-radius: 4px;
-	user-select: none;
+  width: 100%;
+  padding: 16px;
+  background-color: var(--closer);
+  color: #a6ff00;
+  margin-bottom: 36px;
+  border-radius: 4px;
+  user-select: none;
 }
 
 .warning-2 {
-	color: var(--subtext);
+  color: var(--subtext);
 }
 
 @media (width < 1100px) {
-	.warning {
-		white-space: normal;
-	}
+  .warning {
+    white-space: normal;
+  }
 }
 
 .inline-block {
-	display: inline-block;
+  display: inline-block;
 }
 
 .underline {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 code {
-	display: inline-block;
-	padding-right: 16px;
+  display: inline-block;
+  padding-right: 16px;
 }
 
 pre::-webkit-scrollbar {
-	height: 8px;
-	width: 10px;
+  height: 8px;
+  width: 10px;
 }
 
 /* Track */
 pre::-webkit-scrollbar-track {
-	background: var(--bg);
-	border-radius: 8px;
+  background: var(--bg);
+  border-radius: 8px;
 }
 
 /* Handle */
 pre::-webkit-scrollbar-thumb {
-	background-color: var(--closer);
+  background-color: var(--closer);
 }
 
 *::selection {
-	background-color: white;
-	color: black;
+  background-color: white;
+  color: black;
 }
 
 .icon.icon-link::before {
-	content: '#';
-	color: var(--subtext);
-	font-size: 16px;
+  content: "#";
+  color: var(--subtext);
+  font-size: 16px;
 }
 
 .icon.icon-link:hover {
-	color: var(--text);
-	text-decoration: underline;
+  color: var(--text);
+  text-decoration: underline;
 }
 
 .title {
-	display: block;
-	margin-bottom: 8px;
+  display: block;
+  margin-bottom: 8px;
 }
 
 /* .toc {
@@ -191,84 +191,84 @@ pre::-webkit-scrollbar-thumb {
 } */
 
 .toc-link {
-	margin: 8px 0;
+  margin: 8px 0;
 }
 
 .toc-level {
-	list-style-type: none;
-	padding-left: 32px;
+  list-style-type: none;
+  padding-left: 32px;
 }
 
 .toc-level-1 {
-	padding: 0;
+  padding: 0;
 }
 
 .toc-link:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 blockquote {
-	font-family: monospace;
-	white-space: pre-wrap;
-	border: 2px solid var(--side);
-	/* border-left: 5px solid var(--main);  */
-	margin: 32px 0;
-	color: white;
-	overflow: auto;
+  font-family: monospace;
+  white-space: pre-wrap;
+  border: 2px solid var(--side);
+  /* border-left: 5px solid var(--main);  */
+  margin: 32px 0;
+  color: white;
+  overflow: auto;
 }
 
 blockquote p {
-	/* color: green; */
-	padding: 16px;
-	line-height: 24px;
+  /* color: green; */
+  padding: 16px;
+  line-height: 24px;
 
-	border-left: 5px solid var(--main);
+  border-left: 5px solid var(--main);
 }
 
-blockquote code:not([class*='language-']) {
-	padding: 8px 6px;
-	margin: 0;
-	background-color: var(--bg);
-	display: inline;
+blockquote code:not([class*="language-"]) {
+  padding: 8px 6px;
+  margin: 0;
+  background-color: var(--bg);
+  display: inline;
 }
 
 .toc .toc-level-1:last-child {
-	padding-bottom: 64px;
+  padding-bottom: 64px;
 }
 
 .toc .toc-level-1:empty {
-	height: 0;
-	margin: 0;
-	padding: 0;
-	padding-bottom: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0;
 }
 
 .tab {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
 }
 
 .tab li {
-	font-size: 16px;
+  font-size: 16px;
 
-	border: 2px solid var(--closest);
-	/* border-radius: 6px; */
-	overflow: hidden;
-	background-color: var(--closest);
+  border: 2px solid var(--closest);
+  /* border-radius: 6px; */
+  overflow: hidden;
+  background-color: var(--closest);
 }
 
 .tab button {
-	color: var(--text);
-	border: none;
-	padding: 8px 16px;
-	background-color: transparent;
-	cursor: pointer;
+  color: var(--text);
+  border: none;
+  padding: 8px 16px;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .tab .active {
-	background-color: var(--bg);
-	color: var(--text);
-	/* border-radius: 4px; */
+  background-color: var(--bg);
+  color: var(--text);
+  /* border-radius: 4px; */
 }

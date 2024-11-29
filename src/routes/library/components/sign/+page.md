@@ -10,11 +10,9 @@
   <meta name="keywords" content="sign, verify, JWT, web development, Vixeny framework, FP, functional programming"/>
 </svelte:head>
 
-
 # Sign and verify
 
 Gives access to the respective functions in the CTX.
-
 
 > It needs `crypto` in the `petition`.
 

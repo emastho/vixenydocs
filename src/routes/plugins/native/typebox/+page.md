@@ -24,7 +24,6 @@
 
 A type checker for JSON like objects from the request.
 
-
 ## Examples
 
 ### Using create-vixeny

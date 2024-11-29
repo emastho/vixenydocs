@@ -14,7 +14,6 @@
 
 Session mannager in Vixeny.
 
-
 ## Examples
 
 Basic Example
@@ -26,7 +25,7 @@ Session are validated at the resolution of the CTX
 ```js
 import { components, wrap } from "vixeny";
 
-const user = components.session<{ hello: string }>({
+const user = components.session < { hello: string } > ({
   removeDeleteUnsedSession: true,
 });
 
@@ -65,15 +64,13 @@ const isSession = new Request("http://localhost/only", {
 
 // Sending a request without a session
 await handler(new Request("http://localhost/only"))
-  .then( res => res.text())
+  .then((res) => res.text())
   // Logs `false`
-  .then(console.log)
+  .then(console.log);
 
 // Sending a request with a valid session
 await handler(isSession)
-  .then( res => res.text())
+  .then((res) => res.text())
   // Logs `true`
-  .then(console.log)
+  .then(console.log);
 ```
-
-
