@@ -3,12 +3,12 @@
   import Prism from 'prismjs';
 
   // Import the Prism.js components and plugins you need
-  import 'prismjs/components/prism-javascript'; // Replace with your language(s)
+  import 'prismjs/components/prism-javascript'; 
   import 'prismjs/plugins/toolbar/prism-toolbar';
   import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard';
 
   // Import a dark theme for Prism.js
-  import 'prismjs/themes/prism-okaidia.css'; // Choose a dark theme
+  //import 'prismjs/themes/prism-okaidia.css'; // Choose a dark theme
   import 'prismjs/plugins/toolbar/prism-toolbar.css'; // Plugin CSS
 
   export let data;
@@ -67,19 +67,5 @@
     background-color: var(--bg);
     color: var(--text);
   }
-
-  /* Custom styles for code blocks */
-  pre {
-    background-color: var(--bg);
-    padding: 16px;
-    overflow-x: auto;
-    border-radius: 4px;
-  }
-
-  code {
-    color: var(--text);
-    font-family: 'Fira Code', monospace;
-  }
-
 
 </style>
