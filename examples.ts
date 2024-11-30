@@ -1,25 +1,29 @@
-import { wrap } from "vixeny";
+import { petitions, wrap } from "vixeny";
 
-const request = new Request("http://localhost/one");
+const request = new Request("http://localhost/winAPrice");
 
-const paths = wrap()()
-  .get({
-    path: "/one",
-    f: (c) => c.date.toString(),
-  });
+const lotery = petitions.resolve()({
+  // Generates a random number from 0 to 10000
+  f:  () => Math.round(10000)
+});
 
-// Handling the request without modifications
-const handles = await paths.handleRequest("/one")({});
+const routes = wrap()().get({
+  path: "/winAPrice",
+  resolve: { lotery },
+  f: ({ resolve }) =>
+    resolve.lotery 
+      ? 'Winner!'
+      : 'Try again',
+});
 
-// Handling the request with a mock date injected
-const mocked = await paths.handleRequest("/one")({
-  options: {
-    setDate: 1710592645075,
+// Inject the mocked resolve
+const mockRoutes = await routes.handleRequest("/winAPrice")({
+  resolve: {
+    lotery: { f: () => 10000 },
   },
 });
 
-// Outputs the current date
-console.log(await handles(request).then((r) => r.text()));
-
-// Outputs the mocked date: "1710592645075"
-console.log(await mocked(request).then((r) => r.text()));
+console.log(
+  // Always a winner
+  await mockRoutes(request).then((res) => res?.text()),
+);

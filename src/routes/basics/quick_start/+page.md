@@ -34,8 +34,8 @@
     ]
 
 	const tab4 = [
-        {title: "main.ts", component: example4, details: {runtime: "main"}},
-        {title: "setup.ts", component: example4, details: {runtime: "setup"}}
+        {title: "lotery", component: example4, details: {runtime: "main"}},
+        {title: "weather forecast", component: example4, details: {runtime: "setup"}}
     ]
 </script>
 
@@ -208,33 +208,7 @@ comprehensive testing of wraps:
 Supports testing individual petitions by injecting values while preserving their
 structure:
 
-```javascript
-import { wrap } from "vixeny";
-
-const request = new Request("http://localhost/one");
-
-const paths = wrap()()
-  .get({
-    path: "/one",
-    f: (c) => c.date.toString(),
-  });
-
-// Handling the request without modifications
-const handles = await paths.handleRequest("/one")({});
-
-// Handling the request with a mock date injected
-const mocked = await paths.handleRequest("/one")({
-  options: {
-    setDate: 1710592645075,
-  },
-});
-
-// Outputs the current date
-console.log(await handles(request).then((r) => r.text()));
-
-// Outputs the mocked date: "1710592645075"
-console.log(await mocked(request).then((r) => r.text()));
-```
+<Tabs data={tab4}/>
 
 Vixeny is fully typed, with JSDoc examples provided for ease of use. Hover over
 the code in your IDE to check.
@@ -252,39 +226,11 @@ Still wondering what that means? In simpler terms, anything defined with a
 `resolve` must be fully resolved before its caller can access it. This creates a
 chain of dependencies that are resolved in sequence.
 
-## Morphism
-
 At the heart of Vixeny lies a fundamental type known as a "Morphism." While this
 concept is abstracted away to keep things simple. Essentially, anything with an
 `f` (a functor) is considered a "Morphism", and for simpicity, we will bundle
 both terms as `petition`.
 
-```javascript
-import { petitions, wrap } from "vixeny";
-
-const request = new Request("http://localhost/");
-
-const nested = petitions.resolve()({
-  f: () => "hello",
-});
-
-const handler = await wrap()()
-  .get({
-    path: "/",
-    resolve: {
-      // Nested resolve
-      nested,
-    },
-    f: (f) => f.resolve.nested,
-  })
-  // Creates a handler
-  .compose();
-
-console.log(
-  //hello
-  handler(request),
-);
-```
 
 > Any `resolve` or `branch` can be utilized within a `Morphism`, but there are
 > not considered `petitions`, meaning, you can not use them directly in a
@@ -299,28 +245,6 @@ the main function is executed (Basically an import for the ctx). Simplifying
 asynchronous data handling and composition. Below, we explore key properties of
 resolution in Vixeny.
 
-### Resolves
-
-The resolution process guarantees that all necessary data is fetched and
-available for use within your petitions.
-
-```javascript
-import { wrap } from "vixeny";
-
-const request = new Request("http://localhost/");
-
-const handler = await wrap()()
-  .get({
-    path: "/withResolve",
-    resolve: {
-      hi: { f: () => "Hello world" },
-    },
-    f: (ctx) => ctx.resolve.hi,
-  })
-  .compose();
-
-console.log(handler(request));
-```
 
 ### SyncAgnostic
 
@@ -349,41 +273,7 @@ wrap(options)().get({
 });
 ```
 
-### Mockable
 
-This design also simplifies the process of mocking dependencies for testing
-purposes, where we do not need to make the call to test the behaviour, as shown
-below:
 
-<Tabs data={tab4}/>
-
-### Composable and Reusable
-
-The resolution mechanism allows for the reuse and on-the-fly modification of any
-morphism, making your code more modular and maintainable:
-
-```javascript
-import { wrap , petitions } from 'vixeny';
-
-// Setting up a resolution
-const sayHello = petitions.resolve()({
-  f: () => "hello",
-});
-
-// Creating a petition
-const hey = petitions.add()({
-  path: "/hey",
-  resolve: {
-    sayHello,
-  }
-  f: ({ resolve }) => `${resolve.sayHello} World!`,
-});
-
-const serve = wrap(options)()
-  .addAnyPetition(hey)
-```
-
-> This feature underscores the importance of utilizing `morphism` to ensure type
-> safety within your functions.
 
 <FancyLink href="/framework/routing">Next</FancyLink>

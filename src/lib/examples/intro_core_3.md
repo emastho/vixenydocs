@@ -37,8 +37,6 @@ const handler = wrap()()
 // Making a testable unit
 const testHandler = await handler.handleRequest('/helloWorld')({});
 
-
-
 // "helloWorld"
 console.log(
   await testHandler(new Request("http://localhost/helloWorld"))

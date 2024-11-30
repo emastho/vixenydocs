@@ -5,9 +5,54 @@
 {#if runtime == "main"}
 
 ```javascript
-import { currentWeather, mockedWeatherIsWarm, request, wrap } from "./setup.ts";
+import { petitions, wrap } from "vixeny";
 
-// Define the original asynchronous resolve function for fetching weather data
+const request = new Request("http://localhost/winAPrice");
+
+const lotery = petitions.resolve()({
+  // Generates a random number from 0 to 10000
+  f:  () => Math.round(10000)
+});
+
+const routes = wrap()().get({
+  path: "/winAPrice",
+  resolve: { lotery },
+  f: ({ resolve }) =>
+    resolve.lotery 
+      ? 'Winner!'
+      : 'Try again',
+});
+
+// Inject the mocked resolve
+const mockRoutes = await routes.handleRequest("/winAPrice")({
+  resolve: {
+    lotery: { f: () => 10000 },
+  },
+});
+
+console.log(
+  // Always a winner
+  await mockRoutes(request).then((res) => res?.text()),
+);
+```
+
+{:else}
+
+```javascript
+import { petitions, wrap } from "vixeny";
+
+const request = new Request("http://localhost/weather");
+
+// Real Resolve
+const currentWeather = petitions.resolve()({
+  f: async () =>
+    await fetch("https://api.weather.com/current")
+      .then((res) => res.json()) as { temperature: number },
+});
+
+// Mock the resolve function for testing
+const mockedWeatherIsWarm = { f: () => ({ temperature: 80 }) };
+
 const routes = wrap()().get({
   path: "/weather",
   resolve: { currentWeather },
@@ -28,25 +73,6 @@ console.log(
   // "It's warm outside"
   await mockRoutes(request).then((res) => res?.text()),
 );
-```
-
-{:else}
-
-```javascript
-import { petitions, wrap } from "vixeny";
-
-const request = new Request("http://localhost/weather");
-
-const currentWeather = petitions.resolve()({
-  f: async () =>
-    await fetch("https://api.weather.com/current")
-      .then((res) => res.json()) as { temperature: number },
-});
-
-// Mock the resolve function for testing
-const mockedWeatherIsWarm = { f: () => ({ temperature: 80 }) };
-
-export { currentWeather, mockedWeatherIsWarm, request, wrap };
 ```
 
 {/if}

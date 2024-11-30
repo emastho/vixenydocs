@@ -35,7 +35,7 @@ import { petitions } from "vixeny";
 
 // User validation
 const hasUser = petitions.resolve()({
-  f: ({ query }) => query && query?.user ? query.user : null,
+  f: ({ query }) => query && query?.user ?? null,
 });
 
 const hi = petitions.add()({
@@ -44,7 +44,9 @@ const hi = petitions.add()({
     hasUser,
   },
   f: ({ resolve }) =>
-    resolve.hasUser ? `hello ${resolve.hasUser}!` : "No user found",
+    resolve.hasUser 
+      ? `hello ${resolve.hasUser}!` 
+      : "No user found",
 });
 ```
 

@@ -5,7 +5,6 @@
 {#if runtime == "main"}
 
 ```javascript
-import { otherWrap } from "./setup.ts";
 import { wrap } from "vixeny";
 
 const otherWrap = wrap()().get({
@@ -13,25 +12,22 @@ const otherWrap = wrap()().get({
   f: () => "three",
 });
 
-
 const handler = wrap()()
   .get({
     path: "/one",
     f: () => "one",
   })
-  // [ "/one" ]
-  .logPaths()
   .get({
     path: "/two",
     f: () => "two",
   })
-  // [ "/one" , "/two" ]
-  .logPaths()
   // Adding another wrap
   .union(otherWrap.unwrap())
+  .logPaths()
 
-
-  const testHandler = await handler.testRequests();
+ await handler.testRequests().then(
+  async serve => console.log(await serve( new Request('http://localhost/three')))
+ )
 ```
 
 {/if}
