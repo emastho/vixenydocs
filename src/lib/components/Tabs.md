@@ -81,21 +81,5 @@
     font-family: 'Fira Code', monospace;
   }
 
-  /* Adjust Prism.js toolbar for dark theme */
-  :global(.prism-toolbar) {
-    background: var(--bg);
-    border: none;
-  }
 
-  :global(.prism-toolbar-button) {
-    color: var(--text);
-    background: transparent;
-    border: none;
-    padding: 0 8px;
-    cursor: pointer;
-  }
-
-  :global(.prism-toolbar-button:hover) {
-    background: var(--closest);
-  }
 </style>
