@@ -16,7 +16,7 @@ const root = wrap()()
     path: "/ping",
     f: () => "pong",
   })
-  .delte({
+  .delete({
     path: "/ping",
     f: () => "pong",
   });
