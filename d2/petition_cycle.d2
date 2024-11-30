@@ -9,26 +9,31 @@ vars: {
     sketch: true
   }
 }
-request: {
+requests: {
   style: {
-    stroke: "#53C0D8"
+    stroke: purple
     stroke-width: 5
     shadow: true
   }
+  tooltip: Reqests from serve
 }
 petition: {
   style: {
-    stroke: "#53C0D8"
+    stroke: purple
     stroke-width: 5
     shadow: true
   }
 }
+
 response: {
   style: {
-    stroke: "#53C0D8"
+    stroke: purple
     stroke-width: 5
     shadow: true
   }
 }
-request -> petition -> response: {style.animated: true}
 
+requests -> petition -> response: {
+  style.animated: true
+  style.stroke: orange
+}
