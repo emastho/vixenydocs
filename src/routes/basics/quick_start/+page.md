@@ -149,7 +149,8 @@ const ping = petitions.add()({
 
 console.log(helloWorld);
 ```
-![Basic cycle](/d2/petition_cycle.svg)
+
+<object type="image/svg+xml" data="/d2/petition_cycle.svg"></object>
 
 
 Notice that even if you specify only `path` and `f`, the log output is:
@@ -176,7 +177,8 @@ delve into later. For now, here's a quick look at what you can do:
 
 <Tabs data={tab0}/>
 
-![Use of resolve](/d2/use_of_resolve.svg)
+<object type="image/svg+xml" data="/d2/use_of_resolve.svg"></object>
+
 
 In practice, you'll rarely need to manually declare petitions like this.
 Instead, our `wrap` feature simplifies handling petitions and integrating all

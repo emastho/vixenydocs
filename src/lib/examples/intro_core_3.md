@@ -40,10 +40,9 @@ const testHandler = await handler.handleRequest('/helloWorld')({});
 // "helloWorld"
 console.log(
   await testHandler(new Request("http://localhost/helloWorld"))
-  //@ts-ignore
     .then((response) => response.text()),
 );
-);
+
 ```
 
 {/if}
