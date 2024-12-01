@@ -34,10 +34,22 @@ petition route: {
     ({query}) =>
       query && query.user
         ? new Response("hello " + query.user)
-        : 'not found'
+        : "not found"
   |
-  bodyInit.class: square
+  bodyReponse.class: square
+  bodyReponse: |javascript
+    // headings
+    {
+     body: "not found"
+     status: 404
+    }
+  |
   response.class: square
+  response: |javascript
+    Response {
+     body: "hello " + query.user
+    }
+  |
   headings.class: square
   headings: |javascript
     // headings
@@ -48,9 +60,9 @@ petition route: {
   return.class: square
 
   (headings -> f).class: direct stroke
-  (f -> bodyInit).class: seg stroke
+  (f -> bodyReponse).class: seg stroke
   (request -> f -> response).class: seg stroke
-  (f -> bodyInit).class: direct stroke
+  (f -> bodyReponse).class: direct stroke
   (response -> return).class: seg stroke
-  (bodyInit -> return).class: seg stroke
+  (bodyReponse -> return).class: seg stroke
 }
