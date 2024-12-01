@@ -1,0 +1,43 @@
+style: {
+  fill: transparent
+}
+
+vars: {
+  d2-config: {
+    sketch: true
+  }
+}
+
+classes: {
+  square: {
+    style: {
+      stroke: purple
+      stroke-width: 5
+      shadow: true
+    }
+  }
+  seg stroke: {
+    style.animated: true
+    style.stroke: orange
+  }
+  direct stroke: {
+    style.stroke: "#53C0D8"
+  }
+}
+
+petition route: {
+  class: square
+  request.class: square
+  f.class: square
+  bodyInit.class: square
+  response.class: square
+  headings.class: square
+  return.class: square
+
+  (headings -> f).class: direct stroke
+  (f -> bodyInit).class: seg stroke
+  (request -> f -> response).class: seg stroke
+  (f -> bodyInit).class: direct stroke
+  (response -> return).class: seg stroke
+  (bodyInit -> return).class: seg stroke
+}

@@ -9,61 +9,32 @@ vars: {
     sketch: true
   }
 }
-requests: {
-  style: {
-    stroke: purple
-    stroke-width: 5
-    shadow: true
+
+classes: {
+  square: {
+    style: {
+      stroke: purple
+      stroke-width: 5
+      shadow: true
+    }
   }
-  tooltip: Request from serve
-}
-petition: {
-  style: {
-    stroke: purple
-    stroke-width: 5
-    shadow: true
+  seg stroke: {
+    style.animated: true
+    style.stroke: orange
   }
-}
-petition2: {
-  style: {
-    stroke: purple
-    stroke-width: 5
-    shadow: true
-  }
-}
-response: {
-  style: {
-    stroke: purple
-    stroke-width: 5
-    shadow: true
-  }
-}
-response2: {
-  style: {
-    stroke: purple
-    stroke-width: 5
-    shadow: true
+  direct stroke: {
+    style.stroke: "#53C0D8"
   }
 }
 
-resolve: {
-  style: {
-    stroke: purple
-    stroke-width: 5
-    shadow: true
-  }
-}
-requests -> petition -> response: {
-  style.animated: true
-  style.stroke: orange
-}
-requests -> petition2 -> response2: {
-  style.animated: true
-  style.stroke: orange
-}
-resolve -> petition: {
-  style.stroke: "#53C0D8"
-}
-resolve -> petition2: {
-  style.stroke: "#53C0D8"
-}
+requests.class: square
+petition.class: square
+petition2.class: square
+response.class: square
+response2.class: square
+resolve.class: square
+
+(requests -> petition -> response).class: seg stroke
+(requests -> petition2 -> response2).class: seg stroke
+(resolve -> petition).class: direct stroke
+(resolve -> petition2).class: direct stroke

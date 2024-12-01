@@ -9,31 +9,26 @@ vars: {
     sketch: true
   }
 }
-requests: {
-  style: {
-    stroke: purple
-    stroke-width: 5
-    shadow: true
+
+classes: {
+  square: {
+    style: {
+      stroke: purple
+      stroke-width: 5
+      shadow: true
+    }
   }
-  tooltip: Request from serve
-}
-petition: {
-  style: {
-    stroke: purple
-    stroke-width: 5
-    shadow: true
+  seg stroke: {
+    style.animated: true
+    style.stroke: orange
+  }
+  direct stroke: {
+    style.stroke: "#53C0D8"
   }
 }
 
-response: {
-  style: {
-    stroke: purple
-    stroke-width: 5
-    shadow: true
-  }
-}
+requests.class: square
+petition.class: square
+response.class: square
 
-requests -> petition -> response: {
-  style.animated: true
-  style.stroke: orange
-}
+(requests -> petition -> response).class: seg stroke

@@ -80,6 +80,7 @@ An ecosystem of functional web tools, that aims to make code more:
   `(r: Request) => Response | Promise<Response>` handlers innot only Deno but
   also Bun.
 
+
 ## How?
 
 Actually, it all boils down to the functional paradigm, but let's keep things
@@ -87,6 +88,7 @@ straightforward. Vixeny was crafted with friendliness in mind for everyone! So,
 you won’t be bogged down by complex tutorials on functional programming.
 Instead, you’re here to explore the flexibility and to apply it wherever it
 suits your needs.
+
 
 ## Why `Vixeny`?
 
@@ -105,6 +107,7 @@ Vixeny!
 Designed to be backward compatible and runtime agnostic, Vixeny ensures that
 code you write today will continue to work seamlessly in the future, whether
 you're using Deno, Bun, or any other environment.
+
 
 To get started, you can install our fully-equipped templates from the next
 commands below:
