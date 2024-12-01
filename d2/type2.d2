@@ -36,7 +36,9 @@ petition route: {
     // f
     ({query}) =>
       query && query.user
-        ? new Response("hello " + query.user)
+        ? new Response("hello " + query.user , {
+            status: 201
+        })
         : "not found"
   |
   bodyReponse.class: square
@@ -50,6 +52,7 @@ petition route: {
   response: |javascript
     Response {
      body: "hello " + query.user
+     status: 201
     }
   |
   headings.class: square
