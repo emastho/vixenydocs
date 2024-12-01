@@ -25,9 +25,12 @@ classes: {
   }
 }
 
+request.class: square
+
+request -> petition route.f
+
 petition route: {
   class: square
-  request.class: square
   f.class: square
   f: |javascript
     // f
@@ -38,8 +41,7 @@ petition route: {
   |
   bodyReponse.class: square
   bodyReponse: |javascript
-    // headings
-    {
+    Response {
      body: "not found"
      status: 404
     }
@@ -57,12 +59,14 @@ petition route: {
      status: 404
     }
   |
-  return.class: square
 
   (headings -> f).class: direct stroke
   (f -> bodyReponse).class: seg stroke
-  (request -> f -> response).class: seg stroke
+  (f -> response).class: seg stroke
   (f -> bodyReponse).class: direct stroke
-  (response -> return).class: seg stroke
-  (bodyReponse -> return).class: seg stroke
 }
+
+return.class: square
+
+petition route.response -> return
+petition route.bodyReponse -> return
