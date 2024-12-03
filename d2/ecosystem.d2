@@ -10,5 +10,10 @@ create: {
   (core -> plugins).class: direct stroke
 }
 third party libraries.class: square
-(third party libraries -> create.perspective).class: direct stroke
-(third party libraries -> create.plugins).class: direct stroke
+(third party libraries -> create.perspective).class: seg stroke
+(third party libraries -> create.plugins).class: seg stroke
+
+app.class: square
+
+(create.perspective -> app).class: direct stroke
+(create.plugins -> app).class: direct stroke

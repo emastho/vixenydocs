@@ -80,6 +80,7 @@ An ecosystem of functional web tools, that aims to make code more:
   `(r: Request) => Response | Promise<Response>` handlers innot only Deno but
   also Bun.
 
+<object type="image/svg+xml" data="/d2/ecosystem.svg"></object>
 
 ## How?
 
