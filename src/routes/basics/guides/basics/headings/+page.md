@@ -18,8 +18,6 @@ This is how to retrieve headers set up in the petition and options.
 
 Headers are unique and immutable, generated in each request-response cycle.
 
-
-
 ## CORS
 
 We can set up CORS in the options, ensuring consistency and uniqueness across

@@ -90,7 +90,6 @@ you won’t be bogged down by complex tutorials on functional programming.
 Instead, you’re here to explore the flexibility and to apply it wherever it
 suits your needs.
 
-
 ## Why `Vixeny`?
 
 Vixeny's name comes from seeing her like a style of coding, it's not difficult
@@ -108,7 +107,6 @@ Vixeny!
 Designed to be backward compatible and runtime agnostic, Vixeny ensures that
 code you write today will continue to work seamlessly in the future, whether
 you're using Deno, Bun, or any other environment.
-
 
 To get started, you can install our fully-equipped templates from the next
 commands below:
@@ -156,7 +154,6 @@ console.log(helloWorld);
 
 <object type="image/svg+xml" data="/d2/petition_cycle.svg"></object>
 
-
 Notice that even if you specify only `path` and `f`, the log output is:
 
 ```javascript
@@ -182,7 +179,6 @@ delve into later. For now, here's a quick look at what you can do:
 <Tabs data={tab0}/>
 
 <object type="image/svg+xml" data="/d2/use_of_resolve.svg"></object>
-
 
 In practice, you'll rarely need to manually declare petitions like this.
 Instead, our `wrap` feature simplifies handling petitions and integrating all
@@ -222,9 +218,6 @@ structure:
 
 Vixeny is fully typed, with JSDoc examples provided for ease of use. Hover over
 the code in your IDE to check.
-
-
-
 
 Thanks for your time!
 

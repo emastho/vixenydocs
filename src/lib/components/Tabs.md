@@ -3,7 +3,7 @@
   import Prism from 'prismjs';
 
   // Import the Prism.js components and plugins you need
-  import 'prismjs/components/prism-javascript'; 
+  import 'prismjs/components/prism-javascript';
   import 'prismjs/plugins/toolbar/prism-toolbar';
   import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard';
 
@@ -45,7 +45,6 @@
 {/if}
 
 <style>
-
 
   .buttons {
     font-size: 16px;

@@ -16,7 +16,6 @@ concept is abstracted away to keep things simple. Essentially, anything with an
 `f` (a functor) is considered a "Morphism", and for simpicity, we will bundle
 both terms as `petition`.
 
-
 > Any `resolve` or `branch` can be utilized within a `Morphism`, but there are
 > not considered `petitions`, meaning, you can not use them directly in a
 > `wrap`.
@@ -29,7 +28,6 @@ Vixeny's resolution mechanism ensures that data dependencies are resolved before
 the main function is executed (Basically an import for the ctx). Simplifying
 asynchronous data handling and composition. Below, we explore key properties of
 resolution in Vixeny.
-
 
 ### SyncAgnostic
 
