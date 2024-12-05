@@ -1,0 +1,21 @@
+...@envs
+direction: right
+
+request.class: square
+
+resolve one: {
+ *.class: square
+  ctx -> f
+}
+
+any.class: square
+request -> resolve one
+resolve one.f -> any
+
+resolve two: {
+    *.class: square
+  resolve -> ctx -> f
+}
+
+request -> resolve two
+resolve two.f -> any

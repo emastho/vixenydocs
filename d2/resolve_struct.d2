@@ -1,0 +1,11 @@
+...@envs
+direction: right
+request.class: square
+
+petition: {
+    *.class : square
+  resolve -> ctx -> f
+}
+response.class: square
+request -> petition.resolve
+petition.f -> response
