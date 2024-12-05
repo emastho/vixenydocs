@@ -1,13 +1,12 @@
 {
   "name": "Deno and Bun Development Environment",
-  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:bookworm",
   "features": {
     "ghcr.io/devcontainers-extra/features/deno-asdf:2": {
       "version": "latest"
     },
-    "ghcr.io/michidk/devcontainers-features/typos:1": {
-      
-    }
+    "ghcr.io/ksh5022/devcontainer-features/d2:1": {},
+    "ghcr.io/michidk/devcontainers-features/typos:1": {}
   },
   "extensions": [
     "denoland.vscode-deno",

@@ -4,7 +4,7 @@ direction: right
 request.class: square
 
 resolve one: {
- *.class: square
+  *.class: square
   ctx -> f
 }
 
@@ -13,7 +13,7 @@ request -> resolve one
 resolve one.f -> any
 
 resolve two: {
-    *.class: square
+  *.class: square
   resolve -> ctx -> f
 }
 
