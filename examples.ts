@@ -1,26 +1,23 @@
 import { wrap } from "vixeny";
 
 
-const app = wrap({
+const app = await wrap({
   // wrap: {
   //   startsWith: "/extension",
   // },
 })()
   .get({
-    path: "/one",
+    path: "/one/one",
     f: () => "one",
   })
   .get({
-    path: "/two",
+    path: "/one/:id",
     f: () => "two",
   })
-  .get({
-    path: "/dev-info",
-    f: () => "debug sfuff",
-  });
+  .testRequests();
 
 
-  app
-  .filter(p => !p.path.includes("/dev"))
-  .logPaths()
+  await app(new Request('http://hello/one/one'))
+  .then( async (res) => await res.text())
+  .then( console.log)
 

@@ -1,0 +1,13 @@
+*.class: square
+
+title: |md
+  # Hierarchy Wildcards
+| {near: top-center}
+
+router: {
+  static: static path `/route/api/getUser`
+  nestWild: nested wildcard or static files `/route/api/*`
+  wild: nested wildcard or static files `/route/*`
+
+  (static -> nestWild -> wild).class: seg stroke
+}

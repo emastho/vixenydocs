@@ -1,0 +1,14 @@
+...@envs
+*.class: square
+
+title: |md
+  # Hierarchy Routes
+| {near: top-center}
+
+router: {
+  static: static path `/route/one`
+  param: with parameters `/route/:id`
+  wild: nested wildcard or static files `/route/*`
+
+  (static -> param -> wild).class: seg stroke
+}

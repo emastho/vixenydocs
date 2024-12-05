@@ -1,0 +1,33 @@
+...@envs
+
+request.class: square
+
+petition: {
+  resolve: {
+    class: square
+    resolve.class: square
+    ctx.class: square
+    f.class: square
+    resolve two.class: square
+    ctx two.class: square
+    f two.class: square
+
+    resolve -> ctx -> f: {
+      class: seg stroke
+    }
+
+    resolve two -> ctx two -> f two: {
+      class: seg stroke
+    }
+  }
+  class: square
+  resolve.class: square
+  ctx.class: square
+  f.class: square
+  resolve -> ctx -> f: {
+    class: seg stroke
+  }
+}
+
+request -> petition.resolve
+petition.f -> response

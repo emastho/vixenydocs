@@ -12,8 +12,8 @@ rush! With `Essential` you should be up and ready to develop any app!
 ## Essentials
 
 - [`Wrap` : Basics of how to use wrap](/basics/guides/essential/wrap)
-- [`Routing` : How pathing works](#essentials)
-- [`Ecosystem` : Learn the difference between `create` , `perspective` , `plugins` and `core`](#essentials)
+- [`Routing` : How pathing works](/basics/guides/essential/routing)
+- [`Ecosystem` : Learn the difference between `create` , `perspective` , `plugins` and `core`](/basics/guides/essential/ecosystem)
 - [`Resolution` : How to use `resolve` and `branch`](/basics/guides/essential/resolution)
 
 ## Basics

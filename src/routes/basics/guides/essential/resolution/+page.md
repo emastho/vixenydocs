@@ -22,6 +22,8 @@ both terms as `petition`.
 
 Let's break it down with more examples.
 
+<object type="image/svg+xml" data="/d2/resolution.svg"></object>
+
 ## Resolve Properties
 
 Vixeny's resolution mechanism ensures that data dependencies are resolved before
