@@ -4,7 +4,7 @@
 
 # Advance
 
-lorem
+Start designing strutured applications with us~
 
 ## list
 

@@ -7,7 +7,7 @@
 
 # Essential
 
-lorem
+All you need to understand to get started
 
 ## List
 

@@ -8,12 +8,9 @@ import ListOfGuides from '$lib/components/listofGuides.svelte';
 
 # Guides
 
-`Guides` were designed to take you from `zero to hero!` but you don't need to
-rush! With `Essential` you should be up and ready to develop any app!
+`Guides` were designed to take you from `zero to hero!`
 
 <ListOfGuides />
-
-
 
 ## Essential
 <ListOfEsentials />

@@ -105,7 +105,7 @@
 
 	a {
 		padding-block: 16px;
-		padding-inline: 8px;
+		padding-left: 8px solid orange ;
 		margin: 0;
 	}
 	a:nth-child(even) {

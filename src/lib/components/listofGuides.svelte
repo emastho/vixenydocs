@@ -51,7 +51,7 @@
         </a>
     </li>
     <li class="list-advance">
-        <a href="#advance">
+        <a href="/basics/guides/advance">
             <strong>
                 Advance
             </strong> : Use of core tools to develop plugins
