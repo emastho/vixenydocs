@@ -4,12 +4,78 @@
     "url": "/library/qa",
     "topic": "Q&A",
     "from": "info",
-    "content": " questions q&a"
+    "content": "questions q&a"
+  },
+  {
+    "url": "/enviroment/create",
+    "topic": "Create library",
+    "from": "info",
+    "content": "create vixeny templates"
+  },
+  {
+    "url": "/enviroment/perspective",
+    "topic": "Perspective library",
+    "from": "info",
+    "content": "perspective vixeny templates plugins"
+  },
+  {
+    "url": "/enviroment/plugins",
+    "topic": "Plugins library",
+    "from": "info",
+    "content": "perspective vixeny templates plugins"
   },
   {
     "url": "/basics/quick_start",
-    "topic": "Introduction",
-    "from": "essential",
-    "content": " Introduction Vixeny uwu"
+    "topic": "Quick start",
+    "from": "info",
+    "content": "introduction  quick start"
+  },
+  {
+    "url": "/basics/guides/essential",
+    "topic": "Essential",
+    "from": "info",
+    "content": "guides essential"
+  },
+  {
+    "url": "/basics/guides/basics",
+    "topic": "Basics",
+    "from": "info",
+    "content": "guides basics"
+  },
+  {
+    "url": "/basics/guides/advance",
+    "topic": "Advance",
+    "from": "info",
+    "content": "guides advance"
+  },
+  {
+    "url": "/basics/guides",
+    "topic": "Guides",
+    "from": "info",
+    "content": "guides essential basics advance expert"
+  },
+  {
+    "url": "/basics/guides/essential/ecosystem",
+    "topic": "Ecosystem",
+    "from": "basics",
+    "content": "ecosystem core perspective plugins basics"
+  },
+  {
+    "url": "/basics/guides/essential/resolution",
+    "topic": "Resolution",
+    "from": "basics",
+    "content": "petitions resolve resolution chain branch basics"
+  },
+  {
+    "url": "/basics/guides/essential/routing",
+    "topic": "Routing",
+    "from": "basics",
+    "content": "priority order wrap basics"
+  },
+  {
+    "url": "/basics/guides/essential/wrap",
+    "topic": "Wrap",
+    "from": "basics",
+    "content": "wrap union startswith unwrap addAnyPetition get logPaths filter chaining"
   }
 ]

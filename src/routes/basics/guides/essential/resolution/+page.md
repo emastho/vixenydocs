@@ -4,7 +4,7 @@
 
 </script>
 
-## Resolution
+# Resolution
 
 Unlike traditional frameworks that rely on life cycles for code execution and
 rendering management, Vixeny employs a concept called "resolution." A resolution

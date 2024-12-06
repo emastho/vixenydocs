@@ -81,6 +81,8 @@
 					<smal>Shift + S = Focus search bar</smal>
 					<br>
 					<smal>Shift + A = Focus frist element</smal>
+					<br>
+					<smal>Tab = Jump faster!</smal>
 				{/if}
 				{#each results.hits as item, i}
 					<a class={item.document.from} tabindex={5 + i} on:click={clickOnLink} href={item.document.url}>
@@ -117,10 +119,12 @@
         border-left: 5px ;
 	}
 
+
+
 	a.info {
         margin: 0.5em 0;
         padding-left: 16px;
-        border-left: 5px solid var(--bg-opacity);
+        border-left: 5px solid var(--info);
     }
 
 	a.essential {
@@ -132,19 +136,19 @@
     a.basics {
         margin: 0.5em 0;
         padding-left: 16px;
-        border-left: 5px solid orangered;
+        border-left: 5px solid var(--second);
     }
 
     a.advance {
         margin: 0.5em 0;
         padding-left: 16px;
-        border-left: 5px solid #5BCEFA ;
+        border-left: 5px solid var(--third) ;
     }
 
     a.expert {
         margin: 0.5em 0;
         padding-left: 16px;
-        border-left: 5px solid #F5A9B8 ;
+        border-left: 5px solid var(--fourth) ;
     }
 
 	a:nth-child(even) {

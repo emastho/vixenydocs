@@ -17,7 +17,7 @@
     .list-item {
         margin: 0.5em 0;
         padding-left: 16px;
-        border-left: 5px solid #5BCEFA;
+        border-left: 5px solid var(--third);
     }
 
 

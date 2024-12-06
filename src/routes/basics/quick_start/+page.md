@@ -1,5 +1,6 @@
 <script>
   import { Tabs as Tab, TabItem } from 'flowbite-svelte';
+  import ListOfGuides from '$lib/components/listofGuides.svelte';
     import Tabs from "$lib/components/Tabs.md"
     import Bash from "$lib/components/SmallComponents/Bash.md"
     import example0 from "$lib/examples/intro_core_0.md"
@@ -7,7 +8,7 @@
     import example2 from "$lib/examples/intro_core_2.md"
     import example3 from "$lib/examples/intro_core_3.md"
 	import example4 from "$lib/examples/intro_core_4.md"
-    import FancyLink from '$lib/components/FancyLink.svelte';
+    //import FancyLink from '$lib/components/FancyLink.svelte';
 
     const install = [
         {title: "Bun", component: Bash, details: {runtime: "bun"}},
@@ -219,6 +220,11 @@ structure:
 Vixeny is fully typed, with JSDoc examples provided for ease of use. Hover over
 the code in your IDE to check.
 
-Thanks for your time!
 
-<FancyLink href="/basics/guides">Please check our guides!</FancyLink>
+## Guides
+
+Here some guides for you!
+
+<ListOfGuides />
+
+Thanks for your time!

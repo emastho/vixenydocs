@@ -8,28 +8,30 @@
 
 
 
+    
     .list-essential {
         margin: 0.5em 0;
         padding-left: 16px;
+
         border-left: 5px solid var(--main);
     }
 
     .list-basics {
         margin: 0.5em 0;
         padding-left: 16px;
-        border-left: 5px solid orangered;
+        border-left: 5px solid var(--second);
     }
 
     .list-advance {
         margin: 0.5em 0;
         padding-left: 16px;
-        border-left: 5px solid #5BCEFA ;
+        border-left: 5px solid var(--third);
     }
 
     .list-expert {
         margin: 0.5em 0;
         padding-left: 16px;
-        border-left: 5px solid #F5A9B8 ;
+        border-left: 5px solid var(--fourth) ;
     }
 
 </style>

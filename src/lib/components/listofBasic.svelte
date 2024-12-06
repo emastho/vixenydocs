@@ -25,7 +25,7 @@
     .list-item {
         margin: 0.5em 0;
         padding-left: 16px;
-        border-left: 5px solid orangered;
+        border-left: 5px solid var(--second);
     }
 
 
