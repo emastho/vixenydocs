@@ -73,13 +73,14 @@
 		<div class="modalContent">
 			{#if results}
 				{#if results.hits.length < 1}
-					No results
+					Not found 
 				{/if}
 				{#each results.hits as item, i}
-					<a tabindex={5 + i} on:click={clickOnLink} href={item.document.url}>
-						{item.document.url}</a
+					<a class={item.document.from} tabindex={5 + i} on:click={clickOnLink} href={item.document.url}>
+						{item.document.topic}</a
 					>
 				{/each}
+
 			{/if}
 		</div>
 	</div>
@@ -104,10 +105,41 @@
 	}
 
 	a {
-		padding-block: 16px;
-		padding-left: 8px solid orange ;
-		margin: 0;
+        margin: 0.5em 0;
+        padding-left: 16px;
+        border-left: 5px ;
 	}
+
+	a.info {
+        margin: 0.5em 0;
+        padding-left: 16px;
+        border-left: 5px solid white ;
+    }
+
+	a.essential {
+        margin: 0.5em 0;
+        padding-left: 16px;
+        border-left: 5px solid var(--main);
+    }
+
+    a.basics {
+        margin: 0.5em 0;
+        padding-left: 16px;
+        border-left: 5px solid orangered;
+    }
+
+    a.advance {
+        margin: 0.5em 0;
+        padding-left: 16px;
+        border-left: 5px solid #5BCEFA ;
+    }
+
+    a.expert {
+        margin: 0.5em 0;
+        padding-left: 16px;
+        border-left: 5px solid #F5A9B8 ;
+    }
+
 	a:nth-child(even) {
 		background-color: var(--side);
 	}
