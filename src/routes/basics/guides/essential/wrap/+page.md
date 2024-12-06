@@ -1,3 +1,9 @@
+<script>
+
+ import ListOfComponents from '$lib/components/listofEssential.svelte';
+
+</script>
+
 # Wrap
 
 <object type="image/svg+xml" data="/d2/wrap.svg"></object>

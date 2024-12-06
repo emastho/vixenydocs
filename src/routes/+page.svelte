@@ -25,7 +25,7 @@
 
 <h2 style="margin-top: 48px;">Quick start</h2>
 
-<FancyLink href="/framework/init">Let's begin</FancyLink>
+
 
 <style>
 	div > :global(*:not(:last-child)) {

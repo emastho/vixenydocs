@@ -8,7 +8,68 @@
 <meta name="description" content="Adding elements together" />
 </svelte:head>
 
-## Enclosing
+# Enclosing
+
+## At
+
+This option allows us to move the `baseIndex` to a specific directory. Now, you
+might be wondering why we need this feature. We will explore its utility in more
+depth during the `extending` section after `composing`, but it is important to
+know that you can rebase the logic of your routing `at` any level.
+
+```javascript
+import { plugins, wrap } from "vixeny";
+
+// Requests
+const atIndex = new Request("http://localhost/hello");
+const atFourBar = new Request("http://localhost/bar/hello");
+const atIndexFoo = new Request("http://localhost/foo/hello");
+
+// Setting up options
+const opt = plugins.globalOptions({
+  indexBase: {
+    at: 4,
+  },
+});
+
+// Making a wrap
+const app = wrap()()
+  .get({
+    path: "/hello",
+    f: () => "world",
+  });
+
+// Note that we are using the same `app`, all instance of wrap are immutable
+
+// Testing the wrap
+const handler = app
+  .testRequests();
+
+// Testing the wrap with the options
+const atFourhandler = app
+  // Adding the options
+  .changeOptions(opt)
+  .testRequests();
+
+// Expected behavior of the handler
+console.log(
+  // true
+  (await handler(atIndex)).status === 200,
+  // true
+  (await handler(atFourBar)).status === 404,
+);
+
+// Checking the request status after moving the handler one directory deeper
+
+console.log(
+  // true
+  (await atFourhandler(atIndex)).status === 404,
+  // true
+  (await atFourhandler(atFourBar)).status === 200,
+);
+```
+
+## Extending
 
 Enclosing in Vixeny allows you to nest wraps, other frameworks and functions
 within other wraps, effectively creating a clousere that the current wrap can't

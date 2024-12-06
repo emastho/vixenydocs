@@ -30,7 +30,7 @@ Welcome to Vixeny templates! Here are some basics on how the template engine
 works. It's recommended to learn about the dynamic path system via the link
 below.
 
-> [Dynamic routes](/framework/init)
+
 
 ## Before We Start!
 

@@ -1,7 +1,7 @@
 
 <script>
 
- import ListOfComponents from '$lib/components/listofEssential.svelte';
+ import ListOfEssential from '$lib/components/listofEssential.svelte';
 
 </script>
 
@@ -11,4 +11,4 @@ lorem
 
 ## List
 
-<ListOfComponents />
+<ListOfEssential />

@@ -1,5 +1,5 @@
 <script>
-  import ListOfComponents from '$lib/components/listOfComponets.svelte';
+
   import ButtonToTop from '$lib/components/ButtonToTop.svelte';
 </script>
 
@@ -146,11 +146,6 @@ const extendedHandler = wrap()(
   .logPaths();
 ```
 
-## Components
-
-The list of components that you can use with:
-
-<ListOfComponents />
 
 ## Methods
 
