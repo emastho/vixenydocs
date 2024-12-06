@@ -25,6 +25,7 @@
 	});
 
 	let sidebar = false;
+	let asideVisible = true; // Track aside visibility
 
 	const showSidebar = () => {
 		sidebar = !sidebar;
@@ -37,46 +38,48 @@
 	let keydownHandler: (e: KeyboardEvent) => void;
 
 	onMount(() => {
-        // Only run this code in the browser
-        if (typeof window !== 'undefined') {
-            keydownHandler = (e: KeyboardEvent) => {
-				
-				// Shift + A focuses the search bar
-                if (e.shiftKey && (e.key === 'S' || e.key === 's')) {
-					e.preventDefault()
-					e.stopPropagation()
-                    const searchBar = document.getElementById('SEARCH_BAR') as HTMLInputElement;
-					
-                    searchBar?.focus();
-                }
-               // Shift + A focuses the first element with .toc-link.toc-link-h1
-			   if (e.shiftKey && (e.key === 'A' || e.key === 'a')) {
-                    const firstTocLink = document.querySelector('.toc-link.toc-link-h1') as HTMLAnchorElement;
-                    if (firstTocLink) {
-                        firstTocLink.focus();
-                    } else {
-                        console.warn('No element with class "toc-link toc-link-h1" found.');
-                    }
-			   }
+		if (typeof window !== 'undefined') {
+			keydownHandler = (e: KeyboardEvent) => {
+				// Shift + S focuses the search bar
+				if (e.shiftKey && (e.key === 'S' || e.key === 's')) {
+					e.preventDefault();
+					e.stopPropagation();
+					const searchBar = document.getElementById('SEARCH_BAR') as HTMLInputElement;
+					searchBar?.focus();
+				}
 
-            };
+				// Shift + A focuses the first element with .toc-link.toc-link-h1
+				if (e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+					const firstTocLink = document.querySelector('.toc-link.toc-link-h1') as HTMLAnchorElement;
+					if (firstTocLink) {
+						firstTocLink.focus();
+					} else {
+						console.warn('No element with class "toc-link toc-link-h1" found.');
+					}
+				}
 
+				// Shift + F toggles the aside
+				if (e.shiftKey && (e.key === 'Z' || e.key === 'z')) {
+					asideVisible = !asideVisible;
+				}
+			};
 
-            window.addEventListener('keydown', keydownHandler);
-        }
-    });
+			window.addEventListener('keydown', keydownHandler);
+		}
+	});
 
-    onDestroy(() => {
-        if (typeof window !== 'undefined' && keydownHandler) {
-            window.removeEventListener('keydown', keydownHandler);
-        }
-    });
+	onDestroy(() => {
+		if (typeof window !== 'undefined' && keydownHandler) {
+			window.removeEventListener('keydown', keydownHandler);
+		}
+	});
 </script>
 
 <svelte:head>
 	<link rel="preload" as="image" href={Logo} />
 </svelte:head>
-<main style="">
+
+<main>
 	{#if sidebar}
 		<MobileMenu {closeSidebar} buttonElement={sidebarButton} />
 	{/if}
@@ -96,18 +99,21 @@
 		</div>
 	</header>
 	<div class="container">
-		<aside style="padding-bottom: 80px;">
-			<div class="logoArea">
-				<a href="/" on:click={() => accordion.set(1)}>
-					<img src={Logo} alt="Logo" height="90" />
-				</a>
-			</div>
-			<Navigation />
-		</aside>
-		<section>
+		{#if asideVisible}
+			<aside style="padding-bottom: 80px;">
+				<div class="logoArea">
+					<a href="/" on:click={() => accordion.set(1)}>
+						<img src={Logo} alt="Logo" height="90" />
+					</a>
+				</div>
+				<Navigation />
+			</aside>
+		{/if}
+		<!-- Apply conditional padding based on asideVisible -->
+		<section style={`padding-left: ${asideVisible ? '270px' : '0'}`}>
 			<div class="contentTop">
 				<div class="line">
-					<Input placeholder="Shift + S" />
+					<Input placeholder="Shift + S" id="SEARCH_BAR" />
 					<Links />
 					<SearchModal />
 				</div>
@@ -125,7 +131,6 @@
 	aside {
 		flex-shrink: 0;
 		width: 270px;
-		/* height: 100vh; */
 		background-color: var(--bg);
 		border-right: 2px solid var(--side);
 		padding: 3rem 0;
@@ -143,15 +148,6 @@
 		justify-content: center;
 		flex-shrink: 0;
 		padding-bottom: 64px;
-	}
-
-	section {
-		padding: 0 0 128px 0;
-		color: var(--text);
-		/* height: 100vh; */
-		padding-left: calc(270px);
-		/* overflow-y: scroll; */
-		/* max-width: 120ch;*/
 	}
 
 	.contentContainer {
@@ -188,7 +184,6 @@
 	header {
 		width: 100%;
 		display: none;
-		/* background: var(--side); */
 		border-bottom: 2px solid var(--side);
 		padding-block: 16px;
 		align-items: center;
@@ -237,10 +232,6 @@
 		padding-block: 4px;
 	}
 
-	/* :global(section ul li::marker) {
-		font-family: 'monospace';
-	} */
-
 	@media (width < 1100px) {
 		aside {
 			display: none;
@@ -252,7 +243,7 @@
 
 		section {
 			height: auto;
-			padding-inline: 0;
+			padding-inline: 0 !important;
 			max-width: 100%;
 		}
 

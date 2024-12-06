@@ -82,6 +82,8 @@
 					<br>
 					<smal>Shift + A = Focus frist element</smal>
 					<br>
+					<smal>Shift + Z = Zen mode</smal>
+					<br>
 					<smal>Tab = Jump faster!</smal>
 				{/if}
 				{#each results.hits as item, i}
