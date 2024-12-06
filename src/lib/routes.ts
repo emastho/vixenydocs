@@ -15,7 +15,7 @@ export const routes: {
 }[] = [
   { href: "/basics/quick_start", name: "Introduction", categoryId: 1 },
   { href: "/basics/guides", name: "Guides", categoryId: 1 },
-  { href: "/environment/core", name: "Core", categoryId: 2 },
+  //{ href: "/environment/core", name: "Core", categoryId: 2 },
   { href: "/environment/plugins", name: "Plugins", categoryId: 2 },
   { href: "/environment/perspective", name: "Perspective", categoryId: 2 },
   { href: "/library/qa", name: "Q&A", categoryId: 3 },

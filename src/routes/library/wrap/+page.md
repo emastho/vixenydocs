@@ -100,13 +100,13 @@ const custom = petitions.custom()({
   f: () => new Response("Hello"),
 });
 
-const standart = petitions.add()({
+const standard = petitions.add()({
   path: "/custom",
   f: () => "Hello",
 });
 
 wrap()(
-  [custom, standart],
+  [custom, standard],
 );
 ```
 
@@ -261,7 +261,7 @@ console.log(
 
 - **Dynamic Configuration**: Useful for applications that need to change
   configurations at deployment.
-- **Testing**: Helps to check the behaivour with different settings.
+- **Testing**: Helps to check the behaviour with different settings.
 
 ### compose
 
@@ -358,7 +358,7 @@ last added petition.
 
 > Context:
 
-- `isUsing`: Shows the componets that you are using.
+- `isUsing`: Shows the components that you are using.
 - `isAsync`: Shows if the current petition is async.
 
 > Components:
@@ -464,7 +464,7 @@ handlerWithoutTwoThree.logPaths(); // Outputs: ['/pathOne']
 Applies a function over each petition, wrapping each result, and then flattens
 all results into a single wrap.
 
-> **flatMap** is mostly used for the mantainers of `vixeny/core`
+> **flatMap** is mostly used for the maintainers of `vixeny/core`
 
 #### Functionality
 
@@ -501,7 +501,7 @@ const asyncHandler = handler
         isAsync: true,
       }),
   )
-  // Cheking the wrapped petitions
+  // Checking the wrapped petitions
   .flatMap(
     (p) => void console.log(p) ?? handler.pure(p),
   );
@@ -616,7 +616,7 @@ await staticContentHandler(request)
 Creates a new wrap instance that is functionally equivalent to its input but
 disconnected from the original instance's state.
 
-> **Pure** is mostly used for the mantainers of `vixeny/core` Preserve the
+> **Pure** is mostly used for the maintainers of `vixeny/core` Preserve the
 > current `options`
 
 #### Functionality
@@ -776,7 +776,7 @@ const extension = wrap({
     f: () => "two",
   });
 
-const handeler = wrap()()
+const handler = wrap()()
   .union(extension.unwrap())
   .get({
     path: "/hello",

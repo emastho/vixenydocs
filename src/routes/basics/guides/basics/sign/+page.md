@@ -46,7 +46,7 @@ await handler(new Request("http://localhost/sign/pluie"))
 
 ## Verify
 
-Example of signing `param` and verifing the validity of it.
+Example of signing `param` and verifying the validity of it.
 
 ```javascript
 import { wrap } from "vixeny";

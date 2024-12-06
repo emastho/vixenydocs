@@ -53,7 +53,7 @@ async function main() {
   const generatedFile = Bun.file("data.json").writer();
   generatedFile.write(JSON.stringify(data));
 
-  log("Filled database succesfully");
+  log("Filled database successfully");
 
   fs.renameSync("data.json", `${srcDir}/lib/data.json`);
 

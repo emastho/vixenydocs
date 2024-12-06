@@ -32,7 +32,7 @@ const hasUser = petitions.resolve()({
   f: ({ query }) => query && query?.user ?? null,
 });
 
-const forbiden = new Response(null, { status: 403 });
+const forbidden = new Response(null, { status: 403 });
 
 const root = wrap()()
   .get({
@@ -46,7 +46,7 @@ const root = wrap()()
       },
     }) => hasUser 
       ? `welcome ${hasUser}!` 
-      : forbiden.clone(),
+      : forbidden.clone(),
   })
   .post({
     path: "/ping",
@@ -59,7 +59,7 @@ const root = wrap()()
       },
     }) => hasUser 
       ? `welcome ${hasUser}!` 
-      : forbiden.clone(),
+      : forbidden.clone(),
   });
 ```
 

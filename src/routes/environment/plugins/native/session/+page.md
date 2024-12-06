@@ -18,7 +18,7 @@ Session mannager in Vixeny.
 
 Basic Example
 
-### Cheking for a valid session
+### Checking for a valid session
 
 Session are validated at the resolution of the CTX
 
@@ -26,7 +26,7 @@ Session are validated at the resolution of the CTX
 import { components, wrap } from "vixeny";
 
 const user = components.session < { hello: string } > ({
-  removeDeleteUnsedSession: true,
+  removeDeleteUnusedSession: true,
 });
 
 const handler = wrap({

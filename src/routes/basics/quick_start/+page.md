@@ -97,7 +97,7 @@ to learn but rewarding, focusing more on the flow of your code, with that unique
 ability to see everything at any point with full transparency.
 
 And remember, you can copy, paste and run all the examples! and there are
-examples for everthing!.
+examples for everything!.
 
 Now, without further ado, let's embark on your journey from 'zero to hero' with
 Vixeny!

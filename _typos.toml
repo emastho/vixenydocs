@@ -1,0 +1,8 @@
+[files]
+extend-exclude = [
+    ".svelte-kit/*" , 
+    "build/*",
+    "static/*",
+    "d2/*"
+    
+]

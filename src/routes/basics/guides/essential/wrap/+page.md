@@ -58,7 +58,7 @@ const extension = wrap({
     f: () => "two",
   });
 
-const handeler = wrap()()
+const handler = wrap()()
   .union(extension.unwrap())
   .get({
     path: "/hello",
@@ -102,7 +102,7 @@ const app = wrap({
 
 text 
 
-### Why is chaning important?
+### Why is chaining important?
 
 
 ## List
