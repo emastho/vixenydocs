@@ -23,10 +23,6 @@
 <br />
 <Features />
 
-<h2 style="margin-top: 48px;">Quick start</h2>
-
-
-
 <style>
 	div > :global(*:not(:last-child)) {
 		margin-bottom: 8px;
