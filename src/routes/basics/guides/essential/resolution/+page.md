@@ -1,3 +1,9 @@
+<script>
+
+ import ListOfComponents from '$lib/components/listofEssential.svelte';
+
+</script>
+
 ## Resolution
 
 Unlike traditional frameworks that rely on life cycles for code execution and
@@ -57,3 +63,7 @@ wrap(options)().get({
   f: ({ resolve }) => `${resolve.hello} ${resolve.world}`,
 });
 ```
+
+## List
+
+<ListOfComponents />

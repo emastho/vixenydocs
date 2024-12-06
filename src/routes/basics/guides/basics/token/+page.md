@@ -1,5 +1,5 @@
 <script>
-   import ListOfComponents from '$lib/components/listOfComponets.svelte';
+   import ListOfComponents from '$lib/components/listofBasic.svelte';
 </script>
 
 <svelte:head>

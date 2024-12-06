@@ -1,3 +1,9 @@
+<script>
+
+ import ListOfComponents from '$lib/components/listofEssential.svelte';
+
+</script>
+
 # Routing
 
 This lesson will be brief, yet it is crucial for understanding the logic of
@@ -64,3 +70,8 @@ We fully support wildcards `/path/*` using the following order:
 
 This means that `real paths` are prioritized over wildcards, which reflect other
 nested wildcards.
+
+## List
+
+<ListOfComponents />
+

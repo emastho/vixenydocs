@@ -99,6 +99,11 @@ text
 ### Why is chaning important?
 
 
+## List
+
+<ListOfComponents />
+
+
 ## Do you know?
 
 > Originally, Vixeny developers managed functionality through Petitions and
@@ -120,5 +125,6 @@ text
 >   nature.
 > - **Advanced Functional Logic**: Wrap allows for the application of a FP
 >   style ( What do you expect? ¯\\_(ツ)_/¯).
+
 
 

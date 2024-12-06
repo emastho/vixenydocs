@@ -1,5 +1,5 @@
 <script>
-  import ListOfComponents from '$lib/components/listOfComponets.svelte';
+  import ListOfComponents from '$lib/components/listofBasic.svelte';
 </script>
 
 <svelte:head>
@@ -140,3 +140,6 @@ const logHead = (r: Response | Promise<Response>): void => console.log(r);
 logHead(std(requestOf("http://localhost/std")));
 logHead(custom(requestOf("http://localhost/custom")));
 ```
+## List
+
+<ListOfComponents />
