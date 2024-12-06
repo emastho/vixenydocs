@@ -12,6 +12,7 @@
 	import nprogress from 'nprogress';
 	import Links from '$lib/components/Links.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	let sidebarButton: HTMLElement;
 
@@ -32,6 +33,44 @@
 	const closeSidebar = () => {
 		sidebar = false;
 	};
+
+	let keydownHandler: (e: KeyboardEvent) => void;
+
+	onMount(() => {
+        // Only run this code in the browser
+        if (typeof window !== 'undefined') {
+            keydownHandler = (e: KeyboardEvent) => {
+				
+				// Shift + A focuses the search bar
+                if (e.shiftKey && (e.key === 'S' || e.key === 's')) {
+					e.preventDefault()
+					e.stopPropagation()
+                    const searchBar = document.getElementById('SEARCH_BAR') as HTMLInputElement;
+					
+                    searchBar?.focus();
+                }
+               // Shift + A focuses the first element with .toc-link.toc-link-h1
+			   if (e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+                    const firstTocLink = document.querySelector('.toc-link.toc-link-h1') as HTMLAnchorElement;
+                    if (firstTocLink) {
+                        firstTocLink.focus();
+                    } else {
+                        console.warn('No element with class "toc-link toc-link-h1" found.');
+                    }
+			   }
+
+            };
+
+
+            window.addEventListener('keydown', keydownHandler);
+        }
+    });
+
+    onDestroy(() => {
+        if (typeof window !== 'undefined' && keydownHandler) {
+            window.removeEventListener('keydown', keydownHandler);
+        }
+    });
 </script>
 
 <svelte:head>
@@ -68,7 +107,7 @@
 		<section>
 			<div class="contentTop">
 				<div class="line">
-					<Input placeholder="Search" />
+					<Input placeholder="Shift + S" />
 					<Links />
 					<SearchModal />
 				</div>

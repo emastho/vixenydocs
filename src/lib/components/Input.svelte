@@ -7,7 +7,7 @@
 
 <div>
 	<Iconie which="search" />
-	<input tabindex="5" bind:value={$searchStore} type="text" {placeholder} />
+	<input id="SEARCH_BAR" tabindex="5" bind:value={$searchStore} type="text" {placeholder} />
 </div>
 
 <style>

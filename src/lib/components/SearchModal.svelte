@@ -74,6 +74,13 @@
 			{#if results}
 				{#if results.hits.length < 1}
 					Not found 
+					<br>
+					<br>
+					Tips:
+					<br>
+					<smal>Shift + S = Focus search bar</smal>
+					<br>
+					<smal>Shift + A = Focus frist element</smal>
 				{/if}
 				{#each results.hits as item, i}
 					<a class={item.document.from} tabindex={5 + i} on:click={clickOnLink} href={item.document.url}>
