@@ -113,7 +113,7 @@
 	a.info {
         margin: 0.5em 0;
         padding-left: 16px;
-        border-left: 5px solid white ;
+        border-left: 5px solid var(--bg-opacity);
     }
 
 	a.essential {
