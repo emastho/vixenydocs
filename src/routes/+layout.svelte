@@ -62,6 +62,18 @@
 				if (e.shiftKey && (e.key === 'Z' || e.key === 'z')) {
 					asideVisible = !asideVisible;
 				}
+
+				// Shift + L toggles the theme between light and dark
+				if (e.shiftKey && (e.key === 'L' || e.key === 'l')) {
+					const currentTheme = document.documentElement.dataset.theme;
+					if (currentTheme === 'light') {
+						// Switch to dark
+						document.documentElement.removeAttribute('data-theme');
+					} else {
+						// Switch to light
+						document.documentElement.dataset.theme = 'light';
+					}
+				}
 			};
 
 			window.addEventListener('keydown', keydownHandler);
