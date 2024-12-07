@@ -61,21 +61,18 @@ programming, we’ve designed Vixeny to be as welcoming as possible.
 
 An ecosystem of functional web tools, that aims to make code more:
 
-- `Open` : All our tools are exportable and can be used in other project.
-
-- `Reusable` : Make it once and use it again, every element can be reused and composed in many ways.
-
-- `Testable` : Thanks to its monolithic structure, it can be tested at any
+- `Open`: All our tools are exportable and can be used in other project.
+- `Reusable`: Make it once and use it again, every element can be reused and composed in many ways.
+- `Testable`: Thanks to its monolithic structure, it can be tested at any
   state.
-
-- `Smart` : Asyncronless with an integrated system that helps you to detect bugs
+- `Smart`: Asyncronless with an integrated system that helps you to detect bugs
   and optimize your code on the fly.
 
-- `Safe and maintainable` : Everything is deterministic, and its object-based
+- `Safe and maintainable`: Everything is deterministic, and its object-based
   structure allows the maintainers to easily add things without needing to push
   broken code changes.
 
-- `Fast` : Fastest framework when it comes to `Request -> Response` handlers in not only Deno but
+- `Fast`: Fastest framework when it comes to `Request -> Response` handlers in not only Deno but
   also Bun.
 
 <object type="image/svg+xml" data="/d2/ecosystem.svg"></object>
@@ -193,6 +190,19 @@ Supports testing individual petitions by injecting values while **preserving the
 <Tabs data={tab4}/>
 
 Vixeny is fully typed, so you get tooltips and hints right in your editor.
+
+## Keybord mode
+
+Do you like to use your keyboard? Here some tips:
+
+| Shortcut | Action             |
+|----------|--------------------|
+| Shift + S | Focus search bar  |
+| Shift + A | Focus first element |
+| Shift + Z | Zen mode          |
+| Shift + L | Light / Dark mode |
+| Tab       | Jump faster!      |
+
 
 ## Guides
 

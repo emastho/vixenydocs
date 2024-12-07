@@ -76,15 +76,37 @@
 					Not found 
 					<br>
 					<br>
-					Tips:
-					<br>
-					<smal>Shift + S = Focus search bar</smal>
-					<br>
-					<smal>Shift + A = Focus frist element</smal>
-					<br>
-					<smal>Shift + Z = Zen mode</smal>
-					<br>
-					<smal>Tab = Jump faster!</smal>
+					<table>
+						<thead>
+						  <tr>
+							<th>Shortcut</th>
+							<th>Action</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td>Shift + S</td>
+							<td>Focus search bar</td>
+						  </tr>
+						  <tr>
+							<td>Shift + A</td>
+							<td>Focus first element</td>
+						  </tr>
+						  <tr>
+							<td>Shift + Z</td>
+							<td>Zen mode</td>
+						  </tr>
+						  <tr>
+							<td>Shift + L</td>
+							<td>Light / Dark mode</td>
+						  </tr>
+						  <tr>
+							<td>Tab</td>
+							<td>Jump faster!</td>
+						  </tr>
+						</tbody>
+					  </table>
+					  
 				{/if}
 				{#each results.hits as item, i}
 					<a class={item.document.from} tabindex={5 + i} on:click={clickOnLink} href={item.document.url}>

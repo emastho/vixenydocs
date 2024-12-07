@@ -27,7 +27,8 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background: var(--closer);
+ /* I had to fix this to make light mode possible, it was  var(--closer) */
+  background: #1e2124;
 }
 
 :not(pre) > code[class*="language-"] {
