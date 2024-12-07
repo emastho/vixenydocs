@@ -61,11 +61,9 @@ programming, we’ve designed Vixeny to be as welcoming as possible.
 
 An ecosystem of functional web tools, that aims to make code more:
 
-- `Open` : All our tools are exportable and can be used in other frameworks or
-  projects.
+- `Open` : All our tools are exportable and can be used in other project.
 
-- `Reusable` : Make it once and use it again, because of the purity of `Vixeny`,
-  every element can be reused and composed in many ways.
+- `Reusable` : Make it once and use it again, every element can be reused and composed in many ways.
 
 - `Testable` : Thanks to its monolithic structure, it can be tested at any
   state.
@@ -77,40 +75,30 @@ An ecosystem of functional web tools, that aims to make code more:
   structure allows the maintainers to easily add things without needing to push
   broken code changes.
 
-- `Fast` : Holding the record of being the fastest framework when it comes to
-  `(r: Request) => Response | Promise<Response>` handlers innot only Deno but
+- `Fast` : Fastest framework when it comes to `Request -> Response` handlers in not only Deno but
   also Bun.
 
 <object type="image/svg+xml" data="/d2/ecosystem.svg"></object>
 
 ## How?
 
-Actually, it all boils down to the functional paradigm, but let's keep things
-straightforward. Vixeny was crafted with friendliness in mind for everyone! So,
-you won’t be bogged down by complex tutorials on functional programming.
-Instead, you’re here to explore the flexibility and to apply it wherever it
-suits your needs.
+Don't sweat the fancy "functional programming" stuff. Vixeny is made to be friendly for everyone. Our guides are split into simple levels, so you only pick up what you actually need, step by step.
 
 ## Why `Vixeny`?
 
-Vixeny's name comes from seeing her like a style of coding, it's not difficult
-to learn but rewarding, focusing more on the flow of your code, with that unique
-ability to see everything at any point with full transparency.
+It got its name because it’s like a coding style that’s easy to learn and still super rewarding. It helps you see everything clearly at any point.
 
-And remember, you can copy, paste and run all the examples! and there are
-examples for everything!.
+You can copy, paste, and run all the examples. There’s an example for everything!
 
-Now, without further ado, let's embark on your journey from 'zero to hero' with
-Vixeny!
+Now, let’s go from zero to hero with Vixeny!
 
 ## Quick start
 
-Designed to be backward compatible and runtime agnostic, Vixeny ensures that
+Designed to be backward compatible and runtime agnostic, ensures that
 code you write today will continue to work seamlessly in the future, whether
-you're using Deno, Bun, or any other environment.
+you're using Deno or Bun.
 
-To get started, you can install our fully-equipped templates from the next
-commands below:
+Ready to start? Just run these commands to install our templates:
 
 <Tab defaultClass="tab">
   <TabItem title="bun" open>
@@ -131,9 +119,7 @@ npx create-vixeny
 
 ## Petitions
 
-In Vixeny, routes and are referred to as `petitions`. These are objects that
-necessitate a function, denoted as `f`, and a `path`. The example below
-illustrates how to define a basic petition:
+Routes are called petitions. A petition is just an object with a path and a function f that does something when someone visits that path. Here’s a simple example:
 
 ```javascript
 import { petitions } from "vixeny";
@@ -167,64 +153,51 @@ Notice that even if you specify only `path` and `f`, the log output is:
 }
 ```
 
-This level of consistency in Vixeny’s architecture ensures that all petitions
-work seamlessly across different versions right out of the box! This design
-choice not only simplifies development but also enhances maintainability and
-scalability.
+Vixeny’s architecture ensures that all petitions work across different versions right out of the box!
 
 ### Reusability
 
-Vixeny also offers two special petitions, `resolve` and `branch`, which we'll
-delve into later. For now, here's a quick look at what you can do:
+Vixeny also offers two special petitions, `resolve` and `branch`, which we’ll show you later. For now, here's a quick look at what you can do:
 
 <Tabs data={tab0}/>
 
 <object type="image/svg+xml" data="/d2/use_of_resolve.svg"></object>
 
-In practice, you'll rarely need to manually declare petitions like this.
-Instead, our `wrap` feature simplifies handling petitions and integrating all
-our tools.
+In practice, you'll rarely need to manually declare petitions like this, that's why we have `wrap`
+
 
 ## Wrap
 
-The `wrap` function in Vixeny is a pure function meticulously designed to the
-handling and manipulation of petitions. With `wrap`, you can:
+The `wrap` function helps you work with petitions without hassle. With `wrap`, you can:
 
-- **Avoid side effects** to ensure your code remains clean and predictable.
-- **Test or mock** the entire wrap or individual petitions.
-- **Debug on the spot**, Checking issues with just a line of code.
-- **Deploy your application** efficiently with built-in support.
-- **And much more...**
+- Keep things clean and avoid side effects.
+- Test petitions without starting a server.
+- Debug easily.
+- Deploy quickly.
+- And much more!
+
 
 <Tabs data={tab1}/>
 
-While this section acts more as a showcase, you can delve deeper and see `wrap`
-in action with examples of each method here:
-
-[Explore `wrap` Examples.](/library/wrap/)
 
 ### Testing
 
-Vixeny can be tested without the need for a `serve`, allowing for individual or
-comprehensive testing of wraps:
+You can test everything without running a server and even mock parts of your code to try out different scenarios. 
 
 <Tabs data={tab3}/>
 
 ### Mocking
 
-Supports testing individual petitions by injecting values while preserving their
-structure:
+Supports testing individual petitions by injecting values while **preserving their structure**:
 
 <Tabs data={tab4}/>
 
-Vixeny is fully typed, with JSDoc examples provided for ease of use. Hover over
-the code in your IDE to check.
-
+Vixeny is fully typed, so you get tooltips and hints right in your editor.
 
 ## Guides
 
-Here some guides for you!
+Want to learn more? We’ve got guides to help you with everything:
 
 <ListOfGuides />
 
-Thanks for your time!
+Thanks for stopping by!
