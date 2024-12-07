@@ -1,8 +1,10 @@
 <script>
 
  import ListOfComponents from '$lib/components/listofEssential.svelte';
+ import Prisma from '$lib/components/Prisma.md';
 
 </script>
+<Prisma />
 
 # Wrap
 
@@ -41,7 +43,7 @@ await app(request)
 
 ## Unwrap and Union
 
-```typescript
+```javascript
 import { wrap } from "vixeny";
 
 const extension = wrap({
@@ -100,9 +102,52 @@ const app = wrap({
 
 ## What is chaining?
 
-text 
+Chaining is a way to connect a series of steps (functions) together so each step passes its result to the next. This lets you build things step by step, without changing the original setup. It makes your code easier to read and understand.
+
+In this framework, chaining means starting with something (like a `wrap`) and adding more actions to it, like `.get()` or `.addAnyPetition()`. Each time you add something, it creates a new version. If you don’t save the new version, the changes won’t stick.
 
 ### Why is chaining important?
+
+1. **Easy to Follow**:
+   You can see exactly what happens in the order it happens.
+
+2. **Doesn’t Change Things by Accident**:
+   Each step creates a new version, so the original stays the same.
+
+3. **Flexible**:
+   You can add, remove, or change steps without breaking other parts.
+
+### Demonstrating its immutability
+
+Here’s an example that shows how chaining works and what happens if you don’t save the changes:
+
+```javascript
+import { petitions, wrap } from "vixeny";
+
+// Create a standard petition
+const std = petitions.add()({
+  path: "/anotherPath",
+  f: () => "Hello",
+});
+
+// Create a chain
+const app = await wrap()()
+  .get({
+    path: "/greet",
+    f: () => "Hello, World!",
+  });
+
+// This does nothing because the result is not saved
+app.addAnyPetition(std);
+
+const serve = app.testRequests();
+
+const request = new Request("http://localhost/anotherPath");
+
+await app(request)
+  .then((response) => console.log(response.status));
+// Outputs: "404"
+```
 
 
 ## List
@@ -125,12 +170,14 @@ text
 > - **Early Debugging**: It enables debugging during the compilation process,
 >   allowing not only to debug code but making it totally transparent.
 > - **Testing and Mocking**: Wrap provides robust support for testing and
->   mocking, essential for developing reliable applications.
-> - **Accessible Interface**: The design of Wrap is `intuitive`, making it more
+>   mocking.
+> - **Accessible Interface**: The design of Wrap is `intuitive` ( as good as it gets ), making it more
 >   accessible to developers who might be daunted by the framework’s functional
 >   nature.
 > - **Advanced Functional Logic**: Wrap allows for the application of a FP
 >   style ( What do you expect? ¯\\_(ツ)_/¯).
+
+
 
 
 
