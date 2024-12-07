@@ -140,11 +140,18 @@ const app = await wrap()()
 // This does nothing because the result is not saved
 app.addAnyPetition(std);
 
-const serve = app.testRequests();
+// This does nothing because the result is not saved
+app.get({
+    path: "/anotherPath",
+    f: () => "Hello",
+  });
+
+
+const serve = await app.testRequests();
 
 const request = new Request("http://localhost/anotherPath");
 
-await app(request)
+await serve(request)
   .then((response) => console.log(response.status));
 // Outputs: "404"
 ```
