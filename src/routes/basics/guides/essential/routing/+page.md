@@ -16,8 +16,8 @@ code.
 
 We fully support wildcards static and dynamic pathing using the following order:
 
-- Real paths (e.g., "/api/first")
-- Dynamic paths (e.g., "/api/:second")
+- Real paths (e.g., `/api/first`)
+- Dynamic paths (e.g., `/api/:second`)
 - Wildcards and static files (e.g., `/static/html/*` -> `/static/*` -> `/*`)
 
 ```js

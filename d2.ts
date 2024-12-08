@@ -6,7 +6,7 @@ $.env({
   D2_LAYOUT: "elk",
   D2_THEME: "200",
 
-  D2_SKETCH: "true",
+ // D2_SKETCH: "true",
 });
 
 const SRC_DIR = join(import.meta.dir, "d2/");
