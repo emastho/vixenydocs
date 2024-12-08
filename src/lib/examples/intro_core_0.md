@@ -1,8 +1,5 @@
 <script>
     export let runtime = "one";
-
-
-
 </script>
 
 {#if runtime == "one"}

@@ -4,7 +4,7 @@
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
+
 <title>Session plugin - Vixeny</title>
   <meta name="description" content="Using Session in Vixeny"/>
   <meta name="keywords" content="Session, web development, Vixeny framework, FP, functional programming, plugin"/>
@@ -47,7 +47,7 @@ const handler = wrap({
     // Returns a true if the user has a valid session
     f: ({ user }) => String(user.valid),
   })
-  .testRequests();
+  .testPetitions();
 
 const req = new Request("http://localhost/");
 

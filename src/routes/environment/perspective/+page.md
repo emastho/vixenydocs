@@ -19,7 +19,7 @@
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
+
 <title>Introduction - Vixeny</title>
   <meta name="description" content="Using create-vixeny"/>
 </svelte:head>

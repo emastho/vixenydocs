@@ -4,7 +4,6 @@
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
 <title>Branch - Vixeny</title>
   <meta name="description" content="Understanding branch"/>
   <meta name="keywords" content="branch, web development, Vixeny framework, FP, functional programming"/>
@@ -95,7 +94,7 @@ const handler = wrap()()
     },
     f: ({ branch, param }) => branch.returnArgs(param.id),
   })
-  .testRequests();
+  .testPetitions();
 
 // Logging bubbles
 console.log(
@@ -148,7 +147,7 @@ const handler = wrap()()
         ? new Response(await branch.getBody())
         : new Response(null, { status: 403 }),
   })
-  .testRequests();
+  .testPetitions();
 
 // Getting token
 const token = await handler(new Request("http://localhost/getKey/bubbles"))
@@ -206,7 +205,7 @@ const handle = wrap()()
     f: ({ branch }) => `${branch.hello()} ${branch.world(undefined)}`,
   })
   // Creating a server for testing
-  .testRequests();
+  .testPetitions();
 
 console.log(
   // Logging `Hello world`

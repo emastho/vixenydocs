@@ -12,6 +12,8 @@
 
 ## Get and Route
 
+In a wrap, `.get()` , `.post()` and  `.put()` are methods that have a predefine method for the `petition`. Also, you can access `.route()` to get access to more methods.
+
 ```javascript
 import { petitions, wrap } from "vixeny";
 
@@ -27,21 +29,30 @@ const app = await wrap()()
     path: "/greet",
     f: () => "Hello, World!",
   })
+  // Access to all methods
+  .route({
+    path: "/moreMethods",
+    method:'OPTIONS',
+    f: () => "Hello, World!",
+  })
   .addAnyPetition(std)
   // Making a server to test
-  .testRequests();
-
-const request = new Request("http://localhost/greet");
+  .testPetitions();
 
 // Example of handling the request and outputting the response
-await app(request)
+await app("/greet")
   .then(
     // Outputs: "Hello, World!"
     async(response) => console.log( await response.text())
   ); 
+  
 ```
 
 ## Unwrap and Union
+
+The Wrap function was designed to work as if they were a block, protecting the petitions inside and helping them be used, transformed, or transported safely.
+
+And sometimes we have to join them together, while we can do some operations like rebase the path, where `.unwrap()` and `. join ()` comes to play. 
 
 ```javascript
 import { wrap } from "vixeny";
@@ -70,6 +81,8 @@ const handler = wrap()()
 ```
 
 ## Filter
+
+`.filter()` as its name implies,  works as a filter, and it's e used as if we were using an array.
 
 ```javascript
 import { wrap } from "vixeny";
@@ -146,8 +159,8 @@ app.get({
     f: () => "Hello",
   });
 
-
-const serve = await app.testRequests();
+// Resolves the chain
+const serve = await app.testPetitions();
 
 const request = new Request("http://localhost/anotherPath");
 
@@ -156,33 +169,22 @@ await serve(request)
 // Outputs: "404"
 ```
 
-
 ## List
 
 <ListOfComponents />
 
+## Extras
 
-## Do you know?
+<span class=quote-advance>
+So we can say:
 
-> Originally, Vixeny developers managed functionality through Petitions and
-> the composer. This method was functional but could become cumbersome
-> specially for testing. So we decided _to wrap it up!_, Mainly to
-> have:
->
-> - **Stability and Integrity**: Wrap helps prevent mutations and side effects,
->   especially when it is exported and imported across different project
->   segments.
-> - **Tool Consolidation**: By centralizing all necessary tools into one
->   higher-order function, Wrap simplifies the development environment.
-> - **Early Debugging**: It enables debugging during the compilation process,
->   allowing not only to debug code but making it totally transparent.
-> - **Testing and Mocking**: Wrap provides robust support for testing and
->   mocking.
-> - **Accessible Interface**: The design of Wrap is `intuitive` ( as good as it gets ), making it more
->   accessible to developers who might be daunted by the framework’s functional
->   nature.
-> - **Advanced Functional Logic**: Wrap allows for the application of a FP
->   style ( What do you expect? ¯\\_(ツ)_/¯).
+Chaining is a powerful concept within functional frameworks that allows you to create a sequence of operations where each step passes its result to the next. It encourages a declarative and modular programming style, focusing on immutability and functional composition.
+
+In this framework, chaining involves creating a pipeline of methods, such as `.get()` or `.addAnyPetition()`, that build on one another without mutating the original context. Each method call returns a new instance or a modified chain, which can be further extended or resolved.
+
+</span>
+
+
 
 
 

@@ -23,11 +23,12 @@ const handler = wrap()()
   })
   // Adding another wrap
   .union(otherWrap.unwrap())
+  // Logging paths
   .logPaths()
 
- await handler.testRequests().then(
-  async serve => console.log(await serve( new Request('http://localhost/three')))
- )
+ await handler.testPetitions()
+  .then(async serve => console.log(await serve('/three')))
+ 
 ```
 
 {/if}

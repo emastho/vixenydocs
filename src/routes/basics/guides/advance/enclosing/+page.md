@@ -43,13 +43,13 @@ const app = wrap()()
 
 // Testing the wrap
 const handler = app
-  .testRequests();
+  .testPetitions();
 
 // Testing the wrap with the options
 const atFourhandler = app
   // Adding the options
   .changeOptions(opt)
-  .testRequests();
+  .testPetitions();
 
 // Expected behavior of the handler
 console.log(
@@ -97,7 +97,7 @@ const handler = wrap()()
   .petitionWithoutCTX({
     path: "/bar/*", // Encloses "wrapAt4" within the "/bar" path
     r: handlerAt4,
-  }).testRequests();
+  }).testPetitions();
 
 const base = "http://localhost/bar";
 const req = new Request(base + "/foo");

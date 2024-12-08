@@ -75,7 +75,7 @@ const handler = wrap(opt)()
         ]),
       }),
   })
-  .testRequests();
+  .testPetitions();
 
 // Helper functions
 const requestOf = (s: string) => new Request(s);

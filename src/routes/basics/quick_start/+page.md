@@ -47,7 +47,7 @@
 <meta name="keywords" content="Vixeny, web development, framework, installation, Bun, Deno, JavaScript, TypeScript, coding examples, petitions, wrap function, functional programming, reusable code" />
 <meta name="author" content="Vixeny Team" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script src='/prism.mjs'></script>
+
 </svelte:head>
 
 # Welcome to Vixeny!

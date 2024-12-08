@@ -14,13 +14,12 @@ const handler = wrap()()
   })
 
 // Making a testable unit
-const testHandler = await handler.testRequests();
+const testHandler = await handler.testPetitions();
 
 // "helloWorld"
-console.log(
-  await testHandler(new Request("http://localhost/helloWorld"))
-    .then((response) => response.text()),
-);
+await testHandler("/helloWorld")
+  .then(async (response) => await response.text())
+  .then(console.log)
 ```
 
 {:else}
@@ -38,11 +37,9 @@ const handler = wrap()()
 const testHandler = await handler.handleRequest('/helloWorld')({});
 
 // "helloWorld"
-console.log(
-  await testHandler(new Request("http://localhost/helloWorld"))
-    .then((response) => response.text()),
-);
-
+await testHandler("/helloWorld")
+  .then((response) => response.text())
+  .then(console.log)
 ```
 
 {/if}

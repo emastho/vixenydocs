@@ -7,8 +7,6 @@
 ```javascript
 import { petitions, wrap } from "vixeny";
 
-const request = new Request("http://localhost/winAPrice");
-
 const lotery = petitions.resolve()({
   // Generates a random number from 0 to 10000
   f:  () => Math.round(10000)
@@ -30,18 +28,16 @@ const mockRoutes = await routes.handleRequest("/winAPrice")({
   },
 });
 
-console.log(
-  // Always a winner
-  await mockRoutes(request).then((res) => res?.text()),
-);
+// Always a winner
+await mockRoutes("/winAPrice")
+  .then(async (res) => await res.text())
+  .then(console.log)
 ```
 
 {:else}
 
 ```javascript
 import { petitions, wrap } from "vixeny";
-
-const request = new Request("http://localhost/weather");
 
 // Real Resolve
 const currentWeather = petitions.resolve()({
@@ -69,10 +65,10 @@ const mockRoutes = await routes.handleRequest("/weather")({
   },
 });
 
-console.log(
-  // "It's warm outside"
-  await mockRoutes(request).then((res) => res?.text()),
-);
+// "It's warm outside"
+await mockRoutes('/weather')
+  .then(async (res) => await res.text())
+  .then(console.log)
 ```
 
 {/if}

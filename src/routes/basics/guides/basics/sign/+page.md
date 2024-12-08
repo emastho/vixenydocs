@@ -4,7 +4,7 @@
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
+
 <title>Sign and Verify- Vixeny</title>
   <meta name="description" content="Understanding sign and verify"/>
   <meta name="keywords" content="sign, verify, JWT, web development, Vixeny framework, FP, functional programming"/>
@@ -36,7 +36,7 @@ const handler = wrap()()
     f: ({ sign, param }) => sign(param),
   })
   // Creating a server element
-  .testRequests();
+  .testPetitions();
 
 // Checking token
 await handler(new Request("http://localhost/sign/pluie"))
@@ -85,7 +85,7 @@ const handler = wrap()()
       }
     },
   })
-  .testRequests();
+  .testPetitions();
 
 // Getting the token of { user : "pluie" }
 const token = await handler(new Request("http://localhost/sign/pluie"))

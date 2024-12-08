@@ -4,7 +4,7 @@
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
+
 <title>Token - Vixeny</title>
   <meta name="description" content="Understanding token"/>
   <meta name="keywords" content="token, JWT, web development, Vixeny framework, FP, functional programming"/>
@@ -47,7 +47,7 @@ const handler = wrap()()
       // If the Token is valid it will parse the body
       new Response(null, { status: token.user ? 200 : 403 }),
   })
-  .testRequests();
+  .testPetitions();
 ```
 
 ### Using with sign
@@ -81,7 +81,7 @@ const handler = wrap()()
       // If the Token is valid it will parse the body
       new Response(null, { status: token.user ? 200 : 403 }),
   })
-  .testRequests();
+  .testPetitions();
 
 // Getting token
 const token = await handler(new Request("http://localhost/getKey/bubbles"))

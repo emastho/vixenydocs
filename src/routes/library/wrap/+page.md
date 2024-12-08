@@ -5,7 +5,7 @@
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
+
 <title>Wrap - Vixeny</title>
 <meta name="description" content="Understanding wrap"/>
 </svelte:head>
@@ -250,8 +250,8 @@ const updatedHandler = handler.changeOptions({
 // Showcase
 const req = new Request("http://localhost/");
 console.log(
-  await handler.testRequests()(req).then((r) => r.text()),
-  await handlerToMock.testRequests()(req).then((r) => r.text()),
+  await handler.testPetitions()(req).then((r) => r.text()),
+  await handlerToMock.testPetitions()(req).then((r) => r.text()),
 );
 
 // The updated handler will now greet 'Avant' instead of 'Bubbles'
@@ -592,7 +592,7 @@ const staticContentHandler = wrap()()
         headers: new Headers({ "Content-Type": "text/html" }),
       }),
   })
-  .testRequests();
+  .testPetitions();
 
 // Example of serving a request to the static path
 const request = new Request("http://localhost/static");
@@ -701,7 +701,7 @@ app(request).then((response) => console.log(response.text())); // Outputs: "Hell
 - **Application Initialization**: Useful for setting up basic route handling in
   applications.
 
-### testRequests
+### testPetitions
 
 Simulates a server environment for testing the functionality of all wrapped
 requests, enabling comprehensive testing without an external runtime.
@@ -733,7 +733,7 @@ const handler = wrap()()
   });
 
 // Creates a handler to test
-const testHandler = handler.testRequests();
+const testHandler = handler.testPetitions();
 
 console.log(
   await testHandler(new Request("http://localhost/helloWold"))

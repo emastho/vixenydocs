@@ -4,7 +4,7 @@
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
+
 <title>Resolve - Vixeny</title>
   <meta name="description" content="Understanding resolve"/>
   <meta name="keywords" content="resolve, web development, Vixeny framework, FP, functional programming"/>

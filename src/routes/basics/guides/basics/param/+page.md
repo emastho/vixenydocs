@@ -4,7 +4,7 @@
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
+
 <title>Param - Vixeny</title>
   <meta name="description" content="Understanding URL parameters"/>
   <meta name="keywords" content="URL parameters, FP, functional programing, web development, Vixeny framework, HTTP parameters"/>
@@ -34,7 +34,7 @@ const handler = wrap()()
   // `debugLast` shows all components used in the last request
   // param: [id?]
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(new Request("http://localhost/user/123"))
   .then((x) => x.text())
@@ -55,7 +55,7 @@ const handler = wrap()()
   // `debugLast` shows all components used in the last request
   // param: [id,token]
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(new Request("http://localhost/user/123/456"))
   .then((x) => x.text())
@@ -83,7 +83,7 @@ const handler = wrap()()
   // `debugLast` shows all components used in the last request
   // param: [id]
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(new Request("http://localhost/user/123"))
   .then((x) => x.text())
@@ -113,7 +113,7 @@ const handler = wrap()()
   // `debugLast` visualizes which components were utilized in the last request
   // param: unique
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(new Request("http://localhost/user/123"))
   .then((x) => x.text())

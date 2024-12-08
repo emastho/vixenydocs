@@ -4,7 +4,7 @@
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
+
 <title>Query - Vixeny</title>
   <meta name="description" content="Understanding query parameters"/>
   <meta name="keywords" content="query parameters, web development, Vixeny framework, FP, functional programing, HTTP queries"/>
@@ -34,7 +34,7 @@ const handler = wrap()()
   // `debugLast` shows all components used in the last request
   // query: [id?]
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(new Request("http://localhost/?id=123"))
   .then((x) => x.text())
@@ -57,7 +57,7 @@ const handler = wrap()()
   // `debugLast` shows all components used in the last request
   // query: Record<string, string|null> | null
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(new Request("http://localhost/?id=123&user=Avant"))
   .then((x) => x.text())
@@ -85,7 +85,7 @@ const handler = wrap()()
   // `debugLast` shows all components used in the last request
   // query: [id?]
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(new Request("http://localhost/?id=123&user=Avant"))
   .then((x) => x.text())
@@ -119,7 +119,7 @@ const handler = wrap()()
   // `debugLast` visualizes which components were utilized in the last request
   // query: [user?]
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(new Request("http://localhost/?id=123&user=Avant"))
   .then((x) => x.text())

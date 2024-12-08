@@ -4,7 +4,7 @@
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
+
 <title>Cookie - Vixeny</title>
   <meta name="description" content="Understanding cookies"/>
   <meta name="keywords" content="cookies, FP, functional programming, web development, Vixeny framework, HTTP cookies"/>
@@ -34,7 +34,7 @@ const handler = wrap()()
   // `debugLast` shows all components used in the last request
   // cookie: [hello?]
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(
   new Request("http://localhost/", {
@@ -64,7 +64,7 @@ const handler = wrap()()
   // `debugLast` shows all components used in the last request
   // cookie: Record<string, string|null> | null
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(
   new Request("http://localhost/", {
@@ -98,7 +98,7 @@ const handler = wrap()()
   // `debugLast` shows all components used in the last request
   // cookie: [hello?]
   .debugLast()
-  .testRequests();
+  .testPetitions();
 
 await handler(
   new Request("http://localhost/", {

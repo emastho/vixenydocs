@@ -272,3 +272,11 @@ blockquote code:not([class*="language-"]) {
   color: var(--text);
   /* border-radius: 4px; */
 }
+
+.quote-advance {
+  margin: 0.5em 0;
+  padding-left: 16px;
+  border-left: 5px solid var(--third);
+  font-style: italic;
+  display: block;
+}
