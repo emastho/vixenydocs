@@ -8,7 +8,7 @@
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import MobileMenu from '$lib/components/MobileMenu.svelte';
-	import { accordion } from '$lib/stores/main';
+	import { accordion, searchModal } from '$lib/stores/main';
 	import nprogress from 'nprogress';
 	import Links from '$lib/components/Links.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
@@ -52,6 +52,7 @@
 				if (e.shiftKey && (e.key === 'A' || e.key === 'a')) {
 					const firstTocLink = document.querySelector('.toc-link.toc-link-h1') as HTMLAnchorElement;
 					if (firstTocLink) {
+						searchModal.set(false);
 						firstTocLink.focus();
 					} else {
 						console.warn('No element with class "toc-link toc-link-h1" found.');
