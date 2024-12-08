@@ -8,58 +8,47 @@
 
 This lesson will be brief, yet it is crucial for understanding the logic of
 pathing in Vixeny. We'll explore the granular power you have to manipulate your
-code. It's important to grasp these basic concepts before we dive deeper into
-`composing` and incorporating these ideas anywhere.
+code.
 
+## Priority in routes
 
 <object type="image/svg+xml" data="/d2/routes.svg"></object>
 
-## Pathing
+We fully support wildcards static and dynamic pathing using the following order:
 
-We can create an `union` between two wraps and also modify their base using
-`startswith`.
+- Real paths (e.g., "/api/first")
+- Dynamic paths (e.g., "/api/:second")
+- Wildcards and static files (e.g., `/static/html/*` -> `/static/*` -> `/*`)
 
-```javascript
-import { plugins, wrap } from "vixeny";
+```js
+import { wrap } from "vixeny";
 
-// Setting up options
-const api = plugins.globalOptions({
-  wrap: {
-    startWith: "/api",
-  },
-});
-
-// Creating a wrap
-const apiWrap = wrap(api)()
+const app = await wrap()()
   .get({
-    path: "/hello",
-    f: () => "api",
-  });
-
-// Merging the paths
-const root = wrap()()
-  // You can also unwrap it in the constructor
-  // apiWrap.unwrap(),
-
-  .union(apiWrap.unwrap())
-  .get({
-    path: "/",
-    f: () => "main",
+    path: "/api/first",
+    f: () => "one",
   })
-  //  ` /  `
-  //  ` /api/hello  `
-  .logPaths();
+  .get({
+    path: "/api/:second",
+    f: () => "two",
+  })
+  .get({
+    // Becomes default case
+    path: "/*",
+    f: () => "default",
+  })
+  .testPetitions();
+
+  // Logs `one two default`
+console.log(
+  await app('/api/first').then(async res => await res.text()),
+  await app('/api/anyValues').then(async res => await res.text()),
+  await app('/randomValue').then(async res => await res.text()),
+)
 ```
 
-This helps manage the complexity of routing by providing an easy way to export
-and import `petitions`. Moreover, since `wrap` has a monadic structure (A
-programming concept that helps manage workflows by allowing functions to chain
-operations in a sequence, while ensuring each operation is isolated from
-others), importing, testing, or modifying any wrap cannot affect other
-instances. This behavior will be explained further in the `wrap` section of the
-library.
 
-## Priority
+## Priority in wildcards
 
 <object type="image/svg+xml" data="/d2/wildcard.svg"></object>
 
@@ -71,6 +60,32 @@ We fully support wildcards `/path/*` using the following order:
 This means that `real paths` are prioritized over wildcards, which reflect other
 nested wildcards.
 
+```js
+import { wrap } from "vixeny";
+
+const app = await wrap()()
+  .get({
+    path: "/api/first",
+    f: () => "one",
+  })
+  .get({
+    path: "/api/*",
+    f: () => "two",
+  })
+  .get({
+    // Becomes default case
+    path: "/*",
+    f: () => "default",
+  })
+  .testPetitions();
+
+  // Logs `one two default`
+console.log(
+  await app('/api/first').then(async res => await res.text()),
+  await app('/api/anyValues').then(async res => await res.text()),
+  await app('/randomValue').then(async res => await res.text()),
+)
+```
 ## List
 
 <ListOfComponents />

@@ -191,7 +191,7 @@ Supports testing individual petitions by injecting values while **preserving the
 
 Vixeny is fully typed, so you get tooltips and hints right in your editor.
 
-## Keybord mode
+## Keyboard mode
 
 Do you like to use your keyboard? Here some tips:
 

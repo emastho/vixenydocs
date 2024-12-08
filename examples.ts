@@ -1,30 +1,26 @@
-import { petitions, wrap } from "vixeny";
+import { wrap } from "vixeny";
 
-// Another way to see `get`
-const std = petitions.add()({
-  path: "/anotherPath",
-  f: () => "Hello",
-});
-
-// Creating a wrap instance with a standard petition
 const app = await wrap()()
   .get({
-    path: "/greet",
-    f: () => "Hello, World!",
+    path: "/api/first",
+    f: () => "one",
   })
-  // Access to all methods
-  .route({
-    path: "/moreMethods",
-    method:'OPTIONS',
-    f: () => "Hello, World!",
+  .get({
+    path: "/api/*",
+    f: () => "two",
   })
-  .addAnyPetition(std)
-  // Making a server to test
+  .get({
+    // Becomes default case
+    path: "/*",
+    f: () => "default",
+  })
   .testPetitions();
 
-// Example of handling the request and outputting the response
-await app("/greet")
-  .then(
-    // Outputs: "Hello, World!"
-    async(response) => console.log( await response.text())
-  ); 
+  // Logs `one two default`
+console.log(
+  await app('/api/first').then(async res => await res.text()),
+  await app('/api/anyValues').then(async res => await res.text()),
+  await app('/randomValue').then(async res => await res.text()),
+)
+
+  

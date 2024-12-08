@@ -58,6 +58,7 @@ And sometimes we have to join them together, while we can do some operations lik
 import { wrap } from "vixeny";
 
 const extension = wrap({
+  // Adds the extension `after` it's resolved or chainned
   wrap: {
     startsWith: "/extension",
   },
@@ -72,6 +73,7 @@ const extension = wrap({
   });
 
 const handler = wrap()()
+  // Joins both wraps together respecting the `natural order`
   .union(extension.unwrap())
   .get({
     path: "/hello",
@@ -107,7 +109,7 @@ const app = wrap({
   });
 
 
-  app
+app
   .filter(p => !p.path.includes("/dev"))
   .logPaths()
 
@@ -162,9 +164,7 @@ app.get({
 // Resolves the chain
 const serve = await app.testPetitions();
 
-const request = new Request("http://localhost/anotherPath");
-
-await serve(request)
+await serve("/anotherPath")
   .then((response) => console.log(response.status));
 // Outputs: "404"
 ```
@@ -175,6 +175,7 @@ await serve(request)
 
 ## Extras
 
+### What is chaining?
 <span class=quote-advance>
 So we can say:
 
