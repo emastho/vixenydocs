@@ -149,7 +149,6 @@
   <div id="canvascontainer" bind:this={canvascontainer}>
     <canvas id="buffer" bind:this={bufferCanvas}></canvas>
     <canvas id="canvas" bind:this={mainCanvas}></canvas>
-    <div style="color:white;">MAULIK MANANI</div>
   </div>
   
   <style>
