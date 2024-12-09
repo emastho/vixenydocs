@@ -2,6 +2,7 @@
 	import FancyLink from '$lib/components/FancyLink.svelte';
 	import { version } from '$app/environment';
 	import Features from '$lib/components/Features.svelte';
+	import Ashes from '$lib/components/Ashes.svelte';
 </script>
 
 <svelte:head>
@@ -12,6 +13,8 @@
 	/>
 </svelte:head>
 
+
+<Ashes/>
 <div>
 	<h2 style="margin-top: 32px; margin-bottom: 0px; padding: 0; color: var(--text)">Welcome to</h2>
 	<h1 style="margin-bottom: 8px; padding: 0; color: var(--main)">Vixeny</h1>
