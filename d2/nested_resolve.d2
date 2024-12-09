@@ -2,20 +2,21 @@
 direction: right
 
 request.class: square
-
-resolve one: {
-  *.class: square
-  ctx -> f
-}
-
 any.class: square
-request -> resolve one
-resolve one.f -> any
 
-resolve two: {
-  *.class: square
-  resolve -> ctx -> f
+resolve: {
+  class: square
+  resolve one: {
+    *.class: square
+    ctx -> f
+  }
+
+  resolve two: {
+    *.class: square
+    resolve -> ctx -> f
+  }
 }
-
-request -> resolve two
-resolve two.f -> any
+request -> resolve.resolve one
+request -> resolve.resolve two
+resolve.resolve two.f -> any
+resolve.resolve one.f -> any

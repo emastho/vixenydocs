@@ -29,7 +29,9 @@
 
 	const documentSchema = {
 		url: 'string',
-		content: 'string'
+		content: 'string',
+		topic: 'string',
+		from: 'string'
 	} as const;
 
 	async function loadData() {
@@ -46,12 +48,17 @@
 	}
 
 	async function searchStuff() {
+
+	
 		results = await search(db, {
 			term: $searchStore
-		});
-	}
+		}).then(x => console.log(x) ?? x);
+		}
+
+	
 
 	let results: null | Results<SearchDocument>;
+		
 	$: if ($searchStore.length > 0) {
 		if (repeat == 0) {
 			loadData().then(createSchema).then(insertData);
@@ -173,6 +180,12 @@
         margin: 0.5em 0;
         padding-left: 16px;
         border-left: 5px solid var(--fourth) ;
+    }
+
+	a.fp {
+        margin: 0.5em 0;
+        padding-left: 16px;
+        border-left: 5px solid white;
     }
 
 	a:nth-child(even) {

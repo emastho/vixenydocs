@@ -6,29 +6,26 @@
 
 # Resolution
 
+<object type="image/svg+xml" data="/d2/resolve_struct.svg"></object>
+
+
 Unlike traditional frameworks that rely on life cycles for code execution and
 rendering management, Vixeny employs a concept called "resolution." A resolution
 is defined as:
 
-> A resolution involves chaining the resolution of any morphism (petition) by
-> its resolve.
 
-Still wondering what that means? In simpler terms, anything defined with a
-`resolve` must be fully resolved before its caller can access it. This creates a
-chain of dependencies that are resolved in sequence.
+> Anything defined with a `resolve` must be fully resolved before its caller can access it. This creates a chain of  dependencies that are resolved in sequence.
 
-At the heart of Vixeny lies a fundamental type known as a "Morphism." While this
-concept is abstracted away to keep things simple. Essentially, anything with an
-`f` (a functor) is considered a "Morphism", and for simpicity, we will bundle
-both terms as `petition`.
+Still wondering what that means?
 
-> Any `resolve` or `branch` can be utilized within a `Morphism`, but there are
-> not considered `petitions`, meaning, you can not use them directly in a
-> `wrap`.
+> Any  `petition` , `resolve` or `branch` can be utilized within a antoher one following a logical sequence.
+
 
 Let's break it down with more examples.
 
-<object type="image/svg+xml" data="/d2/resolution.svg"></object>
+
+<object type="image/svg+xml" data="/d2/nested_resolve.svg"></object>
+
 
 ## Resolve Properties
 
@@ -67,3 +64,16 @@ wrap(options)().get({
 ## List
 
 <ListOfComponents />
+
+## Extra
+
+### Definition
+
+<span class=quote-advance>
+
+  So we can say:
+
+  A resolution involves chaining the resolution of any morphism (petition) by
+  its resolve.
+
+</span>
