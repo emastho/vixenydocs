@@ -13,6 +13,21 @@
 	  <p>Nobody likes unexpected behaviour.</p>
 	</div>
   </div>
+  <!-- <br>
+  <div class="container">
+	<div class="card">
+	  <h2>Unmatched</h2>
+	  <p>Fastest framework in the ecosystem.</p>
+	</div>
+	<div class="card">
+	  <h2>No Dependencies</h2>
+	  <p>Written from scratch, with passion.</p>
+	</div>
+	<div class="card">
+	  <h2>Easily Testable</h2>
+	  <p>Nobody likes unexpected behaviour.</p>
+	</div>
+  </div> -->
   
   <!-- Enhanced Styles -->
   <style>

@@ -1,8 +1,14 @@
 <script>
-	import FancyLink from '$lib/components/FancyLink.svelte';
+
 	import { version } from '$app/environment';
 	import Features from '$lib/components/Features.svelte';
 	import Ashes from '$lib/components/Ashes.svelte';
+	import Tabs from "$lib/components/Tabs.md"
+	import Bash from "$lib/components/SmallComponents/Bash.md"
+	const install = [
+        {title: "Bun", component: Bash, details: {runtime: "bun"}},
+        {title: "Deno", component: Bash, details: {runtime: "deno"}}
+    ]
 </script>
 
 <svelte:head>
@@ -16,11 +22,12 @@
 
 <Ashes/>
 <div>
-	<h2 style="margin-top: 32px; margin-bottom: 0px; padding: 0; color: var(--text)">Welcome to</h2>
+	<h2 style="margin-bottom: 0px; padding: 0; color: var(--text)">Welcome to</h2>
 	<h1 style="margin-bottom: 8px; padding: 0; color: var(--main)">Vixeny</h1>
 	<div style="padding-bottom: 32px; margin-top: -8px; color: gray;">
 		Docs {version}
 	</div>
+	<Tabs data={install}/>
 </div>
 
 <br />
