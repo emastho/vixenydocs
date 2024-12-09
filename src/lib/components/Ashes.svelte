@@ -138,7 +138,7 @@
       canvas[0].height = H;
       canvas[1].width = W;
       canvas[1].height = H;
-      for(var i = 0; i < 50; i++) A.push(new ash());
+      for(var i = 0; i < 10; i++) A.push(new ash());
   
       // Start the animation loop
       setInterval(draw, 33);

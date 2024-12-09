@@ -1,8 +1,9 @@
 <script>
 
  import ListOfComponents from '$lib/components/listofEssential.svelte';
-
+import Prisma from '$lib/components/Prisma.md';
 </script>
+<Prisma/>
 
 # Resolution
 
@@ -18,11 +19,56 @@ is defined as:
 
 Still wondering what that means?
 
-> Any  `petition` , `resolve` or `branch` can be utilized within a antoher one following a logical sequence.
+> Any  `petition` , `resolve` or `branch` can be utilized within a another one following a logical sequence.
 
 
 Let's break it down with more examples.
 
+```javascript
+import { petitions, wrap } from "vixeny";
+
+const nestedResolve = petitions.resolve()({
+  f : () => "hello from resolve"
+})
+
+// Resolve with another resolve nested
+const resolved = petitions.resolve()({
+  resolve:{
+    nestedResolve
+  },
+  f: ({resolve}) => resolve.nestedResolve 
+})
+
+// Branch with another resolve nested
+const branched = petitions.branch()({
+  resolve:{
+    nestedResolve
+  },
+  f: ({resolve}) => resolve.nestedResolve 
+})
+
+const app = await wrap()()
+  .get({
+    path: '/',
+    resolve:{
+      // Adding the resolve
+      resolved
+    },
+    branch:{
+      // Adding the branch
+      branched
+    },
+    f: ({ resolve , branch }) =>
+      // Always return the same because came from the same resolve
+      resolve.resolved === branch.branched(null)
+        ? "same resolve"
+        : "oh this should be possible"
+  })
+  .testPetitions()
+
+  await app("/")
+    .then( async res => console.log( await res.text()))
+```
 
 <object type="image/svg+xml" data="/d2/nested_resolve.svg"></object>
 
@@ -30,35 +76,38 @@ Let's break it down with more examples.
 ## Resolve Properties
 
 Vixeny's resolution mechanism ensures that data dependencies are resolved before
-the main function is executed (Basically an import for the ctx). Simplifying
-asynchronous data handling and composition. Below, we explore key properties of
-resolution in Vixeny.
+the main function is executed (Basically an import for the ctx).
 
 ### SyncAgnostic
 
-Vixeny's design ensures that the signature of your functor (function), `f`,
+Vixeny's design ensures that the signature of your `f`,
 remains unaffected by whether its dependencies, declared in `resolve`, are
-synchronous or asynchronous. This allows for greater flexibility and simplicity,
-specially when it comes to testing:
+synchronous or asynchronous. 
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap , petitions} from "vixeny";
 
 const hello = petitions.resolve()({
   f: async () => await Promise.resolve("Hello"),
 });
 
-wrap(options)().get({
-  path: "/helloWorld",
-  resolve: {
-    // Adding `hello`.
-    hello,
-    // Everything in vixeny is nameless and stateless by nature.
-    world: { f: () => "world" },
-  },
-  // Important to notice that `f` is synchronous even if the resolve `hello` is not.
-  f: ({ resolve }) => `${resolve.hello} ${resolve.world}`,
-});
+const app =await wrap()()
+  .get({
+    path: "/helloWorld",
+    resolve: {
+      // Adding `hello`.
+      hello,
+      // Everything in vixeny is nameless and stateless by nature.
+      world: { f: () => "world" },
+    },
+    // Important to notice that `f` is synchronous even if the resolve `hello` is not.
+    f: ({ resolve }) => `${resolve.hello} ${resolve.world}`,
+  })
+  .testPetitions()
+
+await app("/helloWorld")
+  .then(async res => console.log(await res.text()))
+
 ```
 
 ## List

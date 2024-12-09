@@ -7,12 +7,6 @@
     "content": "questions q&a"
   },
   {
-    "url": "/enviroment/create",
-    "topic": "Create library",
-    "from": "info",
-    "content": "create vixeny templates"
-  },
-  {
     "url": "/enviroment/perspective",
     "topic": "Perspective library",
     "from": "info",
@@ -77,5 +71,53 @@
     "topic": "Wrap",
     "from": "essential",
     "content": "wrap union startswith unwrap addAnyPetition get logPaths filter chaining"
+  },
+  {
+    "url": "/basics/guides/basics/branch",
+    "topic": "Branch",
+    "from": "basics",
+    "content": "branch resolution jwt basics"
+  },
+  {
+    "url": "/basics/guides/basics/cookies",
+    "topic": "Cookies",
+    "from": "basics",
+    "content": "cookies optimization add only basics"
+  },
+  {
+    "url": "/basics/guides/basics/query",
+    "topic": "Cookies",
+    "from": "basics",
+    "content": "query optimization add only basics"
+  },
+  {
+    "url": "/basics/guides/basics/param",
+    "topic": "Parameters",
+    "from": "basics",
+    "content": "parameters param optimization add only basics"
+  },
+  {
+    "url": "/basics/guides/basics/resolve",
+    "topic": "Resolve",
+    "from": "basics",
+    "content": "branch resolution  basics"
+  },
+  {
+    "url": "/basics/guides/basics/sign",
+    "topic": "Sign & Verify",
+    "from": "basics",
+    "content": "sign verify jwt resolution  basics"
+  },
+  {
+    "url": "/basics/guides/basics/io",
+    "topic": "IO",
+    "from": "basics",
+    "content": "io verify jwt textOf writeText  basics"
+  },
+  {
+    "url": "/basics/guides/basics/token",
+    "topic": "Token",
+    "from": "basics",
+    "content": "token verify jwt resolution  basics"
   }
 ]

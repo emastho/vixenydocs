@@ -1,6 +1,9 @@
 <script>
    import ListOfComponents from '$lib/components/listofBasic.svelte';
+ import Prisma from '$lib/components/Prisma.md';
+
 </script>
+<Prisma />
 
 <svelte:head>
 
@@ -35,10 +38,9 @@ import { wrap } from "./main.ts";
 // Common key
 const key = `secret!`;
 
-const handler = wrap()()
-  .customPetition({
+const handler = await wrap()()
+  .post({
     path: "/user/:id",
-    method: "POST",
     // Adding Crypto
     crypto: {
       globalKey: key,
@@ -60,7 +62,7 @@ import { wrap } from "vixeny";
 // Common key
 const key = `secret!`;
 
-const handler = wrap()()
+const handler = await wrap()()
   // Getting keys
   .get({
     path: "/getKey/:name",
@@ -70,9 +72,8 @@ const handler = wrap()()
     },
     f: ({ sign, param }) => sign(param),
   })
-  .customPetition({
+  .post({
     path: "/user/:id",
-    method: "POST",
     // Adding Crypto
     crypto: {
       globalKey: key,

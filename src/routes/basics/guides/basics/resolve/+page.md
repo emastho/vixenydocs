@@ -1,6 +1,9 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';
+ import Prisma from '$lib/components/Prisma.md';
+
 </script>
+<Prisma />
 
 <svelte:head>
 
@@ -48,7 +51,7 @@ const hey = petitions.add()({
   f: ({ resolve }) => `${resolve.sayHello} World!`,
 });
 
-const serve = wrap(options)()
+const serve = await wrap(options)()
   .addAnyPetition(hey);
 ```
 
@@ -85,7 +88,7 @@ const nested = petitions.resolve()({
 });
 
 // Handler with nested resolve
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/",
     resolve: {
@@ -93,7 +96,7 @@ const handler = wrap()()
     },
     f: (ctx) => ctx.resolve.nested,
   })
-  .compose();
+  .testPetitions();
 
 console.log(
   await handler(new Request("http://localhost/"))

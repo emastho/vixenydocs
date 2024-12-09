@@ -1,26 +1,53 @@
 import { wrap } from "vixeny";
 
-const app = await wrap()()
+// Common key
+const key = `secret!`;
+
+const handler = await wrap()()
+  // Getting keys
   .get({
-    path: "/api/first",
-    f: () => "one",
+    path: "/getKey/:name",
+    // Adding Crypto
+    crypto: {
+      globalKey: key,
+    },
+    f: ({ sign, param }) => sign(param),
   })
-  .get({
-    path: "/api/*",
-    f: () => "two",
-  })
-  .get({
-    // Becomes default case
-    path: "/*",
-    f: () => "default",
+  .post({
+    path: "/user/:id",
+    // Adding Crypto
+    crypto: {
+      globalKey: key,
+    },
+    f: async ({ token }) =>
+      // If the Token is valid it will parse the body
+      new Response(null, { status: token.user ? 200 : 403 }),
   })
   .testPetitions();
 
-  // Logs `one two default`
-console.log(
-  await app('/api/first').then(async res => await res.text()),
-  await app('/api/anyValues').then(async res => await res.text()),
-  await app('/randomValue').then(async res => await res.text()),
-)
+// Getting token
+const token = await handler(new Request("http://localhost/getKey/bubbles"))
+  .then((res) => res.text());
 
-  
+// Valid request
+const req = new Request("http://localhost/user/bubbles", {
+  method: "POST",
+  headers: {
+    Cookie: "user=" + token,
+  },
+});
+
+// Invalid request 403
+console.log(
+  await handler(
+    new Request("http://localhost/user/bubbles", {
+      method: "POST",
+    }),
+  )
+    .then((res) => res.status),
+);
+
+// Valid request 200
+console.log(
+  await handler(req).then((res) => res.status),
+);

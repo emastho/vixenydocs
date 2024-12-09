@@ -13,21 +13,25 @@
 	  <p>Nobody likes unexpected behaviour.</p>
 	</div>
   </div>
-  <!-- <br>
+  <br>
   <div class="container">
 	<div class="card">
-	  <h2>Unmatched</h2>
-	  <p>Fastest framework in the ecosystem.</p>
+	  <h2>Stable</h2>
+	  <p>Write it once and forget.</p>
 	</div>
 	<div class="card">
-	  <h2>No Dependencies</h2>
-	  <p>Written from scratch, with passion.</p>
+	  <h2>Batteries included</h2>
+	  <p>Everything in one command.</p>
 	</div>
 	<div class="card">
-	  <h2>Easily Testable</h2>
-	  <p>Nobody likes unexpected behaviour.</p>
+	  <h2>Native frontend support</h2>
+	  <p>Get accesses to your favorites templates.</p>
 	</div>
-  </div> -->
+  </div> 
+  <br>
+  <br>
+  
+
   
   <!-- Enhanced Styles -->
   <style>

@@ -1,10 +1,13 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';
+ import Prisma from '$lib/components/Prisma.md';
+
 </script>
+<Prisma />
 
 <svelte:head>
 
-<script src='/prism.mjs' defer></script>
+
 <title>Headers - Vixeny</title>
   <meta name="description" content="Understanding headers"/>
   <meta name="keywords" content="headers, web development, FP, functional programming, Vixeny framework, HTTP headers"/>
@@ -17,6 +20,8 @@ This is how to retrieve headers set up in the petition and options.
 ## Default Behavior
 
 Headers are unique and immutable, generated in each request-response cycle.
+
+<object type="image/svg+xml" data="/d2/type2.svg"></object>
 
 ## CORS
 
@@ -37,7 +42,7 @@ const opt = plugins.globalOptions({
 
 ### Using it in a Wrap
 
-In this example, we are going to use `customPetition` and `get` and correctly
+In this example, we are going to use `route` and `get` and correctly
 add headers.
 
 ```javascript
@@ -51,11 +56,11 @@ const opt = plugins.globalOptions({
   },
 });
 
-const handler = wrap(opt)()
-  .customPetition({
+const handler = await wrap(opt)()
+  .get({
     path: "/custom",
     headings: {
-      headers: "text/html",
+      headers: ".html"
     },
     f: ({ headers }) =>
       new Response("<p>Hello World!</p>", {
@@ -65,7 +70,7 @@ const handler = wrap(opt)()
   .get({
     path: "/std",
     headings: {
-      headers: "text/html",
+      headers: ".html"
     },
     // Headers are fixed; there's no way to change them dynamically
     f: () =>
@@ -105,7 +110,7 @@ const opt = plugins.globalOptions({
 });
 
 // Composing the petition using `composer`
-const custom = composer.petition(
+const custom = await  composer.petition(
   // Making a custom petition
   petitions.custom(opt)({
     path: "/custom",
@@ -120,7 +125,7 @@ const custom = composer.petition(
 );
 
 // Composing the petition using `composer`
-const std = composer.petition(
+const std = await composer.petition(
   // Making a custom petition
   petitions.add(opt)({
     path: "/std",

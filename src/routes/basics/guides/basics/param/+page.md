@@ -1,6 +1,9 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';
+ import Prisma from '$lib/components/Prisma.md';
+
 </script>
+<Prisma />
 
 <svelte:head>
 
@@ -26,7 +29,7 @@ In this example, it understands that we are only using `id`.
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/user/:id",
     f: ({ param }) => param.id ?? "not found",
@@ -47,7 +50,7 @@ Checking always the `path` to get the valid keys for `param`.
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/user/:id/:token",
     f: ({ param }) => JSON.stringify(param) ?? "not found",
@@ -71,7 +74,7 @@ specified in it.
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/user/:id",
     param: {
@@ -100,7 +103,7 @@ important parameters.
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/user/:id",
     param: {

@@ -1,6 +1,9 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';;
+ import Prisma from '$lib/components/Prisma.md';
+
 </script>
+<Prisma />
 
 <svelte:head>
 
@@ -26,7 +29,7 @@ In this example, it understands that we are only using `hello`.
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await  wrap()()
   .get({
     path: "/",
     f: ({ cookie }) => cookie.hello ?? "not found",
@@ -45,7 +48,6 @@ await handler(
   }),
 )
   .then((x) => x.text())
-  // Logging : world
   .then(console.log);
 ```
 
@@ -56,7 +58,7 @@ which will trigger a default case. You can check this at any time using
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/",
     f: ({ cookie }) => JSON.stringify(cookie) ?? "not found",
@@ -86,7 +88,7 @@ The `only` option restricts cookies to only accept the cookies specified in it.
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/",
     cookie: {

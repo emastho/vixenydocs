@@ -1,6 +1,9 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';;
+ import Prisma from '$lib/components/Prisma.md';
+
 </script>
+<Prisma />
 
 <svelte:head>
 
@@ -85,7 +88,7 @@ const returnArgs = petitions.branch()({
   f: (ctx) => ctx.args,
 });
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/user/:id",
     branch: {
@@ -98,7 +101,7 @@ const handler = wrap()()
 
 // Logging bubbles
 console.log(
-  await handler(new Request("http://localhost/user/bubbles")).then(
+  await handler("/user/bubbles").then(
     (res) => res.text(),
   ),
 );
@@ -117,10 +120,10 @@ const key = `secret!`;
 // Branch
 const getBody = petitions.branch()({
   args: undefined,
-  f: async (ctx) => await ctx.req.text(),
+  f: async ({ clonedRequest }) => await clonedRequest.text(),
 });
 
-const handler = wrap()()
+const handler = await wrap()()
   // Getting keys
   .get({
     path: "/getKey/:name",
@@ -130,9 +133,8 @@ const handler = wrap()()
     },
     f: ({ sign, param }) => sign(param),
   })
-  .customPetition({
+  .post({
     path: "/user/:id",
-    method: "POST",
     // Adding Crypto
     crypto: {
       globalKey: key,
@@ -165,7 +167,7 @@ const req = new Request("http://localhost/user/bubbles", {
 console.log(
   await handler(new Request("http://localhost/user/bubbles", {
     method: "POST",
-  })
+  }))
     .then((res) => res.status),
 );
 
@@ -193,7 +195,7 @@ const hello = petitions.branch()({
   f: () => "hello",
 });
 
-const handle = wrap()()
+const handle = await wrap()()
   .get({
     path: "/",
     branch: {

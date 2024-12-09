@@ -1,6 +1,9 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';
+ import Prisma from '$lib/components/Prisma.md';
+
 </script>
+<Prisma />
 
 <svelte:head>
 
@@ -27,7 +30,7 @@ Example of signing `param`.
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/sign/:user",
     crypto: {
@@ -57,7 +60,7 @@ const cryptoOptions = {
     globalKey: "secret!",
   },
 };
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/sign/:user",
     // Manually adding crypto options,
@@ -66,9 +69,8 @@ const handler = wrap()()
     },
     f: ({ sign, param }) => sign(param),
   })
-  .customPetition({
+  .post({
     path: "/isItValid",
-    method: "POST",
     // Append options
     ...cryptoOptions,
     f: async ({ verify, req }) => {

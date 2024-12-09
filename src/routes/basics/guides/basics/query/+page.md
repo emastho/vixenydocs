@@ -1,6 +1,9 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';
+ import Prisma from '$lib/components/Prisma.md';
+
 </script>
+<Prisma />
 
 <svelte:head>
 
@@ -26,7 +29,7 @@ In this example, it understands that we are only using `id`.
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/",
     f: ({ query }) => query.id ?? "not found",
@@ -49,7 +52,7 @@ which will trigger a default case. You can check this at any time using
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/",
     f: ({ query }) => JSON.stringify(query) ?? "not found",
@@ -73,7 +76,7 @@ specified in it.
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/",
     query: {
@@ -104,7 +107,7 @@ streamline access to important parameters.
 ```javascript
 import { wrap } from "vixeny";
 
-const handler = wrap()()
+const handler = await wrap()()
   .get({
     path: "/",
     query: {

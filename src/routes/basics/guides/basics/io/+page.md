@@ -1,6 +1,9 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';
+ import Prisma from '$lib/components/Prisma.md';
+
 </script>
+<Prisma />
 
 <svelte:head>
 
@@ -32,7 +35,7 @@ An Agnostic Implementation for IO Operations
 import { wrap } from "vixeny";
 
 wrap()()
-  .customPetition({
+  .get({
     path: "/getPackage",
     f: async ({ io }) => {
       const file = await io.textOf("./package.json");
@@ -53,7 +56,7 @@ wrap()()
 import { wrap } from "vixeny";
 
 wrap()()
-  .customPetition({
+  .get({
     path: "/write",
     f: async ({ io }) => {
       // Returns boolean
