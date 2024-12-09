@@ -1,5 +1,8 @@
 <script>
     import { onMount } from 'svelte';
+
+    // @ts-ignore
+    const incr =  ((n) => () => n < .7 ? n = 0.00012  + n : n)(0);
   
     /**
 	 * @type {HTMLDivElement}
@@ -57,8 +60,10 @@
         else {
           this.dp = [{x:0,y:0}];
           for(i = 0; i < p; i++) {
-            j = (i == 0 || p/2 > i ? 1 : -1);
-            this.dp.push({x:this.dp[i].x+(randomRange(5, 30)*j), y:this.dp[i].y+(randomRange(5, 30)*j)});
+            j = (i == 0 || p/2 > i ? 1 : -1) ;
+            this.dp.push({
+              x: this.dp[i].x+(randomRange(5, 30)*j), 
+              y: this.dp[i].y+(randomRange(5, 30)*j)});
           }
         }
       }
@@ -102,7 +107,7 @@
           // @ts-ignore
           ctx.fillStyle = grad;
           // @ts-ignore
-          ctx.globalAlpha = 0.7;
+          ctx.globalAlpha = incr();
           // @ts-ignore
           ctx.fill();
         }
@@ -138,7 +143,7 @@
       canvas[0].height = H;
       canvas[1].width = W;
       canvas[1].height = H;
-      for(var i = 0; i < 10; i++) A.push(new ash());
+      for(var i = 0; i < 30; i++) A.push(new ash());
   
       // Start the animation loop
       setInterval(draw, 33);
