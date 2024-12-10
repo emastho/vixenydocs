@@ -119,5 +119,11 @@
     "topic": "Token",
     "from": "basics",
     "content": "token verify jwt resolution  basics"
+  },
+  {
+    "url": "/basics/guides/advance/enclosing",
+    "topic": "Enclosing",
+    "from": "advance",
+    "content": "enclosing at advance"
   }
 ]

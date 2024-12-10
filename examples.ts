@@ -1,53 +1,49 @@
-import { wrap } from "vixeny";
+import { plugins, wrap } from "vixeny";
 
-// Common key
-const key = `secret!`;
+// Requests
+const atIndex = new Request("http://localhost/hello");
+const atFourBar = new Request("http://localhost/bar/hello");
+const atIndexFoo = new Request("http://localhost/foo/hello");
 
-const handler = await wrap()()
-  // Getting keys
-  .get({
-    path: "/getKey/:name",
-    // Adding Crypto
-    crypto: {
-      globalKey: key,
-    },
-    f: ({ sign, param }) => sign(param),
-  })
-  .post({
-    path: "/user/:id",
-    // Adding Crypto
-    crypto: {
-      globalKey: key,
-    },
-    f: async ({ token }) =>
-      // If the Token is valid it will parse the body
-      new Response(null, { status: token.user ? 200 : 403 }),
-  })
-  .testPetitions();
-
-// Getting token
-const token = await handler(new Request("http://localhost/getKey/bubbles"))
-  .then((res) => res.text());
-
-// Valid request
-const req = new Request("http://localhost/user/bubbles", {
-  method: "POST",
-  headers: {
-    Cookie: "user=" + token,
+// Setting up options
+const opt = plugins.globalOptions({
+  indexBase: {
+    at: 4,
   },
 });
 
-// Invalid request 403
+// Making a wrap
+const app = wrap()()
+  .get({
+    path: "/hello",
+    f: () => "world",
+  });
+
+// Note that we are using the same `app`, all instance of wrap are immutable
+
+// Testing the wrap
+const handler = await app
+  .testPetitions();
+
+// Testing the wrap with the options
+const atFourhandler = await app
+  // Adding the options
+  .changeOptions(opt)
+  .testPetitions();
+
+// Expected behavior of the handler
 console.log(
-  await handler(
-    new Request("http://localhost/user/bubbles", {
-      method: "POST",
-    }),
-  )
-    .then((res) => res.status),
+  // true
+  (await handler(atIndex)).status === 200,
+  // true
+  (await handler(atFourBar)).status === 404,
 );
 
-// Valid request 200
+// Checking the request status after moving the handler one directory deeper
+
 console.log(
-  await handler(req).then((res) => res.status),
-);
+  // true
+  (await atFourhandler(atIndex)).status === 404,
+  // true
+  (await atFourhandler(atFourBar)).status === 200
+)

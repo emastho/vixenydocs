@@ -2,7 +2,7 @@
     import { onMount } from 'svelte';
 
     // @ts-ignore
-    const incr =  ((n) => () => n < .7 ? n = 0.00012  + n : n)(0);
+    const incr =  ((n) => () => n < .7 ? n = 0.00008  + n : n)(0);
   
     /**
 	 * @type {HTMLDivElement}
@@ -143,7 +143,7 @@
       canvas[0].height = H;
       canvas[1].width = W;
       canvas[1].height = H;
-      for(var i = 0; i < 30; i++) A.push(new ash());
+      for(var i = 0; i < 50; i++) A.push(new ash());
   
       // Start the animation loop
       setInterval(draw, 33);

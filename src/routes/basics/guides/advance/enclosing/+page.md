@@ -1,6 +1,9 @@
 <script>
  import ListOfAdvance from '$lib/components/listofAdvance.svelte';;
+ import Prisma from '$lib/components/Prisma.md';
+
 </script>
+<Prisma />
 
 <svelte:head>
 
@@ -21,9 +24,9 @@ know that you can rebase the logic of your routing `at` any level.
 import { plugins, wrap } from "vixeny";
 
 // Requests
-const atIndex = new Request("http://localhost/hello");
-const atFourBar = new Request("http://localhost/bar/hello");
-const atIndexFoo = new Request("http://localhost/foo/hello");
+const atIndex = "/hello"
+const atFourBar = "/bar/hello"
+const atIndexFoo = "/foo/hello"
 
 // Setting up options
 const opt = plugins.globalOptions({
@@ -42,11 +45,11 @@ const app = wrap()()
 // Note that we are using the same `app`, all instance of wrap are immutable
 
 // Testing the wrap
-const handler = app
+const handler = await app
   .testPetitions();
 
 // Testing the wrap with the options
-const atFourhandler = app
+const atFourhandler = await app
   // Adding the options
   .changeOptions(opt)
   .testPetitions();
@@ -65,7 +68,8 @@ console.log(
   // true
   (await atFourhandler(atIndex)).status === 404,
   // true
-  (await atFourhandler(atFourBar)).status === 200,
+  (await atFourhandler(atFourBar)).status === 200
+)
 );
 ```
 
@@ -76,8 +80,10 @@ within other wraps, effectively creating a clousere that the current wrap can't
 access to.
 
 ```javascript
+import { wrap } from "vixeny";
+
 // Making a wrap with a specific index base set at the fourth segment
-const handlerAt4 = wrap({
+const handlerAt4 = await wrap({
   indexBase: {
     at: 4,
   },
@@ -93,21 +99,21 @@ const handlerAt4 = wrap({
   .compose();
 
 // Making a handler that includes the wrap within a broader path context
-const handler = wrap()()
-  .petitionWithoutCTX({
-    path: "/bar/*", // Encloses "wrapAt4" within the "/bar" path
-    r: handlerAt4,
+const handler = await wrap()()
+  .route({
+    // Encloses "wrapAt4" within the "/bar" path
+    path: "/bar/*", 
+    // Adding a @ts-ignore here to bypass the type checking
+    // @ts-ignore
+    f: handlerAt4,
   }).testPetitions();
 
-const base = "http://localhost/bar";
-const req = new Request(base + "/foo");
-const param = new Request(base + "/foo/param");
 
 // Executing and logging the response from the "/foo" route
-await handler(req).then((x) => x.text())
+await handler("/bar/foo").then((x) => x.text())
   // Expected to log "from inside"
   .then(console.log);
-await handler(param)
+await handler("/bar/foo/param")
   .then((x) => x.text())
   // Expected to log "param"
   .then(console.log);

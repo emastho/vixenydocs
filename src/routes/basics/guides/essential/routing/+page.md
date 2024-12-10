@@ -5,6 +5,7 @@ import Prisma from '$lib/components/Prisma.md';
 
 </script>
 <Prisma />
+
 # Routing
 
 This lesson will be brief, yet it is crucial for understanding the logic of
