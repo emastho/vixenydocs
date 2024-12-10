@@ -4,6 +4,27 @@
     // @ts-ignore
     const incr =  ((n) => () => n < .7 ? n = 0.00008  + n : n)(0);
   
+ 
+    // Function to convert hex to RGB
+    function hexToRgb() {
+    
+      
+      const hexColor = getComputedStyle(document.documentElement)
+              .getPropertyValue('--ashes').trim();
+      // Remove the hash if present
+      let hex = hexColor.replace(/^#/, '');
+
+      // Parse shorthand hex (#abc) to full form (#aabbcc)
+      if (hex.length === 3) {
+        hex = [...hex].map(x => x + x).join('');
+      }
+
+      const r = parseInt(hex.slice(0, 2), 16);
+      const g = parseInt(hex.slice(2, 4), 16);
+      const b = parseInt(hex.slice(4, 6), 16);
+
+      return [r,g,b];
+    }
     /**
 	 * @type {HTMLDivElement}
 	 */
@@ -46,15 +67,17 @@
       function ash(o) {
         var i, j,
             m = Math.random(),
-            p = randomRange(4, 8, m);
+            p = randomRange(4, 8, m),
+            rgb = hexToRgb();
   
         if(o && o.x) this.x = o.x; else this.x = m * W;
         if(o && o.y) this.y = o.y; else this.y = m * H;
         if(o && o.a) this.a = o.a; else this.a = m * (p - 4) + 1;
   
-        this.r = randomRange(233, 255, m);
-        this.g = randomRange(181, 192, m);
-        this.b = randomRange(72, 88, m);
+      
+        this.r = randomRange(rgb[0] - 10, rgb[0], m);
+        this.g = randomRange(rgb[1] - 10, rgb[1], m);
+        this.b = randomRange(rgb[2] - 10, rgb[2], m);
   
         if(o && o.dp) this.dp = o.dp;
         else {

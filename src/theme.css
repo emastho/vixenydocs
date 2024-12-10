@@ -57,7 +57,7 @@ pre[class*="language-"] {
 }
 
 .token.function-name {
-  color: #6196cc;
+  color: var(--methods);
 }
 
 .token.boolean,
@@ -247,7 +247,7 @@ div.code-toolbar > .toolbar > .toolbar-item > span:hover {
 }
 
 .token.atrule {
-  color: #c792ea;
+  color: var(--keywords);
 }
 
 .token.attr-name {
@@ -263,7 +263,7 @@ div.code-toolbar > .toolbar > .toolbar-item > span:hover {
 }
 
 .token.boolean {
-  color: #c792ea;
+  color: var(--keywords);
 }
 
 .token.builtin {
@@ -271,11 +271,11 @@ div.code-toolbar > .toolbar > .toolbar-item > span:hover {
 }
 
 .token.cdata {
-  color: #80cbc4;
+  color: var(--methods);
 }
 
 .token.char {
-  color: #80cbc4;
+  color: var(--methods);
 }
 
 .token.class {
@@ -283,15 +283,15 @@ div.code-toolbar > .toolbar > .toolbar-item > span:hover {
 }
 
 .token.class-name {
-  color: #f2ff00;
+  color: var(--methods);
 }
 
 .token.comment {
-  color: #98989870;
+  color: var(--comment);
 }
 
 .token.constant {
-  color: #c792ea;
+  color: var(--keywords);
 }
 
 .token.deleted {
@@ -307,7 +307,7 @@ div.code-toolbar > .toolbar > .toolbar-item > span:hover {
 }
 
 .token.function {
-  color: #c792ea;
+  color: var(--keywords);
 }
 
 .token.hexcode {
@@ -315,29 +315,29 @@ div.code-toolbar > .toolbar > .toolbar-item > span:hover {
 }
 
 .token.id {
-  color: #c792ea;
+  color: var(--keywords);
   font-weight: bold;
 }
 
 .token.important {
-  color: #c792ea;
+  color: var(--keywords);
   font-weight: bold;
 }
 
 .token.inserted {
-  color: #80cbc4;
+  color: var(--methods);
 }
 
 .token.keyword {
-  color: #c792ea;
+  color: var(--keywords);
 }
 
 .token.number {
-  color: #fd9170;
+  color: var(--number);
 }
 
 .token.operator {
-  color: #89ddff;
+  color: var(--methods);
 }
 
 .token.prolog {
@@ -345,7 +345,7 @@ div.code-toolbar > .toolbar > .toolbar-item > span:hover {
 }
 
 .token.property {
-  color: #80cbc4;
+  color: var(--methods);
 }
 
 .token.pseudo-class {
@@ -357,7 +357,7 @@ div.code-toolbar > .toolbar > .toolbar-item > span:hover {
 }
 
 .token.punctuation {
-  color: #89ddff;
+  color: var(--methods);
 }
 
 .token.regex {
@@ -370,11 +370,11 @@ div.code-toolbar > .toolbar > .toolbar-item > span:hover {
 
 .token.string {
   /*color: #a5e844;*/
-  color: #bcbc6e;
+  color: var(--string);
 }
 
 .token.symbol {
-  color: #c792ea;
+  color: var(--keywords);
 }
 
 .token.tag {
