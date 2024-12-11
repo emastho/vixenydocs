@@ -91,7 +91,7 @@
 		height: 100%;
 		padding: 2rem;
 		z-index: 100;
-		border-right: 2px solid var(--side);
+		border-right: 2px solid var(--border);
 		top: 0;
 		overflow-y: scroll;
 		backdrop-filter: blur(16px);

@@ -1,12 +1,9 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';
- import Prisma from '$lib/components/Prisma.md';
 
 </script>
-<Prisma />
 
 <svelte:head>
-
 
 <title>IO - Vixeny</title>
   <meta name="description" content="Understanding IO"/>
@@ -32,19 +29,18 @@ An Agnostic Implementation for IO Operations
 - If the file is not found or fails, it returns `null`.
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
-wrap()()
-  .get({
-    path: "/getPackage",
-    f: async ({ io }) => {
-      const file = await io.textOf("./package.json");
+wrap()().get({
+	path: '/getPackage',
+	f: async ({ io }) => {
+		const file = await io.textOf('./package.json');
 
-      return new Response(file, {
-        status: file ? 200 : 404,
-      });
-    },
-  });
+		return new Response(file, {
+			status: file ? 200 : 404
+		});
+	}
+});
 ```
 
 ### writeText
@@ -53,20 +49,19 @@ wrap()()
 - It cannot throw an error.
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
-wrap()()
-  .get({
-    path: "/write",
-    f: async ({ io }) => {
-      // Returns boolean
-      const wasWritten = await io.writeText("./file")("hello world!");
+wrap()().get({
+	path: '/write',
+	f: async ({ io }) => {
+		// Returns boolean
+		const wasWritten = await io.writeText('./file')('hello world!');
 
-      return new Response(null, {
-        status: wasWritten ? 200 : 400,
-      });
-    },
-  });
+		return new Response(null, {
+			status: wasWritten ? 200 : 400
+		});
+	}
+});
 ```
 
 ## List

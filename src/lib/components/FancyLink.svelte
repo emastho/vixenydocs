@@ -8,7 +8,7 @@
 <style>
 	a {
 		width: 100%;
-		/* border: 4px solid var(--side); */
+		/* border: 4px solid var(--border); */
 		background-color: var(--closer);
 		padding: 1.6rem;
 		/* border-radius: 4px; */

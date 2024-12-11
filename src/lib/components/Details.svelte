@@ -38,15 +38,10 @@
 		font-size: 14px;
 	}
 	.details .summary {
-		user-select: none;
-		padding: 12px 32px;
-		font-weight: bold;
-		border-block: 2px solid var(--side);
-		/* background: var(--side); */
-		color: var(--text);
-
-		/* border-bottom: 2px solid var(--side); */
 		font-size: 14px;
+		user-select: none;
+		padding: 8px 32px;
+		color: var(--text-dimmed);
 	}
 
 	.details .summary {

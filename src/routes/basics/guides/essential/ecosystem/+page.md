@@ -1,10 +1,8 @@
 <script>
 
  import ListOfComponents from '$lib/components/listofEssential.svelte';
- import Prisma from '$lib/components/Prisma.md';
 
 </script>
-<Prisma />
 
 # Ecosystem
 
@@ -18,7 +16,7 @@ and `plugins`.
 ### Properties
 
 - Inmutable
-- Deterministic 
+- Deterministic
 - Stable
 - zero dependencies
 
@@ -28,8 +26,7 @@ Repo: [[core](https://github.com/mimiMonads/vixeny)
 
 ## Perspective
 
-It is a bridge between `core` and  `frontend third party libraries`.
-
+It is a bridge between `core` and `frontend third party libraries`.
 
 Repo: [[Perspective](https://github.com/mimiMonads/vixeny-perspective)
 
@@ -39,7 +36,7 @@ Repo: [[Perspective](https://github.com/mimiMonads/vixeny-perspective)
 
 <object type="image/svg+xml" data="/d2/plugins.svg"></object>
 
-It is a bridge between `core` and  `backend third party libraries`.
+It is a bridge between `core` and `backend third party libraries`.
 
 Repo: [Plugins](https://github.com/mimiMonads/vixeny-plugins)
 
@@ -48,5 +45,3 @@ Repo: [Plugins](https://github.com/mimiMonads/vixeny-plugins)
 ## List
 
 <ListOfComponents />
-
-

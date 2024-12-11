@@ -1,12 +1,9 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';
- import Prisma from '$lib/components/Prisma.md';
 
 </script>
-<Prisma />
 
 <svelte:head>
-
 
 <title>Resolve - Vixeny</title>
   <meta name="description" content="Understanding resolve"/>
@@ -35,73 +32,68 @@ Below are some examples demonstrating the usage of resolves within Vixeny.
 #### Basic Resolve
 
 ```javascript
-import { petitions, wrap } from "vixeny";
+import { petitions, wrap } from 'vixeny';
 
 // Setting up a resolution
 const sayHello = petitions.resolve()({
-  f: () => "hello",
+	f: () => 'hello'
 });
 
 // Creating a petition
 const hey = petitions.add()({
-  path: "/hey",
-  resolve: {
-    sayHello,
-  },
-  f: ({ resolve }) => `${resolve.sayHello} World!`,
+	path: '/hey',
+	resolve: {
+		sayHello
+	},
+	f: ({ resolve }) => `${resolve.sayHello} World!`
 });
 
-const serve = await wrap(options)()
-  .addAnyPetition(hey);
+const serve = await wrap(options)().addAnyPetition(hey);
 ```
 
 #### Using Resolve with Asynchronous Functions
 
 ```javascript
-import { petitions, wrap } from "vixeny";
+import { petitions, wrap } from 'vixeny';
 
 // Defining an asynchronous resolve function
 const hello = petitions.resolve()({
-  f: async () => await Promise.resolve("Hello"),
+	f: async () => await Promise.resolve('Hello')
 });
 
 // Using the resolve in a petition
-wrap(options)()
-  .get({
-    path: "/helloWorld",
-    resolve: {
-      hello,
-      world: { f: () => "world" },
-    },
-    f: (ctx) => `${ctx.resolve.hello} ${ctx.resolve.world}`,
-  });
+wrap(options)().get({
+	path: '/helloWorld',
+	resolve: {
+		hello,
+		world: { f: () => 'world' }
+	},
+	f: (ctx) => `${ctx.resolve.hello} ${ctx.resolve.world}`
+});
 ```
 
 #### Nested Resolves
 
 ```javascript
-import { petitions, wrap } from "vixeny";
+import { petitions, wrap } from 'vixeny';
 
 // Nested resolve
 const nested = petitions.resolve()({
-  f: () => "hello",
+	f: () => 'hello'
 });
 
 // Handler with nested resolve
 const handler = await wrap()()
-  .get({
-    path: "/",
-    resolve: {
-      nested,
-    },
-    f: (ctx) => ctx.resolve.nested,
-  })
-  .testPetitions();
+	.get({
+		path: '/',
+		resolve: {
+			nested
+		},
+		f: (ctx) => ctx.resolve.nested
+	})
+	.testPetitions();
 
-console.log(
-  await handler(new Request("http://localhost/"))
-    .then((res) => res.text()),
-);
+console.log(await handler(new Request('http://localhost/')).then((res) => res.text()));
 ```
 
 ## List

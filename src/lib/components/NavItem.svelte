@@ -26,6 +26,7 @@
 		/* border-radius: 8px;  */
 		/* border: 2px solid #2f2f2f; */
 		transition: 150ms all;
+		color: var(--text);
 	}
 
 	li a:hover {
@@ -33,8 +34,6 @@
 	}
 
 	li .active {
-		/* border-color: #6f5c9b; */
 		text-decoration: underline;
-		/* background: #6f5c9b;  */
 	}
 </style>

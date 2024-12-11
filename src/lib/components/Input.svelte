@@ -21,7 +21,7 @@
 	div {
 		/* background-color: var(--closest); */
 		background-color: var(--bg);
-		border: 2px solid var(--side);
+		border: 2px solid var(--border);
 		padding: 10px 16px;
 		/* border-radius: 4px; */
 		display: flex;

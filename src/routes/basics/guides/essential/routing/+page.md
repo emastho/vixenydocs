@@ -1,10 +1,8 @@
 <script>
 
  import ListOfComponents from '$lib/components/listofEssential.svelte';
-import Prisma from '$lib/components/Prisma.md';
 
 </script>
-<Prisma />
 
 # Routing
 
@@ -23,32 +21,31 @@ We fully support wildcards static and dynamic pathing using the following order:
 - Wildcards and static files (e.g., `/static/html/*` -> `/static/*` -> `/*`)
 
 ```js
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 const app = await wrap()()
-  .get({
-    path: "/api/first",
-    f: () => "one",
-  })
-  .get({
-    path: "/api/:second",
-    f: () => "two",
-  })
-  .get({
-    // Becomes default case
-    path: "/*",
-    f: () => "default",
-  })
-  .testPetitions();
+	.get({
+		path: '/api/first',
+		f: () => 'one'
+	})
+	.get({
+		path: '/api/:second',
+		f: () => 'two'
+	})
+	.get({
+		// Becomes default case
+		path: '/*',
+		f: () => 'default'
+	})
+	.testPetitions();
 
-  // Logs `one two default`
+// Logs `one two default`
 console.log(
-  await app('/api/first').then(async res => await res.text()),
-  await app('/api/anyValues').then(async res => await res.text()),
-  await app('/randomValue').then(async res => await res.text()),
-)
+	await app('/api/first').then(async (res) => await res.text()),
+	await app('/api/anyValues').then(async (res) => await res.text()),
+	await app('/randomValue').then(async (res) => await res.text())
+);
 ```
-
 
 ## Priority in wildcards
 
@@ -63,32 +60,32 @@ This means that `real paths` are prioritized over wildcards, which reflect other
 nested wildcards.
 
 ```js
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 const app = await wrap()()
-  .get({
-    path: "/api/first",
-    f: () => "one",
-  })
-  .get({
-    path: "/api/*",
-    f: () => "two",
-  })
-  .get({
-    // Becomes default case
-    path: "/*",
-    f: () => "default",
-  })
-  .testPetitions();
+	.get({
+		path: '/api/first',
+		f: () => 'one'
+	})
+	.get({
+		path: '/api/*',
+		f: () => 'two'
+	})
+	.get({
+		// Becomes default case
+		path: '/*',
+		f: () => 'default'
+	})
+	.testPetitions();
 
-  // Logs `one two default`
+// Logs `one two default`
 console.log(
-  await app('/api/first').then(async res => await res.text()),
-  await app('/api/anyValues').then(async res => await res.text()),
-  await app('/randomValue').then(async res => await res.text()),
-)
+	await app('/api/first').then(async (res) => await res.text()),
+	await app('/api/anyValues').then(async (res) => await res.text()),
+	await app('/randomValue').then(async (res) => await res.text())
+);
 ```
+
 ## List
 
 <ListOfComponents />
-

@@ -186,7 +186,7 @@
 	}
 
 	a:nth-child(even) {
-		background-color: var(--side);
+		background-color: var(--border);
 	}
 
 	a:focus {

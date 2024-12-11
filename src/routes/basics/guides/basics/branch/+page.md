@@ -1,9 +1,6 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';;
- import Prisma from '$lib/components/Prisma.md';
-
 </script>
-<Prisma />
 
 <svelte:head>
 
@@ -36,24 +33,24 @@ It gets the type of the `value` in the key `args`. In the next example, it gets
 the type of `text` as a string.
 
 ```javascript
-import { petitions } from "vixeny";
+import { petitions } from 'vixeny';
 
 // `args` are only used in `branch`
 const returnArgs = petitions.branch()({
-  // Gets the type of string; `{} as string` is also valid
-  args: "text",
-  // Using the args that are passed to this `branch`
-  f: (ctx) => ctx.args,
+	// Gets the type of string; `{} as string` is also valid
+	args: 'text',
+	// Using the args that are passed to this `branch`
+	f: (ctx) => ctx.args
 });
 
 // Creating a petition at `/`
 const hello = petitions.add()({
-  path: "/",
-  branch: {
-    returnArgs,
-  },
-  // It returns arguments
-  f: ({ branch }) => branch.returnArgs("hello world"),
+	path: '/',
+	branch: {
+		returnArgs
+	},
+	// It returns arguments
+	f: ({ branch }) => branch.returnArgs('hello world')
 });
 ```
 
@@ -78,33 +75,29 @@ Here we are using a petition in `wrap` and adding a branch that returns the
 string.
 
 ```javascript
-import { petitions, wrap } from "vixeny";
+import { petitions, wrap } from 'vixeny';
 
 // `args` are only used in `branch`
 const returnArgs = petitions.branch()({
-  // Gets the type of string; `{} as string` is also valid
-  args: "string",
-  // Using the args that are passed to this `branch`
-  f: (ctx) => ctx.args,
+	// Gets the type of string; `{} as string` is also valid
+	args: 'string',
+	// Using the args that are passed to this `branch`
+	f: (ctx) => ctx.args
 });
 
 const handler = await wrap()()
-  .get({
-    path: "/user/:id",
-    branch: {
-      // Adding a branch
-      returnArgs,
-    },
-    f: ({ branch, param }) => branch.returnArgs(param.id),
-  })
-  .testPetitions();
+	.get({
+		path: '/user/:id',
+		branch: {
+			// Adding a branch
+			returnArgs
+		},
+		f: ({ branch, param }) => branch.returnArgs(param.id)
+	})
+	.testPetitions();
 
 // Logging bubbles
-console.log(
-  await handler("/user/bubbles").then(
-    (res) => res.text(),
-  ),
-);
+console.log(await handler('/user/bubbles').then((res) => res.text()));
 ```
 
 ### Laziness
@@ -112,69 +105,67 @@ console.log(
 In this example, the body will only be parsed if the token is valid.
 
 ```javascript
-import { petitions, wrap } from "vixeny";
+import { petitions, wrap } from 'vixeny';
 
 // Common key
 const key = `secret!`;
 
 // Branch
 const getBody = petitions.branch()({
-  args: undefined,
-  f: async ({ clonedRequest }) => await clonedRequest.text(),
+	args: undefined,
+	f: async ({ clonedRequest }) => await clonedRequest.text()
 });
 
 const handler = await wrap()()
-  // Getting keys
-  .get({
-    path: "/getKey/:name",
-    // Adding Crypto
-    crypto: {
-      globalKey: key,
-    },
-    f: ({ sign, param }) => sign(param),
-  })
-  .post({
-    path: "/user/:id",
-    // Adding Crypto
-    crypto: {
-      globalKey: key,
-    },
-    branch: {
-      // Adding `getBody`
-      getBody,
-    },
-    f: async ({ token, branch }) =>
-      // If the Token is valid it will parse the body
-      token.user
-        ? new Response(await branch.getBody())
-        : new Response(null, { status: 403 }),
-  })
-  .testPetitions();
+	// Getting keys
+	.get({
+		path: '/getKey/:name',
+		// Adding Crypto
+		crypto: {
+			globalKey: key
+		},
+		f: ({ sign, param }) => sign(param)
+	})
+	.post({
+		path: '/user/:id',
+		// Adding Crypto
+		crypto: {
+			globalKey: key
+		},
+		branch: {
+			// Adding `getBody`
+			getBody
+		},
+		f: async ({ token, branch }) =>
+			// If the Token is valid it will parse the body
+			token.user ? new Response(await branch.getBody()) : new Response(null, { status: 403 })
+	})
+	.testPetitions();
 
 // Getting token
-const token = await handler(new Request("http://localhost/getKey/bubbles"))
-  .then((res) => res.text());
+const token = await handler(new Request('http://localhost/getKey/bubbles')).then((res) =>
+	res.text()
+);
 
 // Valid request
-const req = new Request("http://localhost/user/bubbles", {
-  method: "POST",
-  headers: {
-    Cookie: "user=" + token,
-  },
+const req = new Request('http://localhost/user/bubbles', {
+	method: 'POST',
+	headers: {
+		Cookie: 'user=' + token
+	}
 });
 
 // Invalid request 403
 console.log(
-  await handler(new Request("http://localhost/user/bubbles", {
-    method: "POST",
-  }))
-    .then((res) => res.status),
+	await handler(
+		new Request('http://localhost/user/bubbles', {
+			method: 'POST'
+		})
+	).then((res) => res.status)
 );
 
 // Valid request 200
-console.log(
-  await handler(req).then((res) => res.status),
-);
+console.log(await handler(req).then((res) => res.status));
 ```
 
 ### Resolves as Branches
@@ -182,37 +173,36 @@ console.log(
 Using a resolve as a branch and showing that you need to add `undefined`.
 
 ```javascript
-import { petitions, wrap } from "vixeny";
+import { petitions, wrap } from 'vixeny';
 
 // Resolve
 const world = petitions.resolve()({
-  f: () => "world",
+	f: () => 'world'
 });
 
 // Branch
 const hello = petitions.branch()({
-  args: undefined,
-  f: () => "hello",
+	args: undefined,
+	f: () => 'hello'
 });
 
 const handle = await wrap()()
-  .get({
-    path: "/",
-    branch: {
-      // Adding branches
-      hello,
-      world,
-    },
-    // Resolves are valid branches, you only need to pass an undefined argument
-    f: ({ branch }) => `${branch.hello()} ${branch.world(undefined)}`,
-  })
-  // Creating a server for testing
-  .testPetitions();
+	.get({
+		path: '/',
+		branch: {
+			// Adding branches
+			hello,
+			world
+		},
+		// Resolves are valid branches, you only need to pass an undefined argument
+		f: ({ branch }) => `${branch.hello()} ${branch.world(undefined)}`
+	})
+	// Creating a server for testing
+	.testPetitions();
 
 console.log(
-  // Logging `Hello world`
-  await handle(new Request("http://localhost/"))
-    .then((res) => res.text()),
+	// Logging `Hello world`
+	await handle(new Request('http://localhost/')).then((res) => res.text())
 );
 ```
 

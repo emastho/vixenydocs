@@ -1,12 +1,9 @@
 <script>
   import ListOfComponents from '$lib/components/listofBasic.svelte';
- import Prisma from '$lib/components/Prisma.md';
 
 </script>
-<Prisma />
 
 <svelte:head>
-
 
 <title>Sign and Verify- Vixeny</title>
   <meta name="description" content="Understanding sign and verify"/>
@@ -28,23 +25,23 @@ Gives access to the respective functions in the CTX.
 Example of signing `param`.
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 const handler = await wrap()()
-  .get({
-    path: "/sign/:user",
-    crypto: {
-      globalKey: "secret!",
-    },
-    f: ({ sign, param }) => sign(param),
-  })
-  // Creating a server element
-  .testPetitions();
+	.get({
+		path: '/sign/:user',
+		crypto: {
+			globalKey: 'secret!'
+		},
+		f: ({ sign, param }) => sign(param)
+	})
+	// Creating a server element
+	.testPetitions();
 
 // Checking token
-await handler(new Request("http://localhost/sign/pluie"))
-  .then((x) => x.text())
-  .then(console.log);
+await handler(new Request('http://localhost/sign/pluie'))
+	.then((x) => x.text())
+	.then(console.log);
 ```
 
 ## Verify
@@ -52,55 +49,53 @@ await handler(new Request("http://localhost/sign/pluie"))
 Example of signing `param` and verifying the validity of it.
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 // Generic
 const cryptoOptions = {
-  crypto: {
-    globalKey: "secret!",
-  },
+	crypto: {
+		globalKey: 'secret!'
+	}
 };
 const handler = await wrap()()
-  .get({
-    path: "/sign/:user",
-    // Manually adding crypto options,
-    crypto: {
-      globalKey: "secret!",
-    },
-    f: ({ sign, param }) => sign(param),
-  })
-  .post({
-    path: "/isItValid",
-    // Append options
-    ...cryptoOptions,
-    f: async ({ verify, req }) => {
-      // Verifies the body
-      const token = verify(await req.text());
+	.get({
+		path: '/sign/:user',
+		// Manually adding crypto options,
+		crypto: {
+			globalKey: 'secret!'
+		},
+		f: ({ sign, param }) => sign(param)
+	})
+	.post({
+		path: '/isItValid',
+		// Append options
+		...cryptoOptions,
+		f: async ({ verify, req }) => {
+			// Verifies the body
+			const token = verify(await req.text());
 
-      // Check validity of the token
-      if (token) {
-        // If the token is not null returns status 200
-        return new Response(null, { status: 200 });
-      } else {
-        // If the token is null returns status 403
-        return new Response(null, { status: 403 });
-      }
-    },
-  })
-  .testPetitions();
+			// Check validity of the token
+			if (token) {
+				// If the token is not null returns status 200
+				return new Response(null, { status: 200 });
+			} else {
+				// If the token is null returns status 403
+				return new Response(null, { status: 403 });
+			}
+		}
+	})
+	.testPetitions();
 
 // Getting the token of { user : "pluie" }
-const token = await handler(new Request("http://localhost/sign/pluie"))
-  .then((x) => x.text());
+const token = await handler(new Request('http://localhost/sign/pluie')).then((x) => x.text());
 
 // Checking validity
 await handler(
-  new Request("http://localhost/isItValid", {
-    method: "POST",
-    body: token,
-  }),
-)
-  .then(console.log);
+	new Request('http://localhost/isItValid', {
+		method: 'POST',
+		body: token
+	})
+).then(console.log);
 ```
 
 ## List

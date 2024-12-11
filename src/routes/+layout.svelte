@@ -163,7 +163,7 @@
 		flex-shrink: 0;
 		width: 270px;
 		background-color: var(--bg);
-		border-right: 2px solid var(--side);
+		border-right: 2px solid var(--border);
 		padding: 3rem 0;
 		display: flex;
 		flex-direction: column;
@@ -171,7 +171,7 @@
 		height: 100%;
 		overflow-y: scroll;
 		scrollbar-width: none;
-		scrollbar-color: var(--fronter) var(--side);
+		scrollbar-color: var(--fronter) var(--border);
 	}
 
 	.logoArea {
@@ -208,14 +208,14 @@
 		top: 0;
 		background-color: var(--bg-opacity);
 		backdrop-filter: blur(8px);
-		border-bottom: 2px solid var(--side);
+		border-bottom: 2px solid var(--border);
 		z-index: 1;
 	}
 
 	header {
 		width: 100%;
 		display: none;
-		border-bottom: 2px solid var(--side);
+		border-bottom: 2px solid var(--border);
 		padding-block: 16px;
 		align-items: center;
 	}

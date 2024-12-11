@@ -3,21 +3,20 @@
 </script>
 
 <nav>
-	<div class="title">Unleash the functional beast~</div>
 	<div class="items">
 		<Details />
 	</div>
 </nav>
 
 <style>
-	nav .title {
+	/* nav .title {
 		color: var(--subtext);
 		display: block;
 		font-size: small;
 		padding-bottom: 8px;
 		padding-left: 0.4rem;
 		padding-inline: 32px;
-	}
+	} */
 
 	/* nav .items > :global(*:not(:last-child)) {
 		margin-bottom: 8px;

@@ -1,9 +1,7 @@
 <script>
  import ListOfAdvance from '$lib/components/listofAdvance.svelte';;
- import Prisma from '$lib/components/Prisma.md';
 
 </script>
-<Prisma />
 
 <svelte:head>
 
@@ -80,43 +78,44 @@ within other wraps, effectively creating a clousere that the current wrap can't
 access to.
 
 ```javascript
-import { wrap } from "vixeny";
+import { wrap } from 'vixeny';
 
 // Making a wrap with a specific index base set at the fourth segment
 const handlerAt4 = await wrap({
-  indexBase: {
-    at: 4,
-  },
+	indexBase: {
+		at: 4
+	}
 })()
-  .get({
-    path: "/foo",
-    f: () => "from inside",
-  })
-  .get({
-    path: "/foo/:hello",
-    f: ({ param }) => param.hello,
-  })
-  .compose();
+	.get({
+		path: '/foo',
+		f: () => 'from inside'
+	})
+	.get({
+		path: '/foo/:hello',
+		f: ({ param }) => param.hello
+	})
+	.compose();
 
 // Making a handler that includes the wrap within a broader path context
 const handler = await wrap()()
-  .route({
-    // Encloses "wrapAt4" within the "/bar" path
-    path: "/bar/*", 
-    // Adding a @ts-ignore here to bypass the type checking
-    // @ts-ignore
-    f: handlerAt4,
-  }).testPetitions();
-
+	.route({
+		// Encloses "wrapAt4" within the "/bar" path
+		path: '/bar/*',
+		// Adding a @ts-ignore here to bypass the type checking
+		// @ts-ignore
+		f: handlerAt4
+	})
+	.testPetitions();
 
 // Executing and logging the response from the "/foo" route
-await handler("/bar/foo").then((x) => x.text())
-  // Expected to log "from inside"
-  .then(console.log);
-await handler("/bar/foo/param")
-  .then((x) => x.text())
-  // Expected to log "param"
-  .then(console.log);
+await handler('/bar/foo')
+	.then((x) => x.text())
+	// Expected to log "from inside"
+	.then(console.log);
+await handler('/bar/foo/param')
+	.then((x) => x.text())
+	// Expected to log "param"
+	.then(console.log);
 ```
 
 ## List
