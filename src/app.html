@@ -3,6 +3,31 @@
   <head>
     <script>
       0;
+function isLightTheme() {
+
+if (document.cookie.length > 0) {
+      let cooki = document.cookie.split(';').map((item) => {
+				let kv = item.trim().split('=');
+				return { [kv[0]]: kv[1] };
+			});
+			let found = cooki.find((obj) => obj.hasOwnProperty('light'));
+
+      let valid = found?.light == 'true' || found?.light == 'false'
+      if (!valid || found?.light == "false") {
+        return false
+      }
+      return true
+    } else {
+      return false
+    }
+}
+			
+			if (isLightTheme()) {
+				document.documentElement.setAttribute(
+					'data-theme',
+					"light"
+				);
+			}
     </script>
     <style>
       @font-face {

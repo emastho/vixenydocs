@@ -1,9 +1,36 @@
 <script lang="ts">
+	import { theme } from '$lib/stores/main';
+
 	export let mobile: Boolean = false;
+
+	$: check = mobile ? 'a-2' : 'a-1';
+
+	function changeTheme() {
+		document.documentElement.setAttribute('data-theme', $theme ? 'dark' : 'light');
+		theme.update((old) => !old);
+		document.cookie = `light=${$theme}; max-age=2592000`;
+	}
 </script>
 
 <div class={mobile ? 'div-1' : 'div-2'}>
-	<a class={mobile ? 'a-2' : 'a-1'} href="https://github.com/mimiMonads/vixeny" target="_blank">
+	<button class={check} on:click={changeTheme}>
+		{#if $theme}
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+				><path
+					fill="currentColor"
+					d="M12 1a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1m0 18a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1M1 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H2a1 1 0 0 1-1-1m18 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1M7.047 16.953a1 1 0 0 1 0 1.414l-1.41 1.41a1 1 0 1 1-1.414-1.414l1.41-1.41a1 1 0 0 1 1.414 0m12.73-12.73a1 1 0 0 1 0 1.414l-1.41 1.41a1 1 0 1 1-1.414-1.414l1.41-1.41a1 1 0 0 1 1.414 0m-2.824 12.73a1 1 0 0 1 1.414 0l1.41 1.41a1 1 0 1 1-1.414 1.414l-1.41-1.41a1 1 0 0 1 0-1.414M4.223 4.223a1 1 0 0 1 1.414 0l1.41 1.41a1 1 0 0 1-1.414 1.414l-1.41-1.41a1 1 0 0 1 0-1.414M12 7a5 5 0 1 0 0 10a5 5 0 0 0 0-10"
+				/></svg
+			>
+		{:else}
+			<svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
+				><path
+					fill="currentColor"
+					d="m16.07 3.344l-1.428.781l1.428.781l.781 1.428l.781-1.428l1.428-.781l-1.428-.781l-.78-1.428zM2.226 12c0-5.523 4.477-10 10-10h1.734l-.868 1.5c-.579 1-.866 2.189-.866 3.5a7 7 0 0 0 8.348 6.87l1.682-.327l-.543 1.626A10 10 0 0 1 12.227 22c-5.523 0-10-4.477-10-10m18.5-5.584l.914 1.67L23.31 9l-1.67.914l-.914 1.67l-.913-1.67L18.143 9l1.67-.914z"
+				/></svg
+			>
+		{/if}
+	</button>
+	<a class={check} href="https://github.com/mimiMonads/vixeny" target="_blank">
 		<svg
 			class="github"
 			xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +43,7 @@
 			/></svg
 		>
 	</a>
-	<a class={mobile ? 'a-2' : 'a-1'} href="https://github.com/emastho/vixenydocs" target="_blank">
+	<a class={check} href="https://github.com/emastho/vixenydocs" target="_blank">
 		<svg class="docs" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 			><path
 				fill="currentColor"
@@ -24,7 +51,7 @@
 			/></svg
 		>
 	</a>
-	<a class={mobile ? 'a-2' : 'a-1'} href="https://discord.gg/PMXbQtDD3m" target="_blank">
+	<a class={check} href="https://discord.gg/PMXbQtDD3m" target="_blank">
 		<svg
 			class="discord"
 			xmlns="http://www.w3.org/2000/svg"
@@ -46,15 +73,25 @@
 
 	.div-2 {
 		display: flex;
-		column-gap: 4px;
+		column-gap: 6px;
 	}
 
-	a {
+	a,
+	button {
 		color: var(--subtext);
 		margin: 0;
 	}
 
-	a:hover {
+	button {
+		background: transparent;
+		border: unset;
+		cursor: pointer;
+		padding: 0;
+		text-align: left;
+	}
+
+	a:hover,
+	button:hover {
 		color: var(--text);
 	}
 

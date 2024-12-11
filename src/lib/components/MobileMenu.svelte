@@ -93,7 +93,7 @@
 		z-index: 100;
 		border-right: 2px solid var(--side);
 		top: 0;
-		overflow: scroll;
+		overflow-y: scroll;
 		backdrop-filter: blur(16px);
 	}
 

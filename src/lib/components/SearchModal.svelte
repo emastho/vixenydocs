@@ -48,17 +48,13 @@
 	}
 
 	async function searchStuff() {
-
-	
 		results = await search(db, {
 			term: $searchStore
-		}).then(x => console.log(x) ?? x);
-		}
-
-	
+		}).then((x) => console.log(x) ?? x);
+	}
 
 	let results: null | Results<SearchDocument>;
-		
+
 	$: if ($searchStore.length > 0) {
 		if (repeat == 0) {
 			loadData().then(createSchema).then(insertData);
@@ -80,47 +76,50 @@
 		<div class="modalContent">
 			{#if results}
 				{#if results.hits.length < 1}
-					Not found 
-					<br>
-					<br>
+					Not found
+					<br />
+					<br />
 					<table>
 						<thead>
-						  <tr>
-							<th>Shortcut</th>
-							<th>Action</th>
-						  </tr>
+							<tr>
+								<th>Shortcut</th>
+								<th>Action</th>
+							</tr>
 						</thead>
 						<tbody>
-						  <tr>
-							<td>Shift + S</td>
-							<td>Focus search bar</td>
-						  </tr>
-						  <tr>
-							<td>Shift + A</td>
-							<td>Focus first element</td>
-						  </tr>
-						  <tr>
-							<td>Shift + Z</td>
-							<td>Zen mode</td>
-						  </tr>
-						  <tr>
-							<td>Shift + L</td>
-							<td>Light / Dark mode</td>
-						  </tr>
-						  <tr>
-							<td>Tab</td>
-							<td>Jump faster!</td>
-						  </tr>
+							<tr>
+								<td>Shift + S</td>
+								<td>Focus search bar</td>
+							</tr>
+							<tr>
+								<td>Shift + A</td>
+								<td>Focus first element</td>
+							</tr>
+							<tr>
+								<td>Shift + Z</td>
+								<td>Zen mode</td>
+							</tr>
+							<tr>
+								<td>Shift + L</td>
+								<td>Light / Dark mode</td>
+							</tr>
+							<tr>
+								<td>Tab</td>
+								<td>Jump faster!</td>
+							</tr>
 						</tbody>
-					  </table>
-					  
+					</table>
 				{/if}
 				{#each results.hits as item, i}
-					<a class={item.document.from} tabindex={5 + i} on:click={clickOnLink} href={item.document.url}>
+					<a
+						class={item.document.from}
+						tabindex={5 + i}
+						on:click={clickOnLink}
+						href={item.document.url}
+					>
 						{item.document.topic}</a
 					>
 				{/each}
-
 			{/if}
 		</div>
 	</div>
@@ -145,48 +144,46 @@
 	}
 
 	a {
-        margin: 0.5em 0;
-        padding-left: 16px;
-        border-left: 5px ;
+		margin: 0.5em 0;
+		padding-left: 16px;
+		border-left: 5px;
 	}
 
-
-
 	a.info {
-        margin: 0.5em 0;
-        padding-left: 16px;
-        border-left: 5px solid var(--info);
-    }
+		margin: 0.5em 0;
+		padding-left: 16px;
+		border-left: 5px solid var(--info);
+	}
 
 	a.essential {
-        margin: 0.5em 0;
-        padding-left: 16px;
-        border-left: 5px solid var(--main);
-    }
+		margin: 0.5em 0;
+		padding-left: 16px;
+		border-left: 5px solid var(--main);
+	}
 
-    a.basics {
-        margin: 0.5em 0;
-        padding-left: 16px;
-        border-left: 5px solid var(--second);
-    }
+	a.basics {
+		margin: 0.5em 0;
+		padding-left: 16px;
+		border-left: 5px solid var(--second);
+	}
 
-    a.advance {
-        margin: 0.5em 0;
-        padding-left: 16px;
-        border-left: 5px solid var(--third) ;
-    }
+	a.advance {
+		margin: 0.5em 0;
+		padding-left: 16px;
+		border-left: 5px solid var(--third);
+	}
 
-    a.expert {
-        margin: 0.5em 0;
-        padding-left: 16px;
-        border-left: 5px solid var(--fourth) ;
-    }
+	a.expert {
+		margin: 0.5em 0;
+		padding-left: 16px;
+		border-left: 5px solid var(--fourth);
+	}
 
 	a.fp {
-        margin: 0.5em 0;
-        padding-left: 16px;
-        border-left: 5px solid white;
-    }
+		margin: 0.5em 0;
+		padding-left: 16px;
+		border-left: 5px solid white;
+	}
 
 	a:nth-child(even) {
 		background-color: var(--side);

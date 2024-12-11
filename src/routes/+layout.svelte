@@ -8,7 +8,7 @@
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import MobileMenu from '$lib/components/MobileMenu.svelte';
-	import { accordion, searchModal } from '$lib/stores/main';
+	import { accordion, searchModal, theme } from '$lib/stores/main';
 	import nprogress from 'nprogress';
 	import Links from '$lib/components/Links.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
@@ -79,6 +79,11 @@
 
 			window.addEventListener('keydown', keydownHandler);
 		}
+
+		//@ts-ignore
+		if (isLightTheme()) {
+			theme.set(true);
+		}
 	});
 
 	onDestroy(() => {
@@ -87,10 +92,6 @@
 		}
 	});
 </script>
-
-<svelte:head>
-	<link rel="preload" as="image" href={Logo} />
-</svelte:head>
 
 <main>
 	{#if sidebar}
@@ -101,7 +102,7 @@
 		<div class="header-container">
 			<div>
 				<a href="/">
-					<img class="logo" src={Logo} alt="Logo" height="50" />
+					<img class="logo" fetchpriority="high" src={Logo} alt="Logo" height="50" />
 				</a>
 			</div>
 			<div>
