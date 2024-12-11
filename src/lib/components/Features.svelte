@@ -1,4 +1,3 @@
-<!-- Updated Svelte Component -->
 <div class="container">
 	<div class="card">
 		<h2>Unmatched</h2>
@@ -31,7 +30,6 @@
 <br />
 <br />
 
-<!-- Enhanced Styles -->
 <style>
 	h2,
 	p {

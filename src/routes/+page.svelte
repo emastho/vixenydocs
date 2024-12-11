@@ -22,18 +22,22 @@
 <div>
 	<h2 style="margin-top: 16px; margin-bottom: 0px; padding: 0; color: var(--text)">Welcome to</h2>
 	<h1 style="margin-bottom: 8px; padding: 0; color: var(--main)">Vixeny</h1>
-	<div style="padding-bottom: 48px; margin-top: -16px; color: gray;">
+	<div style="margin-top: -16px; color: gray;">
 		Docs {version}
 	</div>
+</div>
+<div class="tabs-cont">
 	<Tabs data={install} />
 </div>
 
-<br />
 <Features />
 
 <style>
-	div > :global(*:not(:last-child)) {
+	/* div > :global(*:not(:last-child)) {
 		margin-bottom: 8px;
+	} */
+	.tabs-cont {
+		margin-block: 48px;
 	}
 	a {
 		display: inline-block;
