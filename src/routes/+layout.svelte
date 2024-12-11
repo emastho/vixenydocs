@@ -43,13 +43,10 @@
 	let keydownHandler: (e: KeyboardEvent) => void;
 
 	if ($page.url.pathname === '/') {
-			asideVisible = !asideVisible;
-		}
+		asideVisible = !asideVisible;
+	}
 
 	onMount(() => {
-
-
-
 		if (typeof window !== 'undefined') {
 			keydownHandler = (e: KeyboardEvent) => {
 				// Shift + S focuses the search bar
@@ -77,16 +74,16 @@
 				}
 
 				// Shift + L toggles the theme between light and dark
-if (e.shiftKey && (e.key === 'L' || e.key === 'l')) {
-	const currentTheme = document.documentElement.dataset.theme;
-	if (currentTheme === 'light') {
-		// Switch to dark
-		document.documentElement.removeAttribute('data-theme');
-	} else {
-		// Switch to light
-		document.documentElement.dataset.theme = 'light';
-	}
-}
+				if (e.shiftKey && (e.key === 'L' || e.key === 'l')) {
+					const currentTheme = document.documentElement.dataset.theme;
+					if (currentTheme === 'light') {
+						// Switch to dark
+						document.documentElement.removeAttribute('data-theme');
+					} else {
+						// Switch to light
+						document.documentElement.dataset.theme = 'light';
+					}
+				}
 			};
 
 			window.addEventListener('keydown', keydownHandler);
@@ -96,6 +93,34 @@ if (e.shiftKey && (e.key === 'L' || e.key === 'l')) {
 		if (isLightTheme()) {
 			theme.set(true);
 		}
+
+		document.querySelectorAll('pre').forEach(function (pre) {
+			// Create the "Copy" button
+			const button = document.createElement('button');
+			button.innerText = 'QWEQWEQeCopy';
+			button.className = 'copyButton';
+
+			// Append the button to the code block container
+			pre.appendChild(button);
+
+			// Add click event to the button
+			button.addEventListener('click', function () {
+				// Get the code block content
+				const code = pre.querySelector('code').innerText;
+
+				// Use the Clipboard API to copy the code
+				navigator.clipboard
+					.writeText(code)
+					.then(function () {
+						// Change button text on successful copy
+						button.innerText = 'Copied!';
+						setTimeout(() => (button.innerText = 'Copy'), 1300);
+					})
+					.catch(function (err) {
+						console.error('Could not copy text: ', err);
+					});
+			});
+		});
 	});
 
 	onDestroy(() => {
@@ -140,10 +165,10 @@ if (e.shiftKey && (e.key === 'L' || e.key === 'l')) {
 			<div class="contentTop">
 				<div class="line">
 					<Input placeholder="Shift + S" id="SEARCH_BAR" />
-					{#if asideVisible} 
-					<Links /> 
+					{#if asideVisible}
+						<Links />
 					{:else}
-					<span  class="clickable" on:click={hideBar} >DOCS</span>
+						<span class="clickable" on:click={hideBar}>DOCS</span>
 					{/if}
 					<SearchModal />
 				</div>
