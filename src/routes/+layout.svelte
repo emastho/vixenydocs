@@ -113,16 +113,9 @@
 
 	<header>
 		<div class="header-container">
-			<div>
-				<a href="/">
-					<img class="logo" fetchpriority="high" src={Logo} alt="Logo" height="50" />
-				</a>
-			</div>
-			<div>
-				<button on:click={showSidebar} bind:this={sidebarButton}>
-					<Iconie which="menu" />
-				</button>
-			</div>
+			<a href="/">
+				<img class="logo" fetchpriority="high" src={Logo} alt="Logo" height="50" />
+			</a>
 		</div>
 	</header>
 	<div class="container">
@@ -138,15 +131,16 @@
 		{/if}
 		<!-- Apply conditional padding based on asideVisible -->
 		<section style={`padding-left: ${asideVisible ? '270px' : '0'}`}>
-			<div class="contentTop">
+			<div class="taskbar">
 				<div class="line">
 					<Input placeholder="Shift + S" id="SEARCH_BAR" />
-					{#if asideVisible}
-						<Links />
-					{:else}
-						<span class="clickable" on:click={hideBar}>DOCS</span>
-					{/if}
+					<Links />
 					<!-- <SearchModal /> -->
+					<div class="mobile-menu-button">
+						<button on:click={showSidebar} bind:this={sidebarButton}>
+							<Iconie which="menu" />
+						</button>
+					</div>
 				</div>
 			</div>
 			<div class="contentContainer">
@@ -187,18 +181,24 @@
 	}
 
 	.content {
-		width: 60%;
+		width: 850px;
+		max-width: 850px;
+	}
+
+	.mobile-menu-button {
+		display: none;
 	}
 
 	.line {
-		width: 60%;
+		width: 850px;
+		max-width: 850px;
 		display: flex;
 		padding-block: 12px;
 		justify-content: space-between;
 		align-items: center;
 	}
 
-	.contentTop {
+	.taskbar {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -209,7 +209,7 @@
 		background-color: var(--bg-opacity);
 		backdrop-filter: blur(8px);
 		border-bottom: 2px solid var(--border);
-		z-index: 1;
+		z-index: 2;
 	}
 
 	header {
@@ -221,37 +221,25 @@
 	}
 
 	.header-container {
-		width: 80%;
+		max-width: 850px;
 		margin: 0 auto;
-		display: flex;
 	}
 
-	.header-container div:nth-child(2) {
-		flex-shrink: 0;
-		text-align: center;
-		display: flex;
-		align-items: center;
-		justify-content: end;
-	}
-
-	.header-container > * {
-		flex: 1;
-	}
-
-	.header-container div:last-child {
-		text-align: right;
-	}
-
-	header button {
+	.mobile-menu-button button {
 		background: var(--bg);
 		border: none;
 		padding: 0.4rem;
 		aspect-ratio: 1/1;
 		border-radius: 4px;
+		transition: 100ms all ease-out;
 	}
 
-	header button:focus-visible {
+	.mobile-menu-button button:focus-visible {
 		outline: 2px solid #6f5c9b;
+	}
+
+	.mobile-menu-button:active {
+		transform: scale(0.9);
 	}
 
 	:global(section ul) {
@@ -263,7 +251,7 @@
 		padding-block: 4px;
 	}
 
-	@media (width < 1100px) {
+	@media (width < 1200px) {
 		aside {
 			display: none;
 		}
@@ -272,38 +260,27 @@
 			display: block;
 		}
 
+		.mobile-menu-button {
+			display: block;
+		}
+
 		section {
 			height: auto;
 			padding-inline: 0 !important;
-			max-width: 100%;
 		}
 
 		main {
 			padding-top: 0;
 		}
-
-		.line {
-			width: 100%;
-		}
-
-		.content {
-			width: calc(100% - 40px);
-		}
-
-		.logo {
-			height: 50px;
-		}
 	}
 
-	@media (width < 1500px) {
-		.content {
-			width: 80%;
-		}
-		.line {
-			width: 80%;
+	@media (width < 910px) {
+		header,
+		.line,
+		.contentContainer {
+			padding-inline: 32px;
 		}
 	}
-
 	:global(.overflow) {
 		height: 100%;
 		overflow-y: hidden;

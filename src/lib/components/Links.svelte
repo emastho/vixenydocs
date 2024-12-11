@@ -117,7 +117,7 @@
 	/* 	color: #6f5c9b; */
 	/* } */
 
-	@media (width < 1100px) {
+	@media (width < 1200px) {
 		.div-2 {
 			display: none;
 		}

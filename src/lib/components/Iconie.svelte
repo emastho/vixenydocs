@@ -10,7 +10,7 @@
 		/></svg
 	>
 {:else if which == 'menu'}
-	<svg xmlns="http://www.w3.org/2000/svg" color="#6f5c9b" width="24" height="24" viewBox="0 0 24 24"
+	<svg xmlns="http://www.w3.org/2000/svg" color="#6f5c9b" width="32" height="32" viewBox="0 0 24 24"
 		><path fill="currentColor" d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm16 5H4v2h16v-2z" /></svg
 	>
 {:else if which == 'search'}

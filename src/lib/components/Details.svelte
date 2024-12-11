@@ -35,7 +35,7 @@
 
 <style>
 	:global(.details a) {
-		font-size: 14px;
+		font-size: 16px;
 	}
 	.details .summary {
 		font-size: 14px;

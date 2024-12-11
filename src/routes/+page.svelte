@@ -47,6 +47,6 @@
 		font-size: clamp(20px, 2vw, 32px);
 	}
 	h1 {
-		font-size: clamp(56px, 8vw, 128px);
+		font-size: clamp(62px, 8vw, 128px);
 	}
 </style>

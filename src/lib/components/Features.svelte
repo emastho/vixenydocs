@@ -11,9 +11,6 @@
 		<h2>Easily Testable</h2>
 		<p>Nobody likes unexpected behaviour.</p>
 	</div>
-</div>
-<br />
-<div class="container">
 	<div class="card">
 		<h2>Stable</h2>
 		<p>Write it once and forget.</p>
@@ -27,6 +24,7 @@
 		<p>Get accesses to your favorites templates.</p>
 	</div>
 </div>
+
 <br />
 <br />
 
@@ -49,18 +47,15 @@
 
 	.container {
 		display: flex;
-		justify-content: space-between; /* Ensures even spacing between cards */
-		gap: 20px; /* Increased gap for better visual separation */
+		flex-wrap: wrap;
+		gap: 12px;
 	}
 
 	.card {
-		flex: 1;
+		flex: 1 1 calc(33.333% - 12px);
 		padding: 24px; /* Adjusted padding for better content display */
-
-		border: 2px solid var(--closer);
-		/* border-bottom: 4px solid var(--main); */
+		border: 1px solid var(--closer);
 		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for 3D effect */
-		border-radius: 0px; /* Rounded corners for a smoother look */
 		transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions for interactions */
 		position: relative;
 	}
@@ -82,10 +77,15 @@
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover for depth */
 	}
 
-	@media (max-width: 1200px) {
-		.container {
-			flex-direction: column;
-			gap: 16px; /* More gap between stacked cards */
+	@media (max-width: 910px) {
+		.card {
+			flex: 1 1 calc(50% - 12px);
+		}
+	}
+
+	@media (max-width: 490px) {
+		.card {
+			flex: 1 1 100%;
 		}
 	}
 </style>
