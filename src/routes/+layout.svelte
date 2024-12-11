@@ -13,6 +13,7 @@
 	import Links from '$lib/components/Links.svelte';
 	import SearchModal from '$lib/components/SearchModal.svelte';
 	import { onMount, onDestroy } from 'svelte';
+	import { page } from '$app/stores';
 
 	let sidebarButton: HTMLElement;
 
@@ -35,9 +36,20 @@
 		sidebar = false;
 	};
 
+	const hideBar = () => {
+		asideVisible = !asideVisible;
+	};
+
 	let keydownHandler: (e: KeyboardEvent) => void;
 
+	if ($page.url.pathname === '/') {
+			asideVisible = !asideVisible;
+		}
+
 	onMount(() => {
+
+
+
 		if (typeof window !== 'undefined') {
 			keydownHandler = (e: KeyboardEvent) => {
 				// Shift + S focuses the search bar
@@ -65,16 +77,16 @@
 				}
 
 				// Shift + L toggles the theme between light and dark
-				if (e.shiftKey && (e.key === 'L' || e.key === 'l')) {
-					const currentTheme = document.documentElement.dataset.theme;
-					if (currentTheme === 'light') {
-						// Switch to dark
-						document.documentElement.removeAttribute('data-theme');
-					} else {
-						// Switch to light
-						document.documentElement.dataset.theme = 'light';
-					}
-				}
+if (e.shiftKey && (e.key === 'L' || e.key === 'l')) {
+	const currentTheme = document.documentElement.dataset.theme;
+	if (currentTheme === 'light') {
+		// Switch to dark
+		document.documentElement.removeAttribute('data-theme');
+	} else {
+		// Switch to light
+		document.documentElement.dataset.theme = 'light';
+	}
+}
 			};
 
 			window.addEventListener('keydown', keydownHandler);
@@ -128,7 +140,11 @@
 			<div class="contentTop">
 				<div class="line">
 					<Input placeholder="Shift + S" id="SEARCH_BAR" />
-					<Links />
+					{#if asideVisible} 
+					<Links /> 
+					{:else}
+					<span  class="clickable" on:click={hideBar} >DOCS</span>
+					{/if}
 					<SearchModal />
 				</div>
 			</div>
