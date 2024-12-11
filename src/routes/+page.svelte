@@ -22,7 +22,7 @@
 <div>
 	<h2 style="margin-top: 16px; margin-bottom: 0px; padding: 0; color: var(--text)">Welcome to</h2>
 	<h1 style="margin-bottom: 8px; padding: 0; color: var(--main)">Vixeny</h1>
-	<div style="padding-bottom: 40px; margin-top: -16px; color: gray;">
+	<div style="padding-bottom: 48px; margin-top: -16px; color: gray;">
 		Docs {version}
 	</div>
 	<Tabs data={install} />
