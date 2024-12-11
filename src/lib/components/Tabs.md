@@ -1,8 +1,15 @@
 <script>
-
+	import loadCopy from '$lib/utils/copyButton';
+	import { browser } from '$app/environment';
+	import { afterUpdate } from 'svelte';
 	export let data;
 	let index = 0;
 
+	afterUpdate(() => {
+		if (index || index == 0) {
+			if (browser) loadCopy();
+		}
+	});
 </script>
 
 <div class="buttons">

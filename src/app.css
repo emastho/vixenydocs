@@ -284,3 +284,37 @@ blockquote code:not([class*='language-']) {
 .clickable {
 	cursor: pointer;
 }
+
+pre {
+	position: relative;
+}
+
+.copyButton {
+	background-color: var(--fronter);
+	padding: 8px 10px;
+	color: white;
+	border: unset;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	transform: translate(-8px, 8px);
+	transition: 100ms transform ease-out;
+	transition: 150ms opacity;
+	border-radius: 2px;
+	opacity: 0;
+}
+
+.copyButton:active {
+	transform: translate(-8px, 8px) scale(0.95);
+}
+
+pre:hover .copyButton {
+	opacity: 1;
+}
+
+@media (width < 1100px) {
+	.copyButton {
+		opacity: 1;
+	}
+}
